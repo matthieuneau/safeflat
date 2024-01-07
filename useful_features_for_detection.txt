@@ -1,0 +1,39 @@
+* = champ obligatoire*
+
+Addresse: 
+
+*Departement 
+*Code postal 
+*Ville
+*Nom du quartier
+*Type de voie: rue, boulevard, place etc.
+*Nom de voie
+*Numero de voie
+*Complément de numéro: bis, ter etc.
+*Numéro d'étage: si immeuble
+
+
+
+Caractéristiques du bien:
+
+*Surface Habitable : en mètres carrés 
+*Nombre d'Étages du bien
+*Nombre d'étages dans l'immeuble (si applicable) 
+Présence d'un Parking: individuel/collectif/non
+*Nombre de Chambres
+*Nombre de Salles de Bain : Nombre total de salles de bain, incluant les toilettes.
+*Nombre de pièces
+*Loyer: avec charges
+Jardin / Espace Extérieur : Présence et taille d'un jardin ou d'un autre espace extérieur appartenant au bien (exclu cour ou espaces collectifs)
+*Balcon / Terrasse : Indique la présence et la taille d'un balcon ou d'une terrasse.
+*Meublé ?
+Année de Construction : Année où le bien immobilier a été construit.
+Type de Chauffage : Système de chauffage utilisé (central, électrique, gaz, etc.).
+Climatisation : Présence ou absence d'un système de climatisation.
+Exposition : Orientation du bien (nord, sud, est, ouest) et ensoleillement.
+*DPE (Diagnostic de Performance Énergétique) : Lettre entre A et G
+*GES (Gaz à Effets de Serre): Lettre entre A et G
+*Type de Propriété : Catégorie du bien (appartement, maison, villa, studio, etc.).
+Ascenseur : Présence ou absence d'un ascenseur, particulièrement pertinent pour les appartements.
+Sous-sol / Cave : Présence et taille d'un sous-sol ou d'une cave, propre à l'appartement, excluant les espaces de stockages partagés.
+Piscine : Indique si le bien dispose d'une piscine privée ou collective.
