@@ -1,10 +1,9 @@
 Key infos:
+- 160k offers in France
+- Some offers are for garage spots 
+- Some offers have a non representative price (e.g. 1$)
+- Exact location is not specified
 
--160k offers in France
--Some offers are for garage spots 
--Some offers have a non representative price (e.g. 1$)
--Exact location is not specified
--
 
 TO BE SCRAPED: 
 - Description: (lots of information, although it's un unstructured chunk of text). 
@@ -14,3 +13,6 @@ Can sometimes be very short ('loue t2')
 - Subtitle information. Ex: 4 Pièces · 91 m² · Laval 53000. Generally holds the number
 of rooms, floor area and address.
 
+
+Bypass security:
+- https://scrapfly.io/blog/how-to-scrape-leboncoin-marketplace-real-estate/
