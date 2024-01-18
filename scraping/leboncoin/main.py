@@ -49,7 +49,7 @@ try:
     # Open (or create) the file and write the extracted text
     with open("output.txt", "w", encoding="utf-8") as file:
         file.write(extracted_text)
-    print("Extracted text has been saved to output.txt")
+    print("Description OK")
 
 except Exception as e:
     print(f"An error occurred while extracting text: {e}")
@@ -60,19 +60,31 @@ try:
         By.CSS_SELECTOR, 'div[data-qa-id="adview_price"] p.text-headline-2'
     )
     price = price_element.text
+    print("price OK")
 
 except Exception as e:
     print(f"An error occurred while extracting price: {e}")
 
+# Retrieving the details(rooms, surface, city, postcode)
 try:
     details_element = driver.find_element(
-        By.CLASS_NAME, "inline-flex w-full flex-wrap mb-md"
+        By.CSS_SELECTOR, "p.inline-flex.w-full.flex-wrap.mb-md"
     )
-    details = details_element.text
-    print(f"Details: {details}")
+    file.write(details_element.text)
+    print("details OK")
 
 except Exception as e:
-    print(f"An error occurred while extracting room_count or surface: {e}")
+    print(f"An error occurred while extracting the details: {e}")
+
+# retrieve the title of the ad
+try:
+    ad_title = driver.find_element(
+        By.CSS_SELECTOR, "break-words text-headline-1-expanded undefined"
+    )
+    file.write(ad_title.text)
+
+except Exception as e:
+    print(f"An error occurred while extracting the title: {e}")
 
 # Close the driver
 driver.quit()
