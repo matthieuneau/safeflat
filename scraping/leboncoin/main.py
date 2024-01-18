@@ -1,22 +1,19 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+import csv
 import sys
 import time
 
 sys.path.append(
-    r"C:\Users\mneau\OneDrive\Bureau\INFO\PYTHON\selenium\chromedriver_1.120.6099.129"
-)
-
-# Chrome options
-options = Options()
-options.add_argument(
-    "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
+    r"C:\Users\mneau\OneDrive\Bureau\INFO\PYTHON\selenium\\"
+    r"chromedriver_1.120.6099.129"
 )
 
 # Create a new instance of the Chrome driver
 driver = webdriver.Chrome(
-    r"C:\Users\mneau\OneDrive\Bureau\INFO\PYTHON\selenium\chromedriver_1.120.6099.129\chromedriver.exe"
+    r"C:\Users\mneau\OneDrive\Bureau\INFO\PYTHON\selenium\\"
+    r"chromedriver_1.120.6099.129"
+    r"\chromedriver.exe"
 )
 
 # URL of the page
@@ -29,6 +26,10 @@ driver.get(url)
 # # Allow some time for the page to load
 time.sleep(5)
 
+# Create a dictionary to store the scraped data
+scraped_data = {"description": "", "price": "", "details": "", "title": ""}
+
+# Clicking the 'Voir plus' button to display the full description
 try:
     voir_plus_button = driver.find_element(
         By.CSS_SELECTOR, "button.mt-lg.text-body-1-link.font-semi-bold.underline"
@@ -39,27 +40,23 @@ try:
 except Exception as e:
     print(f"Could not click 'Voir plus' button: {e}")
 
-# Extract the description and write to file
+# Extract the description
 try:
     text_element = driver.find_element(
         By.CSS_SELECTOR, "p.whitespace-pre-line.text-body-1"
     )
-    extracted_text = text_element.text
-
-    # Open (or create) the file and write the extracted text
-    with open("output.txt", "w", encoding="utf-8") as file:
-        file.write(extracted_text)
-    print("Description OK")
+    scraped_data["description"] = text_element.text
+    print("description OK")
 
 except Exception as e:
     print(f"An error occurred while extracting text: {e}")
 
+# Extract the price
 try:
-    # Extracting the price
     price_element = driver.find_element(
         By.CSS_SELECTOR, 'div[data-qa-id="adview_price"] p.text-headline-2'
     )
-    price = price_element.text
+    scraped_data["price"] = price_element.text
     print("price OK")
 
 except Exception as e:
@@ -70,7 +67,7 @@ try:
     details_element = driver.find_element(
         By.CSS_SELECTOR, "p.inline-flex.w-full.flex-wrap.mb-md"
     )
-    file.write(details_element.text)
+    scraped_data["details"] = details_element.text.split("\n")
     print("details OK")
 
 except Exception as e:
@@ -78,13 +75,37 @@ except Exception as e:
 
 # retrieve the title of the ad
 try:
-    ad_title = driver.find_element(
-        By.CSS_SELECTOR, "break-words text-headline-1-expanded undefined"
-    )
-    file.write(ad_title.text)
+    ad_title = driver.find_element(By.CSS_SELECTOR, 'h1[data-qa-id="adview_title"]')
+    scraped_data["title"] = ad_title.text
+    print("title OK")
 
 except Exception as e:
     print(f"An error occurred while extracting the title: {e}")
 
+# Now write the scraped data to a CSV file
+with open("output.csv", "w", newline="", encoding="utf-8") as file:
+    writer = csv.DictWriter(
+        file, fieldnames=["description", "price", "details", "title"]
+    )
+    writer.writeheader()
+    writer.writerow(scraped_data)
+
 # Close the driver
 driver.quit()
+
+with open("output.txt", "r", encoding="utf-8") as file:
+    reader = csv.DictReader(file)
+
+    # Iterate over each row in the CSV file
+    for row in reader:
+        # Extract each field into a variable
+        description = row["description"]
+        price = row["price"]
+        details = row["details"]
+        title = row["title"]
+
+        # Print the variables to the terminal
+        print(f"Description: {description}")
+        print(f"Price: {price}")
+        print(f"Details: {details}")
+        print(f"Title: {title}\n")
