@@ -1,8 +1,9 @@
 import time
+import csv
 from selenium.webdriver.common.by import By
 
 
-def retrieve_data(url, driver):
+def retrieve_data(url, driver, output_file_path):
     """
     Navigates to a given URL and retrieves data using a Selenium WebDriver.
 
@@ -80,4 +81,10 @@ def retrieve_data(url, driver):
     except Exception as e:
         print(f"An error occurred while extracting the title: {e}")
 
-    return scraped_data
+    # Now write the scraped data to a CSV file
+    with open(output_file_path, "w", newline="", encoding="utf-8") as file:
+        writer = csv.DictWriter(
+            file, fieldnames=["description", "price", "details", "title"]
+        )
+        writer.writeheader()
+        writer.writerow(scraped_data)
