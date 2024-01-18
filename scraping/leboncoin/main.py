@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 import sys
 import time
 
@@ -19,25 +20,39 @@ driver = webdriver.Chrome(
 )
 
 # URL of the page
-# url = "https://www.leboncoin.fr/offre/locations/2467639678"
-url = "https://www.leboncoin.fr/"
-
+url = "https://www.leboncoin.fr/offre/locations/2480020014"
+# url = "https://www.leboncoin.fr/"
 
 # Navigate to the page
 driver.get(url)
 
-# Wait to bluff the captcha mechanism
+# # Allow some time for the page to load
 time.sleep(5)
 
-# Find the paragraph element
-paragraph = driver.find_element_by_css_selector("p.whitespace-pre-line")
+try:
+    voir_plus_button = driver.find_element(
+        By.CSS_SELECTOR, "button.mt-lg.text-body-1-link.font-semi-bold.underline"
+    )
+    voir_plus_button.click()
+    # Wait a bit for the text to fully load after clicking
+    time.sleep(3)
+except Exception as e:
+    print(f"Could not click 'Voir plus' button: {e}")
 
-# Retrieve the text
-text = paragraph.text
+# Extract text from the class and write to file
+try:
+    text_element = driver.find_element(
+        By.CSS_SELECTOR, "p.whitespace-pre-line.text-body-1"
+    )
+    extracted_text = text_element.text
 
-# Write the text to a file
-with open("output.txt", "w", encoding="utf-8") as file:
-    file.write(text)
+    # Open (or create) the file and write the extracted text
+    with open("output.txt", "w", encoding="utf-8") as file:
+        file.write(extracted_text)
+    print("Extracted text has been saved to output.txt")
 
-# Close the browser
-driver.quit()
+except Exception as e:
+    print(f"An error occurred while extracting text: {e}")
+
+# Close the driver
+# driver.quit()
