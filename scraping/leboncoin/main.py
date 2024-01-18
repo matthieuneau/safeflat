@@ -20,7 +20,7 @@ driver = webdriver.Chrome(
 )
 
 # URL of the page
-url = "https://www.leboncoin.fr/offre/locations/2480020014"
+url = "https://www.leboncoin.fr/offre/locations/2471706452"
 # url = "https://www.leboncoin.fr/"
 
 # Navigate to the page
@@ -39,7 +39,7 @@ try:
 except Exception as e:
     print(f"Could not click 'Voir plus' button: {e}")
 
-# Extract text from the class and write to file
+# Extract the description and write to file
 try:
     text_element = driver.find_element(
         By.CSS_SELECTOR, "p.whitespace-pre-line.text-body-1"
@@ -54,5 +54,25 @@ try:
 except Exception as e:
     print(f"An error occurred while extracting text: {e}")
 
+try:
+    # Extracting the price
+    price_element = driver.find_element(
+        By.CSS_SELECTOR, 'div[data-qa-id="adview_price"] p.text-headline-2'
+    )
+    price = price_element.text
+
+except Exception as e:
+    print(f"An error occurred while extracting price: {e}")
+
+try:
+    details_element = driver.find_element(
+        By.CLASS_NAME, "inline-flex w-full flex-wrap mb-md"
+    )
+    details = details_element.text
+    print(f"Details: {details}")
+
+except Exception as e:
+    print(f"An error occurred while extracting room_count or surface: {e}")
+
 # Close the driver
-# driver.quit()
+driver.quit()
