@@ -1,9 +1,8 @@
 import undetected_chromedriver as uc
-import os
-import pandas as pd
-from bs4 import BeautifulSoup
 import time
 from selenium.webdriver.common.by import By
+from numpy import random
+from utils import retrieve_data
 
 # Set Chrome Options
 options = uc.ChromeOptions()
@@ -21,13 +20,18 @@ driver.get(url)
 
 time.sleep(4)
 
-annonces = driver.find_elements(By.XPATH, "//a[@data-test-id='ad' and @data-qa-id='aditem_container']")
+posts = driver.find_elements(By.XPATH, "//a[@data-test-id='ad' and @data-qa-id='aditem_container']")
 
-liste_liens = []
+webpages = []
 # Récupérez les liens des annonces
-for lien in annonces:
-    lien_annonce = lien.get_attribute('href')
-    liste_liens.append(lien_annonce)
-    print(lien_annonce)
+for post in posts:
+    url = post.get_attribute('href')
+    webpages.append(url)
+
+print(webpages)
+
+for webpage in webpages:
+    retrieve_data(webpage, driver, "output.csv")
+    time.sleep(random.uniform(3, 5))
 
 driver.quit()
