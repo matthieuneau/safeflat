@@ -15,9 +15,6 @@ def retrieve_data(url, driver, output_file_path):
     Parameters:
     url (str): The URL to navigate to.
     driver (selenium.webdriver): The WebDriver instance to use for navigation and data retrieval.
-
-    Returns:
-    dict: A dictionary containing the scraped data.
     """
     # Navigate to the page
     driver.get(url)
