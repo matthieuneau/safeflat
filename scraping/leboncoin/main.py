@@ -15,7 +15,7 @@ driver = webdriver.Chrome(
 )
 
 # URL of the page
-url = "https://www.leboncoin.fr/offre/locations/2471706452"
+url = "https://www.leboncoin.fr/offre/locations/2466675077"
 
 scraped_data = utils.retrieve_data(url, driver, "output.csv")
 

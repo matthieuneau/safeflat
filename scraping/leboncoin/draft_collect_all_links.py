@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
 import sys
+from numpy import random
 
 sys.path.append(
     r"C:\Users\mneau\OneDrive\Bureau\INFO\PYTHON\selenium\\"
@@ -20,7 +21,7 @@ url = "https://www.leboncoin.fr/f/locations/real_estate_type--2"
 driver.get(url)
 
 # Allow some time for the page to load
-time.sleep(4)
+time.sleep(random.uniform(3, 5))
 
 # Find all anchor tags
 all_links_elements = driver.find_elements(By.TAG_NAME, "a")

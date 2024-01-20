@@ -1,6 +1,7 @@
 import time
 import csv
 from selenium.webdriver.common.by import By
+from numpy import random
 
 
 def retrieve_data(url, driver, output_file_path):
@@ -22,7 +23,7 @@ def retrieve_data(url, driver, output_file_path):
     driver.get(url)
 
     # Allow some time for the page to load
-    time.sleep(4)
+    time.sleep(random.uniform(3, 5))
 
     # Create a dictionary to store the scraped data
     scraped_data = {"description": "", "price": "", "details": "", "title": ""}
