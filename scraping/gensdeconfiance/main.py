@@ -17,7 +17,7 @@ driver = uc.Chrome(options=options)
 
 driver.get(url)
 
-time.sleep(5)
+time.sleep(3)
 
 result = {}
 
@@ -58,6 +58,7 @@ except Exception as e:
 # Extracting description
 try:
     description_element = driver.find_element(By.ID, "ad-description")
+    description_element.screenshot("image.jpg")
     description_text = description_element.text.strip()
     result["description"] = description_text
 except Exception as e:
@@ -65,23 +66,22 @@ except Exception as e:
 
 # Extracting characteristics
 # try:
-#     value_element = driver.find_element(By.CSS_SELECTOR, ".Value__ValueWrapper-dqBrCn")
-#     value = value_element.text
+#     li_elements = driver.find_elements(
+#         By.CSS_SELECTOR, ".indexclient__GridList-dYErZy.XvGJg > li"
+#     )
 
-#     # Print the retrieved value
-#     print("Retrieved value:", value)
-try:
-    li_elements = driver.find_elements(
-        By.CSS_SELECTOR, ".indexclient__GridList-dYErZy.XvGJg > li"
-    )
+#     # Iterate over each <li> element to retrieve the value from the <span> tag
+#     for li in li_elements:
+#         value = li.find_element(By.CSS_SELECTOR, "span.Value__ValueWrapper-dqBrCn").text
+#         print(value)
 
-    # Iterate over each <li> element to retrieve the value from the <span> tag
-    for li in li_elements:
-        value = li.find_element(By.CSS_SELECTOR, "span.Value__ValueWrapper-dqBrCn").text
-        print(value)
-
-except Exception as e:
-    print(f"Error occurred: {e}")
+# try:
+#     characteristics_element = driver.find_element(
+#         By.CSS_SELECTOR, r"#sfreact-reactRenderer65ad9e4b182194.59758836 > ul"
+#     )
+#     characteristics_element.screenshot("image.jpg")
+# except Exception as e:
+#     print(f"Error occurred: {e}")
 
 print(result)
 
