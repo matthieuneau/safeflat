@@ -1,5 +1,6 @@
 import undetected_chromedriver as uc
 import time
+import yaml
 from selenium.webdriver.common.by import By
 from numpy import random
 from utils import retrieve_data
@@ -11,27 +12,36 @@ options = uc.ChromeOptions()
 # options.add_argument(f'--proxy-server={PROXY}')
 # options.add_argument(f"user-agent={my_user_agent}")
 
+
+# Load the configuration file
+with open("../../Config.yaml", 'r') as stream:
+    config = yaml.safe_load(stream)
+
+nb_pages_to_scrape = config['nb_pages_to_scrape']
+
 # Create Undetected Chromedriver with Proxy
 driver = uc.Chrome(options=options)
 
-url = "https://www.leboncoin.fr/f/locations/real_estate_type--2"
-# Send Request
-driver.get(url)
+for page_nb in range(1, nb_pages_to_scrape + 1):
 
-time.sleep(4)
+    url = f"https://www.leboncoin.fr/f/locations/real_estate_type--2/p-{page_nb}"
+    # Send Request
+    driver.get(url)
 
-posts = driver.find_elements(By.XPATH, "//a[@data-test-id='ad' and @data-qa-id='aditem_container']")
+    time.sleep(4)
 
-webpages = []
-# Récupérez les liens des annonces
-for post in posts:
-    url = post.get_attribute('href')
-    webpages.append(url)
+    posts = driver.find_elements(By.XPATH, "//a[@data-test-id='ad' and @data-qa-id='aditem_container']")
 
-print(webpages)
+    webpages = []
+    # Récupérez les liens des annonces
+    for post in posts:
+        url = post.get_attribute('href')
+        webpages.append(url)
 
-for webpage in webpages:
-    retrieve_data(webpage, driver, "output.csv")
-    time.sleep(random.uniform(3, 5))
+    print(webpages)
+
+    for webpage in webpages:
+        retrieve_data(webpage, driver, "output.csv")
+        time.sleep(random.uniform(3, 5))
 
 driver.quit()

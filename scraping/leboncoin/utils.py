@@ -80,7 +80,7 @@ def retrieve_data(url, driver, output_file_path):
         print(f"An error occurred while extracting the title: {e}")
 
     # Now write the scraped data to a CSV file
-    with open(output_file_path, "a", newline="", encoding="utf-8") as file:
+    with open(output_file_path, "w", newline="", encoding="utf-8") as file:
         writer = csv.DictWriter(
             file, fieldnames=["description", "price", "details", "title"]
         )
