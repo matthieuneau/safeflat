@@ -1,3 +1,4 @@
+import undetected_chromedriver as uc
 import time
 import csv
 from selenium.webdriver.common.by import By
@@ -44,7 +45,6 @@ def retrieve_data(url, driver, output_file_path):
         )
         scraped_data["description"] = text_element.text
         print("description OK")
-
     except Exception as e:
         print(f"An error occurred while extracting text: {e}")
 
@@ -55,7 +55,6 @@ def retrieve_data(url, driver, output_file_path):
         )
         scraped_data["price"] = price_element.text
         print("price OK")
-
     except Exception as e:
         print(f"An error occurred while extracting price: {e}")
 
@@ -66,7 +65,6 @@ def retrieve_data(url, driver, output_file_path):
         )
         scraped_data["details"] = details_element.text.split("\n")
         print("details OK")
-
     except Exception as e:
         print(f"An error occurred while extracting the details: {e}")
 
@@ -75,9 +73,18 @@ def retrieve_data(url, driver, output_file_path):
         ad_title = driver.find_element(By.CSS_SELECTOR, 'h1[data-qa-id="adview_title"]')
         scraped_data["title"] = ad_title.text
         print("title OK")
-
     except Exception as e:
         print(f"An error occurred while extracting the title: {e}")
+
+    # Retrieve the characteristics
+    try:
+        characteristics_element = driver.find_element(
+            By.CSS_SELECTOR,
+            "div.styles_criteria__C2CSi.flex.flex-wrap[data-qa-id='criteria_container']",
+        )
+        characteristics_element.get_screenshot_as_file("screenshot.png")
+    except Exception as e:
+        print(f"An error occurred while extracting the characteristics: {e}")
 
     # Now write the scraped data to a CSV file
     with open(output_file_path, "w", newline="", encoding="utf-8") as file:
@@ -86,3 +93,11 @@ def retrieve_data(url, driver, output_file_path):
         )
         writer.writeheader()
         writer.writerow(scraped_data)
+
+
+if __name__ == "__main__":
+    options = uc.ChromeOptions()
+    driver = uc.Chrome(options=options)
+    url = "https://www.leboncoin.fr/ventes_immobilieres/2001949795.htm/"
+    output_file_path = "output.csv"
+    retrieve_data(url, driver, output_file_path)
