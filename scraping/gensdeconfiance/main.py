@@ -23,28 +23,28 @@ driver.get(url)
 
 time.sleep(3)
 
-# Sign in
-driver.find_element(
-    By.CSS_SELECTOR, "a.Link__Wrapper-sc-1cyaaqe-0-a[href='/fr/connexion']"
-).click()
+# # Sign in
+# driver.find_element(
+#     By.CSS_SELECTOR, "a.Link__Wrapper-sc-1cyaaqe-0-a[href='/fr/connexion']"
+# ).click()
 
-time.sleep(2)
+# time.sleep(2)
 
-# Entering email
-email_input = driver.find_element(By.ID, "identifier")
-email_input.send_keys("m.neau10@gmail.com")
+# # Entering email
+# email_input = driver.find_element(By.ID, "identifier")
+# email_input.send_keys("m.neau10@gmail.com")
 
-# Entering password
-password_input = driver.find_element(By.ID, "password")
-password_input.send_keys("Safeflat")
+# # Entering password
+# password_input = driver.find_element(By.ID, "password")
+# password_input.send_keys("Safeflat")
 
-# Clicking on "Se connecter"
-connect_button = driver.find_element(
-    By.XPATH, "//button[span[contains(text(), 'Se connecter')]]"
-)
-connect_button.click()
+# # Clicking on "Se connecter"
+# connect_button = driver.find_element(
+#     By.XPATH, "//button[span[contains(text(), 'Se connecter')]]"
+# )
+# connect_button.click()
 
-time.sleep(2)
+# time.sleep(2)
 
 result = {}
 
@@ -72,20 +72,19 @@ except Exception as e:
     location_text = "Location Not Found"
 
 # Extracting rent and bills
-# try:
-#     loyer_element = driver.find_element(
-#         By.XPATH,
-#         "//div[contains(@class, 'price-table')]//div[contains(@class, 'price-table__row')][1]//div[contains(@class, 'price-table__value')]",
-#     )
-#     loyer = loyer_element.text.strip()
-#     print("Loyer:", loyer)
-# except Exception as e:
-#     print("Error:", e)
+try:
+    loyer_element = driver.find_element(
+        By.CSS_SELECTOR, ".price-table__row .price-table__value"
+    )
+    loyer_value = loyer_element.text.strip()
+    print(loyer_value)
+except Exception as e:
+    print("Error:", e)
 
 # Extracting description
 try:
     description_element = driver.find_element(By.ID, "ad-description")
-    description_element.screenshot("image.jpg")
+    # description_element.screenshot("image.jpg")
     description_text = description_element.text.strip()
     result["description"] = description_text
 except Exception as e:
@@ -102,15 +101,16 @@ except Exception as e:
 #         value = li.find_element(By.CSS_SELECTOR, "span.Value__ValueWrapper-dqBrCn").text
 #         print(value)
 
-try:
-    characteristics_element = driver.find_element(
-        By.ID, "sfreact-reactRenderer65adb984a990a8.89154089"
-    )
-    characteristics_element.screenshot("image.jpg")
-except Exception as e:
-    print(f"Error occurred: {e}")
+# try:
+#     element = driver.find_element(By.ID, "ad-description")
+#     driver.execute_script("arguments[0].scrollIntoView();", element)
+#     driver.execute_script("window.scrollBy(0, -450);")
+#     driver.get_screenshot_as_file("screenshot.png")
+# except Exception as e:
+#     print(f"Error occurred: {e}")
 
+# time.sleep(4)
 
-print(result)
+# print(result)
 
 driver.quit()
