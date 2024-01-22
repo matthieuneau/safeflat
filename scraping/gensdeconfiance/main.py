@@ -2,11 +2,15 @@ import time
 import undetected_chromedriver as uc
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+import yaml
 
 # import utils
 
-# url = "https://gensdeconfiance.com/fr/annonce/a-louer-de-2019-d707ff8?origin=search&searchRanking=2"
-url = "https://gensdeconfiance.com/fr/annonce/loue-boulogne-rives-de-seine-t4-104m-terrasse-8367bdc?origin=search&searchRanking=8"
+with open("../../Config.yaml", "r") as file:
+    config = yaml.safe_load(file)
+
+url = "https://gensdeconfiance.com/fr/annonce/a-louer-de-2019-d707ff8?origin=search&searchRanking=2"
+# url = "https://gensdeconfiance.com/fr/annonce/loue-boulogne-rives-de-seine-t4-104m-terrasse-8367bdc?origin=search&searchRanking=8"
 # Setup Chrome options for headless browsing
 options = Options()
 
@@ -18,6 +22,29 @@ driver = uc.Chrome(options=options)
 driver.get(url)
 
 time.sleep(3)
+
+# Sign in
+driver.find_element(
+    By.CSS_SELECTOR, "a.Link__Wrapper-sc-1cyaaqe-0-a[href='/fr/connexion']"
+).click()
+
+time.sleep(2)
+
+# Entering email
+email_input = driver.find_element(By.ID, "identifier")
+email_input.send_keys("m.neau10@gmail.com")
+
+# Entering password
+password_input = driver.find_element(By.ID, "password")
+password_input.send_keys("Safeflat")
+
+# Clicking on "Se connecter"
+connect_button = driver.find_element(
+    By.XPATH, "//button[span[contains(text(), 'Se connecter')]]"
+)
+connect_button.click()
+
+time.sleep(2)
 
 result = {}
 
@@ -75,13 +102,14 @@ except Exception as e:
 #         value = li.find_element(By.CSS_SELECTOR, "span.Value__ValueWrapper-dqBrCn").text
 #         print(value)
 
-# try:
-#     characteristics_element = driver.find_element(
-#         By.CSS_SELECTOR, r"#sfreact-reactRenderer65ad9e4b182194.59758836 > ul"
-#     )
-#     characteristics_element.screenshot("image.jpg")
-# except Exception as e:
-#     print(f"Error occurred: {e}")
+try:
+    characteristics_element = driver.find_element(
+        By.ID, "sfreact-reactRenderer65adb984a990a8.89154089"
+    )
+    characteristics_element.screenshot("image.jpg")
+except Exception as e:
+    print(f"Error occurred: {e}")
+
 
 print(result)
 
