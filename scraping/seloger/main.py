@@ -1,43 +1,36 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-import sys
+from bs4 import BeautifulSoup
 import time
+import undetected_chromedriver as uc
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+import utils
 
-sys.path.append(
-    r"C:\Users\mneau\OneDrive\Bureau\INFO\PYTHON\selenium\chromedriver_1.120.6099.129"
-)
+page_nb = 1
 
-# Chrome options
-options = Options()
-options.add_argument(
-    "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
-)
+url = f"https://www.seloger.com/list.htm?projects=1&types=2%2C1&places=%5B%7B%22divisions%22%3A%5B2238%5D%7D%5D&sort=d_dt_crea&mandatorycommodities=0&privateseller=1&enterprise=0&qsVersion=1.0&LISTING-LISTpg={page_nb}"
 
-# Create a new instance of the Chrome driver
-driver = webdriver.Chrome(
-    r"C:\Users\mneau\OneDrive\Bureau\INFO\PYTHON\selenium\chromedriver_1.120.6099.129\chromedriver.exe"
-)
+# Setup Chrome options for undetected_chromedriver
+options = uc.ChromeOptions()
 
-# URL of the page
-url = "https://www.airbnb.fr/rooms/13903824?adults=1&category_tag=Tag%3A8678&children=0&enable_m3_private_room=true&infants=0&pets=0&photo_id=1620494697&search_mode=flex_destinations_search&check_in=2024-01-02&check_out=2024-01-07&source_impression_id=p3_1703518192_ivuPMgKq3jSUwhF9&previous_page_section_name=1000&federated_search_id=032d40d9-9d58-464f-aeba-f5374dad8567"
+# Initialize the WebDriver with the specified options
+driver = uc.Chrome(options=options)
 
-# Navigate to the page
 driver.get(url)
 
-# Wait for the element to be loaded
-time.sleep(5)
 
-# Find the paragraph element using CSS Selector
-paragraph = driver.find_element_by_css_selector(
-    ".ll4r2nl.atm_kd_pg2kvz_1bqn0at.dir.dir-ltr"
-)
 
-# Retrieve the text
-text = paragraph.text
+url_elements = driver.find_elements(By.XPATH, '//a[@data-testid="sl.explore.coveringLink"]')
+urls = [
+    element.get_attribute("href")
+    for element in url_elements
+    if element.get_attribute("href").startswith(
+        "https://www.seloger.com/"
+    )  # avoids to retrieve the urls that redirect to ads
+]
+# print(urls)
 
-# Write the text to a file
-with open("output.txt", "w", encoding="utf-8") as file:
-    file.write(text)
+for url in urls:
+    utils.retrieve_data(url, driver, "output.csv")
+    time.sleep(2)
 
-# Close the browser
 driver.quit()
