@@ -1,12 +1,16 @@
 import time
 import csv
+import undetected_chromedriver as uc
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from numpy import random
+from bs4 import BeautifulSoup
 
 
-def retrieve_data(url, driver, output_file_path):
+
+def retrieve_data(url, output_file_path):
     """
     TO BE UPDATED
     Navigates to a given URL and retrieves data using a Selenium WebDriver.
@@ -17,50 +21,45 @@ def retrieve_data(url, driver, output_file_path):
 
     Parameters:
     url (str): The URL to navigate to.
-    driver (selenium.webdriver): The WebDriver instance to use for navigation and data retrieval.
     """
 
-    result = {}
 
     # Navigate to the URL
+    options = uc.ChromeOptions()
+    driver = uc.Chrome(options=options) 
     driver.get(url)
+    result = {}
 
-    time.sleep(3)
+    #Creates a BeautifulSoup object to get the source code
+    page_source = driver.page_source
+    soup = BeautifulSoup(page_source, 'html.parser')
 
-    #Click on the "Voir toutes les caractéristiques" button
-    try: 
-        voir_tout_button = driver.find_element(By.XPATH, "//button[@data-test='show-detail-feature-button-desktop']")
-        voir_tout_button.click()
-        time.sleep(1)
-
-    except Exception as e:
-        print(f"Could not click 'Voir toutes les caractéristiques' button: {e}")
 
 
     # Extracting the title
     try:
-        result["title"] = driver.find_elements(By.XPATH, '//div[@class="Summarystyled__Title-sc-1u9xobv-4 dbveQQ"]')[0].text
+        result["title"] = soup.find('div', class_ = "Summarystyled__Title-sc-1u9xobv-4 dbveQQ").text.strip()
     except Exception as e:
         print("Error extracting title:", e)
         result["title"] = "Title Not Found"
 
     # Extracting the price
     try:
-        result["price"] = driver.find_elements(By.XPATH, '//span[@class="global-styles__TextNoWrap-sc-1gbe8ip-6 gxurQr"]')[1].text
+        result["price"] = soup.find('span', class_='global-styles__TextNoWrap-sc-1gbe8ip-6').text.strip()
     except Exception as e:
         print("Error extracting price:", e)
         result["price"] = "Price Not Found"
 
     # Extracting the City and zip code
     try:
-        result["city and zip code"] = driver.find_elements(By.XPATH, '//span[@class="Localizationstyled__City-sc-gdkcr2-1 bgtLnh"]')[0].text
+        result["city and zip code"] = soup.find('span', class_='Localizationstyled__City-sc-gdkcr2-1 bgtLnh').text.strip()
     except Exception as e:
         print("Error extracting City and Zip Code:", e)
         result["city and zip code"] = "City and Zip Code Not Found"
 
     # Extracting the neighbourhood
     try:
-        result["neighbourhood"] = driver.find_elements(By.XPATH, '//span[@data-test="neighbourhood"]')[0].text
+        result["neighbourhood"] = span_element = soup.find('span', {'data-test': 'neighbourhood'}).text.strip()
     except Exception as e:
         print("Error extracting Neighbourhood:", e)
         result["neighbourhood"] = "Neighbourhood Not Found"
@@ -68,15 +67,19 @@ def retrieve_data(url, driver, output_file_path):
     # Extracting details
     
     try:
-        details_WebElement = driver.find_elements(By.XPATH, '//div[@class="Tags__TagContainer-sc-edpl7u-0 EPxew"]')
-        details = [element.text for element in details_WebElement]
+        div_tags_wrapper = soup.find('div', class_='Summarystyled__TagsWrapper-sc-1u9xobv-14')
+        caracteristiques = []
+        for div_tag_container in div_tags_wrapper.find_all('div', class_='Tags__TagContainer-sc-edpl7u-0'):
+            caractere = div_tag_container.text.strip()
+            caracteristiques.append(caractere)
+
 
         result["nb_rooms"] = ""
         result["nb_bedrooms"] = ""
         result["surface"] = ""
         result["numero_etage"] = ""
 
-        for text in details:
+        for text in caracteristiques:
             if 'pièce' in text:
                 result["nb_rooms"] = text
             elif 'chambre' in text:
@@ -107,99 +110,70 @@ def retrieve_data(url, driver, output_file_path):
 
     # Extracting the description
     try:
-        description = description = driver.find_elements(By.XPATH, "//div[@class='ShowMoreText__UITextContainer-sc-1swit84-0 fDeZMv']")[0].text
-        result["description"] = description
+        result["description"] = soup.find('div', class_='ShowMoreText__UITextContainer-sc-1swit84-0').text.strip()
     except Exception as e:
         print("Error extracting description:", e)
         result["description"] = "Description Not Found"
 
-    # This contains the Conditions Financières, Classe Energie and GES
-    '''html_content = driver.find_elements(By.XPATH, "//div[@class='row']")
+    # Extraction of features
+        try:
+            elements = soup.find_all('div', class_='TitledDescription__TitledDescriptionContainer-sc-p0zomi-0 gtBcDa GeneralFeaturesstyled__GeneralListTitledDescription-sc-1ia09m5-5 jsTjoV')
 
-    # Extracting the Conditions Financières
-    try:
-        conditions_financieres = html_content[1]
+            # Itérez sur chaque élément pour extraire le titre et le texte
+            for element in elements:
+                try:
+                    titre = element.find('div', class_='feature-title').text.strip()
+                    texte = element.find('div', class_='GeneralFeaturesstyled__TextWrapper-sc-1ia09m5-3').text.strip()
+                    
+                    # Ajoutez le titre et le texte au dictionnaire
+                    result[titre] = texte
 
-        loyer_charges_comprises = conditions_financieres.find_element(
-            By.XPATH, ".//div[1]"
-        ).text
-        result[loyer_charges_comprises.split("\n")[0]] = loyer_charges_comprises.split(
-            "\n"
-        )[1]
+                except Exception as e:
+                    print("Error extracting features:", e)
+                    result[titre] = f"{titre} not found"
+                
+            
+        except Exception as e:
+            print("Error extracting features:", e)
 
-        dont_charges = conditions_financieres.find_element(By.XPATH, ".//div[2]").text
-        result[dont_charges.split("\n")[0]] = dont_charges.split("\n")[1]
 
-        depot_de_garantie = conditions_financieres.find_element(
-            By.XPATH, ".//div[3]"
-        ).text
-        result[depot_de_garantie.split("\n")[0]] = depot_de_garantie.split("\n")[1]
+    #Extracting Diagnostic de performance énergétique (DPE) and Indice d'émission de gaz à effet de serre (GES)
+    try : 
+        energy_elements = soup.find_all('div', {'data-test': 'diagnostics-content'})
+        for element in energy_elements:
+            try:
+                titre = element.find('div', {'data-test' : 'diagnostics-preview-title'}).text.strip()
+                letter = element.find('div', class_ = 'Previewstyled__Grade-sc-k3u73o-6 ehFYCZ').text.strip()
+
+                #Add titre and lettre to the dictionnary
+                result[titre] = letter
+            except Exception as e:
+                    print("Error extracting engergy elements:", e)
+                    result[titre] = f"{titre} not found"
+            
+
     except Exception as e:
-        print("Error extracting Conditions Financières:", e)
-        # if result["loyer_charges_comprises"] == "":
-        # result["loyer_charges_comprises"] = "Loyer Charges Comprises Not Found"
-        # if result["dont_charges"] == "":
-        # result["dont_charges"] = "Dont Charges Not Found"
-        # if result["depot_de_garantie"] == "":
-        # result["depot_de_garantie"] = "Depot De Garantie Not Found"
+        print("Error extracting Energy elements:", e)
 
-    # Extracting the Classe Energie and GES
-    try:
-        classe_energie_GES = html_content[2]
+    #Extracting loyer charges comprises
+        
+        
 
-        # Extracting "Classe énergie"
-        classe_energie_element = classe_energie_GES.find_element(
-            By.CSS_SELECTOR, ".energy-indice .active"
-        )
-        classe_energie = (
-            classe_energie_element.text.strip()
-            if classe_energie_element
-            else "Not Found"
-        )
 
-        # Extracting "GES"
-        ges_element = classe_energie_GES.find_element(
-            By.CSS_SELECTOR, ".ges-indice .active"
-        )
-        ges = ges_element.text.strip() if ges_element else "Not Found"
-    except Exception as e:
-        print("Error extracting Classe Energie and GES:", e)
-        result["classe_energie"] = "Classe Energie Not Found"
-        result["ges"] = "GES Not Found"
 
-    # Extracting transports connections
-    try:
-        transport_labels_elements = driver.find_elements(
-            By.CSS_SELECTOR, "ul.item-transports li span.label"
-        )
-        transport_labels = [element.text for element in transport_labels_elements]
-        result["transports"] = transport_labels
-    except Exception as e:
-        print("Error extracting transport labels:", e)
-        result["transports"] = "Transport Labels Not Found"'''
+
+
+
+
+
+
 
     driver.quit()
 
     with open(output_file_path, "a", newline="", encoding="utf-8") as file:
         writer = csv.DictWriter(
             file,
-            fieldnames=[
-                "title",
-                "price",
-                "city and zip code",
-                "neighbourhood",
-                "nb_rooms",
-                "nb_bedrooms",
-                "surface",
-                "numero_etage",
-                "description",
-                # "Loyer charges comprises",
-                # "Dont charges",
-                # "Dépôt de garantie",
-                # "classe_energie",
-                # "ges",
-                # "transports",
-            ],
+            fieldnames= result.keys(),
         )
-        #writer.writeheader()
+        writer.writeheader()
         writer.writerow(result)
