@@ -59,7 +59,7 @@ def retrieve_data(url, output_file_path):
 
     # Extracting the neighbourhood
     try:
-        result["neighbourhood"] = span_element = soup.find('span', {'data-test': 'neighbourhood'}).text.strip()
+        result["neighbourhood"] = soup.find('span', {'data-test': 'neighbourhood'}).text.strip()
     except Exception as e:
         print("Error extracting Neighbourhood:", e)
         result["neighbourhood"] = "Neighbourhood Not Found"
@@ -72,7 +72,6 @@ def retrieve_data(url, output_file_path):
         for div_tag_container in div_tags_wrapper.find_all('div', class_='Tags__TagContainer-sc-edpl7u-0'):
             caractere = div_tag_container.text.strip()
             caracteristiques.append(caractere)
-
 
         result["nb_rooms"] = ""
         result["nb_bedrooms"] = ""
@@ -116,56 +115,99 @@ def retrieve_data(url, output_file_path):
         result["description"] = "Description Not Found"
 
     # Extraction of features
-        try:
-            elements = soup.find_all('div', class_='TitledDescription__TitledDescriptionContainer-sc-p0zomi-0 gtBcDa GeneralFeaturesstyled__GeneralListTitledDescription-sc-1ia09m5-5 jsTjoV')
+    try:
+        result["Extérieur"] = ""
+        result["Cadre et situation"] = ""
+        result["Surfaces annexes"] = ""
+        result["Services et accessibilité"] = ""
+        result["Cuisine"] = ""
+        result["Hygiène"] = ""
+        result["Pièces à vivre"] = ""
 
-            # Itérez sur chaque élément pour extraire le titre et le texte
-            for element in elements:
-                try:
-                    titre = element.find('div', class_='feature-title').text.strip()
-                    texte = element.find('div', class_='GeneralFeaturesstyled__TextWrapper-sc-1ia09m5-3').text.strip()
-                    
-                    # Ajoutez le titre et le texte au dictionnaire
-                    result[titre] = texte
+        feature_elements = soup.find_all('div', class_='TitledDescription__TitledDescriptionContainer-sc-p0zomi-0 gtBcDa GeneralFeaturesstyled__GeneralListTitledDescription-sc-1ia09m5-5 jsTjoV')
+        
+        # Itérez sur chaque élément pour extraire le titre et le texte
+        for element in feature_elements:
+            texte=[]
+            titre = element.find('div', class_='feature-title').text.strip()
+            texte_liste = element.find_all('div', class_='GeneralFeaturesstyled__TextWrapper-sc-1ia09m5-3')
+            for texte_element in texte_liste:
+                texte.append(texte_element.text.strip())
 
-                except Exception as e:
-                    print("Error extracting features:", e)
-                    result[titre] = f"{titre} not found"
+            # Ajoutez le titre et le texte au dictionnaire
+            if titre in result:
+                result[titre] = ", ".join(texte)
+            else :
+                print(f"La colonne {titre} n'est pas dans result")
+            
                 
             
-        except Exception as e:
-            print("Error extracting features:", e)
+    except Exception as e:
+        print("Error extracting features:", e)
 
 
     #Extracting Diagnostic de performance énergétique (DPE) and Indice d'émission de gaz à effet de serre (GES)
     try : 
+        result["Diagnostic de performance énergétique (DPE)"] = ""
+        result["Indice d'émission de gaz à effet de serre (GES)"] = ""
         energy_elements = soup.find_all('div', {'data-test': 'diagnostics-content'})
         for element in energy_elements:
             try:
                 titre = element.find('div', {'data-test' : 'diagnostics-preview-title'}).text.strip()
                 letter = element.find('div', class_ = 'Previewstyled__Grade-sc-k3u73o-6 ehFYCZ').text.strip()
-
-                #Add titre and lettre to the dictionnary
-                result[titre] = letter
+                if titre == "Diagnostic de performance énergétique (DPE)":
+                    result["Diagnostic de performance énergétique (DPE)"] = letter
+                elif titre == "Indice d'émission de gaz à effet de serre (GES)":
+                    result["Indice d'émission de gaz à effet de serre (GES)"] = letter
+                    
             except Exception as e:
-                    print("Error extracting engergy elements:", e)
+                    print("Error extracting energy elements:", e)
                     result[titre] = f"{titre} not found"
             
 
     except Exception as e:
         print("Error extracting Energy elements:", e)
 
-    #Extracting loyer charges comprises
+    #Extracting charges, loyer de base, loyer charges comprises : 
+        
+    try:
+        result["loyer_base"] = ""
+        result["charges_forfaitaires"] = ""
+        result["complement_loyer"] = ""
+        result["depot_garantie"] = ""
+        result["loyer_charges_comprises"] = ""
+
+        price_details = soup.find('span', {'data-test': 'price-detail-content'})
+        try:
+            result["loyer_base"] = soup.find(text="Loyer de base (hors charge)").find_next(class_="value").text.strip()
+        except Exception as e:
+            print("Error extracting loyer_base:", e)
+        
+        try:
+            result["charges_forfaitaires"] = soup.find(text="Charges forfaitaires").find_next(class_="value").text.strip()
+        except Exception as e:
+            print("Error extracting charges_forfaitaires:", e)
+        
+        try:
+            result["complement_loyer"] = soup.find(text="Complément de loyer").find_next(class_="value").text.strip()
+        except Exception as e:
+            print("Error extracting complément_loyer:", e)
+        
+        try:
+            result["depot_garantie"] = soup.find(text="Dépôt de garantie").find_next(class_="value").text.strip()
+        except Exception as e:
+            print("Error extracting depot_garantie:", e)
+        
+        try:
+            result["loyer_charges_comprises"] = soup.find(text="Loyer charges comprises").find_next(class_="big").text.strip()
+        except Exception as e:
+            print("Error extracting :", e)
         
         
+    except Exception as e:
+        print("Error extracting price_details:", e)
 
-
-
-
-
-
-
-
+        
 
 
     driver.quit()
@@ -175,5 +217,5 @@ def retrieve_data(url, output_file_path):
             file,
             fieldnames= result.keys(),
         )
-        writer.writeheader()
+        #writer.writeheader()
         writer.writerow(result)
