@@ -62,11 +62,20 @@ metro = driver.find_elements(
     By.CSS_SELECTOR,
     ".item-transports",
 )
-metro_stations = []
-metro_stations = [item.text for item in transport]
+metro_stations = [item.text for item in metro]
 print(f"metro_stations: {metro_stations}")
 
+# Retrieving conditions financieres
 conditions_financieres = driver.find_elements(By.CSS_SELECTOR, ".row > .col-1-3")
 conditions_financieres = [item.text for item in conditions_financieres]
+print(f"conditions_financieres: {conditions_financieres}")
+
+# Retriving energy and GES
+energy = driver.find_element(By.CSS_SELECTOR, ".energy-indice ul li.active").text
+GES = driver.find_element(By.CSS_SELECTOR, ".ges-indice ul li.active").text
+print(f"energy: {energy} GES: {GES}")
+
+ref_date = driver.find_element(By.CSS_SELECTOR, ".item-date").text
+print(f"ref and date: {ref_date}")
 
 driver.quit()
