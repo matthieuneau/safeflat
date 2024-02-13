@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-import sys
+import pandas as pd
+import os
 import time
 import yaml
 import utils
@@ -14,68 +15,48 @@ with open("../../config.yaml", "r") as file:
 
 # Setup Chrome options for undetected_chromedriver
 options = uc.ChromeOptions()
-options.add_argument("--headless")
+# options.add_argument("--headless")
+options.add_argument("--incognito")
 
 # Initialize the WebDriver with the specified options
 driver = uc.Chrome(options=options)
 
-# URL of the page
-url = "file:///Users/mneau/Desktop/safeflat/scraping/pap/pap_example.html"
+nb_pages = 2
+
+# for page_num in range(1, nb_pages + 1):
+
+# url = f"https://www.pap.fr/annonce/location-appartement-maison-{page_num}"
+url = "file:///Users/mneau/Desktop/safeflat/scraping/pap/listing_page.html"
 
 driver.get(url)
 
 # Wait for the element to be loaded
 time.sleep(2)
 
-# Create a dictionary to store the data we scrape
-data = {"title": [], "price": [], "description": []}
+url_list = driver.find_elements(By.CSS_SELECTOR, "a.item-thumb-link")
+url_list = [item.get_attribute("href") for item in url_list]
+# print(f"url_list: {url_list}")
 
-# Find the paragraph element using CSS Selector
-title_and_price = driver.find_element(
-    By.XPATH, "/html/body/div[2]/div/div[1]/h1[@class='item-title']"
-)
-title_and_price = title_and_price.text
-print(f"title_and_price: {title_and_price}")
+output_file = "output.csv"
 
-# Retrieving location
-location = driver.find_element(By.XPATH, "/html/body/div[2]/div/div[1]/div[5]/h2")
-location = location.text
-print(f"location: {location}")
+# Initialize an empty DataFrame if the file doesn't exist or is empty
+if not os.path.exists(output_file) or os.path.getsize(output_file) == 0:
+    database = pd.DataFrame()
+else:
+    database = pd.read_csv(output_file)
 
-# Retrieving nb of rooms, surface and nb of bedrooms when available
-list_items = driver.find_elements(
-    By.CSS_SELECTOR,
-    "body > div.sidebar-layout.margin-top-header.details-annonce-container > div > div.main-content.details-item.padding-top-30.padding-bottom-60.margin-bottom-60.sm-padding-bottom-40.sm-margin-bottom-30 > div.item-description.margin-bottom-30 > ul.item-tags.margin-bottom-20 > li",
-)
-details = [item.find_element(By.TAG_NAME, "strong").text for item in list_items]
-print(f"details: {details}")
+for annonce in url_list:
+    data = utils.get_annonce_data(driver, annonce)
+    new_data_df = pd.DataFrame([data])
 
-# Retrieving description
-description = driver.find_element(
-    By.XPATH, "/html/body/div[2]/div/div[1]/div[5]/div[1]"
-)
-description = description.text
-print(f"description: {description}")
+    # Check if the new data is already present in the in-memory DataFrame
+    if not new_data_df.isin(database.to_dict("records")).all(1).any():
+        # If the data is not present, append it to the in-memory DataFrame
+        database = pd.concat([database, new_data_df], ignore_index=True)
+    else:
+        print("Duplicate data, not appending.")
 
-# Retrieving metro stations closeby
-metro = driver.find_elements(
-    By.CSS_SELECTOR,
-    ".item-transports",
-)
-metro_stations = [item.text for item in metro]
-print(f"metro_stations: {metro_stations}")
-
-# Retrieving conditions financieres
-conditions_financieres = driver.find_elements(By.CSS_SELECTOR, ".row > .col-1-3")
-conditions_financieres = [item.text for item in conditions_financieres]
-print(f"conditions_financieres: {conditions_financieres}")
-
-# Retriving energy and GES
-energy = driver.find_element(By.CSS_SELECTOR, ".energy-indice ul li.active").text
-GES = driver.find_element(By.CSS_SELECTOR, ".ges-indice ul li.active").text
-print(f"energy: {energy} GES: {GES}")
-
-ref_date = driver.find_element(By.CSS_SELECTOR, ".item-date").text
-print(f"ref and date: {ref_date}")
+# After processing all annonces, write the consolidated DataFrame to the CSV file
+database.to_csv(output_file, mode="w", header=True, index=False)
 
 driver.quit()
