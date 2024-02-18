@@ -13,7 +13,7 @@ with open("../../config.yaml", "r") as file:
 # Setup Chrome options for undetected_chromedriver
 options = uc.ChromeOptions()
 options.add_argument("--headless")
-# options.add_argument("--incognito")
+options.add_argument("--incognito")
 
 # Initialize the WebDriver with the specified options
 driver = uc.Chrome(options=options)
@@ -27,11 +27,13 @@ driver.get(url)
 # Wait to bluff the captcha mechanism
 time.sleep(2)
 
+# Retrieve the title
 title = driver.find_element(
     By.CSS_SELECTOR, ".break-words.text-headline-1-expanded.undefined"
 ).text
 print(f"title: {title}")
 
+# Retrieve the specs
 specs = driver.find_elements(
     By.CSS_SELECTOR, ".inline-flex.w-full.flex-wrap.mb-md span"
 )
@@ -58,21 +60,29 @@ description = driver.find_element(
 ).text
 print(f"description: {description}")
 
-# Retrieving criteres
-criteres = driver.find_elements(
-    By.CSS_SELECTOR, "div.styles_criteria__U5Ul8.flex.flex-wrap > div > div"
+# Retrieving the criteres titles and values
+titles_and_values = driver.find_elements(
+    By.CSS_SELECTOR, "div.styles_criteria__U5Ul8.flex.flex-wrap > div"
 )
+# Filter out energy class and GES because we need to treat them separately
+titles_and_values = [
+    item
+    for item in titles_and_values
+    if (
+        "criteria_item_energy_rate" not in item.get_attribute("class")
+        and "criteria_item_ges" not in item.get_attribute("class")
+    )
+]
 
-print(criteres[0].find_element(By.CSS_SELECTOR, "span").text)
+# Retrieving the criteres titles
+titles = [item.find_element(By.CSS_SELECTOR, "div>div>p") for item in titles_and_values]
+print([value.text for value in titles])
 
-
-criteres = {
-    c.find_element(By.CSS_SELECTOR, "p")
-    .text: c.find_element(By.CSS_SELECTOR, "span")
-    .text
-    for c in criteres
-}
-print(f"criteres: {criteres}")
+# Retrieving the criteres values
+values = [
+    item.find_element(By.CSS_SELECTOR, "div>div>span") for item in titles_and_values
+]
+print([value.text for value in values])
 
 # Close the browser
 driver.quit()
