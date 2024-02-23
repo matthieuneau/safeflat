@@ -1,43 +1,67 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-import sys
+from bs4 import BeautifulSoup
 import time
+import undetected_chromedriver as uc
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+import utils
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException
 
-sys.path.append(
-    r"C:\Users\mneau\OneDrive\Bureau\INFO\PYTHON\selenium\chromedriver_1.120.6099.129"
-)
 
-# Chrome options
-options = Options()
-options.add_argument(
-    "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
-)
 
-# Create a new instance of the Chrome driver
-driver = webdriver.Chrome(
-    r"C:\Users\mneau\OneDrive\Bureau\INFO\PYTHON\selenium\chromedriver_1.120.6099.129\chromedriver.exe"
-)
 
-# URL of the page
-url = "https://www.airbnb.fr/rooms/13903824?adults=1&category_tag=Tag%3A8678&children=0&enable_m3_private_room=true&infants=0&pets=0&photo_id=1620494697&search_mode=flex_destinations_search&check_in=2024-01-02&check_out=2024-01-07&source_impression_id=p3_1703518192_ivuPMgKq3jSUwhF9&previous_page_section_name=1000&federated_search_id=032d40d9-9d58-464f-aeba-f5374dad8567"
+# page_nb = 2
+urls = []
+url = "https://www.airbnb.fr/s/Tourcoing--France/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&monthly_start_date=2024-03-01&monthly_length=3&monthly_end_date=2024-06-01&price_filter_input_type=0&channel=EXPLORE&date_picker_type=calendar&checkin=2024-04-11&checkout=2024-04-12&source=structured_search_input_header&search_type=autocomplete_click&price_filter_num_nights=1&query=Tourcoing%2C%20France&place_id=ChIJXScKvtQow0cRj4WtfX0xLiU&adults=8"
+# Setup Chrome options for undetected_chromedriver
+options = uc.ChromeOptions()
 
-# Navigate to the page
+# Initialize the WebDriver with the specified options
+driver = uc.Chrome(options=options)
+
 driver.get(url)
 
-# Wait for the element to be loaded
-time.sleep(5)
+try:
+    while True:  # Boucle jusqu'à ce qu'on ne trouve plus de lien "Suivant"
+        # Attendre que le lien "Suivant" soit chargé et cliquable
+        wait = WebDriverWait(driver, 120)
+        wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, '[rel="noopener noreferrer nofollow"]')))
 
-# Find the paragraph element using CSS Selector
-paragraph = driver.find_element_by_css_selector(
-    ".ll4r2nl.atm_kd_pg2kvz_1bqn0at.dir.dir-ltr"
-)
+        url_elements = driver.find_elements(By.CSS_SELECTOR, '[rel="noopener noreferrer nofollow"]')
+        urls_temp = [
+            element.get_attribute("href")
+            for element in url_elements
+            if element.get_attribute("href").startswith(
+                "https://www.airbnb.fr/rooms/"
+            )  # avoids to retrieve the urls that redirect to ads
+        ]
 
-# Retrieve the text
-text = paragraph.text
+        urls_temp = list(set(urls_temp))
+        urls+= urls_temp
+        next_link = WebDriverWait(driver, 30).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, 'a[aria-label="Suivant"]'))
+        )
+        
+         # Cliquer sur le lien "Suivant"
+        link_element= driver.find_element(By.CSS_SELECTOR, 'a[aria-label="Suivant"]')
+        link_url = link_element.get_attribute('href')
 
-# Write the text to a file
-with open("output.txt", "w", encoding="utf-8") as file:
-    file.write(text)
+        driver.get(link_url)
 
-# Close the browser
-driver.quit()
+
+        # Optionnel : Opérations supplémentaires sur la page courante avant de passer à la suivante
+        
+except Exception as e:
+    # Si le lien "Suivant" n'est pas trouvé, on suppose qu'on est à la dernière page
+    print("Dernière page atteinte.")
+
+finally:
+    driver.quit() 
+
+
+#for url in urls:
+for i in range(10,15):  
+    utils.retrieve_data(urls[i], "output.csv")
+    time.sleep(2)
+
