@@ -8,8 +8,8 @@ import undetected_chromedriver as uc
 from selenium.webdriver.common.by import By
 import utils
 
-with open("../../config.yaml", "r") as file:
-    config = yaml.safe_load(file)
+# with open("../../config.yaml", "r") as file:
+#     config = yaml.safe_load(file)
 
 # Setup Chrome options for undetected_chromedriver
 options = uc.ChromeOptions()
@@ -30,6 +30,7 @@ driver.find_element(By.XPATH, '//*[@id="identifier"]').send_keys(email)
 driver.find_element(By.XPATH, '//*[@id="password"]').send_keys(password)
 driver.find_element(By.XPATH, '//*[@id="__next"]/div[2]/main/div/form/button').click()
 
+time.sleep(2)
 output_file = "output.csv"
 
 # Initialize an empty DataFrame if the file doesn't exist or is empty
@@ -39,7 +40,7 @@ else:
     database = pd.read_csv(output_file)
 
 # Browsing the pages
-nb_pages = 2
+nb_pages = 5
 for page_num in range(1, nb_pages + 1):
     url = f"https://gensdeconfiance.com/ui/search?radius=10&rootLocales=fr%2Cen&orderColumn=pertinence&orderDirection=ASC&type=offering&ownerTypes=INDIVIDUAL%2CPRO%2CASSO&propertyTypes=apartment%2Chome&category=realestate__rent&page={page_num}"
     # url = f"file:///Users/mneau/Desktop/safeflat/scraping/gensdeconfiance/search_results.html"
