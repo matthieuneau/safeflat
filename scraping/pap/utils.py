@@ -46,12 +46,6 @@ def get_annonce_data(driver, annonce):
         print(f"Error retrieving title and price: {e}")
         data["title_and_price"] = "Not Available"
 
-    # title_and_price = driver.find_element(
-    #     By.XPATH, "/html/body/div[2]/div/div[1]/h1[@class='item-title']"
-    # )
-    # title_and_price = title_and_price.text
-    # print(f"title_and_price: {title_and_price}")
-
     # Retrieving location
     try:
         location = driver.find_element(
@@ -61,10 +55,6 @@ def get_annonce_data(driver, annonce):
     except Exception as e:
         print(f"Error retrieving location: {e}")
         data["location"] = "Not Available"
-
-    # location = driver.find_element(By.XPATH, "/html/body/div[2]/div/div[1]/div[5]/h2")
-    # location = location.text
-    # print(f"location: {location}")
 
     # Retrieving nb of rooms, surface and nb of bedrooms when available
     try:
@@ -77,13 +67,6 @@ def get_annonce_data(driver, annonce):
         print(f"Error retrieving details: {e}")
         data["details"] = []
 
-    # list_items = driver.find_elements(
-    #     By.CSS_SELECTOR,
-    #     "body > div.sidebar-layout.margin-top-header.details-annonce-container > div > div.main-content.details-item.padding-top-30.padding-bottom-60.margin-bottom-60.sm-padding-bottom-40.sm-margin-bottom-30 > div.item-description.margin-bottom-30 > ul.item-tags.margin-bottom-20 > li",
-    # )
-    # details = [item.find_element(By.TAG_NAME, "strong").text for item in list_items]
-    # print(f"details: {details}")
-
     # Retrieving description
     try:
         description = driver.find_element(
@@ -94,12 +77,6 @@ def get_annonce_data(driver, annonce):
         print(f"Error retrieving description: {e}")
         data["description"] = "Not Available"
 
-    # description = driver.find_element(
-    #     By.XPATH, "/html/body/div[2]/div/div[1]/div[5]/div[1]"
-    # )
-    # description = description.text
-    # print(f"description: {description}")
-
     # Retrieving metro stations closeby
     try:
         metro = driver.find_elements(By.CSS_SELECTOR, ".item-transports")
@@ -108,13 +85,6 @@ def get_annonce_data(driver, annonce):
     except Exception as e:
         print(f"Error retrieving metro stations: {e}")
         data["metro_stations"] = []
-
-    # metro = driver.find_elements(
-    #     By.CSS_SELECTOR,
-    #     ".item-transports",
-    # )
-    # metro_stations = [item.text for item in metro]
-    # print(f"metro_stations: {metro_stations}")
 
     # Retrieving conditions financieres
     try:
@@ -127,10 +97,6 @@ def get_annonce_data(driver, annonce):
         print(f"Error retrieving financial conditions: {e}")
         data["conditions_financieres"] = []
 
-    # conditions_financieres = driver.find_elements(By.CSS_SELECTOR, ".row > .col-1-3")
-    # conditions_financieres = [item.text for item in conditions_financieres]
-    # print(f"conditions_financieres: {conditions_financieres}")
-
     # Retriving energy and GES
     try:
         energy = driver.find_element(
@@ -142,10 +108,6 @@ def get_annonce_data(driver, annonce):
         print(f"Error retrieving energy and GES: {e}")
         data["energy_GES"] = {"energy": "Not Available", "GES": "Not Available"}
 
-    # energy = driver.find_element(By.CSS_SELECTOR, ".energy-indice ul li.active").text
-    # GES = driver.find_element(By.CSS_SELECTOR, ".ges-indice ul li.active").text
-    # print(f"energy: {energy} GES: {GES}")
-
     # Retrieving ref and date
     try:
         ref_date = driver.find_element(By.CSS_SELECTOR, ".item-date").text
@@ -153,8 +115,5 @@ def get_annonce_data(driver, annonce):
     except Exception as e:
         print(f"Error retrieving reference and date: {e}")
         data["ref_date"] = "Not Available"
-
-    # ref_date = driver.find_element(By.CSS_SELECTOR, ".item-date").text
-    # print(f"ref and date: {ref_date}")
 
     return data
