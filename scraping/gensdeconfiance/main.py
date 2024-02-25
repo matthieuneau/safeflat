@@ -40,7 +40,7 @@ else:
     database = pd.read_csv(output_file)
 
 # Browsing the pages
-nb_pages = 5
+nb_pages = 2
 for page_num in range(1, nb_pages + 1):
     url = f"https://gensdeconfiance.com/ui/search?radius=10&rootLocales=fr%2Cen&orderColumn=pertinence&orderDirection=ASC&type=offering&ownerTypes=INDIVIDUAL%2CPRO%2CASSO&propertyTypes=apartment%2Chome&category=realestate__rent&page={page_num}"
     # url = f"file:///Users/mneau/Desktop/safeflat/scraping/gensdeconfiance/search_results.html"
