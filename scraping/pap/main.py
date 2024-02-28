@@ -22,7 +22,7 @@ if not os.path.exists(output_file) or os.path.getsize(output_file) == 0:
 else:
     database = pd.read_csv(output_file)
 
-pages_to_scrape = [1, 2, 3]
+pages_to_scrape = list(range(1, 10))
 
 for page_num in tqdm(pages_to_scrape, desc="Scraping page"):
 
@@ -36,8 +36,8 @@ for page_num in tqdm(pages_to_scrape, desc="Scraping page"):
 
     url_list = driver.find_elements(By.CSS_SELECTOR, "a.item-thumb-link")
     url_list = [item.get_attribute("href") for item in url_list]
-    url_list = url_list[:5]
-    print(f"url_list: {url_list}")
+    # url_list = url_list[:5]           // For testing purpose
+    # print(f"url_list: {url_list}")
 
     # Create a manual tqdm progress bar for the inner loop
     pbar = tqdm(
