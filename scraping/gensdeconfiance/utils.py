@@ -93,13 +93,13 @@ def get_annonce_data(driver, annonce):
             By.CSS_SELECTOR, "div#ad-description"
         ).text
     except Exception as e:
-        print(f"Error retrieving description: {e}")
+        # print(f"Error retrieving description: {e}")
         data["description"] = "Not Available"
 
-    print("===================================")
-    print("          NEW POST DISPLAY          ")
-    print("===================================")
-    print(data)
+    # print("===================================")
+    # print("          NEW POST DISPLAY          ")
+    # print("===================================")
+    # print(data)
     return data
 
 

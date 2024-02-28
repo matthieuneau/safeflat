@@ -1,6 +1,5 @@
 import os
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from tqdm import tqdm
 import pandas as pd
 import time
 import yaml
@@ -40,33 +39,52 @@ else:
     database = pd.read_csv(output_file)
 
 # Browsing the pages
-nb_pages = 2
-for page_num in range(1, nb_pages + 1):
-    url = f"https://gensdeconfiance.com/ui/search?radius=10&rootLocales=fr%2Cen&orderColumn=pertinence&orderDirection=ASC&type=offering&ownerTypes=INDIVIDUAL%2CPRO%2CASSO&propertyTypes=apartment%2Chome&category=realestate__rent&page={page_num}"
-    # url = f"file:///Users/mneau/Desktop/safeflat/scraping/gensdeconfiance/search_results.html"
-    driver.get(url)
-    time.sleep(2)
+pages_to_scrape = list(range(1, 3))
 
-    # Get the list of URLs
-    page_urls = driver.find_elements(
-        By.XPATH,
-        "//*[@id='__next']/div[2]/main/div/main/div[1]/form/section[2]/div[3]/a",
-    )
-    url_list = [item.get_attribute("href") for item in page_urls]
-    print(f"url_list: {url_list}")
-
-    for url in url_list:
-        data = utils.get_annonce_data(driver, url)
-        new_data_df = pd.DataFrame([data])
-        # Check if the new data is already present in the in-memory DataFrame
-        if not new_data_df.isin(database.to_dict("records")).all(1).any():
-            # If the data is not present, append it to the in-memory DataFrame
-            database = pd.concat([database, new_data_df], ignore_index=True)
-        else:
-            print("Duplicate data, not appending.")
+with tqdm(
+    total=len(pages_to_scrape), desc="Pages Progress", leave=False, colour="green"
+) as pages_progress:
+    for page_num in pages_to_scrape:
+        url = f"https://gensdeconfiance.com/ui/search?radius=10&rootLocales=fr%2Cen&orderColumn=pertinence&orderDirection=ASC&type=offering&ownerTypes=INDIVIDUAL%2CPRO%2CASSO&propertyTypes=apartment%2Chome&category=realestate__rent&page={page_num}"
+        driver.get(url)
         time.sleep(2)
 
-    database.to_csv(output_file, index=False, mode="w")
+        # Get the list of URLs
+        page_urls = driver.find_elements(
+            By.XPATH,
+            "//*[@id='__next']/div[2]/main/div/main/div[1]/form/section[2]/div[3]/a",
+        )
+        url_list = [item.get_attribute("href") for item in page_urls]
+        url_list = url_list[:5]  # For testing purpose
+        print(f"url_list: {url_list}")
+
+        # Initialize the second progress bar for annonce progression on the current page
+        with tqdm(
+            total=len(url_list),
+            desc=f"Page {page_num} Annonces",
+            leave=False,
+            colour="#00ff00",
+        ) as annonces_progress:
+            for url in url_list:
+                data = utils.get_annonce_data(driver, url)
+                new_data_df = pd.DataFrame([data])
+
+                # Check if the new data is already present in the in-memory DataFrame
+                if not new_data_df.isin(database.to_dict("records")).all(1).any():
+                    # If the data is not present, append it to the in-memory DataFrame
+                    database = pd.concat([database, new_data_df], ignore_index=True)
+                else:
+                    print("Duplicate data, not appending.")
+                time.sleep(2)
+
+                # Update the second progress bar after processing each annonce
+                annonces_progress.update(1)
+
+        # Update the first progress bar after completing all annonces on the current page
+        pages_progress.update(1)
+
+
+database.to_csv(output_file, index=False, mode="w")
 
 # Close the browser
 driver.quit()
