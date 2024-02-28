@@ -56,8 +56,13 @@ def preprocess_csv(input_file_path, output_file_path):
     for idx, col in enumerate(bed_columns):
         data[col] = [beds[idx] for beds in bed_types]
 
+    # Vérifier la présence des éléments dans la colonne equipements et créer de nouvelles colonnes
+    equipement_features = ['piscine', 'parking', 'Lave-linge', 'climatisation', 'balcon', 'Sèche-linge', 'Baignoire']
+    for feature in equipement_features:
+        data[feature] = data['equipements'].apply(lambda x: 1 if feature.lower() in x.lower() else 0)
+
     # Sélectionner les colonnes nécessaires pour le fichier de sortie
-    columns_to_keep = ['title', 'host_name', 'equipements', 'description', 'nb_rooms', 'numero_etage', 'surface', 'price', 'nb_bedrooms'] + bed_columns
+    columns_to_keep = ['host_name', 'equipements', 'description', 'nb_rooms', 'numero_etage', 'surface', 'price', 'nb_bedrooms'] + bed_columns + equipement_features
     processed_data = data[columns_to_keep]
 
     # Sauvegarder dans un nouveau fichier CSV
