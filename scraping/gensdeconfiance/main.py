@@ -39,7 +39,7 @@ else:
     database = pd.read_csv(output_file)
 
 # Browsing the pages
-pages_to_scrape = list(range(1, 3))
+pages_to_scrape = list(range(1, 4))
 
 with tqdm(
     total=len(pages_to_scrape), desc="Pages Progress", leave=False, colour="green"
@@ -55,7 +55,7 @@ with tqdm(
             "//*[@id='__next']/div[2]/main/div/main/div[1]/form/section[2]/div[3]/a",
         )
         url_list = [item.get_attribute("href") for item in page_urls]
-        url_list = url_list[:5]  # For testing purpose
+        # url_list = url_list[:5]  # For testing purpose
         print(f"url_list: {url_list}")
 
         # Initialize the second progress bar for annonce progression on the current page
