@@ -3,6 +3,8 @@ import ast
 
 data = pd.read_csv("output.csv")
 
+print(data.head())
+
 # Splitting title_and_price column
 split_data = data["title_and_price"].str.rsplit("\n", expand=True)
 data["title"] = split_data[0]
