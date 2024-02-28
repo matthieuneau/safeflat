@@ -41,6 +41,8 @@ def retrieve_data(url, output_file_path):
     page_source = driver.page_source
     soup = BeautifulSoup(page_source, 'html.parser')
 
+    result["url"] = url
+
 
 
     # Extracting the title
@@ -186,5 +188,5 @@ def retrieve_data(url, output_file_path):
             file,
             fieldnames= result.keys(),
         )
-        writer.writeheader()
+        #writer.writeheader()
         writer.writerow(result)
