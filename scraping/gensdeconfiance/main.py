@@ -39,7 +39,7 @@ else:
     database = pd.read_csv(output_file)
 
 # Browsing the pages
-pages_to_scrape = list(range(1, 4))
+pages_to_scrape = list(range(1, 5))
 
 with tqdm(
     total=len(pages_to_scrape), desc="Pages Progress", leave=False, colour="green"
@@ -47,7 +47,7 @@ with tqdm(
     for page_num in pages_to_scrape:
         url = f"https://gensdeconfiance.com/ui/search?radius=10&rootLocales=fr%2Cen&orderColumn=pertinence&orderDirection=ASC&type=offering&ownerTypes=INDIVIDUAL%2CPRO%2CASSO&propertyTypes=apartment%2Chome&category=realestate__rent&page={page_num}"
         driver.get(url)
-        time.sleep(2)
+        time.sleep(7)
 
         # Get the list of URLs
         page_urls = driver.find_elements(
@@ -55,7 +55,7 @@ with tqdm(
             "//*[@id='__next']/div[2]/main/div/main/div[1]/form/section[2]/div[3]/a",
         )
         url_list = [item.get_attribute("href") for item in page_urls]
-        # url_list = url_list[:5]  # For testing purpose
+        url_list = url_list[:15]  # For testing purpose
         print(f"url_list: {url_list}")
 
         # Initialize the second progress bar for annonce progression on the current page

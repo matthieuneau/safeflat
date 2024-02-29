@@ -1,7 +1,7 @@
 import pandas as pd
 
 data = pd.read_csv(
-    "/Users/mneau/Desktop/safeflat/scraping/gensdeconfiance/output.csv", nrows=5
+    "/Users/mneau/Desktop/safeflat/scraping/gensdeconfiance/output.csv", nrows=100
 )
 
 # Printing the features before editing them
@@ -46,6 +46,7 @@ data.rename(
 # print(data["author_first_name"])
 # print(data["author_last_name"])
 # print(data["postcode"])
-print(data["loyer"])
-print(data["charges"])
-print(data["total par mois"])
+# print(data["loyer"])
+# print(data["charges"])
+# print(data["total par mois"])
+print(sum(data["characteristics"] != "{}"))

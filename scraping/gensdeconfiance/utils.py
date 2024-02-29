@@ -96,59 +96,8 @@ def get_annonce_data(driver, annonce):
         # print(f"Error retrieving description: {e}")
         data["description"] = "Not Available"
 
-    # print("===================================")
-    # print("          NEW POST DISPLAY          ")
-    # print("===================================")
-    # print(data)
+    print("===================================")
+    print("          NEW POST DISPLAY          ")
+    print("===================================")
+    print(data)
     return data
-
-
-"""
-    # Retrieving title
-    title = driver.find_element(By.CSS_SELECTOR, "h1#post-title").text
-    print(f"title: {title}")
-
-    # Retrieving subtitle
-    subtitle = driver.find_element(By.CSS_SELECTOR, "h2#post-title-breadcrumb").text
-    print(f"subtitle: {subtitle}")
-
-    # Retrieving price titles
-    titles = driver.find_elements(
-        By.CSS_SELECTOR, "div.price-table > div.price-table__row > div.price-table__cell"
-    )
-    titles_list = [item.text for item in titles]
-
-    # Retrieving price values
-    values = driver.find_elements(
-        By.CSS_SELECTOR, "div.price-table > div.price-table__row > div.price-table__value"
-    )
-    values_list = [item.text for item in values]
-
-    # Zipping titles and values
-    prices = dict(zip(titles_list, values_list))
-    print(f"prices: {prices}")
-
-    # Retrieving characteristics titles
-    characteristics_titles = driver.find_elements(
-        By.CSS_SELECTOR, "div#sfreact-reactRenderer65d1549745f563\.19298540 li > p"
-    )
-    titles = [item.text for item in characteristics_titles]
-
-    # Retrieving characteristics values
-    characteristics_values = driver.find_elements(
-        By.CSS_SELECTOR, "div#sfreact-reactRenderer65d1549745f563\.19298540 li li>span"
-    )
-    values = [item.text for item in characteristics_values]
-
-    # Zipping titles and values
-    characteristics = dict(zip(titles, values))
-    print(f"characteristics: {characteristics}")
-
-    # Retrieving description
-    description = driver.find_element(By.CSS_SELECTOR, "div#ad-description").text
-    print(f"description: {description}")
-
-    # Write the text to a file
-    # with open("output.txt", "w", encoding="utf-8") as file:
-    #     file.write(text)
-"""
