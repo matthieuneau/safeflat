@@ -1,2 +1,4 @@
-chromedriver-mac-arm64
+/chromedriver-mac-arm64
 config.yaml
+/project_info
+**/__pycache__/
