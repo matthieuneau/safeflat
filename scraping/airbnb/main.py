@@ -12,7 +12,6 @@ import preprocessing
 
 
 
-# # page_nb = 2
 # urls = []
 # url = "https://www.airbnb.fr/s/Tourcoing--France/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&monthly_start_date=2024-03-01&monthly_length=3&monthly_end_date=2024-06-01&price_filter_input_type=0&channel=EXPLORE&date_picker_type=calendar&checkin=2024-04-11&checkout=2024-04-12&source=structured_search_input_header&search_type=autocomplete_click&price_filter_num_nights=1&query=Tourcoing%2C%20France&place_id=ChIJXScKvtQow0cRj4WtfX0xLiU&adults=8"
 # # Setup Chrome options for undetected_chromedriver
@@ -26,7 +25,7 @@ import preprocessing
 # try:
 #     while True:  # Boucle jusqu'à ce qu'on ne trouve plus de lien "Suivant"
 #         # Attendre que le lien "Suivant" soit chargé et cliquable
-#         wait = WebDriverWait(driver, 120)
+#         wait = WebDriverWait(driver, 40)
 #         wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, '[rel="noopener noreferrer nofollow"]')))
 
 #         url_elements = driver.find_elements(By.CSS_SELECTOR, '[rel="noopener noreferrer nofollow"]')
@@ -40,7 +39,7 @@ import preprocessing
 
 #         urls_temp = list(set(urls_temp))
 #         urls+= urls_temp
-#         next_link = WebDriverWait(driver, 30).until(
+#         next_link = WebDriverWait(driver, 20).until(
 #             EC.presence_of_element_located((By.CSS_SELECTOR, 'a[aria-label="Suivant"]'))
 #         )
         
@@ -51,7 +50,6 @@ import preprocessing
 #         driver.get(link_url)
 
 
-#         # Optionnel : Opérations supplémentaires sur la page courante avant de passer à la suivante
         
 # except Exception as e:
 #     # Si le lien "Suivant" n'est pas trouvé, on suppose qu'on est à la dernière page
@@ -62,11 +60,11 @@ import preprocessing
 
 
 # #for url in urls:
-# for i in range(15,20):  
-#     utils.retrieve_data(urls[i], "output.csv")
+# for i in range(20):  
+utils.retrieve_data("https://www.airbnb.fr/rooms/15435153?adults=1&category_tag=Tag%3A670&children=0&enable_m3_private_room=true&infants=0&pets=0&photo_id=221575830&check_in=2024-03-02&check_out=2024-03-07&source_impression_id=p3_1709118849_jXpRWpu389xiedpy&previous_page_section_name=1000&federated_search_id=02e5416b-aa13-431a-8fb6-ea45f3d00e35", "output.csv")
 #     time.sleep(2)
 
 
 #Preprocess the csv file:
-preprocessing.preprocess_csv('output.csv', 'output_preprocess.csv')
+#preprocessing.preprocess_csv('output.csv', 'output_preprocessed.csv')
 

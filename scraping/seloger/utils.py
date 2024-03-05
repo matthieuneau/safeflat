@@ -217,5 +217,5 @@ def retrieve_data(url, output_file_path):
             file,
             fieldnames= result.keys(),
         )
-        #writer.writeheader()
+        writer.writeheader()
         writer.writerow(result)

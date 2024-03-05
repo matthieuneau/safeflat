@@ -1,6 +1,5 @@
 import os
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from tqdm import tqdm
 import pandas as pd
 import time
 import yaml
@@ -18,10 +17,12 @@ options.add_argument("--incognito")
 
 # Initialize the WebDriver with the specified options
 driver = uc.Chrome(options=options)
-url = "file:///Users/mneau/Desktop/safeflat/scraping/gensdeconfiance/example.html"
 
+url = f"file:///Users/mneau/Desktop/safeflat/scraping/gensdeconfiance/test/example.html"
 driver.get(url)
-
 time.sleep(2)
 
-print(utils.get_annonce_data(driver, url))
+placeholder = utils.get_annonce_data(driver, url)
+
+# Close the browser
+driver.quit()
