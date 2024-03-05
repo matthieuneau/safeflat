@@ -64,14 +64,14 @@ def get_annonce_data(driver, annonce):
             item.text
             for item in driver.find_elements(
                 By.CSS_SELECTOR,
-                "div#sfreact-reactRenderer65d1549745f563\.19298540 li > p",
+                "ul.indexclient__GridList-dYErZy.XvGJg > li > p",
             )
         ]
         characteristics_values = [
             item.text
             for item in driver.find_elements(
                 By.CSS_SELECTOR,
-                "div#sfreact-reactRenderer65d1549745f563\.19298540 li li>span",
+                "ul.indexclient__GridList-dYErZy.XvGJg > li > ul > li",
             )
         ]
         data["characteristics"] = dict(
