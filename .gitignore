@@ -1,2 +1,5 @@
 chromedriver-mac-arm64
 config.yaml
+**/.DS_Store
+
+
