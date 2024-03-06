@@ -1,7 +1,8 @@
 import pandas as pd
+import utils
 
 data = pd.read_csv(
-    "/Users/mneau/Desktop/safeflat/scraping/gensdeconfiance/output.csv", nrows=5
+    "/Users/mneau/Desktop/safeflat/scraping/gensdeconfiance/test/output.csv", nrows=5
 )
 
 # Printing the features before editing them
@@ -42,10 +43,14 @@ data.rename(
     inplace=True,
 )
 
+# Processing the description with ChatGPT 3.5
+data["description"] = data["description"].apply(utils.process_description)
+
 # Printing the features after editing them
-# print(data["author_first_name"])
-# print(data["author_last_name"])
-# print(data["postcode"])
+print(data["author_first_name"])
+print(data["author_last_name"])
+print(data["postcode"])
 print(data["loyer"])
 print(data["charges"])
 print(data["total par mois"])
+print(data["description"])

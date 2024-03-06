@@ -1,5 +1,10 @@
-chromedriver-mac-arm64
+/chromedriver-mac-arm64
 config.yaml
+<<<<<<< HEAD
 **/.DS_Store
 
 
+=======
+/project_info
+**/__pycache__/
+>>>>>>> 0f93bd834e7ae88106440e91cd6f332a4615fe0a
