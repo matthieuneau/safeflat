@@ -12,7 +12,6 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 
 
-
 page_nb = 2
 
 url = f"https://www.seloger.com/list.htm?projects=1&types=2%2C1&natures=1&places=%5B%7B%22inseeCodes%22%3A%5B670482%5D%7D%5D&enterprise=0&qsVersion=1.0"
@@ -33,16 +32,24 @@ driver.get(url)
 # # Cliquer sur l'élément
 # element.click()
 
+<<<<<<< HEAD
 wait = WebDriverWait(driver, 10)  # Attendre jusqu'à 10 secondes pour les conditions
 
 url_elements = driver.find_elements(By.XPATH, '//a[@data-testid="sl.explore.coveringLink"]')
 urls_temp = [
+=======
+url_elements = driver.find_elements(
+    By.XPATH, '//a[@data-testid="sl.explore.coveringLink"]'
+)
+urls = [
+>>>>>>> 990439b4b414fa0bd2448aeda18a517ed25e19b1
     element.get_attribute("href")
     for element in url_elements
     if element.get_attribute("href").startswith(
         "https://www.seloger.com/"
     )  # avoids to retrieve the urls that redirect to ads
 ]
+<<<<<<< HEAD
 urls_temp = list(set(urls_temp))
 urls+= urls_temp
 print(len(urls))
@@ -103,3 +110,12 @@ for url_ in urls:
     utils.retrieve_data(url_, "output.csv")
 time.sleep(2)
 
+=======
+# print(urls)
+driver.quit()
+
+# for url in urls:
+for i in range(6, 12):
+    utils.retrieve_data(urls[i], "output.csv")
+    time.sleep(2)
+>>>>>>> 990439b4b414fa0bd2448aeda18a517ed25e19b1

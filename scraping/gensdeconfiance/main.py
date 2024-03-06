@@ -30,7 +30,7 @@ driver.find_element(By.XPATH, '//*[@id="password"]').send_keys(password)
 driver.find_element(By.XPATH, '//*[@id="__next"]/div[2]/main/div/form/button').click()
 
 time.sleep(2)
-output_file = "output.csv"
+output_file = "/Users/mneau/Desktop/safeflat/scraping/gensdeconfiance/output.csv"
 
 # Initialize an empty DataFrame if the file doesn't exist or is empty
 if not os.path.exists(output_file) or os.path.getsize(output_file) == 0:

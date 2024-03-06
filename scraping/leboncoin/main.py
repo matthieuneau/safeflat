@@ -1,13 +1,10 @@
 import os
 import utils
 import pandas as pd
-from selenium import webdriver
+from numpy import random
 import time
 import undetected_chromedriver as uc
 from selenium.webdriver.common.by import By
-
-# with open("../../config.yaml", "r") as file:
-#     config = yaml.safe_load(file)
 
 # Setup Chrome options for undetected_chromedriver
 options = uc.ChromeOptions()
@@ -17,7 +14,7 @@ options.add_argument("--incognito")
 # Initialize the WebDriver with the specified options
 driver = uc.Chrome(options=options)
 
-output_file = "output.csv"
+output_file = "/Users/mneau/Desktop/safeflat/scraping/leboncoin/output.csv"
 
 # Initialize an empty DataFrame if the file doesn't exist or is empty
 if not os.path.exists(output_file) or os.path.getsize(output_file) == 0:
@@ -33,7 +30,7 @@ for page_num in range(1, nb_pages + 1):
     # url = "file:///Users/mneau/Desktop/safeflat/scraping/leboncoin/example.html"
 
     driver.get(url)
-    time.sleep(2)
+    time.sleep(random.uniform(6, 8))
 
     urls = [
         element.get_attribute("href")
@@ -41,9 +38,11 @@ for page_num in range(1, nb_pages + 1):
             By.CSS_SELECTOR, 'a[data-qa-id="aditem_container"]'
         )
     ]
+    print(urls)
 
     for url in urls:
         data = utils.get_annonce_data(driver, url)
+        print(data)
         new_data_df = pd.DataFrame([data])
         # Check if the new data is already present in the in-memory DataFrame
         if not new_data_df.isin(database.to_dict("records")).all(1).any():
