@@ -26,82 +26,49 @@ driver = uc.Chrome(options=options)
 
 driver.get(url)
 
-# wait = WebDriverWait(driver, 30)
-# # Attendre que l'élément soit cliquable
-# element = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".didomi-continue-without-agreeing")))
-# # Cliquer sur l'élément
-# element.click()
+Cliquer sur l'element pour refuser les cookies
+wait = WebDriverWait(driver, 30)
+# Attendre que l'élément soit cliquable
+element = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".didomi-continue-without-agreeing")))
+# Cliquer sur l'élément
+element.click()
 
-<<<<<<< HEAD
-wait = WebDriverWait(driver, 10)  # Attendre jusqu'à 10 secondes pour les conditions
 
-url_elements = driver.find_elements(By.XPATH, '//a[@data-testid="sl.explore.coveringLink"]')
-urls_temp = [
-=======
-url_elements = driver.find_elements(
-    By.XPATH, '//a[@data-testid="sl.explore.coveringLink"]'
-)
-urls = [
->>>>>>> 990439b4b414fa0bd2448aeda18a517ed25e19b1
-    element.get_attribute("href")
-    for element in url_elements
-    if element.get_attribute("href").startswith(
-        "https://www.seloger.com/"
-    )  # avoids to retrieve the urls that redirect to ads
-]
-<<<<<<< HEAD
-urls_temp = list(set(urls_temp))
-urls+= urls_temp
-print(len(urls))
+while True:
+    try:
+        url_elements = driver.find_elements(By.XPATH, '//a[@data-testid="sl.explore.coveringLink"]')
+        urls_temp = [
+            element.get_attribute("href")
+            for element in url_elements
+            if element.get_attribute("href").startswith(
+                "https://www.seloger.com/"
+            )  # avoids to retrieve the urls that redirect to ads
+        ]
+        urls_temp = list(set(urls_temp))
+        urls+= urls_temp
+        print(len(urls))
 
-# while True:
-#     try:
-#         url_elements = driver.find_elements(By.XPATH, '//a[@data-testid="sl.explore.coveringLink"]')
-#         urls_temp = [
-#             element.get_attribute("href")
-#             for element in url_elements
-#             if element.get_attribute("href").startswith(
-#                 "https://www.seloger.com/"
-#             )  # avoids to retrieve the urls that redirect to ads
-#         ]
-#         urls_temp = list(set(urls_temp))
-#         urls+= urls_temp
-#         print(len(urls))
-#         # # Attendre que le bouton "Suivant" soit cliquable
-#         # next_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//a[@data-testid='gsl.uilib.Paging.nextButton']")))
+        # # Attendre que le bouton "Suivant" soit cliquable
+        next_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//a[@data-testid='gsl.uilib.Paging.nextButton']")))
 
-#         # # Obtenez la hauteur totale de la page
-#         # total_height = driver.execute_script("return document.body.scrollHeight")
+        # # Obtenez la hauteur totale de la page
+        # total_height = driver.execute_script("return document.body.scrollHeight")
 
-#         # # Calculez les 2/3 de la hauteur
-#         # scroll_height = 4/5 * total_height
+        # # Calculez les 2/3 de la hauteur
+        # scroll_height = 4/5 * total_height
 
-#         # # Faites défiler la page jusqu'à la position calculée
-#         # driver.execute_script(f"window.scrollTo(0, {scroll_height});")
+        # # Faites défiler la page jusqu'à la position calculée
+        # driver.execute_script(f"window.scrollTo(0, {scroll_height});")
         
-#         # # Cliquer sur le bouton "Suivant"
-#         # next_button.click()
+        # Cliquer sur le bouton "Suivant"
+        next_button.click()
 
-#         element = WebDriverWait(driver, 10).until(
-#         EC.visibility_of_element_located((By.XPATH, "//a[@data-testid='gsl.uilib.Paging.nextButton']"))
-#         )
-
-#         # Scroller jusqu'à l'élément (optionnel si vous utilisez move_to_element plus tard)
-#         driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
-
-#         # Placer la souris sur l'élément et cliquer (deux méthodes possibles)
-#         actions = ActionChains(driver)
-#         actions.move_to_element(element).click().perform()
         
         
-#     except TimeoutException:
-#         # Si le bouton "Suivant" n'est pas trouvé, sortir de la boucle
-#         print("Fin de la pagination, le bouton 'Suivant' n'est plus présent.")
-#         break
-
-
-
-
+    except TimeoutException:
+        # Si le bouton "Suivant" n'est pas trouvé, sortir de la boucle
+        print("Fin de la pagination, le bouton 'Suivant' n'est plus présent.")
+        break
 
 
 driver.quit()
@@ -110,12 +77,3 @@ for url_ in urls:
     utils.retrieve_data(url_, "output.csv")
 time.sleep(2)
 
-=======
-# print(urls)
-driver.quit()
-
-# for url in urls:
-for i in range(6, 12):
-    utils.retrieve_data(urls[i], "output.csv")
-    time.sleep(2)
->>>>>>> 990439b4b414fa0bd2448aeda18a517ed25e19b1
