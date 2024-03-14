@@ -26,7 +26,7 @@ driver = uc.Chrome(options=options)
 
 driver.get(url)
 
-Cliquer sur l'element pour refuser les cookies
+#Cliquer sur l'element pour refuser les cookies
 wait = WebDriverWait(driver, 30)
 # Attendre que l'élément soit cliquable
 element = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".didomi-continue-without-agreeing")))
