@@ -22,10 +22,10 @@ if not os.path.exists(output_file) or os.path.getsize(output_file) == 0:
 else:
     database = pd.read_csv(output_file)
 
-page_nb = 2
+page_nb = 1
 
 for i in tqdm(range(1, page_nb + 1), desc="Scraping pages"):
-    url = f"https://www.seloger.com/list.htm?projects=1&types=2%2C1&mandatorycommodities=0&privateseller=1&enterprise=0&qsVersion=1.0&LISTING-LISTpg={i}"
+    url = "https://www.seloger.com/list.htm?projects=1&types=2,1&places=[{%22inseeCodes%22:[750101]}]&sort=d_dt_crea&mandatorycommodities=0&privateseller=1&enterprise=0&qsVersion=1.0&m=search_hp_last"
     driver.get(url)
     time.sleep(4)
 
@@ -39,13 +39,15 @@ for i in tqdm(range(1, page_nb + 1), desc="Scraping pages"):
         if element.get_attribute("href")
     ]
     url_list = url_list[:5]  # For testing purpose
+    url_list = list(set(url_list))
     print(f"url_list: {url_list}")
+    driver.quit()
 
     # Implement tqdm progress bar for URL scraping
     with tqdm(total=len(url_list), leave=False, desc=f"Processing Page {i}") as pbar:
         for url in url_list:
-            driver.get(url)
-            time.sleep(6)
+            #driver.get(url)
+            #time.sleep(6)
             print(f"url: {url}")
             data = utils.retrieve_data(url, "output.csv")
             print(f"data: {data}")

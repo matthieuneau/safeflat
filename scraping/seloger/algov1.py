@@ -1,18 +1,18 @@
 import pandas as pd
 
-def filtrer_et_scorer_biens(data, critere_filtre):
+def filtrer_et_scorer_biens(data_path, critere_filtre):
     """
     Filtre les biens selon les critères spécifiés et calcule un score de correspondance pour les biens restants.
     
     Args:
-    data (pd.DataFrame): DataFrame contenant les données des biens.
-    critere_filtre (dict): Dictionnaire contenant les critères de filtrage (nb_sdb, nb_rooms, balcon, Baignoire).
+    data_path (csv): Path to the raw csv file
+    critere_filtre (dict): Dictionary containing the characteristics of the property to be searched
     
     Returns:
-    pd.DataFrame: DataFrame des biens filtrés avec un score de correspondance.
+    pd.DataFrame: DataFrame of filtered propreties with a match score.
     """
 
-    input_file = pd.read_csv(data)
+    input_file = pd.read_csv(data_path)
     filtered_data = input_file.copy()
 
     
@@ -20,10 +20,10 @@ def filtrer_et_scorer_biens(data, critere_filtre):
     for feature, value in critere_filtre.items():
         if feature in ['type', 'city','zipcode','nb_rooms', 'nb_bedrooms', 'numero_etage','balcon','terrasse', 'jardin', 'salle de bain (Baignoire)', 'salle d\'eau (douche)', 'ascenseur']:
             filtered_data = filtered_data[(filtered_data[feature] == value) | pd.isna(filtered_data[feature])] #Only keeps the lines with the corresponding value or Nan value
-        # elif feature in ['surface', 'surface_jardin','surface_salon', 'surface_salle_a_manger']:
-        #     filtered_data = filtered_data[((value -1.5 <= filtered_data[feature]) & (filtered_data[feature] <= value + 1.5)) | pd.isna(filtered_data[feature])] 
-        # elif feature in ['surface_balcon', 'surface_terrasse']:
-        #     filtered_data = filtered_data[((value -0.5 <= filtered_data[feature]) & (filtered_data[feature] <= value + 0.5)) | pd.isna(filtered_data[feature])]
+        elif feature in ['surface', 'surface_jardin','surface_salon', 'surface_salle_a_manger']:
+            filtered_data = filtered_data[((value -1.5 <= filtered_data[feature]) & (filtered_data[feature] <= value + 1.5)) | pd.isna(filtered_data[feature])] 
+        elif feature in ['surface_balcon', 'surface_terrasse']:
+            filtered_data = filtered_data[((value -0.5 <= filtered_data[feature]) & (filtered_data[feature] <= value + 0.5)) | pd.isna(filtered_data[feature])]
  
 
     # Defines the weight of each scoring feature
@@ -34,8 +34,7 @@ def filtrer_et_scorer_biens(data, critere_filtre):
     filtered_data['score_correspondance'] = 0
 
     # For the other features, add their weight to the score if there is a match 
-    scoring_features = ['neighbourhood', 'exposition', 'cave', 'parking', 'garage', 'box', 'interphone', 'gardien', 'Diagnostic de performance énergétique (DPE)', 'Indice d\'émission de gaz à effet de serre (GES)']
-    for feature in scoring_features:
+    for feature in poids.keys():
         if feature in critere_filtre:
             filtered_data['score_correspondance'] += (filtered_data[feature] == critere_filtre[feature]) * poids[feature]/total
     

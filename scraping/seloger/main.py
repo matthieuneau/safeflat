@@ -14,7 +14,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 page_nb = 2
 
-url = f"https://www.seloger.com/list.htm?projects=1&types=2%2C1&natures=1&places=%5B%7B%22inseeCodes%22%3A%5B670482%5D%7D%5D&enterprise=0&qsVersion=1.0"
+url = "https://www.seloger.com/list.htm?projects=1&types=2,1&places=[{%22inseeCodes%22:[750101]}]&sort=d_dt_crea&mandatorycommodities=0&privateseller=1&enterprise=0&qsVersion=1.0&m=search_refine-redirection-search_results"
 urls = []
 
 # Setup Chrome options for undetected_chromedriver
@@ -26,49 +26,48 @@ driver = uc.Chrome(options=options)
 
 driver.get(url)
 
-#Cliquer sur l'element pour refuser les cookies
-wait = WebDriverWait(driver, 30)
-# Attendre que l'élément soit cliquable
-element = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".didomi-continue-without-agreeing")))
-# Cliquer sur l'élément
-element.click()
+# #Cliquer sur l'element pour refuser les cookies
+# wait = WebDriverWait(driver, 30)
+# # Attendre que l'élément soit cliquable
+# element = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".didomi-continue-without-agreeing")))
+# # Cliquer sur l'élément
+# element.click()
 
 
-while True:
-    try:
-        url_elements = driver.find_elements(By.XPATH, '//a[@data-testid="sl.explore.coveringLink"]')
-        urls_temp = [
-            element.get_attribute("href")
-            for element in url_elements
-            if element.get_attribute("href").startswith(
-                "https://www.seloger.com/"
-            )  # avoids to retrieve the urls that redirect to ads
-        ]
-        urls_temp = list(set(urls_temp))
-        urls+= urls_temp
-        print(len(urls))
 
-        # # Attendre que le bouton "Suivant" soit cliquable
-        next_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//a[@data-testid='gsl.uilib.Paging.nextButton']")))
+try:
+    url_elements = driver.find_elements(By.XPATH, '//a[@data-testid="sl.explore.coveringLink"]')
+    urls_temp = [
+        element.get_attribute("href")
+        for element in url_elements
+        if element.get_attribute("href").startswith(
+            "https://www.seloger.com/"
+        )  # avoids to retrieve the urls that redirect to ads
+    ]
+    urls_temp = list(set(urls_temp))
+    urls+= urls_temp
+    print(len(urls))
 
-        # # Obtenez la hauteur totale de la page
-        # total_height = driver.execute_script("return document.body.scrollHeight")
+    # # Attendre que le bouton "Suivant" soit cliquable
+    #next_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//a[@data-testid='gsl.uilib.Paging.nextButton']")))
 
-        # # Calculez les 2/3 de la hauteur
-        # scroll_height = 4/5 * total_height
+    # # Obtenez la hauteur totale de la page
+    # total_height = driver.execute_script("return document.body.scrollHeight")
 
-        # # Faites défiler la page jusqu'à la position calculée
-        # driver.execute_script(f"window.scrollTo(0, {scroll_height});")
-        
-        # Cliquer sur le bouton "Suivant"
-        next_button.click()
+    # # Calculez les 2/3 de la hauteur
+    # scroll_height = 4/5 * total_height
 
-        
-        
-    except TimeoutException:
-        # Si le bouton "Suivant" n'est pas trouvé, sortir de la boucle
-        print("Fin de la pagination, le bouton 'Suivant' n'est plus présent.")
-        break
+    # # Faites défiler la page jusqu'à la position calculée
+    # driver.execute_script(f"window.scrollTo(0, {scroll_height});")
+    
+    # Cliquer sur le bouton "Suivant"
+    #next_button.click()
+
+    
+    
+except TimeoutException:
+    # Si le bouton "Suivant" n'est pas trouvé, sortir de la boucle
+    print("Fin de la pagination, le bouton 'Suivant' n'est plus présent.")
 
 
 driver.quit()

@@ -16,11 +16,11 @@ def retrieve_data(url, output_file_path):
     Navigates to a given URL and retrieves data using a Selenium WebDriver.
 
     This function navigates to the specified URL, waits for the page to load,
-    and attempts to scrape data into a dictionary. It also tries to click a
-    'Voir plus' button to reveal more information, if it exists.
+    and attempts to scrape data into a dictionary.
 
     Parameters:
     url (str): The URL to navigate to.
+    output_file_path : path to the csv where the data is stored
     """
 
 
@@ -34,7 +34,7 @@ def retrieve_data(url, output_file_path):
     page_source = driver.page_source
     soup = BeautifulSoup(page_source, 'html.parser')
 
-
+    result["url"] = url
 
     # Extracting the title
     try:
@@ -99,14 +99,6 @@ def retrieve_data(url, output_file_path):
         if result["numero_etage"] == "":
             result["numero_etage"] = None
 
-        # result["balcon"] = ""
-        # result["terrasse"] = ""
-        # result["exposition"] = ""
-        # result["ascenceur"] = ""
-        # result["gardien"] = ""
-        # result["interphone"] = ""
-        # result["kitchen_type"] = ""
-
     # Extracting the description
     try:
         result["description"] = soup.find('div', class_='ShowMoreText__UITextContainer-sc-1swit84-0').text.strip()
@@ -140,8 +132,6 @@ def retrieve_data(url, output_file_path):
             else :
                 print(f"La colonne {titre} n'est pas dans result")
             
-                
-            
     except Exception as e:
         print("Error extracting features:", e)
 
@@ -163,8 +153,6 @@ def retrieve_data(url, output_file_path):
             except Exception as e:
                     print("Error extracting energy elements:", e)
                     result[titre] = None
-            
-
     except Exception as e:
         print("Error extracting Energy elements:", e)
 
@@ -207,15 +195,14 @@ def retrieve_data(url, output_file_path):
     except Exception as e:
         print("Error extracting price_details:", e)
 
-        
-
-
     driver.quit()
 
-    with open(output_file_path, "a", newline="", encoding="utf-8") as file:
-        writer = csv.DictWriter(
-            file,
-            fieldnames= result.keys(),
-        )
-        writer.writeheader()
-        writer.writerow(result)
+    return result
+
+    # with open(output_file_path, "a", newline="", encoding="utf-8") as file:
+    #     writer = csv.DictWriter(
+    #         file,
+    #         fieldnames= result.keys(),
+    #     )
+    #     #writer.writeheader()
+    #     writer.writerow(result)
