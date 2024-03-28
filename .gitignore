@@ -5,3 +5,5 @@ config.yaml
 /project_info
 **/__pycache__/
 **/.DS_Store
+
+sfscraping
