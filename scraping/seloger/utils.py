@@ -16,11 +16,11 @@ def retrieve_data(url, output_file_path):
     Navigates to a given URL and retrieves data using a Selenium WebDriver.
 
     This function navigates to the specified URL, waits for the page to load,
-    and attempts to scrape data into a dictionary. It also tries to click a
-    'Voir plus' button to reveal more information, if it exists.
+    and attempts to scrape data into a dictionary.
 
     Parameters:
     url (str): The URL to navigate to.
+    output_file_path : path to the csv where the data is stored
     """
 
 
@@ -34,35 +34,35 @@ def retrieve_data(url, output_file_path):
     page_source = driver.page_source
     soup = BeautifulSoup(page_source, 'html.parser')
 
-
+    result["url"] = url
 
     # Extracting the title
     try:
         result["title"] = soup.find('div', class_ = "Summarystyled__Title-sc-1u9xobv-4 dbveQQ").text.strip()
     except Exception as e:
         print("Error extracting title:", e)
-        result["title"] = "Title Not Found"
+        result["title"] = None
 
     # Extracting the price
     try:
         result["price"] = soup.find('span', class_='global-styles__TextNoWrap-sc-1gbe8ip-6').text.strip()
     except Exception as e:
         print("Error extracting price:", e)
-        result["price"] = "Price Not Found"
+        result["price"] = None
 
     # Extracting the City and zip code
     try:
         result["city and zip code"] = soup.find('span', class_='Localizationstyled__City-sc-gdkcr2-1 bgtLnh').text.strip()
     except Exception as e:
         print("Error extracting City and Zip Code:", e)
-        result["city and zip code"] = "City and Zip Code Not Found"
+        result["city and zip code"] = None
 
     # Extracting the neighbourhood
     try:
         result["neighbourhood"] = soup.find('span', {'data-test': 'neighbourhood'}).text.strip()
     except Exception as e:
         print("Error extracting Neighbourhood:", e)
-        result["neighbourhood"] = "Neighbourhood Not Found"
+        result["neighbourhood"] = None
 
     # Extracting details
     
@@ -91,28 +91,20 @@ def retrieve_data(url, output_file_path):
     except Exception as e:
         print("Error extracting details:", e)
         if result["nb_rooms"] == "":
-            result["nb_rooms"] = "Nb Rooms Not Found"
+            result["nb_rooms"] = None
         if result["nb_bedrooms"] == "":
-            result["nb_bedrooms"] = "Nb Bedrooms Not Found"
+            result["nb_bedrooms"] = None
         if result["surface"] == "":
-            result["surface"] = "Surface Not Found"
+            result["surface"] = None
         if result["numero_etage"] == "":
-            result["numero_etage"] = "Numero d'étage Not Found"
-
-        # result["balcon"] = ""
-        # result["terrasse"] = ""
-        # result["exposition"] = ""
-        # result["ascenceur"] = ""
-        # result["gardien"] = ""
-        # result["interphone"] = ""
-        # result["kitchen_type"] = ""
+            result["numero_etage"] = None
 
     # Extracting the description
     try:
         result["description"] = soup.find('div', class_='ShowMoreText__UITextContainer-sc-1swit84-0').text.strip()
     except Exception as e:
         print("Error extracting description:", e)
-        result["description"] = "Description Not Found"
+        result["description"] = None
 
     # Extraction of features
     try:
@@ -140,8 +132,6 @@ def retrieve_data(url, output_file_path):
             else :
                 print(f"La colonne {titre} n'est pas dans result")
             
-                
-            
     except Exception as e:
         print("Error extracting features:", e)
 
@@ -162,9 +152,7 @@ def retrieve_data(url, output_file_path):
                     
             except Exception as e:
                     print("Error extracting energy elements:", e)
-                    result[titre] = f"{titre} not found"
-            
-
+                    result[titre] = None
     except Exception as e:
         print("Error extracting Energy elements:", e)
 
@@ -207,15 +195,14 @@ def retrieve_data(url, output_file_path):
     except Exception as e:
         print("Error extracting price_details:", e)
 
-        
-
-
     driver.quit()
 
-    with open(output_file_path, "a", newline="", encoding="utf-8") as file:
-        writer = csv.DictWriter(
-            file,
-            fieldnames= result.keys(),
-        )
-        writer.writeheader()
-        writer.writerow(result)
+    return result
+
+    # with open(output_file_path, "a", newline="", encoding="utf-8") as file:
+    #     writer = csv.DictWriter(
+    #         file,
+    #         fieldnames= result.keys(),
+    #     )
+    #     #writer.writeheader()
+    #     writer.writerow(result)
