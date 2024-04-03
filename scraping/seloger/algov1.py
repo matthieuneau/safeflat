@@ -45,18 +45,23 @@ def filtrer_et_scorer_biens(data_path, critere_filtre):
 critere_filtre = {
     'type': 'Appartement',  # Choisi en se basant sur les types disponibles dans le fichier
     'meublé': 1,  # Exemple de critère binaire (0 ou 1)
-    'city': 'Strasbourg',  # Utilisation d'une ville présente dans le fichier
-    'zipcode': 67000,  # Code postal correspondant à la ville
-    'nb_rooms': 3,  # Spécifié arbitrairement
-    'nb_bedrooms': 2,  # Extrait d'une des lignes du fichier
-    'surface': 62.0,  # Moyenne basée sur les surfaces disponibles dans le fichier
-    'numero_etage': '3/–',  # Extrait d'une ligne, supposant une structure 'étage/total'
+    'city': 'Paris',  # Utilisation d'une ville présente dans le fichier
+    'zipcode': 75010,  # Code postal correspondant à la ville
+    'nb_rooms': 2,  # Spécifié arbitrairement
+    'nb_bedrooms': 1,  # Extrait d'une des lignes du fichier
+    'surface': 45,  # Moyenne basée sur les surfaces disponibles dans le fichier
+    'numero_etage': '0/0',  # Extrait d'une ligne, supposant une structure 'étage/total'
     'ascenseur': 1,  # Supposé pour le critère d'ascenseur
     'interphone': 1,  # Choisi arbitrairement
     'gardien': 0,  # Choisi arbitrairement
-    'salle de bain (Baignoire)': 1,  # Basé sur les options disponibles
-    'salle d\'eau (douche)': 0,  # Choisi en fonction des données du fichier
-    'loyer_charges_comprises': 900  # Défini arbitrairement dans une fourchette plausible
+    'salle de bain (Baignoire)': 0,  # Basé sur les options disponibles
+    'salle d\'eau (douche)': 1,  # Choisi en fonction des données du fichier
+    'loyer_charges_comprises': 900,  # Défini arbitrairement dans une fourchette plausible
+    'Diagnostic de performance énergétique (DPE)' : 'D',
+    'garage' : 0,
+    'interphone' : 0,
+    'gardien' : 0
+
 }
 
 

@@ -27,6 +27,7 @@ def retrieve_data(url, output_file_path):
     # Navigate to the URL
     options = uc.ChromeOptions()
     driver = uc.Chrome(options=options) 
+    options.add_argument("--incognito")
     driver.get(url)
     result = {}
 
@@ -73,10 +74,10 @@ def retrieve_data(url, output_file_path):
             caractere = div_tag_container.text.strip()
             caracteristiques.append(caractere)
 
-        result["nb_rooms"] = ""
-        result["nb_bedrooms"] = ""
-        result["surface"] = ""
-        result["numero_etage"] = ""
+        result["nb_rooms"] = None
+        result["nb_bedrooms"] = None
+        result["surface"] = None
+        result["numero_etage"] = None
 
         for text in caracteristiques:
             if 'pièce' in text:
@@ -90,14 +91,6 @@ def retrieve_data(url, output_file_path):
 
     except Exception as e:
         print("Error extracting details:", e)
-        if result["nb_rooms"] == "":
-            result["nb_rooms"] = None
-        if result["nb_bedrooms"] == "":
-            result["nb_bedrooms"] = None
-        if result["surface"] == "":
-            result["surface"] = None
-        if result["numero_etage"] == "":
-            result["numero_etage"] = None
 
     # Extracting the description
     try:

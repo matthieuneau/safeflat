@@ -25,7 +25,7 @@ else:
 page_nb = 1
 
 for i in tqdm(range(1, page_nb + 1), desc="Scraping pages"):
-    url = "https://www.seloger.com/list.htm?projects=1&types=2,1&places=[{%22inseeCodes%22:[750101]}]&sort=d_dt_crea&mandatorycommodities=0&privateseller=1&enterprise=0&qsVersion=1.0&m=search_hp_last"
+    url = "https://www.seloger.com/list.htm?projects=1&types=2,1&places=[{%22inseeCodes%22:[750110]}]&sort=d_dt_crea&mandatorycommodities=0&privateseller=1&enterprise=0&qsVersion=1.0&m=search_refine-redirection-search_results"
     driver.get(url)
     time.sleep(4)
 
@@ -36,9 +36,11 @@ for i in tqdm(range(1, page_nb + 1), desc="Scraping pages"):
     url_list = [
         element.get_attribute("href")
         for element in url_elems
-        if element.get_attribute("href")
+        if element.get_attribute("href").startswith(
+            "https://www.seloger.com/"
+        )  # avoids to retrieve the urls that redirect to ads
     ]
-    url_list = url_list[:5]  # For testing purpose
+    #url_list = url_list[:5]  # For testing purpose
     url_list = list(set(url_list))
     print(f"url_list: {url_list}")
     driver.quit()
