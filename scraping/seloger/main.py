@@ -1,78 +1,64 @@
-from bs4 import BeautifulSoup
 import time
 import undetected_chromedriver as uc
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
 import utils
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.common.action_chains import ActionChains
-
-
-
-
-page_nb = 2
-
-url = "https://www.seloger.com/list.htm?projects=1&types=2,1&places=[{%22inseeCodes%22:[750101]}]&sort=d_dt_crea&mandatorycommodities=0&privateseller=1&enterprise=0&qsVersion=1.0&m=search_refine-redirection-search_results"
-urls = []
+import os
+import pandas as pd
+from selenium.webdriver.common.by import By
+from tqdm import tqdm
 
 # Setup Chrome options for undetected_chromedriver
 options = uc.ChromeOptions()
 options.add_argument("--incognito")
+# options.add_argument("--headless")
 
 # Initialize the WebDriver with the specified options
 driver = uc.Chrome(options=options)
 
-driver.get(url)
+output_file = "/Users/mneau/Desktop/safeflat/scraping/seloger/output.csv"
 
-# #Cliquer sur l'element pour refuser les cookies
-# wait = WebDriverWait(driver, 30)
-# # Attendre que l'élément soit cliquable
-# element = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".didomi-continue-without-agreeing")))
-# # Cliquer sur l'élément
-# element.click()
+# Initialize an empty DataFrame if the file doesn't exist or is empty
+if not os.path.exists(output_file) or os.path.getsize(output_file) == 0:
+    database = pd.DataFrame()
+else:
+    database = pd.read_csv(output_file)
 
+page_nb = 2
 
+for i in tqdm(range(1, page_nb + 1), desc="Scraping pages"):
+    url = f"https://www.seloger.com/list.htm?projects=1&types=2%2C1&mandatorycommodities=0&privateseller=1&enterprise=0&qsVersion=1.0&LISTING-LISTpg={i}"
+    driver.get(url)
+    time.sleep(4)
 
-try:
-    url_elements = driver.find_elements(By.XPATH, '//a[@data-testid="sl.explore.coveringLink"]')
-    urls_temp = [
+    url_elems = driver.find_elements(
+        By.CSS_SELECTOR, "a[data-testid='sl.explore.coveringLink']"
+    )
+    print("len url_elems", len(url_elems))
+    url_list = [
         element.get_attribute("href")
-        for element in url_elements
-        if element.get_attribute("href").startswith(
-            "https://www.seloger.com/"
-        )  # avoids to retrieve the urls that redirect to ads
+        for element in url_elems
+        if element.get_attribute("href")
     ]
-    urls_temp = list(set(urls_temp))
-    urls+= urls_temp
-    print(len(urls))
+    url_list = url_list[:5]  # For testing purpose
+    print(f"url_list: {url_list}")
 
-    # # Attendre que le bouton "Suivant" soit cliquable
-    #next_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//a[@data-testid='gsl.uilib.Paging.nextButton']")))
+    # Implement tqdm progress bar for URL scraping
+    with tqdm(total=len(url_list), leave=False, desc=f"Processing Page {i}") as pbar:
+        for url in url_list:
+            driver.get(url)
+            time.sleep(6)
+            print(f"url: {url}")
+            data = utils.retrieve_data(url, "output.csv")
+            print(f"data: {data}")
+            new_data_df = pd.DataFrame([data])
 
-    # # Obtenez la hauteur totale de la page
-    # total_height = driver.execute_script("return document.body.scrollHeight")
+            if not new_data_df.isin(database.to_dict("records")).all(1).any():
+                database = pd.concat([database, new_data_df], ignore_index=True)
+            else:
+                print("Duplicate data, not appending.")
 
-    # # Calculez les 2/3 de la hauteur
-    # scroll_height = 4/5 * total_height
+            pbar.update(
+                1
+            )  # Manually update the progress bar after each URL is processed
 
-    # # Faites défiler la page jusqu'à la position calculée
-    # driver.execute_script(f"window.scrollTo(0, {scroll_height});")
-    
-    # Cliquer sur le bouton "Suivant"
-    #next_button.click()
-
-    
-    
-except TimeoutException:
-    # Si le bouton "Suivant" n'est pas trouvé, sortir de la boucle
-    print("Fin de la pagination, le bouton 'Suivant' n'est plus présent.")
-
-
+database.to_csv(output_file, mode="w", header=True, index=False)
 driver.quit()
-
-for url_ in urls:
-    utils.retrieve_data(url_, "output.csv")
-time.sleep(2)
-
