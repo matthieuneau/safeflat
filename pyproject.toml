@@ -12,6 +12,7 @@ pandas = "^2.2.2"
 undetected-chromedriver = "^3.5.5"
 tqdm = "^4.66.2"
 selenium = "^4.19.0"
+awscli = "^1.32.84"
 
 
 [build-system]
