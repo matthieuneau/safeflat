@@ -1,3 +1,4 @@
+from grpc import StatusCode
 import pandas as pd
 import os
 import time
@@ -7,57 +8,62 @@ from selenium.webdriver.common.by import By
 from tqdm import tqdm
 
 
-# Setup Chrome options for undetected_chromedriver
-options = uc.ChromeOptions()
-# options.add_argument("--headless")
-options.add_argument("--incognito")
+def lambda_handler(event, context):
+    print("entering lambda_handler")
 
-driver = uc.Chrome(options=options)
+    # Setup Chrome options for undetected_chromedriver
+    options = uc.ChromeOptions()
+    # options.add_argument("--headless")
+    options.add_argument("--incognito")
 
-output_file = "/Users/mneau/Desktop/safeflat/scraping/pap/output.csv"
+    driver = uc.Chrome(options=options)
 
-# Initialize an empty DataFrame if the file doesn't exist or is empty
-if not os.path.exists(output_file) or os.path.getsize(output_file) == 0:
-    database = pd.DataFrame()
-else:
-    database = pd.read_csv(output_file)
+    output_file = "/Users/mneau/Desktop/safeflat/scraping/pap/output.csv"
 
-pages_to_scrape = list(range(1, 3))
+    # Initialize an empty DataFrame if the file doesn't exist or is empty
+    if not os.path.exists(output_file) or os.path.getsize(output_file) == 0:
+        database = pd.DataFrame()
+    else:
+        database = pd.read_csv(output_file)
 
-for page_num in tqdm(pages_to_scrape, desc="Scraping page"):
+    pages_to_scrape = list(range(1, 3))
 
-    url = f"https://www.pap.fr/annonce/location-appartement-maison-{page_num}"
-    # url = "file:///Users/mneau/Desktop/safeflat/scraping/pap/listing_page.html"
+    for page_num in tqdm(pages_to_scrape, desc="Scraping page"):
 
-    driver.get(url)
+        url = f"https://www.pap.fr/annonce/location-appartement-maison-{page_num}"
+        # url = "file:///Users/mneau/Desktop/safeflat/scraping/pap/listing_page.html"
 
-    # Wait for the element to be loaded
-    time.sleep(3)
+        driver.get(url)
 
-    url_list = driver.find_elements(By.CSS_SELECTOR, "a.item-thumb-link")
-    url_list = [item.get_attribute("href") for item in url_list]
-    url_list = url_list[:3]  # for testing purposes
-    # print(f"url_list: {url_list}")
+        # Wait for the element to be loaded
+        time.sleep(3)
 
-    # Create a manual tqdm progress bar for the inner loop
-    pbar = tqdm(
-        total=len(url_list), leave=False
-    )  # leave=False to clean up on completion
-    pbar.set_description(f"page {page_num}")
+        url_list = driver.find_elements(By.CSS_SELECTOR, "a.item-thumb-link")
+        url_list = [item.get_attribute("href") for item in url_list]
+        url_list = url_list[:3]  # for testing purposes
+        # print(f"url_list: {url_list}")
 
-    with tqdm(total=len(url_list), leave=False, desc=f"Page {page_num}") as pbar:
-        for i, annonce in enumerate(url_list, start=1):
-            pbar.set_postfix_str(f"annonce {i}/{len(url_list)}")
-            data = utils.get_annonce_data(driver, annonce)
-            new_data_df = pd.DataFrame([data])
+        # Create a manual tqdm progress bar for the inner loop
+        pbar = tqdm(
+            total=len(url_list), leave=False
+        )  # leave=False to clean up on completion
+        pbar.set_description(f"page {page_num}")
 
-            if not new_data_df.isin(database.to_dict("records")).all(1).any():
-                database = pd.concat([database, new_data_df], ignore_index=True)
-            else:
-                print("Duplicate data, not appending.")
+        with tqdm(total=len(url_list), leave=False, desc=f"Page {page_num}") as pbar:
+            for i, annonce in enumerate(url_list, start=1):
+                pbar.set_postfix_str(f"annonce {i}/{len(url_list)}")
+                data = utils.get_annonce_data(driver, annonce)
+                new_data_df = pd.DataFrame([data])
 
-            pbar.update(1)  # Manually update the progress bar
+                if not new_data_df.isin(database.to_dict("records")).all(1).any():
+                    database = pd.concat([database, new_data_df], ignore_index=True)
+                else:
+                    print("Duplicate data, not appending.")
 
-database.to_csv(output_file, mode="w", header=True, index=False)
+                pbar.update(1)  # Manually update the progress bar
 
-driver.quit()
+    database.to_csv(output_file, mode="w", header=True, index=False)
+
+    driver.quit()
+
+    return {"statusCode": 200, "body": "Lambda executed successfully"}
