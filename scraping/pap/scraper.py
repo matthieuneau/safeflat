@@ -5,34 +5,12 @@ from selenium.webdriver.common.by import By
 import undetected_chromedriver as uc
 
 
-def get_random_user_agent():
-    """
-    Returns a random user agent from a predefined list of recent user agents.
-
-    :return: A random user agent string
-    :rtype: str
-    """
-    user_agents = [
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36",
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36",
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0",
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:93.0) Gecko/20100101 Firefox/93.0",
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36 Edg/94.0.992.50",
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Safari/605.1.15",
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36",
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36",
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:92.0) Gecko/20100101 Firefox/92.0",
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:92.0) Gecko/20100101 Firefox/92.0",
-    ]
-    return random.choice(user_agents)
-
-
-def get_annonce_data(driver, annonce):
+def scrape_ad(driver, ad):
     """
     Retrieves data from a given annonce URL.
     """
 
-    driver.get(annonce)
+    driver.get(ad)
     time.sleep(2)
     data = {}
 
@@ -97,16 +75,23 @@ def get_annonce_data(driver, annonce):
         print(f"Error retrieving financial conditions: {e}")
         data["conditions_financieres"] = []
 
-    # Retriving energy and GES
+    # Retriving energy and ges
     try:
         energy = driver.find_element(
             By.CSS_SELECTOR, ".energy-indice ul li.active"
         ).text
-        GES = driver.find_element(By.CSS_SELECTOR, ".ges-indice ul li.active").text
-        data["energy_ges"] = {"energy": energy, "GES": GES}
+        data["energy"] = energy
     except Exception as e:
-        print(f"Error retrieving energy and GES: {e}")
-        data["energy_ges"] = {"energy": "Not Available", "GES": "Not Available"}
+        print(f"Error retrieving energy: {e}")
+        data["energy"] = "Not Available"
+
+    # Retrieving ges
+    try:
+        ges = driver.find_element(By.CSS_SELECTOR, ".ges-indice ul li.active").text
+        data["ges"] = ges
+    except Exception as e:
+        print(f"Error retrieving ges: {e}")
+        data["ges"] = "Not Available"
 
     # Retrieving ref and date
     try:

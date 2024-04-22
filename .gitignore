@@ -1,6 +1,5 @@
 /chromedriver-mac-arm64
 config.yaml
-**/.DS_Store
 
 /project_info
 **/__pycache__/
@@ -11,3 +10,5 @@ sfscraping
 
 # Ignore virtual env files
 lambda-test/
+
+.env

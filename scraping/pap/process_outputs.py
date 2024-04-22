@@ -1,7 +1,8 @@
 import pandas as pd
 import ast
 
-data = pd.read_csv("tiny_output.csv")
+data = pd.read_csv("output.csv")
+data = data.head(5)
 
 print(data.columns)
 
@@ -18,19 +19,26 @@ data["price"] = data["price"].apply(
 )
 
 
-# # Splitting the details
-# def extract_value(lst, keyword):
-#     for item in lst:
-#         if keyword in item:
-#             # Extract and return the numeric value
-#             return "".join(filter(str.isdigit, item))
-#     return None  # Return None if the keyword is not found
+# Splitting the details
+def split_details(lst, keyword):
+    for item in lst:
+        if keyword in item:
+            # Extract and return the numeric value
+            return "".join(filter(str.isdigit, item))
+    return None  # Return None if the keyword is not found
 
 
-# # Process the 'details' column
-# data["nb_rooms"] = data["details"].apply(lambda x: extract_value(x, "pièces"))
-# data["nb_bedrooms"] = data["details"].apply(lambda x: extract_value(x, "chambres"))
-# data["surface"] = data["details"].apply(lambda x: extract_value(x, "m²"))
+# Process the 'details' column
+data["nb_rooms"] = data["details"].apply(
+    lambda x: next((int(s.split()[0]) for s in x if "pièce" in s), None)
+)
+data["nb_bedrooms"] = data["details"].apply(
+    lambda x: next((int(s.split()[0]) for s in x if "chambre" in s), None)
+)
+
+data["surface"] = data["details"].apply(lambda x: split_details(x, "m²"))
+
+# data.drop(columns=["details"], inplace=True)
 
 # # Convert extracted values to appropriate types
 # data["nb_rooms"] = pd.to_numeric(data["nb_rooms"], errors="coerce")
@@ -43,6 +51,8 @@ data["price"] = data["price"].apply(
 # ]
 # data = data[cols]
 
-print(data.head())
+# print(data["details"])
+print(data["nb_rooms"])
+# print(data["nb_bedrooms"])
 
 data.to_csv("tiny_output_processed.csv", mode="w", header=True, index=False)
