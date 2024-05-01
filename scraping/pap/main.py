@@ -15,8 +15,6 @@ options.add_argument("--incognito")
 
 driver = uc.Chrome(options=options)
 
-output_file = "/Users/mneau/Desktop/safeflat/scraping/pap/output.csv"
-
 data_collected = pd.DataFrame()
 
 pages_to_scrape = list(range(1, 2))

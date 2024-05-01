@@ -12,13 +12,15 @@ pandas = "^2.2.2"
 undetected-chromedriver = "^3.5.5"
 tqdm = "^4.66.2"
 selenium = "^4.19.0"
-awscli = "^1.32.84"
 sqlalchemy = "^2.0.29"
 pymysql = "^1.1.0"
-black = "^24.4.2"
-pylint = "^3.1.0"
 langchain-openai = "^0.1.4"
 
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.4.2"
+pylint = "^3.1.0"
+awscli = "^1.32.95"
 
 [build-system]
 requires = ["poetry-core"]
