@@ -17,7 +17,7 @@ driver = uc.Chrome(options=options)
 
 data_collected = pd.DataFrame()
 
-pages_to_scrape = list(range(1, 2))
+pages_to_scrape = list(range(1, 5))
 
 ### SCRAPING LOOP
 
