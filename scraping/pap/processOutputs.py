@@ -7,10 +7,7 @@ data = data.head(5)
 
 
 def extract_rooms(details):
-    """
-    Extracts the number of rooms from the stringified list details.
-    """
-    for item in eval(details):
+    for item in details:
         if "pièces" in item:
             # Split the string on spaces and get the first element
             return item.split()[0]
@@ -18,10 +15,7 @@ def extract_rooms(details):
 
 
 def extract_bedrooms(details: str):
-    """
-    Extracts the number of bedrooms from the stringified list details.
-    """
-    for item in eval(details):
+    for item in details:
         if "chambres" in item:
             # Split the string on spaces and get the first element
             return item.split()[0]
@@ -29,10 +23,7 @@ def extract_bedrooms(details: str):
 
 
 def extract_surface(details: str):
-    """
-    Extracts the surface from the stringified list details.
-    """
-    for item in eval(details):
+    for item in details:
         if "m²" in item and "Terrain" not in item:
             # Split the string on spaces and get the first element
             return item.split()[0]
@@ -40,32 +31,23 @@ def extract_surface(details: str):
 
 
 def extract_terrain(details: str):
-    """
-    Extracts the surface from the stringified list details.
-    """
-    for item in eval(details):
+    for item in details:
         if "Terrain" in item:
             # Split the string on spaces and get the first element
             return item.split()[1]
     return "N/A"
 
 
-def extract_rent_with_bills(details: str):
-    """
-    Extracts the rent with bills from the stringified list details.
-    """
-    for item in eval(details):
+def extract_rent_with_bills(conditions_financieres: str):
+    for item in conditions_financieres:
         if "charges comprises" in item:
             rent_with_bills = item.split("\n")[1].split()[0].replace(".", "")
             return rent_with_bills
     return "N/A"
 
 
-def extract_bills(details: str):
-    """
-    Extracts the rent without bills from the stringified list details.
-    """
-    for item in eval(details):
+def extract_bills(conditions_financieres: str):
+    for item in conditions_financieres:
         if "Dont charges" in item:
             bills = item.split("\n")[1].split()[0]
             return bills
@@ -99,14 +81,10 @@ def process_outputs(data: pd.DataFrame) -> pd.DataFrame:
         columns=["details", "conditions_financieres", "title_and_price"], inplace=True
     )
 
+    return data
 
-data.to_csv("output_processed.csv", mode="w", header=True, index=False)
 
-
-def process_description(description):
-    """
-    Processes the description of an annonce.
-    """
+def process_description(description: str) -> dict:
     os.environ["OPENAI_API_KEY"] = "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"
     llm = OpenAI()
 
@@ -115,10 +93,10 @@ def process_description(description):
     Voici la description d'une annonce d'un bien immobilier qui est mis en location sur un site d'annonces. Essaie de relever les informations suivantes dans le texte de cette description:
 
     - surface: La surface indiquée en m2
-    - nombre de pieces: Le nombre de pieces 
+    - nb_rooms: Le nombre de pièces
     - piscine: La presence ou non d’une piscine. Renvoie oui si elle est présente, non sinon. Une piscine sera toujours indiquée explicitement dans la description donc si elle n’est pas indiquée, renvoie non
     - type de bien: Le type de bien dont il s’agit. Il peut uniquement s’agir d’un appartement ou d’une maison
-    - nombre de chambres: Le nombre de chambres
+    - nb_bedrooms: Le nombre de chambres
     - parking: La presence ou non d’une place de parking privée. Renvoie oui si elle est présente, non sinon
     - quartier: Le nom du quartier ou est situe le bien immobilier
     - meuble: Si le bien est meuble renvoie oui, sinon renvoie non
@@ -136,7 +114,7 @@ def process_description(description):
     F3 Bien situé dans les hauts de Sainte-Suzanne deux rives proche de toutes commodités. Une cuisine ouverte et deux chambres plus 2 salles de bains et wc en bas et en haut.l’entrée donne directement sur une terrasse sécurisée à l’arrière une autre terrasse donnait directement sur une courette. Cette location meublée d'un montant 1150€mois tout charge inclus de plus il n’y a pas tout à l’égout. L’ axé via un portail électrique donnant dans une cour privée idéal pour seniors cherchant la tranquillité
 
     Reponse 1:
-    {{"surface": "N/A”, "nombre de pieces": 3, "piscine": "Non", "type de bien": "N/A", "nombre de chambres": "N/A", "parking": "N/A", "quartier": "N/A", "meuble": "N/A", "nombre d’etages": "N/A", "numero d’etage": "N/A", "ascenseur": "N/A", "cave": "N/A", "terrasse": "oui"}}
+    {{"surface": "N/A”, "nb_rooms": 3, "piscine": "Non", "type de bien": "N/A", "nb_bedrooms": "N/A", "parking": "N/A", "quartier": "N/A", "meuble": "N/A", "nombre d’etages": "N/A", "numero d’etage": "N/A", "ascenseur": "N/A", "cave": "N/A", "terrasse": "oui"}}
 
     Exemple 2:
     - Quartier calme et résidentiel.
@@ -154,7 +132,7 @@ def process_description(description):
     - Seule charge : taxe d'ordure ménagère.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              "['Sucy - Bonneuil', 'Boissy-Saint-Léger', 'La Varenne - Chennevières']"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
 
     Reponse 2:
-    {{"surface": "N/A", "nombre de pieces": "N/A", "piscine": "Non", "type de bien": "appartement", "nombre de chambres": "N/A", "parking": "oui", "quartier": "N/A", "meuble": "N/A", "nombre d’etages": "N/A", "numero d’etage": 1, "ascenseur": "N/A", "cave": "N/A", "terrasse": "oui"}} 
+    {{"surface": "N/A", "nb_rooms": "N/A", "piscine": "Non", "type de bien": "appartement", "nb_bedrooms": "N/A", "parking": "oui", "quartier": "N/A", "meuble": "N/A", "nombre d’etages": "N/A", "numero d’etage": 1, "ascenseur": "N/A", "cave": "N/A", "terrasse": "oui"}} 
 
 
     Repond en renvoyant un dictionnaire sans aucun autres commentaires.
@@ -167,3 +145,13 @@ def process_description(description):
     response = llm.invoke(question)
 
     return response
+
+
+def add_chatgpt_info_to_data(llm_response: str, data_collected) -> dict:
+    llm_response = eval(llm_response)
+    for key, value in llm_response.items():
+        if key not in data_collected.columns:
+            data_collected[key] = value
+        else:  # Do nothing because we consider that data collected directly is more reliable
+            pass
+    return data_collected

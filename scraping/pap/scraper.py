@@ -101,5 +101,4 @@ def scrape_ad(driver, ad):
         print(f"Error retrieving reference and date: {e}")
         data["ref_date"] = "Not Available"
 
-    print("data: ", data)
     return data
