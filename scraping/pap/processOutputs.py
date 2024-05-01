@@ -2,9 +2,6 @@ from langchain_openai import OpenAI
 import pandas as pd
 import os
 
-data = pd.read_csv("scraping/pap/output.csv")
-data = data.head(5)
-
 
 def extract_rooms(details):
     for item in details:

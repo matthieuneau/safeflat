@@ -22,16 +22,13 @@ pages_to_scrape = list(range(1, 2))
 ### SCRAPING LOOP
 
 for page_num in tqdm(pages_to_scrape, desc="Scraping page"):
-    ad_data = pd.DataFrame()
-
     url = f"https://www.pap.fr/annonce/location-appartement-maison-{page_num}"
-
     driver.get(url)
     time.sleep(2)
 
     url_list = driver.find_elements(By.CSS_SELECTOR, "a.item-thumb-link")
     url_list = [item.get_attribute("href") for item in url_list]
-    url_list = url_list[:1]
+    # url_list = url_list[:1]
     # print(f"url_list: {url_list}")
 
     # Create a manual tqdm progress bar for the inner loop
@@ -44,8 +41,7 @@ for page_num in tqdm(pages_to_scrape, desc="Scraping page"):
         for i, annonce in enumerate(url_list, start=1):
             pbar.set_postfix_str(f"annonce {i}/{len(url_list)}")
             data = scrape_ad(driver, annonce)
-            new_data_df = pd.DataFrame([data])
-            ad_data = pd.concat([ad_data, new_data_df], ignore_index=True)
+            ad_data = pd.DataFrame([data])
             pbar.update(1)
     pbar.close()
 
@@ -56,7 +52,8 @@ for page_num in tqdm(pages_to_scrape, desc="Scraping page"):
     final_data = add_chatgpt_info_to_data(llm_data, ad_data)
     data_collected = pd.concat([data_collected, final_data], ignore_index=True)
 
-    ### SAVE THE DATA TO DATABASE
-    save_to_database(data_collected)
+### SAVE THE DATA TO DATABASE
+print(data_collected)
+save_to_database(data_collected)
 
 driver.quit()
