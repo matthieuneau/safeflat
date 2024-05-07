@@ -204,5 +204,5 @@ def retrieve_data(url):
 
     
     #print(result)
+    
 
-retrieve_data("https://www.abritel.fr/location-vacances/p2222172?dateless=true&x_pwa=1&rfrr=HSR&pwa_ts=1712826156970&referrerUrl=aHR0cHM6Ly93d3cuYWJyaXRlbC5mci9Ib3RlbC1TZWFyY2g%3D&useRewards=true&adults=2&regionId=179898&destination=Paris+%28et+environs%29%2C+France&destType=BOUNDING_BOX&latLong=48.853564%2C2.348095&searchId=ffd95704-a260-4a18-9087-d724cae9e556&privacyTrackingState=CAN_NOT_TRACK&sort=RECOMMENDED&userIntent=&expediaPropertyId=91650429&propertyName=Charmant+chalet+d%27%C3%A9poque+-+1936")
