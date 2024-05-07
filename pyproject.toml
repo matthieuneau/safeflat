@@ -22,6 +22,7 @@ beautifulsoup4 = "^4.12.3"
 black = "^24.4.2"
 pylint = "^3.1.0"
 awscli = "^1.32.95"
+poetry-plugin-export = "^1.7.1"
 
 [build-system]
 requires = ["poetry-core"]

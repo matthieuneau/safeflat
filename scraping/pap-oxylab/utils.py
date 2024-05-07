@@ -1,8 +1,6 @@
-from math import e
 import pandas as pd
 import os
 from langchain_openai import OpenAI
-from regex import P
 import requests
 from bs4 import BeautifulSoup
 
