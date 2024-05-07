@@ -4,8 +4,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
+from selenium.webdriver.common.keys import Keys
+
 
 url = "https://www.abritel.fr/search?adults=2&d1=2024-04-24&d2=2024-04-25&destination=Paris%20%28et%20environs%29%2C%20France&endDate=2024-04-25&flexibility=7_DAY&latLong=48.853564%2C2.348095&regionId=179898&semdtl=&sort=RECOMMENDED&startDate=2024-04-24&theme=&userIntent="
+#url = "https://en.wikipedia.org/wiki/Madagascar"
 urls = []
 # Setup Chrome options for undetected_chromedriver
 options = uc.ChromeOptions()
@@ -16,26 +19,10 @@ driver = uc.Chrome(options=options)
 
 driver.get(url)
 
-time.sleep(300)  # Ajustez ce temps selon la vitesse de chargement de votre page
+time.sleep(90)  # Ajustez ce temps selon la vitesse de chargement de votre page
 
 
-# last_height = driver.execute_script("return document.body.scrollHeight")
-# while True:
-#     # Faire défiler la page vers le bas
-#     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-
-#     # Attendez que la page charge
-#     time.sleep(2)  # Ajustez ce temps si nécessaire
-
-#     # Calculez la nouvelle hauteur de défilement et comparez-la à la dernière hauteur de défilement
-#     new_height = driver.execute_script("return document.body.scrollHeight")
-#     if new_height == last_height:
-#         break
-#     last_height = new_height
-
-
-driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-
+# driver.quit()
 # # Attendez un moment pour que le scroll soit complet ou pour que le contenu dynamique se charge
 # time.sleep(10)
 
