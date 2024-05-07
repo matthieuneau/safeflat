@@ -103,10 +103,10 @@ def get_annonce_data(driver, annonce):
             By.CSS_SELECTOR, ".energy-indice ul li.active"
         ).text
         GES = driver.find_element(By.CSS_SELECTOR, ".ges-indice ul li.active").text
-        data["energy_ges"] = {"energy": energy, "GES": GES}
+        data["energy_GES"] = {"energy": energy, "GES": GES}
     except Exception as e:
         print(f"Error retrieving energy and GES: {e}")
-        data["energy_ges"] = {"energy": "Not Available", "GES": "Not Available"}
+        data["energy_GES"] = {"energy": "Not Available", "GES": "Not Available"}
 
     # Retrieving ref and date
     try:
@@ -116,5 +116,4 @@ def get_annonce_data(driver, annonce):
         print(f"Error retrieving reference and date: {e}")
         data["ref_date"] = "Not Available"
 
-    print("data: ", data)
     return data

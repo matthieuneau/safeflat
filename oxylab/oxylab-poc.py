@@ -12,7 +12,7 @@ proxies = {
 
 response = requests.request(
     "GET",
-    "https://www.leboncoin.fr/offre/locations/2574311160",
+    "https://www.leboncoin.fr/",
     verify=False,  # Ignore the certificate
     proxies=proxies,
 )
