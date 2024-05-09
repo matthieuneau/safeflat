@@ -42,7 +42,7 @@ def retrieve_data(url, output_file_path):
         result["title"] = soup.find('div', class_ = "Summarystyled__Title-sc-1u9xobv-4 dbveQQ").text.strip()
     except Exception as e:
         print("Error extracting title:", e)
-        result["title"] = None
+        result["title"] = "Not Available"
 
     # Extracting the price
     try:
@@ -74,10 +74,10 @@ def retrieve_data(url, output_file_path):
             caractere = div_tag_container.text.strip()
             caracteristiques.append(caractere)
 
-        result["nb_rooms"] = None
-        result["nb_bedrooms"] = None
-        result["surface"] = None
-        result["numero_etage"] = None
+        result["nb_rooms"] = "Not Available"
+        result["nb_bedrooms"] = "Not Available"
+        result["surface"] = "Not Available"
+        result["numero_etage"] = "Not Available"
 
         for text in caracteristiques:
             if 'pièce' in text:
@@ -101,13 +101,13 @@ def retrieve_data(url, output_file_path):
 
     # Extraction of features
     try:
-        result["Extérieur"] = ""
-        result["Cadre et situation"] = ""
-        result["Surfaces annexes"] = ""
-        result["Services et accessibilité"] = ""
-        result["Cuisine"] = ""
-        result["Hygiène"] = ""
-        result["Pièces à vivre"] = ""
+        result["Extérieur"] = "Not Available"
+        result["Cadre et situation"] = "Not Available"
+        result["Surfaces annexes"] = "Not Available"
+        result["Services et accessibilité"] = "Not Available"
+        result["Cuisine"] = "Not Available"
+        result["Hygiène"] = "Not Available"
+        result["Pièces à vivre"] = "Not Available"
 
         feature_elements = soup.find_all('div', class_='TitledDescription__TitledDescriptionContainer-sc-p0zomi-0 gtBcDa GeneralFeaturesstyled__GeneralListTitledDescription-sc-1ia09m5-5 jsTjoV')
         

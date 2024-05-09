@@ -178,7 +178,7 @@ def retrieve_data(url):
         result["other_spaces"] = None
         
 
-    # Extracting the description
+    # Extracting the description ok 
     try:
         desc_tag = soup.find('div', {"data-stid": "content-markup"})
         if desc_tag:
@@ -189,7 +189,7 @@ def retrieve_data(url):
         print("Error extracting description:", e)
         result["description"] = None
 
-    #Extracting host_name:
+    #Extracting host_name ok:
     try:
         h3_tag = soup.find('h3', string="Responsable de l’hébergement")
         grid_div = h3_tag.find_next('div', class_="uitk-layout-grid")
@@ -199,7 +199,7 @@ def retrieve_data(url):
         print("Error extracting host_name:", e)
         result["host_name"] = None
 
-    #Extracting gps coordinates:
+    #Extracting gps coordinates ok:
     #h3_tag = soup.find('h3', string="Découvrez la région")
 
     
