@@ -52,6 +52,13 @@ def retrieve_urls(page_url: str) -> list:
     print(len(url_list))
     print(f"url_list: {url_list}")
 
+def find_index(dictionaries, search_key):
+    """ Recherche l'indice du dictionnaire dont la valeur pour la clé 'key' est égale à `search_key`. """
+    for index, dictionary in enumerate(dictionaries):
+        if dictionary.get('key') == search_key:
+            return index
+    return None
+
 
 def scrape_ad(ad_url: str) -> dict:
     """Scrape the data from the ad URL
@@ -62,54 +69,14 @@ def scrape_ad(ad_url: str) -> dict:
     Returns:
         dict: data scraped from the ad
     """
-    #for test purpose only, local html file:
-    file_path = "/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/leboncoin-oxylab/annonces/annonce1.html"
-    with open(file_path, 'r', encoding='utf-8') as file:
-        soup = BeautifulSoup(file, 'lxml')
+    # #for test purpose only, local html file:
+    # file_path = "C:/Users/hennecol/Documents/safeflat/scraping/leboncoin-oxylab/annonces/annonce1.html"
+    # with open(file_path, 'r', encoding='utf-8') as file:
+    #     soup = BeautifulSoup(file, 'lxml')
 
-    # html = fetch_html_with_oxylab(ad_url)
-    # soup = BeautifulSoup(html, "html.parser")
+    html = fetch_html_with_oxylab(ad_url)
+    soup = BeautifulSoup(html, "html.parser")
     data = {}
-
-    # Retrieving title 
-    try:
-        data["title"] = soup.select_one("#grid > article > div:nth-child(2) > div > h1").text.strip()
-    except Exception as e:
-        print("Error retrieving title:", e)
-        data["title"] = "Not Available"
-
-    #Retrieving specs: nb rooms, surface, localisation
-    try:
-        data["nb_rooms"] = "Not Available"
-        data["surface"] = "Not Available"
-        data["city_zipcode"] = "Not Available"
-        spans_specs = soup.select('p.inline-flex > *')
-        specs_list = [span.get_text(strip=True).lower() for span in spans_specs]
-        for element in specs_list:
-            if 'pièce' in element:
-                data["nb_rooms"] = element
-            elif 'm²' in element:
-                data['surface'] = element
-            elif any(char.isdigit() for char in element):  # Checks if there's any digit, assuming zipcode includes numbers
-                data["city_zipcode"] = element
-    except Exception as e:
-        print("Error retrieving title:", e)
-
-    # Retrieving price : Price isn't in the html file
-    try:
-        data["price"] = soup.select_one("#grid > article > div:nth-child(2) > div > div.flex.flex-wrap > div.mr-md.flex.flex-wrap.items-center.justify-between > div > p").text.strip()
-    except Exception as e:
-        print("Error extracting price:", e)
-        data["price"] = "Not Available"
-
-
-    # # Extracting description
-    try:
-        data["description"] = soup.select_one("#grid > article > div.grid.grid-flow-row > div.mx-lg.grid.gap-lg.py-xl.border-b-sm.border-b-neutral\/dim-4.lg\:mx-md.row-start-1 > div > p").text.strip()
-    except Exception as e:
-        print("Error extracting description:", e)
-        data["description"] = "Not Available"
-
 
     # # Retrieving JSON data:
     try:
@@ -122,6 +89,172 @@ def scrape_ad(ad_url: str) -> dict:
             # Parse the JSON content directly from the script tag
             json_object = json.loads(script_tag.string.strip())
             json_data = json_object  # Store it in the dictionary
+        
+        if json_data:
+            ad = json_data['props']['pageProps']['ad']
+
+
+        # Retrieving url:
+        try:
+            data["url"] = ad_url
+        except Exception as e:
+            print("Error retrieving url:", e)
+            data["url"] = "Not Available"
+
+        # Retrieving title: 
+        try:
+            data["title"] = ad["subject"]
+        except Exception as e:
+            print("Error retrieving title:", e)
+            data["title"] = "Not Available"
+        
+        # Retrieving first publication date:
+        try:
+            data["first_publication_date"] = ad["first_publication_date"]
+        except Exception as e:
+            print("Error retrieving first_publication_date:", e)
+            data["first_publication_date"] = "Not Available"
+
+        # Retrieving description:
+        try:
+            data["description"] = ad["body"]
+        except Exception as e:
+            print("Error retrieving description:", e)
+            data["description"] = "Not Available"
+
+        # Retrieving price:
+        try:
+            data["price"] = ad["price"][0]
+        except Exception as e:
+            print("Error retrieving price:", e)
+            data["price"] = "Not Available"
+
+        # Retrieving property_type:
+        try:
+            data["type"] = ad["attributes"][find_index(ad["attributes"],"real_estate_type")]["value_label"]
+        except Exception as e:
+            print("Error retrieving type:", e)
+            data["type"] = "Not Available"
+        
+        # Retrieving furnished or not: 1 if yes 0 if no
+        try:
+            data["furnished"] = ad["attributes"][find_index(ad["attributes"],"furnished")]["value"]
+        except Exception as e:
+            print("Error retrieving furnished:", e)
+            data["furnished"] = "Not Available"
+
+        # Retrieving surface:
+        try:
+            data["surface"] = ad["attributes"][find_index(ad["attributes"],"square")]["value"]
+        except Exception as e:
+            print("Error retrieving surface:", e)
+            data["surface"] = "Not Available"
+
+        # Retrieving nb of rooms:
+        try:
+            data["nb_rooms"] = ad["attributes"][find_index(ad["attributes"],"rooms")]["value"]
+        except Exception as e:
+            print("Error retrieving nb_rooms:", e)
+            data["nb_rooms"] = "Not Available"
+        
+        # Retrieving energy rate:
+        try:
+            data["DPE"] = ad["attributes"][find_index(ad["attributes"],"energy_rate")]["value"]
+        except Exception as e:
+            print("Error retrieving DPE:", e)
+            data["DPE"] = "Not Available"
+
+        # Retrieving GES:
+        try:
+            data["GES"] = ad["attributes"][find_index(ad["attributes"],"ges")]["value"]
+        except Exception as e:
+            print("Error retrieving GES:", e)
+            data["GES"] = "Not Available"
+
+        # Retrieving elevator:
+        try:
+            data["ascenceur"] = ad["attributes"][find_index(ad["attributes"],"elevator")]["value_label"]
+        except Exception as e:
+            print("Error retrieving ascenceur:", e)
+            data["ascenceur"] = "Not Available"
+
+        # Retrieving floor number:
+        try:
+            data["etage"] = ad["attributes"][find_index(ad["attributes"],"floor_number")]["value"]
+        except Exception as e:
+            print("Error retrieving etage:", e)
+            data["etage"] = "Not Available"
+
+        # Retrieving nb of floors in the building:
+        try:
+            data["nb_etages"] = ad["attributes"][find_index(ad["attributes"],"nb_floors_building")]["value"]
+        except Exception as e:
+            print("Error retrieving nb_etages:", e)
+            data["nb_etages"] = "Not Available"
+
+        # Retrieving monthly charges:
+        try:
+            data["charges"] = ad["attributes"][find_index(ad["attributes"],"monthly_charges")]["value"]
+        except Exception as e:
+            print("Error retrieving charges:", e)
+            data["charges"] = "Not Available"
+
+        # Retrieving security deposit:
+        try:
+            data["caution"] = ad["attributes"][find_index(ad["attributes"],"security_deposit")]["value"] 
+        except Exception as e:
+            print("Error retrieving caution:", e)
+            data["caution"] = "Not Available"
+
+        # Retrieving region:
+        try:
+            data["region"] = ad["location"]["region_name"]
+        except Exception as e:
+            print("Error retrieving region:", e)
+            data["region"] = "Not Available"
+
+        # Retrieving department:
+        try:
+            data["departement"] = ad["location"]["department_name"]
+        except Exception as e:
+            print("Error retrieving departement:", e)
+            data["departement"] = "Not Available"
+
+        # Retrieving city:
+        try:
+            data["ville"] = ad["location"]["city"]
+        except Exception as e:
+            print("Error retrieving ville:", e)
+            data["ville"] = "Not Available"
+
+        # Retrieving zipcode:
+        try:
+            data["zipcode"] = ad["location"]["zipcode"]
+        except Exception as e:
+            print("Error retrieving zipcode:", e)
+            data["zipcode"] = "Not Available"
+
+        # Retrieving latitude:
+        try:
+            data["latitude"] = ad["location"]["lat"]
+        except Exception as e:
+            print("Error retrieving latitude:", e)
+            data["latitude"] = "Not Available"
+
+        # Retrieving longitude:
+        try:
+            data["longitude"] = ad["location"]["lng"]
+        except Exception as e:
+            print("Error retrieving longitude:", e)
+            data["longitude"] = "Not Available"
+        
+        # Retrieving host_name:
+        try:
+            data["host_name"] = ad["owner"]["name"]
+        except Exception as e:
+            print("Error retrieving host_name:", e)
+            data["host_name"] = "Not Available"
+        
         
         # For test purpose only: store locally the json file
         # with open("/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/leboncoin-oxylab/annonces/output.json", 'w') as json_file:

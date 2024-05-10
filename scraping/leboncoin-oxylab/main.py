@@ -21,5 +21,5 @@ if __name__ == "__main__":
     # retrieve_urls("https://www.leboncoin.fr/recherche?category=10&owner_type=private")
 
     # Parse a page:
-    data =scrape_ad('https://www.leboncoin.fr/ad/locations/2681655531')
+    data =scrape_ad('https://www.leboncoin.fr/ad/locations/2690897079')
     print(data)
