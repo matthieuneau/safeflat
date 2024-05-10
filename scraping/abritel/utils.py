@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from numpy import random
 from bs4 import BeautifulSoup
 import re
-
+import pandas as pd
 
 
 def retrieve_data(url):
@@ -24,22 +24,23 @@ def retrieve_data(url):
     output_file_path : path to the csv where the data is stored
     """
 
-    #for test purpose only, local html file
-    # file_path = "/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/abritel/Logement pour 4 pers proche des Buttes Chaumont (12_04_2024 12_29_04).html"
-    # with open(file_path, 'r', encoding='utf-8') as file:
-    #     soup = BeautifulSoup(file, 'lxml') 
+    # for test purpose only, local html file
+    #file_path = "/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/abritel/Logement pour 4 pers proche des Buttes Chaumont (12_04_2024 12_29_04).html"
+    with open(url, 'r', encoding='utf-8') as file:
+        soup = BeautifulSoup(file, 'lxml') 
 
 
-    # Navigate to the URL
-    options = uc.ChromeOptions()
-    driver = uc.Chrome(options=options) 
-    options.add_argument("--incognito")
-    driver.get(url)
+    # # Navigate to the URL
+    # options = uc.ChromeOptions()
+    # driver = uc.Chrome(options=options) 
+    # options.add_argument("--incognito")
+    # # driver.get(url)
+    # # time.sleep(20)
     result = {}
 
-    # #Creates a BeautifulSoup object to get the source code
-    page_source = driver.page_source
-    soup = BeautifulSoup(page_source, 'html.parser')
+    # # #Creates a BeautifulSoup object to get the source code
+    # page_source = driver.page_source
+    # soup = BeautifulSoup(page_source, 'html.parser')
 
     result["url"] = url
 
@@ -52,7 +53,7 @@ def retrieve_data(url):
 
     # Extracting the type of property
     try:
-        result["type"] = soup.find_all('span', class_="uitk-text uitk-type-300 uitk-text-standard-theme")[0].text.strip()
+        result["type"] = soup.find_all('span', class_="uitk-text uitk-type-300 uitk-text-default-theme uitk-spacing uitk-spacing-padding-blockstart-two")[0].text.strip()
     except Exception as e:
         print("Error extracting type", e)
         result["type"] = None
@@ -202,6 +203,11 @@ def retrieve_data(url):
     #Extracting gps coordinates:
     #h3_tag = soup.find('h3', string="Découvrez la région")
 
+    # driver.quit()
+
+    return result
+
+    
     
     #print(result)
     

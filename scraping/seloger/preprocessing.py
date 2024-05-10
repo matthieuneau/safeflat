@@ -68,6 +68,8 @@ def check_ascenseur(value):
         return None
     if 'Ascenseur' in value:
         return 1
+    
+list_type = ["appartement", "appartement exécutif", "bateau", "bungalow", "cabane/hutte", "camping-car", "caravane", "chalet", "chambre / maison d'hôtes", "château", "cottage", "domaine", "ferme", "grange aménagée", "hôtel / auberge", "immeuble", "logement en copropriété", "maison", "maison de campagne", "maison de ville", "mas", "mobil home", "moulin", "pavillon", "péniche", "riad", "studio", "suites d'hôtel", "terrain de camping", "tour", "villa", "yacht", "villa vacances tout compris"]
 
 def preprocess_csv(input_file_path, output_file_path):
     df = pd.read_csv(input_file_path)
