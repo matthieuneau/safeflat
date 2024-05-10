@@ -44,7 +44,7 @@ def retrieve_data(url):
 
     result["url"] = url
 
-    #Extracting the title
+    #Extracting the title ok
     try:
         result["title"] = soup.find('h1', class_="uitk-heading uitk-heading-3", attrs={"aria-hidden": "true"}).text.strip()
     except Exception as e:
@@ -65,21 +65,21 @@ def retrieve_data(url):
         print("Error extracting host type", e)
         result["host_type"] = None
 
-    # Extracting the price
+    # Extracting the price ok
     try:
         result["price"] = soup.find('span', attrs={"data-stid": "price-lockup-text"}).text.strip()
     except Exception as e:
         print("Error extracting price:", e)
         result["price"] = None
 
-    # Extracting the City
+    # Extracting the City ok
     try:
         result["city"] = soup.find('div', class_="uitk-text uitk-type-300 uitk-text-default-theme uitk-layout-flex-item uitk-layout-flex-item-flex-basis-full_width", attrs={"data-stid": "content-hotel-address"}).text.strip()
     except Exception as e:
         print("Error extracting City:", e)
         result["city"] = None
 
-    # Extracting the surface
+    # Extracting the surface ok
     try:
         span_tags = soup.find_all('span', class_="uitk-text uitk-text-spacing-three uitk-type-300 uitk-text-standard-theme uitk-layout-flex-item uitk-layout-flex-item-flex-basis-half_width uitk-layout-flex-item-flex-grow-1")
         # Loop over each tag found to extract relevant text
@@ -96,7 +96,7 @@ def retrieve_data(url):
         print("Error extracting surface:", e)
         result["surface"] = None
 
-    # Extracting the number of rooms
+    # Extracting the number of rooms ok
     try:
         rooms_tags = soup.find_all('h3', class_="uitk-heading uitk-heading-5")
         extracted_rooms = []   
@@ -111,7 +111,7 @@ def retrieve_data(url):
         result["nb_rooms"] = None
 
 
-    # Extracting the number of bathrooms
+    # Extracting the number of bathrooms ok
     try:
         bathrooms_tags = soup.find_all('h3', class_="uitk-heading uitk-heading-5")
         extracted_bathrooms = []   
@@ -126,7 +126,7 @@ def retrieve_data(url):
         result["nb_bathrooms"] = None
 
 
-    # Extracting the type of bathroom : with a "baignoire" or a "douche"
+    # Extracting the type of bathroom : with a "baignoire" or a "douche" ok
     try:
         span_tags = soup.find_all('div', class_="uitk-text uitk-type-300 uitk-type-regular uitk-text-standard-theme uitk-layout-flex-item")
         # Loop over each tag found to extract relevant text
@@ -148,7 +148,7 @@ def retrieve_data(url):
         result["douche"] = None
 
 
-    # Extracting the type and number of beds
+    # Extracting the type and number of beds ok
     try:
         span_tags = soup.find_all('div', class_="uitk-text uitk-type-300 uitk-type-regular uitk-text-standard-theme uitk-layout-flex-item")
         # Loop over each tag found to extract relevant text
@@ -165,7 +165,7 @@ def retrieve_data(url):
         print("Error extracting beds:", e)
         result["beds"] = None
 
-    # Extracting other spaces
+    # Extracting other spaces ok
     try:
         extracted_spaces = []
         h3_tag = soup.find('h3', string="Espaces")
@@ -179,7 +179,7 @@ def retrieve_data(url):
         result["other_spaces"] = None
         
 
-    # Extracting the description
+    # Extracting the description ok 
     try:
         desc_tag = soup.find('div', {"data-stid": "content-markup"})
         if desc_tag:
@@ -190,7 +190,7 @@ def retrieve_data(url):
         print("Error extracting description:", e)
         result["description"] = None
 
-    #Extracting host_name:
+    #Extracting host_name ok:
     try:
         h3_tag = soup.find('h3', string="Responsable de l’hébergement")
         grid_div = h3_tag.find_next('div', class_="uitk-layout-grid")
@@ -200,7 +200,7 @@ def retrieve_data(url):
         print("Error extracting host_name:", e)
         result["host_name"] = None
 
-    #Extracting gps coordinates:
+    #Extracting gps coordinates ok:
     #h3_tag = soup.find('h3', string="Découvrez la région")
 
     # driver.quit()

@@ -3,6 +3,8 @@ import os
 from langchain_openai import OpenAI
 import requests
 from bs4 import BeautifulSoup
+import json
+import re
 
 
 def fetch_html_with_oxylab(page_url: str) -> str:
@@ -60,94 +62,187 @@ def scrape_ad(ad_url: str) -> dict:
     Returns:
         dict: data scraped from the ad
     """
+    #for test purpose only, local html file:
+    # file_path = "C:/Users/hennecol/Documents/safeflat/scraping/seloger-oxylab/annonces/annonce1.html"
+    # with open(file_path, 'r', encoding='utf-8') as file:
+    #     soup = BeautifulSoup(file, 'lxml')
 
     html = fetch_html_with_oxylab(ad_url)
     soup = BeautifulSoup(html, "html.parser")
     data = {}
 
-    # Retrieving title and price
+    # Retrieving title 
     try:
-        title_and_price = soup.select_one("h1.item-title")
-        data["title_and_price"] = (
-            title_and_price.text.strip() if title_and_price else "Not Available"
-        )
+        data["title"] = soup.find('div', class_ = "Summarystyled__Title-sc-1u9xobv-4 dbveQQ").text.strip()
     except Exception as e:
-        print(f"Error retrieving title and price: {e}")
-        data["title_and_price"] = "Not Available"
+        print("Error retrieving title:", e)
+        data["title"] = "Not Available"
 
-    # Retrieving location
+    # Retrieving price : Price isn't in the html file
     try:
-        location = soup.select_one(".item-description.margin-bottom-30 > h2")
-        data["location"] = location.text.strip() if location else "Not Available"
+        data["price"] = soup.find('span', class_='global-styles__TextNoWrap-sc-1gbe8ip-6').text.strip()
     except Exception as e:
-        print(f"Error retrieving location: {e}")
-        data["location"] = "Not Available"
+        print("Error extracting price:", e)
+        data["price"] = "Not Available"
 
-    # Retrieving nb of rooms, surface and nb of bedrooms when available
+    # # Retrieving City and Zip code
     try:
-        list_items = soup.select("ul.item-tags.margin-bottom-20 > li")
-        details = [
-            item.find("strong").text.strip()
-            for item in list_items
-            if item.find("strong")
-        ]
-        data["details"] = details
+        data["city and zip code"] = soup.find('span', class_='Localizationstyled__City-sc-gdkcr2-1 bgtLnh').text.strip()
     except Exception as e:
-        print(f"Error retrieving details: {e}")
-        data["details"] = []
+        print("Error extracting City and Zip Code:", e)
+        data["city and zip code"] = "Not Available"
 
-    # Retrieving description
+    # Retrieving the neighbourhood
     try:
-        description = soup.select_one("div.margin-bottom-30 > p")
-        data["description"] = (
-            description.text.strip() if description else "Not Available"
-        )
+        data["neighbourhood"] = soup.find('span', {'data-test': 'neighbourhood'}).text.strip()
     except Exception as e:
-        print(f"Error retrieving description: {e}")
+        print("Error extracting Neighbourhood:", e)
+        data["neighbourhood"] = "Not Available"
+
+    # Retrieving details : nb_rooms, nb_bedrooms, surface, numero_etage
+    try:
+        # Initialize the result dictionary with default values
+        data["nb_rooms"] = "Not Available"
+        data["nb_bedrooms"] = "Not Available"
+        data["surface"] = "Not Available"
+        data["numero_etage"] = "Not Available"
+
+        # Attempt to find the outer div wrapper
+        div_tags_wrapper = soup.find('div', class_='Summarystyled__TagsWrapper-sc-1u9xobv-14')
+        if div_tags_wrapper is not None:
+            caracteristiques = []
+            # Iterate over each tag container found within the wrapper
+            for div_tag_container in div_tags_wrapper.find_all('div', class_='Tags__TagContainer-sc-edpl7u-0'):
+                caractere = div_tag_container.text.strip().lower()  # Convert text to lowercase
+                caracteristiques.append(caractere)
+
+            # Assign values based on the content of each tag container
+            for text in caracteristiques:
+                if 'pièce' in text:
+                    data["nb_rooms"] = text
+                elif 'chambre' in text:
+                    data["nb_bedrooms"] = text
+                elif 'm²' in text:
+                    data["surface"] = text
+                elif 'étage' in text:  # Ensuring the keyword is also in lowercase
+                    data["numero_etage"] = text
+        else:
+            print("No div tags wrapper found for details.")
+
+    except Exception as e:
+        print("Error extracting details:", e)
+
+
+    # Extracting description
+    try:
+        data["description"] = soup.find('div', class_='ShowMoreText__UITextContainer-sc-1swit84-0').text.strip()
+    except Exception as e:
+        print("Error extracting description:", e)
         data["description"] = "Not Available"
 
-    # Retrieving metro stations closeby
+    # Retrieving features: exterieur, cadre et situation, surfaces annexes, service et accessibilite, cuisine, hygiene, piece a vivre
     try:
-        metro = soup.select(".item-transports")
-        metro_stations = [item.text.strip() for item in metro]
-        data["metro_stations"] = metro_stations
-    except Exception as e:
-        print(f"Error retrieving metro stations: {e}")
-        data["metro_stations"] = []
+        data["Extérieur"] = "Not Available"
+        data["Cadre et situation"] = "Not Available"
+        data["Surfaces annexes"] = "Not Available"
+        data["Services et accessibilité"] = "Not Available"
+        data["Cuisine"] = "Not Available"
+        data["Hygiène"] = "Not Available"
+        data["Pièces à vivre"] = "Not Available"
 
-    # Retrieving conditions financieres
-    try:
-        conditions_financieres = soup.select(".row > .col-1-3")
-        conditions_financieres = [item.text.strip() for item in conditions_financieres]
-        data["conditions_financieres"] = conditions_financieres
-    except Exception as e:
-        print(f"Error retrieving financial conditions: {e}")
-        data["conditions_financieres"] = []
+        feature_elements = soup.find_all('div', class_='TitledDescription__TitledDescriptionContainer-sc-p0zomi-0 gtBcDa GeneralFeaturesstyled__GeneralListTitledDescription-sc-1ia09m5-5 jsTjoV')
+        
+        for element in feature_elements:
+            texte = []
+            titre_element = element.find('div', class_='feature-title')
+            if titre_element:
+                titre = titre_element.text.strip()
+                texte_liste = element.find_all('div', class_='GeneralFeaturesstyled__TextWrapper-sc-1ia09m5-3')
+                if texte_liste:
+                    for texte_element in texte_liste:
+                        texte.append(texte_element.text.strip())
 
-    # Retrieving energy and ges
-    try:
-        energy = soup.select_one(".energy-indice ul li.active")
-        data["energy"] = energy.text.strip() if energy else "Not Available"
+                    if titre in data:
+                        data[titre] = ", ".join(texte)
+                    else:
+                        print(f"The column '{titre}' isn't in data")
+            else:
+                print("Feature title element not found.")
+            
     except Exception as e:
-        print(f"Error retrieving energy: {e}")
-        data["energy"] = "Not Available"
+        print("Error extracting features (exterieur, cadre et situation, surfaces annexes, service et accessibilite, cuisine, hygiene, piece a vivre):", e)
 
-    # Retrieving ges
+    
+    # Retrieving DPE and GES:
     try:
-        ges = soup.select_one(".ges-indice ul li.active")
-        data["ges"] = ges.text.strip() if ges else "Not Available"
-    except Exception as e:
-        print(f"Error retrieving ges: {e}")
-        data["ges"] = "Not Available"
+    # Initialize with default values assuming 'result' dictionary already exists
+        data["Diagnostic de performance énergétique (DPE)"] = "Not Available"
+        data["Indice d'émission de gaz à effet de serre (GES)"] = "Not Available"
 
-    # Retrieving ref and date
-    try:
-        ref_date = soup.select_one(".item-date")
-        data["ref_date"] = ref_date.text.strip() if ref_date else "Not Available"
+        energy_elements = soup.find_all('div', {'data-test': 'diagnostics-content'})
+        for element in energy_elements:
+            try:
+                titre_element = element.find('div', {'data-test': 'diagnostics-preview-title'})
+                letter_element = element.find('div', class_='Previewstyled__Grade-sc-k3u73o-6 ehFYCZ')
+                
+                # Check if both elements are found to avoid NoneType errors
+                if titre_element and letter_element:
+                    titre = titre_element.text.strip()
+                    letter = letter_element.text.strip()
+                    if titre == "Diagnostic de performance énergétique (DPE)":
+                        data["Diagnostic de performance énergétique (DPE)"] = letter
+                    elif titre == "Indice d'émission de gaz à effet de serre (GES)":
+                        data["Indice d'émission de gaz à effet de serre (GES)"] = letter
+                else:
+                    if not titre_element:
+                        print("Diagnostic title element not found.")
+                    if not letter_element:
+                        print("Diagnostic letter element not found.")
+
+            except Exception as e:
+                print(f"Error processing an individual energy element: {e}")
+
     except Exception as e:
-        print(f"Error retrieving reference and date: {e}")
-        data["ref_date"] = "Not Available"
-    print(data)
+        print("Error extracting Energy elements:", e)
+
+    # Retrieving price details:
+    try:
+        # Initialize all price-related fields with a default value
+        data["loyer_base"] = "Not Available"
+        data["charges_forfaitaires"] = "Not Available"
+        data["complement_loyer"] = "Not Available"
+        data["depot_garantie"] = "Not Available"
+        data["loyer_charges_comprises"] = "Not Available"
+
+        price_details = soup.select('div[data-test="price-detail-content"] > div')
+
+        title_map = {
+        "Loyer de base (hors charge)": "loyer_base",
+        "Charges forfaitaires": "charges_forfaitaires",
+        "Complément de loyer": "complement_loyer",
+        "Dépôt de garantie": "depot_garantie",
+        "Loyer charges comprises": "loyer_charges_comprises"
+        }
+
+        # Iterate through each div and extract the necessary information
+        for detail in price_details:
+            spans = detail.find_all('span')
+            if len(spans) == 2:  # Ensure there are exactly two spans as expected for title and value
+                title = spans[0].text.strip()
+                value = spans[1].text.strip()
+                if title in title_map:  # Check if the title matches any in the map
+                    data[title_map[title]] = value
+    except Exception as e:
+        print("Error extracting price details:", e)
+
+
+    # Retrieving host name:
+    try:
+        data["host_name"] = soup.select_one('.LightSummarystyled__IndividualName-sc-112ffju-12.iqzZxZ').text.strip()
+    except Exception as e:
+        print("Error extracting host name:", e)
+        data["host_name"] = "Not Available"
+
     return data
 
 
