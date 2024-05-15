@@ -52,6 +52,38 @@ def retrieve_urls(page_url: str) -> list:
     print(len(url_list))
     print(f"url_list: {url_list}")
 
+def find_html_descriptions(data, results=None):
+    if results is None:
+        results = []
+
+    if isinstance(data, dict):
+        if 'htmlDescription' in data and data['htmlDescription'].get('__typename') == 'ReadMoreHtml':
+            results.append(data['htmlDescription'])
+        for key, value in data.items():
+            find_html_descriptions(value, results)
+    elif isinstance(data, list):
+        for item in data:
+            find_html_descriptions(item, results)
+    
+    return results
+
+def find_amenities_sections(data, results=None):
+    if results is None:
+        results = []
+
+    if isinstance(data, dict):
+        if ('__typename' in data and
+            'previewAmenitiesGroups' in data and
+            'seeAllAmenitiesGroups' in data and
+            data['__typename'] == 'AmenitiesSection'):
+            results.append(data)
+        for key, value in data.items():
+            find_amenities_sections(value, results)
+    elif isinstance(data, list):
+        for item in data:
+            find_amenities_sections(item, results)
+    
+    return results
 
 
 def scrape_ad(ad_url: str) -> dict:
@@ -64,7 +96,7 @@ def scrape_ad(ad_url: str) -> dict:
         dict: data scraped from the ad
     """
     #for test purpose only, local html file:
-    file_path = "C:/Users/hennecol/Documents/safeflat/scraping/airbnb-oxylab/annonces/annonce2.html"
+    file_path = "C:/Users/hennecol/Documents/safeflat/scraping/airbnb-oxylab/annonces/annonce3.html"
     with open(file_path, 'r', encoding='utf-8') as file:
         soup = BeautifulSoup(file, 'lxml')
 
@@ -85,9 +117,9 @@ def scrape_ad(ad_url: str) -> dict:
             json_data = json_object  # Store it in the dictionary
 
 
-        #For test purpose only: store locally the json file
-        with open("C:/Users/hennecol/Documents/safeflat/scraping/airbnb-oxylab/annonces/output2.json", 'w') as json_file:
-            json.dump(json_data, json_file, indent=4)
+        # #For test purpose only: store locally the json file
+        # with open("C:/Users/hennecol/Documents/safeflat/scraping/airbnb-oxylab/annonces/output2.json", 'w') as json_file:
+        #     json.dump(json_data, json_file, indent=4)
 
         # Retrieving url:
         try:
@@ -98,7 +130,7 @@ def scrape_ad(ad_url: str) -> dict:
 
         # Retrieving title: 
         try:
-            data["title"] = json_data["niobeMinimalClientData"][0][1]["data"]["presentation"]["stayProductDetailPage"]["sections"]["sections"][0]["section"]["shareSave"]["embedData"]["name"]
+            data["title"] = json_data["niobeMinimalClientData"][0][1]["data"]["presentation"]["stayProductDetailPage"]["sections"]["metadata"]["seoFeatures"]["title"]
         except Exception as e:
             print("Error retrieving title:", e)
             data["title"] = "Not Available"
@@ -138,7 +170,7 @@ def scrape_ad(ad_url: str) -> dict:
             print("Error retrieving longitude:", e)
             data["longitude"] = "Not Available"
         
-        # Retrieving longitude: 
+        # Retrieving property infos list: 
         try:
             property_infos_list = json_data["niobeMinimalClientData"][0][1]["data"]["presentation"]["stayProductDetailPage"]["sections"]["sbuiData"]["sectionConfiguration"]["root"]["sections"][0]["sectionData"]["overviewItems"]
             data["property_infos_list"] = [element["title"] for element in property_infos_list]
@@ -146,9 +178,36 @@ def scrape_ad(ad_url: str) -> dict:
             print("Error retrieving property_infos_list:", e)
             data["property_infos_list"] = "Not Available"
 
-        
+        # Retrieving host name: 
+        try:
+            data["host_name"] = json_data["niobeMinimalClientData"][0][1]["data"]["presentation"]["stayProductDetailPage"]["sections"]["sbuiData"]["sectionConfiguration"]["root"]["sections"][1]["sectionData"]["title"]
+        except Exception as e:
+            print("Error retrieving host_name:", e)
+            data["host_name"] = "Not Available"
 
-        
+        # Retrieving description: 
+        try:
+            data["description"] = "Not Available"
+            desc_dict_list = find_html_descriptions(json_data)
+            if desc_dict_list :
+                desc_list = [element["htmlText"] for element in desc_dict_list]
+            data["description"] = ", ".join(desc_list)
+        except Exception as e:
+            print("Error retrieving description:", e)
+
+        # Retrieving amenities:
+        try:
+            data["amenities"] = "Not Available"
+            amenities_dict = find_amenities_sections(json_data)[0]
+            amenities =[]
+            allAmenities = amenities_dict["seeAllAmenitiesGroups"]
+            for amenities_group in allAmenities:
+                for element in amenities_group["amenities"]:
+                    amenities.append(element["title"])
+            data["amenities"] = amenities
+
+        except Exception as e:
+            print("Error retrieving amenities:", e)
     
 
     except Exception as e:
