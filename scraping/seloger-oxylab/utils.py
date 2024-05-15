@@ -64,7 +64,7 @@ def scrape_ad(ad_url: str) -> dict:
         dict: data scraped from the ad
     """
     #for test purpose only, local html file:
-    file_path = "C:/Users/hennecol/Documents/safeflat/scraping/seloger-oxylab/annonces/annonce1.html"
+    file_path = "/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/seloger-oxylab/annonces/annonce2.html"
     with open(file_path, 'r', encoding='utf-8') as file:
         soup = BeautifulSoup(file, 'lxml')
 
@@ -313,7 +313,7 @@ def process_description(description: str) -> dict:
 if __name__ == "__main__":
     dict_data = scrape_ad(None)
     df_data = pd.DataFrame([dict_data])
-    df_data.to_csv('C:/Users/hennecol/Documents/safeflat/scraping/seloger-oxylab/outputs_csv/df_data.csv', header=True, encoding='utf-8')
+    df_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/seloger-oxylab/outputs_csv/df_data.csv', header=True, encoding='utf-8')
     processed_data = process_output(df_data)
-    processed_data.to_csv('C:/Users/hennecol/Documents/safeflat/scraping/seloger-oxylab/outputs_csv/processed_data.csv', header = True, encoding='utf-8')
+    processed_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/seloger-oxylab/outputs_csv/processed_data.csv', header = True, encoding='utf-8')
     print(processed_data)

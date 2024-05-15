@@ -5,14 +5,22 @@ import pandas as pd
 
 # Function for extracting numbers
 def extract_number(s):
-    # Si 's' est déjà un nombre (int ou float), retournez-le directement
-    if isinstance(s, (int, float)):
-        return s
-    # Sinon, c'est une chaîne et on tente d'extraire le nombre
-    # Cette regex prend en compte les nombres avec et sans séparateurs de milliers, et sans signe de devise
-    match = re.search(r'(\d{1,3}(?:\s?\d{3})*)', str(s))
-    # Retirez les espaces pour convertir la séquence en un entier
-    return int(''.join(match.group(1).split())) if match else None
+    """
+    Extracts a floating number from a string containing a formatted number.
+
+    Args:
+        s (str): The string containing the number.
+
+    Returns:
+        float: The floating number extracted from the string. Returns None if no number is found.
+    """
+    # Utiliser une regex pour extraire les parties numériques
+    match = re.search(r'(\d{1,3}(?:\s?\d{3})*)(?:[.,]\d+)?', str(s))
+    if match:
+        # Nettoyer la chaîne correspondante
+        number_str = match.group(0).replace(' ', '').replace(',', '.')
+        return float(number_str)
+    return None
 
 
 # Exctracting floor level
@@ -26,7 +34,7 @@ def extract_after_etage(s):
         return s  # The string is already in the desired format, so we return it directly
 
     # Pattern regex to find and capture everything after "Étage"
-    etage_match = re.search(r'Étage\s*(.*)', s)
+    etage_match = re.search(r'étage\s*(.*)', s)
     if etage_match:
         return etage_match.group(1)  # Returns the match found after "Étage"
     
@@ -80,6 +88,8 @@ def process_output(df : pd.DataFrame) -> pd.DataFrame:
     """
     df['type'] = df['title'].apply(lambda x: x.split()[0])
     df['meublé'] = df['title'].apply(lambda x: 1 if "meublé" in x else 0)
+    df['price'] = df['price'].apply(lambda x : extract_number(x))
+    df['price'] = pd.to_numeric(df['price'], errors='coerce')
     df[['city', 'zipcode']] = df['city and zip code'].str.split('(', expand=True)
     df['city'] = df['city'].str.strip()
     df['zipcode'] = df['zipcode'].str.replace(')', '')
@@ -110,8 +120,15 @@ def process_output(df : pd.DataFrame) -> pd.DataFrame:
     df['surface_salon'] = df['Pièces à vivre'].apply(lambda x: extract_surface(x, "Séjour / salon"))
     df['surface_salle_a_manger'] = df['Pièces à vivre'].apply(lambda x: extract_surface(x, "Salle à manger"))
     df['loyer_charges_comprises'] = df['loyer_charges_comprises'].apply(lambda x : extract_number(x))
+    df['charges_forfaitaires'] = df['charges_forfaitaires'].apply(lambda x : extract_number(x))
+    df['complement_loyer'] = df['complement_loyer'].apply(lambda x : extract_number(x))
+    df['depot_garantie'] = df['depot_garantie'].apply(lambda x : extract_number(x))
+    df['loyer_base'] = df['loyer_base'].apply(lambda x : extract_number(x))
 
-    columns_to_keep = ['type','meublé', 'city', 'zipcode', 'neighbourhood','nb_rooms', 'nb_bedrooms', 'surface', 'numero_etage', 'description', 'balcon', 'terrasse', 'jardin', 'surface_balcon', 'surface_terrasse', 'surface_jardin', 'exposition', 'cave', 'parking', 'garage', 'box', 'ascenseur', 'interphone', 'gardien', 'salle de bain (Baignoire)', 'salle d\'eau (douche)', 'surface_salon', 'surface_salle_a_manger','loyer_charges_comprises','Diagnostic de performance énergétique (DPE)', 'Indice d\'émission de gaz à effet de serre (GES)' ]
+
+
+
+    columns_to_keep = ['type','meublé', 'host_name', 'price', 'city', 'zipcode', 'neighbourhood','nb_rooms', 'nb_bedrooms', 'surface', 'numero_etage', 'description', 'balcon', 'terrasse', 'jardin', 'surface_balcon', 'surface_terrasse', 'surface_jardin', 'exposition', 'cave', 'parking', 'garage', 'box', 'ascenseur', 'interphone', 'gardien', 'salle de bain (Baignoire)', 'salle d\'eau (douche)', 'surface_salon', 'surface_salle_a_manger','Diagnostic de performance énergétique (DPE)', 'Indice d\'émission de gaz à effet de serre (GES)','loyer_charges_comprises', 'charges_forfaitaires', 'complement_loyer', 'depot_garantie' ]
 
     processed_data = df[columns_to_keep]
 
