@@ -2,8 +2,7 @@ from utils import *
 
 
 def handler(event, context):
-    res = retrieve_urls("https://www.pap.fr/annonce/location-appartement-maison")
-    print(res)
+    res = scrape_ad("https://www.pap.fr/annonces/appartement-angers-r451801512")
 
 
 if __name__ == "__main__":

@@ -1,3 +1,5 @@
+from sqlalchemy import create_engine
+import ast
 import pandas as pd
 import os
 from langchain_openai import OpenAI
@@ -6,7 +8,7 @@ from bs4 import BeautifulSoup
 
 
 def fetch_html_with_oxylab(page_url: str) -> str:
-    username = "safeflat"
+    username = "safeflat2"
     password = "saaj098KLN++"
 
     proxies = {
@@ -20,7 +22,6 @@ def fetch_html_with_oxylab(page_url: str) -> str:
         verify=False,  # Ignore the certificate
         proxies=proxies,
     )
-
     return response.text
 
 
@@ -65,6 +66,8 @@ def scrape_ad(ad_url: str) -> dict:
     soup = BeautifulSoup(html, "html.parser")
     data = {}
 
+    data["url"] = ad_url
+
     # Retrieving title and price
     try:
         title_and_price = soup.select_one("h1.item-title")
@@ -106,14 +109,14 @@ def scrape_ad(ad_url: str) -> dict:
         print(f"Error retrieving description: {e}")
         data["description"] = "Not Available"
 
-    # Retrieving metro stations closeby
-    try:
-        metro = soup.select(".item-transports")
-        metro_stations = [item.text.strip() for item in metro]
-        data["metro_stations"] = metro_stations
-    except Exception as e:
-        print(f"Error retrieving metro stations: {e}")
-        data["metro_stations"] = []
+    # # Retrieving metro stations closeby
+    # try:
+    #     metro = soup.select(".item-transports")
+    #     metro_stations = [item.text.strip() for item in metro]
+    #     data["metro_stations"] = metro_stations
+    # except Exception as e:
+    #     print(f"Error retrieving metro stations: {e}")
+    #     data["metro_stations"] = []
 
     # Retrieving conditions financieres
     try:
@@ -147,15 +150,15 @@ def scrape_ad(ad_url: str) -> dict:
     except Exception as e:
         print(f"Error retrieving reference and date: {e}")
         data["ref_date"] = "Not Available"
-    print(data)
+    data = pd.DataFrame([data])
     return data
 
 
-def process_description(description: str) -> dict:
+def process_description(description: str) -> pd.DataFrame:
     os.environ["OPENAI_API_KEY"] = "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"
     llm = OpenAI()
 
-    question = f"""Tu es un expert en location immobilière et tu maitrises tout le vocabulaire associe. Tu dois m’aider a extraire des informations pertinentes parmi de longues descriptions de biens immobiliers que je vais te donner.
+    prompt = f"""Tu es un expert en location immobilière et tu maitrises tout le vocabulaire associe. Tu dois m’aider a extraire des informations pertinentes parmi de longues descriptions de biens immobiliers que je vais te donner.
 
     Voici la description d'une annonce d'un bien immobilier qui est mis en location sur un site d'annonces. Essaie de relever les informations suivantes dans le texte de cette description:
 
@@ -209,7 +212,28 @@ def process_description(description: str) -> dict:
     {{ {description} }}
     """
 
-    response = llm.invoke(question)
+    response = llm.invoke(prompt)
+    try:
+        response = ast.literal_eval(response)
+        response = pd.DataFrame([response])
+    except Exception as e:
+        print(
+            f"Error processing description: {e} \n Reprompting to correct the output syntax"
+        )
+        correcting_prompt = f"""This is a python string that cannot be properly converted to a dictionary because it doesn't 
+        have the right syntax:
+        {response}
+        Your job is to correct this output so that it can be converted to a python dictionary. Please provide me with a valid 
+        string output but do not change the content of it. Just make sure it is in the correct format. Don't add any comment to 
+        your answer, just output the corrected string."""
+        response = llm.invoke(correcting_prompt)
+        print(
+            f"Corrected response: {response}",
+            f"corrected response type: {type(response)}",
+            type(response),
+        )
+        response = ast.literal_eval(response)
+        response = pd.DataFrame([response])
 
     return response
 
@@ -286,14 +310,51 @@ def process_outputs(data: pd.DataFrame) -> pd.DataFrame:
     )
     data["bills"] = data["conditions_financieres"].apply(extract_bills)
 
+    data.drop(
+        ["title_and_price", "details", "conditions_financieres"], axis=1, inplace=True
+    )
+
     return data
 
 
-if __name__ == "__main__":
-    dict_data = scrape_ad(
-        "https://www.pap.fr/annonces/appartement-bures-sur-yvette-91440-r432200988"
-    )
-    df_data = pd.DataFrame([dict_data])
-    result = process_outputs(df_data)
-    print(result["energy"])
-    print(result["ges"])
+def add_desc_content_to_df(
+    processed_desc: pd.DataFrame, processed_ad: pd.DataFrame
+) -> pd.DataFrame:
+    """Merges all the information from the processed description and the processed ad with one simple rule:
+    Consider that the data from the ad is more reliable than the data from the description. So if there is
+    a conflict between the two, keep the data from the description.
+
+    Args:
+        processed_desc (pd.DataFrame): processed description data
+        processed_ad (pd.DataFrame): processed ad data
+
+    Returns:
+        pd.DataFrame: merged data
+    """
+    for col in processed_desc.columns:
+        if col not in processed_ad.columns:
+            processed_ad[col] = processed_desc[col]
+
+    return processed_ad
+
+
+def save_to_database(data_collected: pd.DataFrame):
+    # Convert all columns to string to avoid errors when writing to database
+    data_collected = data_collected.map(str)
+
+    db_config = {
+        "host": "safeflat-scraping-data.cls8g8ie67qg.us-east-1.rds.amazonaws.com",
+        "port": 3306,
+        "user": "admin",
+        "password": "SBerWIyVxBu229rGer6Z",
+        "database": "scraping",
+    }
+
+    table_name = "pap"
+
+    # Creating a connection string for SQLAlchemy
+    connection_string = f'mysql+pymysql://{db_config["user"]}:{db_config["password"]}@{db_config["host"]}:{db_config["port"]}/{db_config["database"]}'
+
+    engine = create_engine(connection_string)
+
+    data_collected.to_sql(name="pap", con=engine, if_exists="append", index=False)
