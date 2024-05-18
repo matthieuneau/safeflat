@@ -308,7 +308,6 @@ def process_outputs(data: pd.DataFrame) -> pd.DataFrame:
     return data
 
 
-<<<<<<< HEAD
 if __name__ == "__main__":
     # dict_data = scrape_ad(
     #     "https://www.pap.fr/annonces/appartement-bures-sur-yvette-91440-r432200988"
@@ -317,7 +316,8 @@ if __name__ == "__main__":
     df_data = pd.DataFrame(data_csv)
     result = process_outputs(df_data)
     print(result)
-=======
+
+    
 def add_desc_content_to_df(
     processed_desc: pd.DataFrame, processed_ad: pd.DataFrame
 ) -> pd.DataFrame:
@@ -389,4 +389,3 @@ def remove_already_scraped_urls(urls: list) -> list:
     urls = [url for url in urls if url not in scraped_urls_list]
 
     return urls
->>>>>>> b1fda924e9288603a822e807c8f53e1dc2152841
