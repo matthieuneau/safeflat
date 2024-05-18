@@ -6,20 +6,25 @@ import pandas as pd
 # Function for extracting numbers
 def extract_number(s):
     """
-    Extracts a floating number from a string containing a formatted number.
+    Extracts a floating number from a string containing a formatted number, or returns the value if it is already a number.
 
     Args:
-        s (str): The string containing the number.
+        s (str, int, float): The string containing the number or the number directly.
 
     Returns:
-        float: The floating number extracted from the string. Returns None if no number is found.
+        float: The floating number extracted from the string, or the input value if already a number. Returns None if no number is found.  
     """
+    # Vérifier si l'entrée est déjà un entier ou un flottant
+    if isinstance(s, (int, float)):
+        return float(s)
+    
     # Utiliser une regex pour extraire les parties numériques
     match = re.search(r'(\d{1,3}(?:\s?\d{3})*)(?:[.,]\d+)?', str(s))
     if match:
         # Nettoyer la chaîne correspondante
         number_str = match.group(0).replace(' ', '').replace(',', '.')
         return float(number_str)
+    
     return None
 
 
