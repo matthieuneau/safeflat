@@ -290,10 +290,10 @@ def process_outputs(data: pd.DataFrame) -> pd.DataFrame:
 
 
 if __name__ == "__main__":
-    dict_data = scrape_ad(
-        "https://www.pap.fr/annonces/appartement-bures-sur-yvette-91440-r432200988"
-    )
-    df_data = pd.DataFrame([dict_data])
+    # dict_data = scrape_ad(
+    #     "https://www.pap.fr/annonces/appartement-bures-sur-yvette-91440-r432200988"
+    # )
+    data_csv = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/pap-oxylab/csv_outputs/output.csv')
+    df_data = pd.DataFrame(data_csv)
     result = process_outputs(df_data)
-    print(result["energy"])
-    print(result["ges"])
+    print(result)
