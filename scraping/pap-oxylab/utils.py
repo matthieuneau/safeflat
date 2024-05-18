@@ -308,16 +308,6 @@ def process_outputs(data: pd.DataFrame) -> pd.DataFrame:
     return data
 
 
-if __name__ == "__main__":
-    # dict_data = scrape_ad(
-    #     "https://www.pap.fr/annonces/appartement-bures-sur-yvette-91440-r432200988"
-    # )
-    data_csv = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/pap-oxylab/csv_outputs/output.csv')
-    df_data = pd.DataFrame(data_csv)
-    result = process_outputs(df_data)
-    print(result)
-
-    
 def add_desc_content_to_df(
     processed_desc: pd.DataFrame, processed_ad: pd.DataFrame
 ) -> pd.DataFrame:
@@ -389,3 +379,12 @@ def remove_already_scraped_urls(urls: list) -> list:
     urls = [url for url in urls if url not in scraped_urls_list]
 
     return urls
+
+if __name__ == "__main__":
+    # dict_data = scrape_ad(
+    #     "https://www.pap.fr/annonces/appartement-bures-sur-yvette-91440-r432200988"
+    # )
+    data_csv = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/pap-oxylab/csv_outputs/output.csv')
+    df_data = pd.DataFrame(data_csv)
+    result = process_outputs(df_data)
+    print(result)
