@@ -4,11 +4,12 @@ import json
 
 def handler(event, context):
 
-    num_pages = 4
+    num_pages = 1
     for i in range(num_pages):
         urls = retrieve_urls(
             f"https://www.pap.fr/annonce/location-appartement-maison-{i}"
         )
+        urls = urls[:1]
         for url in urls:
             try:
                 scraped_data = scrape_ad(url)

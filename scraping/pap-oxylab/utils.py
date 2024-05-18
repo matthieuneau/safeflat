@@ -158,7 +158,7 @@ def scrape_ad(ad_url: str) -> dict:
 
 def process_description(description: str) -> pd.DataFrame:
     os.environ["OPENAI_API_KEY"] = "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"
-    llm = OpenAI()
+    llm = OpenAI(model="gpt-3.5-turbo-instruct")
 
     prompt = f"""Tu es un expert en location immobilière et tu maîtrises tout le vocabulaire associé. Tu dois m'aider à extraire des informations pertinentes parmi de longues descriptions de biens immobiliers que je vais te donner.
 
@@ -349,3 +349,33 @@ def save_to_database(data_collected: pd.DataFrame):
     engine = create_engine(connection_string)
 
     data_collected.to_sql(name="pap", con=engine, if_exists="append", index=False)
+
+
+def read_from_database(query: str) -> pd.DataFrame:
+    db_config = {
+        "host": "safeflat-scraping-data.cls8g8ie67qg.us-east-1.rds.amazonaws.com",
+        "port": 3306,
+        "user": "admin",
+        "password": "SBerWIyVxBu229rGer6Z",
+        "database": "scraping",
+    }
+
+    # Creating a connection string for SQLAlchemy
+    connection_string = f'mysql+pymysql://{db_config["user"]}:{db_config["password"]}@{db_config["host"]}:{db_config["port"]}/{db_config["database"]}'
+
+    engine = create_engine(connection_string)
+
+    df = pd.read_sql_query(query, con=engine)
+
+    return df
+
+
+def remove_already_scraped_urls(urls: list) -> list:
+    query = "select url from pap"
+    scraped_urls_df = read_from_database(query)["url"]
+    print("scraped_urls_df: ", scraped_urls_df)
+    scraped_urls_list = scraped_urls_df.to_list()
+    print("scrapped_urls_list: ", scraped_urls_list)
+    urls = [url for url in urls if url not in scraped_urls_list]
+
+    return urls
