@@ -21,4 +21,4 @@ def save_to_database(data_collected: pd.DataFrame):
 
     engine = create_engine(connection_string)
 
-    data_collected.to_sql(name="pap", con=engine, if_exists="append", index=False)
+    data_collected.to_sql(name=table_name, con=engine, if_exists="append", index=False)
