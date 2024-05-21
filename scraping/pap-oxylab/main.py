@@ -4,16 +4,17 @@ import json
 
 def handler(event, context):
 
-    num_pages = 1
+    num_pages = 2
     for i in range(num_pages):
         urls = retrieve_urls(
-            f"https://www.pap.fr/annonce/location-appartement-maison-{i}"
+            f"https://www.pap.fr/annonce/location-appartement-maison-paris-11e-g37778-{i}"
         )
-        urls = urls[:1]
+        #urls = urls[:1]
         for url in urls:
             try:
                 scraped_data = scrape_ad(url)
                 scraped_data = process_outputs(scraped_data)
+                print('Scraped ad:', scraped_data)
 
                 desc_data = process_description(scraped_data["description"])
 
