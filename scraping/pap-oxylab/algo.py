@@ -47,15 +47,15 @@ def filter_and_score(property_infos):
         if feature in ['nb_rooms', 'nb_bedrooms']:
             data_df = data_df[((max(0,value -1) <= data_df[feature]) & (data_df[feature] <= value + 1)) | pd.isna(data_df[feature])] #Only keeps the lines with the corresponding value +-1 or Nan value
         elif feature in ['surface']:
-            if data_df[feature] is not None:
+            if data_df[feature] is not None and value is not None:
                 data_df = data_df[((value*0.75 <= data_df[feature]) & (data_df[feature] <= value*1.25))] 
         elif feature in ['terrain']:
-            if data_df[feature] is not None:
+            if data_df[feature] is not None and value is not None:
                 data_df = data_df[((value*0.75 <= data_df[feature]) & (data_df[feature] <= value*1.25))] 
  
 
     # Defines the weight of each scoring feature (from 1 to 10)
-    poids = {'nb_rooms': 10,'nb_bedrooms':10, 'surface': 10, 'terrain':10, 'energy':8, 'ges':8, 'bills': 10, 'piscine': 4, 'type_de_bien': 10, 'parking': 5, 'quartier': 10, 'meuble': 4, 'nombre_d\'etages' : 7, 'numero_d\'etage' : 10, 'ascenceur': 5, 'terrasse' : 7 }
+    poids = {'nb_rooms': 10,'nb_bedrooms':10, 'surface': 10, 'terrain':10, 'energy':8, 'ges':8, 'bills': 10, 'piscine': 4, 'type_de_bien': 10, 'parking': 5, 'quartier': 10, 'meuble': 4, 'nombre_d\'etages' : 7, 'numero_d\'etage' : 10, 'ascenseur': 5, 'terrasse' : 7 }
 
     # Cost calculation for each line
     data_df['cost'] = data_df.apply(score_calculation, axis=1, property_infos=property_infos, poids=poids)*100
@@ -66,23 +66,23 @@ def filter_and_score(property_infos):
 #Example of a property to protect:
 property_infos_same = {
 
-    'location': 'Strasbourg (67000)',
-    'energy' : 'E', 
-    'ges' : 'E', 
-    'nb_rooms' : 2,
-    'nb_bedrooms' : 1, 
-    'surface' : 52, 
-    #'terrain' : '',
-    'bills' : '150',
+    'location': 'Paris 11e (75011)',
+    'energy' : 'F', 
+    'ges' : None, 
+    'nb_rooms' : 3,
+    'nb_bedrooms' : 2, 
+    'surface' : 50, 
+    'terrain' : None,
+    'bills' : '50',
     'piscine' : 'Non',
     'type_de_bien' : 'appartement', 
     'parking' : 'oui',
-    'quartier' : 'Hyper Centre', 
-    #'meuble' : '',
-    #'nombre_d\'etages' : '',
+    'quartier' : None, 
+    'meuble' : None,
+    'nombre_d\'etages' : None,
     'numero_d\'etage' : '1',
-    #'ascenceur' : '',
-    #'cave' : '',
+    'ascenseur' : 'oui',
+    'cave' : None,
     'terrasse' : 'oui'
 
 }
@@ -111,8 +111,9 @@ property_infos_1 = {
 }
 
 if __name__ == "__main__":
-    # filtered_data = filter_and_score(property_infos_1)
-    # print(filtered_data)
-    data = read_from_database("SELECT * FROM pap")
-    print(data)
-    # filtered_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/pap-oxylab/csv_outputs/output_score.csv')
+    filtered_data = filter_and_score(property_infos_same)
+    print(filtered_data)
+
+    # data = read_from_database("SELECT * FROM pap")
+    # print(data)
+    filtered_data.to_csv('C:/Users/hennecol/Documents/safeflat/scraping/pap-oxylab/csv_outputs/output_score.csv')

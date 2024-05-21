@@ -4,8 +4,8 @@ import json
 
 def handler(event, context):
 
-    num_pages = 2
-    for i in range(num_pages):
+    num_pages = 8
+    for i in range(3, num_pages):
         urls = retrieve_urls(
             f"https://www.pap.fr/annonce/location-appartement-maison-paris-11e-g37778-{i}"
         )

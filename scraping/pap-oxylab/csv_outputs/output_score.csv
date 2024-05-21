@@ -1,13 +1,305 @@
-,url,location,description,energy,ges,ref_date,title,price,nb_rooms,nb_bedrooms,surface,terrain,rent_with_bills,bills,piscine,type_de_bien,parking,quartier,meuble,nombre_d'etages,numero_d'etage,ascenseur,cave,terrasse,score_correspondance
-0,https://www.pap.fr/annonces/appartement-strasbourg-67000-r452901071,Strasbourg (67000),"Propriétaire loue, Hyper Centre, Rue de la Première Armée (prox. Pont Saint Nicolas, Faculté médecine, Hôpital civil, Tram et autoroutes), dans un superbe immeuble 1930 avec ascenseur accès plain-pied, lumineux appartement 2 pièces au 3ème étage, d’une superficie de 52 m², entièrement rénové avec 2 balcons, comprenant une entrée avec cellier, une cuisine équipée (frigo/congélateur, plaque de cuisson, hotte, four, lave-vaisselle, lave-linge) avec balcon sur cour attenant, un séjour accès balcon vue dégagée, une chambre avec placards, une salle d’eau (meuble vasque, douche, wc, fenêtre), une petite cave au sous-sol, un local à vélos commun, fenêtres double vitrage avec volets roulants, chauffage et production d’eau collectifs donc inclus dans le forfait de charges, radiateurs équipés de calorimètres, disponibilité immédiate.
-Appartement idéal pour étudiant médecine ou praticien hospitalier car proximité immédiate faculté et hôpital
-Idéal pour couple ou colocation.",E,E,Réf. : F29/1071 /  16 mai 2024,Location appartement 2 pièces 52 m² Strasbourg (67000),1100 ,2,1,52,,1100,150,Non,appartement,oui,Hyper Centre,N/A,N/A,1,N/A,N/A,oui,0.8260869565217391
-3,https://www.pap.fr/annonces/appartement-strasbourg-67000-r452901071,Strasbourg (67000),"Propriétaire loue, Hyper Centre, Rue de la Première Armée (prox. Pont Saint Nicolas, Faculté médecine, Hôpital civil, Tram et autoroutes), dans un superbe immeuble 1930 avec ascenseur accès plain-pied, lumineux appartement 2 pièces au 3ème étage, d’une superficie de 52 m², entièrement rénové avec 2 balcons, comprenant une entrée avec cellier, une cuisine équipée (frigo/congélateur, plaque de cuisson, hotte, four, lave-vaisselle, lave-linge) avec balcon sur cour attenant, un séjour accès balcon vue dégagée, une chambre avec placards, une salle d’eau (meuble vasque, douche, wc, fenêtre), une petite cave au sous-sol, un local à vélos commun, fenêtres double vitrage avec volets roulants, chauffage et production d’eau collectifs donc inclus dans le forfait de charges, radiateurs équipés de calorimètres, disponibilité immédiate.
-Appartement idéal pour étudiant médecine ou praticien hospitalier car proximité immédiate faculté et hôpital
-Idéal pour couple ou colocation.",E,E,Réf. : F29/1071 /  16 mai 2024,Location appartement 2 pièces 52 m² Strasbourg (67000),1100 ,2,1,52,,1100,150,Non,appartement,oui,Hyper Centre,N/A,N/A,1,N/A,N/A,oui,0.8260869565217391
-20,https://www.pap.fr/annonces/appartement-strasbourg-67000-r452901071,Strasbourg (67000),"Propriétaire loue, Hyper Centre, Rue de la Première Armée (prox. Pont Saint Nicolas, Faculté médecine, Hôpital civil, Tram et autoroutes), dans un superbe immeuble 1930 avec ascenseur accès plain-pied, lumineux appartement 2 pièces au 3ème étage, d’une superficie de 52 m², entièrement rénové avec 2 balcons, comprenant une entrée avec cellier, une cuisine équipée (frigo/congélateur, plaque de cuisson, hotte, four, lave-vaisselle, lave-linge) avec balcon sur cour attenant, un séjour accès balcon vue dégagée, une chambre avec placards, une salle d’eau (meuble vasque, douche, wc, fenêtre), une petite cave au sous-sol, un local à vélos commun, fenêtres double vitrage avec volets roulants, chauffage et production d’eau collectifs donc inclus dans le forfait de charges, radiateurs équipés de calorimètres, disponibilité immédiate.
-Appartement idéal pour étudiant médecine ou praticien hospitalier car proximité immédiate faculté et hôpital
-Idéal pour couple ou colocation.",E,E,Réf. : F29/1071 /  16 mai 2024,Location appartement 2 pièces 52 m² Strasbourg (67000),1100 ,2,1,52,,1100,150,Non,N/A,N/A,Hyper Centre,N/A,N/A,N/A,oui,N/A,N/A,0.47826086956521735
-34,https://www.pap.fr/annonces/appartement-strasbourg-67000-r452901071,Strasbourg (67000),"Propriétaire loue, Hyper Centre, Rue de la Première Armée (prox. Pont Saint Nicolas, Faculté médecine, Hôpital civil, Tram et autoroutes), dans un superbe immeuble 1930 avec ascenseur accès plain-pied, lumineux appartement 2 pièces au 3ème étage, d’une superficie de 52 m², entièrement rénové avec 2 balcons, comprenant une entrée avec cellier, une cuisine équipée (frigo/congélateur, plaque de cuisson, hotte, four, lave-vaisselle, lave-linge) avec balcon sur cour attenant, un séjour accès balcon vue dégagée, une chambre avec placards, une salle d’eau (meuble vasque, douche, wc, fenêtre), une petite cave au sous-sol, un local à vélos commun, fenêtres double vitrage avec volets roulants, chauffage et production d’eau collectifs donc inclus dans le forfait de charges, radiateurs équipés de calorimètres, disponibilité immédiate.
-Appartement idéal pour étudiant médecine ou praticien hospitalier car proximité immédiate faculté et hôpital
-Idéal pour couple ou colocation.",E,E,Réf. : F29/1071 /  16 mai 2024,Location appartement 2 pièces 52 m² Strasbourg (67000),1100 ,2,1,52,,1100,150,Non,appartement,oui,Hyper Centre,N/A,N/A,1,N/A,N/A,oui,0.8260869565217391
+,url,location,description,energy,ges,ref_date,title,price,nb_rooms,nb_bedrooms,surface,terrain,rent_with_bills,bills,piscine,type_de_bien,parking,quartier,meuble,nombre_d'etages,numero_d'etage,ascenseur,cave,terrasse,cost
+0,https://www.pap.fr/annonces/appartement-paris-11e-75011-r453001285,Paris 11e (75011),"Un lieu unique, lumineux, calme, entièrement rénové et équipé avec du mobilier contemporain.
+T2 meublé 47 m2 passage privé.
+
+Bel appartement meublé situé dans le charmant Passage Lhomme, un passage privé chargé d’histoire, verdoyant, à deux pas de l’animation du quartier, du marché d’Alligre, de la Voie Verte et du Port de l’Arsenal.
+A 2 min à pied, la station Ledru Rollin, à 5 min de Bastille et 15 de la Gare de Lyon.
+Orienté sud au premier étage d’un immeuble ancien, lumineux, il bénéficie d’une vue dégagée et d’un calme.
+
+D’une surface de 47m², ce 2 grand pièces comporte :
+-  Une entrée avec penderie et rangements
+-  Un grand séjour, avec un espace bureau, télévision, canapé lit confortable, fenêtres sur le passage
+-  Une cuisine semi ouverte sur le salon avec espace dinatoire, entièrement équipée (vaisselle, lave-vaisselle, four, micro-ondes, plaques induction, hotte, réfrigérateur congélateur)
+-  Une chambre avec lit en 160, dressing et salle d’eau attenante
+-  Des toilettes séparés avec lave-main, une buanderie avec lave linge séchant.
+
+Equipement Fibre.
+Double vitrage, parquet chêne
+Chauffage et eau chaude électriques individuels
+Code, Gardienne pour le passage
+Appartement non fumeur, sans animaux
+Possibilité de cave.
+
+Bail d’1 an renouvelable.
+Loyer : 1.930 € charges comprises
+Dépôt de garantie 2 mois de loyer hors charges.
+
+N’hésitez pas à me contacter si vous avez des questions. Les visites se feront le jeudi 16 mai sur RDV
+
+Voici les éléments du dossier à fournir :
+- Contrat de travail et 3 derniers bulletins de salaires
+- Dernier avis d’imposition
+- 3 dernières quittances de loyer ou attestation du précédent bailleur indiquant que le locataire est à jour de ses loyers et charges.
+DPE en cours.",Not Available,Not Available,Réf. : F30/1285 /  11 mai 2024,Location meublée appartement 2 pièces 47 m² Paris 11E (75011),1930 ,2,1.0,47.0,,1930,75,Non,appartement,oui,N/A,N/A,N/A,1,N/A,N/A,oui,40.44943820224719
+1,https://www.pap.fr/annonces/appartement-paris-11e-75011-r453001285,Paris 11e (75011),"Un lieu unique, lumineux, calme, entièrement rénové et équipé avec du mobilier contemporain.
+T2 meublé 47 m2 passage privé.
+
+Bel appartement meublé situé dans le charmant Passage Lhomme, un passage privé chargé d’histoire, verdoyant, à deux pas de l’animation du quartier, du marché d’Alligre, de la Voie Verte et du Port de l’Arsenal.
+A 2 min à pied, la station Ledru Rollin, à 5 min de Bastille et 15 de la Gare de Lyon.
+Orienté sud au premier étage d’un immeuble ancien, lumineux, il bénéficie d’une vue dégagée et d’un calme.
+
+D’une surface de 47m², ce 2 grand pièces comporte :
+-  Une entrée avec penderie et rangements
+-  Un grand séjour, avec un espace bureau, télévision, canapé lit confortable, fenêtres sur le passage
+-  Une cuisine semi ouverte sur le salon avec espace dinatoire, entièrement équipée (vaisselle, lave-vaisselle, four, micro-ondes, plaques induction, hotte, réfrigérateur congélateur)
+-  Une chambre avec lit en 160, dressing et salle d’eau attenante
+-  Des toilettes séparés avec lave-main, une buanderie avec lave linge séchant.
+
+Equipement Fibre.
+Double vitrage, parquet chêne
+Chauffage et eau chaude électriques individuels
+Code, Gardienne pour le passage
+Appartement non fumeur, sans animaux
+Possibilité de cave.
+
+Bail d’1 an renouvelable.
+Loyer : 1.930 € charges comprises
+Dépôt de garantie 2 mois de loyer hors charges.
+
+N’hésitez pas à me contacter si vous avez des questions. Les visites se feront le jeudi 16 mai sur RDV
+
+Voici les éléments du dossier à fournir :
+- Contrat de travail et 3 derniers bulletins de salaires
+- Dernier avis d’imposition
+- 3 dernières quittances de loyer ou attestation du précédent bailleur indiquant que le locataire est à jour de ses loyers et charges.
+DPE en cours.",Not Available,Not Available,Réf. : F30/1285 /  11 mai 2024,Location meublée appartement 2 pièces 47 m² Paris 11E (75011),1930 ,2,1.0,47.0,,1930,75,Non,appartement,oui,N/A,N/A,N/A,1,N/A,N/A,oui,40.44943820224719
+2,https://www.pap.fr/annonces/appartement-paris-11e-r424300363,Paris 11e (75011),"Immeuble ancien, métro Voltaire 2 min à pied ou Bastille 6 min. 50 m²
+au 5ᵉ et dernier étage sans ascenseur.
+
+Appartement très lumineux plein sud avec vue sur les toits de Paris donnant sur une cour au calme avec verdure. Trois pièces composées d'un salon d'une hauteur de plafond de 4 m avec poutres apparentes et ventilateur. Il est aménagé d'un canapé cuir et d'une table design avec une cuisine à l'américaine toute équipée (lave-vaisselle, lave-linge, un grand réfrigérateur) et un coin bar. Une chambre bureau avec un grand dressing et un lit mezzanine de 140. Une salle de bain avec douche à l'italienne, WC et lavabo avec fenêtre. Une  belle chambre mezzanine où l'on se tient debout qui donne sur le salon équipé d'un matelas 160 x 200, éclairée d'une grande fenêtre de toit Vélux avec volet électrique sur toiture orientée sud. Nombreux rangements et un placard à chaussures.
+
+Chauffage électrique Noirot Economique , double vitrage et porte blindée. Stores extérieurs
+
+Deux mois de caution sont demandés pour le mobilier de qualité et références financières et garants.
+Disponible le 15 juin.
+
+Métros :
+Voltaire ligne 9
+Bastille lignes 1, 5, 8
+Richard-Lenoir  Ligne 5",F,Not Available,Réf. : C43/0363 /  20 mai 2024,Location meublée appartement 3 pièces 50 m² Paris 11E,1750 ,3,2.0,50.0,,1750,50,Non,appartement,oui,Voltaire,N/A,N/A,N/A,oui,N/A,oui,88.76404494382022
+3,https://www.pap.fr/annonces/appartement-paris-11e-r424300363,Paris 11e (75011),"Immeuble ancien, métro Voltaire 2 min à pied ou Bastille 6 min. 50 m²
+au 5ᵉ et dernier étage sans ascenseur.
+
+Appartement très lumineux plein sud avec vue sur les toits de Paris donnant sur une cour au calme avec verdure. Trois pièces composées d'un salon d'une hauteur de plafond de 4 m avec poutres apparentes et ventilateur. Il est aménagé d'un canapé cuir et d'une table design avec une cuisine à l'américaine toute équipée (lave-vaisselle, lave-linge, un grand réfrigérateur) et un coin bar. Une chambre bureau avec un grand dressing et un lit mezzanine de 140. Une salle de bain avec douche à l'italienne, WC et lavabo avec fenêtre. Une  belle chambre mezzanine où l'on se tient debout qui donne sur le salon équipé d'un matelas 160 x 200, éclairée d'une grande fenêtre de toit Vélux avec volet électrique sur toiture orientée sud. Nombreux rangements et un placard à chaussures.
+
+Chauffage électrique Noirot Economique , double vitrage et porte blindée. Stores extérieurs
+
+Deux mois de caution sont demandés pour le mobilier de qualité et références financières et garants.
+Disponible le 15 juin.
+
+Métros :
+Voltaire ligne 9
+Bastille lignes 1, 5, 8
+Richard-Lenoir  Ligne 5",F,Not Available,Réf. : C43/0363 /  20 mai 2024,Location meublée appartement 3 pièces 50 m² Paris 11E,1750 ,3,2.0,50.0,,1750,50,Non,appartement,oui,Voltaire,N/A,N/A,1,Non,N/A,oui,94.3820224719101
+5,https://www.pap.fr/annonces/appartement-paris-11e-75011-r442500861,Paris 11e (75011),"Colocation meublée rue de Vaucouleurs — Contrat de bail meublé 12 mois
+
+Pour compléter la colocation existante, recherchons une personne seule ou deux personnes en couple.
+Libre au 1er juin 2024.
+Appartement ensoleillé et refait à neuf, situé entre Parmentier, Goncourt et Belleville.
+
+Mise à disposition pour usage exclusif:
+- une chambre à coucher de 10 m²
+- deux grands dressings dans le couloir et l'entrée
+- un grand séjour ouvert de 22 m² avec large baie vitrée donnant sur le balcon
+
+Usage partagé:
+- cuisine équipée avec tomette d'origine: four pyrolyse, plaque vitrocéramique, évier céramique, mitigeur avec douchette, lave-linge, frigo
+- pièces d'eau: wc, salle de douche séparée
+- balcon de 5,5 m²
+
+La deuxième chambre à coucher est utilisée par le colocataire existant.
+
+Classe énergie: E
+Fenêtres avec double vitrage.
+Les charges incluent chauffage collectif, eau chaude et eau froide.
+
+Caractéristiques exceptionnelles:
+- rénovation à neuf et sur-mesure  depuis l'état d'origine (remise aux normes électricité, équipement cuisine neuf, parquet massif, dressings sur-mesure)
+- large baie vitrée donnant sur grand balcon ensoleillé orientation sud-ouest et sur rue calme
+- résidence sécurisée avec digicode, interphone, caméras, ascenseur et gardien
+- vue sur terrasses verdoyantes et fresque murale mondialement classée
+
+À deux pas de commerces, cafés et restaurants, La Maison des Métallos, les ateliers d'artistes de Belleville et le Canal Saint-Martin.
+Transports: M° Parmentier (ligne 3), M° Belleville (ligne 2 et 11), M° Goncourt (ligne 11) et bus qui traversent tout Paris.
+
+Un seul contrat de bail et autant de signatures et justificatifs à apporter par la ou les 2 personnes en couple intéressées.
+Justificatifs à partager via Drive ou DossierFacile:
+1- lettre motivation (optionnel)
+2- dossier de location complet (identité, domicile, situation professionnelle, ressources)
+3- dépôt de garantie
+Si bail mobilité:
+- garant
+- situation",E,E,Réf. : E25/0861 /  16 mai 2024,Location meublée appartement 2 pièces 57 m² Paris 11E (75011),2100 ,2,1.0,57.0,,2100,198,Non,appartement,oui,N/A,oui,N/A,1,N/A,N/A,oui,40.44943820224719
+6,https://www.pap.fr/annonces/appartement-paris-11e-75011-r453001285,Paris 11e (75011),"Un lieu unique, lumineux, calme, entièrement rénové et équipé avec du mobilier contemporain.
+T2 meublé 47 m2 passage privé.
+
+Bel appartement meublé situé dans le charmant Passage Lhomme, un passage privé chargé d’histoire, verdoyant, à deux pas de l’animation du quartier, du marché d’Alligre, de la Voie Verte et du Port de l’Arsenal.
+A 2 min à pied, la station Ledru Rollin, à 5 min de Bastille et 15 de la Gare de Lyon.
+Orienté sud au premier étage d’un immeuble ancien, lumineux, il bénéficie d’une vue dégagée et d’un calme.
+
+D’une surface de 47m², ce 2 grand pièces comporte :
+-  Une entrée avec penderie et rangements
+-  Un grand séjour, avec un espace bureau, télévision, canapé lit confortable, fenêtres sur le passage
+-  Une cuisine semi ouverte sur le salon avec espace dinatoire, entièrement équipée (vaisselle, lave-vaisselle, four, micro-ondes, plaques induction, hotte, réfrigérateur congélateur)
+-  Une chambre avec lit en 160, dressing et salle d’eau attenante
+-  Des toilettes séparés avec lave-main, une buanderie avec lave linge séchant.
+
+Equipement Fibre.
+Double vitrage, parquet chêne
+Chauffage et eau chaude électriques individuels
+Code, Gardienne pour le passage
+Appartement non fumeur, sans animaux
+Possibilité de cave.
+
+Bail d’1 an renouvelable.
+Loyer : 1.930 € charges comprises
+Dépôt de garantie 2 mois de loyer hors charges.
+
+N’hésitez pas à me contacter si vous avez des questions. Les visites se feront le jeudi 16 mai sur RDV
+
+Voici les éléments du dossier à fournir :
+- Contrat de travail et 3 derniers bulletins de salaires
+- Dernier avis d’imposition
+- 3 dernières quittances de loyer ou attestation du précédent bailleur indiquant que le locataire est à jour de ses loyers et charges.
+DPE en cours.",Not Available,Not Available,Réf. : F30/1285 /  11 mai 2024,Location meublée appartement 2 pièces 47 m² Paris 11E (75011),1930 ,2,1.0,47.0,,1930,75,Non,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,Non,4.49438202247191
+10,https://www.pap.fr/annonces/appartement-paris-r197409070,Paris 11e (75011),"Bastille, près Place, Opéra.
+
+Dans rue calme, 2 pièces, de 46 m² (dont double-séjour 34 m²), meublé, très équipé (linge complet de lit 4 pers, de toilette et de table, avec rechanges prévus, vaisselle, électroménager récent complet (lave-linge séchant, lave-vaisselle, réfrigérateur, congélateur, 2 plaques vitro-céramiques, multi-cuiseur, four mobile halogène, four micro-ondes combiné, TV LED 108 cm 4KUHD, lecteur DVD, chaîne hi-fi, aspirateur, fer et table à repasser, sèche-cheveux, 2 cafetières dont une à capsules, toaster, bouilloire...).
+
+Une seule chambre équipée grand dressing et  couchage 2 personnes, literie haut de gamme. Double-séjour 34 m²  avec 2 canapés dont 1 convertible 160 x 200, mobilier complet design et industriel, espace repas, cuisine américaine entièrement équipée. salle de bains avec w-c. Poutres, soleil. Idéal stage, mutation, personnel société.
+
+Bail soumis à droit civil (résidence non principale).
+
+Au 3e étage sans ascenseur. Double digicode, cour arborée, gardien. Loyer toutes charges comprises,  wifi inclus (non inclus EDF).
+Sérieuses garanties demandées.",A,Not Available,Réf. : 974/9070 /  20 mai 2024,Location meublée appartement 2 pièces 46 m² Paris,1900 ,2,1.0,46.0,,1900,200,Non,appartement,oui,Bastille,N/A,N/A,1,Non,N/A,oui,40.44943820224719
+11,https://www.pap.fr/annonces/appartement-paris-11e-75011-r440300868,Paris 11e (75011),"Appartement Haussmannien lumineux, ensoleillé, 1 chambre sur l'avenue de la République. Disponible à partir du 1er aout. Situé dans le 11ème arrondissement, proche des commerces et cafés, avec la rue Oberkampf et la rue Saint-Maur à quelques pas.
+
+Cet appartement orienté sud est de 42 m2 au 6ème étage d'un immeuble bien entretenu avec ascenseur, avec des portes à la fois de la chambre et du salon à un balcon privé donnant sur la rue.
+
+La chambre baignée de lumière dispose d'une salle de bains privative moderne carrelée de blanc, d'un lit double queen-size, de nombreux placards et d'un bureau avec chaise (draps et serviettes fournis) et de parquet. Le salon de bonne taille dispose d'un canapé pour 3 personnes (se transforme en un lit queen-size) et d'une table à manger avec 4 chaises. Il y a une télévision et un lecteur DVD, une chaîne stéréo, une connexion Internet haut débit (WiFi) et un téléphone.
+
+La cuisine a été  rénovée, séparée du salon et est entièrement équipée : plaques électriques, four, micro-ondes, réfrigérateur, laveuse/sécheuse, cafetière, ustensiles de cuisine, vaisselle, couverts & verres.
+
+L'appartement a été récemment repeint et meublé et dégage une atmosphère moderne et contemporaine. L'immeuble dispose d'une gardienne à vivre (elle connait tout du quartier !) et dispose également d'un espace pour les vélos dans la cour arrière.
+
+Le loyer 2100 euro/mois  comprend la taxe d'habitation et internet, mais pas l'électricité pour le chauffage, l'eau chaude et l'éclairage. Nous préférons les locations de 9 mois et plus.",F,D,Réf. : E03/0868 /  20 mai 2024,Location meublée appartement 2 pièces 42 m² Paris 11E (75011),2100 ,2,1.0,42.0,,2100,650,Non,appartement,oui,N/A,N/A,N/A,1,N/A,N/A,oui,49.43820224719101
+14,https://www.pap.fr/annonces/appartement-paris-11e-r424300363,Paris 11e (75011),"Immeuble ancien, métro Voltaire 2 min à pied ou Bastille 6 min. 50 m²
+au 5ᵉ et dernier étage sans ascenseur.
+
+Appartement très lumineux plein sud avec vue sur les toits de Paris donnant sur une cour au calme avec verdure. Trois pièces composées d'un salon d'une hauteur de plafond de 4 m avec poutres apparentes et ventilateur. Il est aménagé d'un canapé cuir et d'une table design avec une cuisine à l'américaine toute équipée (lave-vaisselle, lave-linge, un grand réfrigérateur) et un coin bar. Une chambre bureau avec un grand dressing et un lit mezzanine de 140. Une salle de bain avec douche à l'italienne, WC et lavabo avec fenêtre. Une  belle chambre mezzanine où l'on se tient debout qui donne sur le salon équipé d'un matelas 160 x 200, éclairée d'une grande fenêtre de toit Vélux avec volet électrique sur toiture orientée sud. Nombreux rangements et un placard à chaussures.
+
+Chauffage électrique Noirot Economique , double vitrage et porte blindée. Stores extérieurs
+
+Deux mois de caution sont demandés pour le mobilier de qualité et références financières et garants.
+Disponible le 15 juin.
+
+Métros :
+Voltaire ligne 9
+Bastille lignes 1, 5, 8
+Richard-Lenoir  Ligne 5",F,Not Available,Réf. : C43/0363 /  20 mai 2024,Location meublée appartement 3 pièces 50 m² Paris 11E,1750 ,3,2.0,50.0,,1750,50,Non,appartement,oui,N/A,N/A,N/A,1,N/A,N/A,oui,94.3820224719101
+16,https://www.pap.fr/annonces/appartement-paris-11e-75011-r442500861,Paris 11e (75011),"Colocation meublée rue de Vaucouleurs — Contrat de bail meublé 12 mois
+
+Pour compléter la colocation existante, recherchons une personne seule ou deux personnes en couple.
+Libre au 1er juin 2024.
+Appartement ensoleillé et refait à neuf, situé entre Parmentier, Goncourt et Belleville.
+
+Mise à disposition pour usage exclusif:
+- une chambre à coucher de 10 m²
+- deux grands dressings dans le couloir et l'entrée
+- un grand séjour ouvert de 22 m² avec large baie vitrée donnant sur le balcon
+
+Usage partagé:
+- cuisine équipée avec tomette d'origine: four pyrolyse, plaque vitrocéramique, évier céramique, mitigeur avec douchette, lave-linge, frigo
+- pièces d'eau: wc, salle de douche séparée
+- balcon de 5,5 m²
+
+La deuxième chambre à coucher est utilisée par le colocataire existant.
+
+Classe énergie: E
+Fenêtres avec double vitrage.
+Les charges incluent chauffage collectif, eau chaude et eau froide.
+
+Caractéristiques exceptionnelles:
+- rénovation à neuf et sur-mesure  depuis l'état d'origine (remise aux normes électricité, équipement cuisine neuf, parquet massif, dressings sur-mesure)
+- large baie vitrée donnant sur grand balcon ensoleillé orientation sud-ouest et sur rue calme
+- résidence sécurisée avec digicode, interphone, caméras, ascenseur et gardien
+- vue sur terrasses verdoyantes et fresque murale mondialement classée
+
+À deux pas de commerces, cafés et restaurants, La Maison des Métallos, les ateliers d'artistes de Belleville et le Canal Saint-Martin.
+Transports: M° Parmentier (ligne 3), M° Belleville (ligne 2 et 11), M° Goncourt (ligne 11) et bus qui traversent tout Paris.
+
+Un seul contrat de bail et autant de signatures et justificatifs à apporter par la ou les 2 personnes en couple intéressées.
+Justificatifs à partager via Drive ou DossierFacile:
+1- lettre motivation (optionnel)
+2- dossier de location complet (identité, domicile, situation professionnelle, ressources)
+3- dépôt de garantie
+Si bail mobilité:
+- garant
+- situation",E,E,Réf. : E25/0861 /  16 mai 2024,Location meublée appartement 2 pièces 57 m² Paris 11E (75011),2100 ,2,1.0,57.0,,2100,198,Non,appartement,oui,N/A,N/A,N/A,1,N/A,N/A,oui,40.44943820224719
+17,https://www.pap.fr/annonces/appartement-paris-11e-75011-r453001285,Paris 11e (75011),"Un lieu unique, lumineux, calme, entièrement rénové et équipé avec du mobilier contemporain.
+T2 meublé 47 m2 passage privé.
+
+Bel appartement meublé situé dans le charmant Passage Lhomme, un passage privé chargé d’histoire, verdoyant, à deux pas de l’animation du quartier, du marché d’Alligre, de la Voie Verte et du Port de l’Arsenal.
+A 2 min à pied, la station Ledru Rollin, à 5 min de Bastille et 15 de la Gare de Lyon.
+Orienté sud au premier étage d’un immeuble ancien, lumineux, il bénéficie d’une vue dégagée et d’un calme.
+
+D’une surface de 47m², ce 2 grand pièces comporte :
+-  Une entrée avec penderie et rangements
+-  Un grand séjour, avec un espace bureau, télévision, canapé lit confortable, fenêtres sur le passage
+-  Une cuisine semi ouverte sur le salon avec espace dinatoire, entièrement équipée (vaisselle, lave-vaisselle, four, micro-ondes, plaques induction, hotte, réfrigérateur congélateur)
+-  Une chambre avec lit en 160, dressing et salle d’eau attenante
+-  Des toilettes séparés avec lave-main, une buanderie avec lave linge séchant.
+
+Equipement Fibre.
+Double vitrage, parquet chêne
+Chauffage et eau chaude électriques individuels
+Code, Gardienne pour le passage
+Appartement non fumeur, sans animaux
+Possibilité de cave.
+
+Bail d’1 an renouvelable.
+Loyer : 1.930 € charges comprises
+Dépôt de garantie 2 mois de loyer hors charges.
+
+N’hésitez pas à me contacter si vous avez des questions. Les visites se feront le jeudi 16 mai sur RDV
+
+Voici les éléments du dossier à fournir :
+- Contrat de travail et 3 derniers bulletins de salaires
+- Dernier avis d’imposition
+- 3 dernières quittances de loyer ou attestation du précédent bailleur indiquant que le locataire est à jour de ses loyers et charges.
+DPE en cours.",Not Available,Not Available,Réf. : F30/1285 /  11 mai 2024,Location meublée appartement 2 pièces 47 m² Paris 11E (75011),1930 ,2,1.0,47.0,,1930,75,Non,appartement,oui,N/A,N/A,N/A,1,N/A,Non,oui,40.44943820224719
+20,https://www.pap.fr/annonces/appartement-paris-r197409070,Paris 11e (75011),"Bastille, près Place, Opéra.
+
+Dans rue calme, 2 pièces, de 46 m² (dont double-séjour 34 m²), meublé, très équipé (linge complet de lit 4 pers, de toilette et de table, avec rechanges prévus, vaisselle, électroménager récent complet (lave-linge séchant, lave-vaisselle, réfrigérateur, congélateur, 2 plaques vitro-céramiques, multi-cuiseur, four mobile halogène, four micro-ondes combiné, TV LED 108 cm 4KUHD, lecteur DVD, chaîne hi-fi, aspirateur, fer et table à repasser, sèche-cheveux, 2 cafetières dont une à capsules, toaster, bouilloire...).
+
+Une seule chambre équipée grand dressing et  couchage 2 personnes, literie haut de gamme. Double-séjour 34 m²  avec 2 canapés dont 1 convertible 160 x 200, mobilier complet design et industriel, espace repas, cuisine américaine entièrement équipée. salle de bains avec w-c. Poutres, soleil. Idéal stage, mutation, personnel société.
+
+Bail soumis à droit civil (résidence non principale).
+
+Au 3e étage sans ascenseur. Double digicode, cour arborée, gardien. Loyer toutes charges comprises,  wifi inclus (non inclus EDF).
+Sérieuses garanties demandées.",A,Not Available,Réf. : 974/9070 /  20 mai 2024,Location meublée appartement 2 pièces 46 m² Paris,1900 ,2,1.0,46.0,,1900,200,Non,appartement,oui,Bastille,N/A,N/A,1,N/A,N/A,oui,40.44943820224719
+21,https://www.pap.fr/annonces/appartement-paris-11e-75011-r440300868,Paris 11e (75011),"Appartement Haussmannien lumineux, ensoleillé, 1 chambre sur l'avenue de la République. Disponible à partir du 1er aout. Situé dans le 11ème arrondissement, proche des commerces et cafés, avec la rue Oberkampf et la rue Saint-Maur à quelques pas.
+
+Cet appartement orienté sud est de 42 m2 au 6ème étage d'un immeuble bien entretenu avec ascenseur, avec des portes à la fois de la chambre et du salon à un balcon privé donnant sur la rue.
+
+La chambre baignée de lumière dispose d'une salle de bains privative moderne carrelée de blanc, d'un lit double queen-size, de nombreux placards et d'un bureau avec chaise (draps et serviettes fournis) et de parquet. Le salon de bonne taille dispose d'un canapé pour 3 personnes (se transforme en un lit queen-size) et d'une table à manger avec 4 chaises. Il y a une télévision et un lecteur DVD, une chaîne stéréo, une connexion Internet haut débit (WiFi) et un téléphone.
+
+La cuisine a été  rénovée, séparée du salon et est entièrement équipée : plaques électriques, four, micro-ondes, réfrigérateur, laveuse/sécheuse, cafetière, ustensiles de cuisine, vaisselle, couverts & verres.
+
+L'appartement a été récemment repeint et meublé et dégage une atmosphère moderne et contemporaine. L'immeuble dispose d'une gardienne à vivre (elle connait tout du quartier !) et dispose également d'un espace pour les vélos dans la cour arrière.
+
+Le loyer 2100 euro/mois  comprend la taxe d'habitation et internet, mais pas l'électricité pour le chauffage, l'eau chaude et l'éclairage. Nous préférons les locations de 9 mois et plus.",F,D,Réf. : E03/0868 /  20 mai 2024,Location meublée appartement 2 pièces 42 m² Paris 11E (75011),2100 ,2,1.0,42.0,,2100,650,Non,appartement,oui,N/A,N/A,N/A,1,N/A,N/A,oui,49.43820224719101
+24,https://www.pap.fr/annonces/appartement-paris-11e-r424300363,Paris 11e (75011),"Immeuble ancien, métro Voltaire 2 min à pied ou Bastille 6 min. 50 m²
+au 5ᵉ et dernier étage sans ascenseur.
+
+Appartement très lumineux plein sud avec vue sur les toits de Paris donnant sur une cour au calme avec verdure. Trois pièces composées d'un salon d'une hauteur de plafond de 4 m avec poutres apparentes et ventilateur. Il est aménagé d'un canapé cuir et d'une table design avec une cuisine à l'américaine toute équipée (lave-vaisselle, lave-linge, un grand réfrigérateur) et un coin bar. Une chambre bureau avec un grand dressing et un lit mezzanine de 140. Une salle de bain avec douche à l'italienne, WC et lavabo avec fenêtre. Une  belle chambre mezzanine où l'on se tient debout qui donne sur le salon équipé d'un matelas 160 x 200, éclairée d'une grande fenêtre de toit Vélux avec volet électrique sur toiture orientée sud. Nombreux rangements et un placard à chaussures.
+
+Chauffage électrique Noirot Economique , double vitrage et porte blindée. Stores extérieurs
+
+Deux mois de caution sont demandés pour le mobilier de qualité et références financières et garants.
+Disponible le 15 juin.
+
+Métros :
+Voltaire ligne 9
+Bastille lignes 1, 5, 8
+Richard-Lenoir  Ligne 5",F,Not Available,Réf. : C43/0363 /  20 mai 2024,Location meublée appartement 3 pièces 50 m² Paris 11E,1750 ,3,2.0,50.0,,1750,50,Non,appartement,oui,N/A,N/A,N/A,1,oui,N/A,oui,100.0
