@@ -9,7 +9,7 @@ import json
 
 
 def fetch_html_with_oxylab(page_url: str) -> str:
-    username = "safeflat2"
+    username = "safeflat3"
     password = "saaj098KLN++"
 
     proxies = {
@@ -48,8 +48,12 @@ def retrieve_urls(page_url: str) -> list:
 
     # Remove duplicates
     url_list = list(set(url_list))
-    print(len(url_list))
-    print(f"url_list: {url_list}")
+    # Add prefix and editing to have the correct URL
+    url_list = [f"https://www.leboncoin.fr{url}" for url in url_list]
+    print("urls retrieved: ", url_list)
+    return url_list
+
+
 
 def find_index(dictionaries, search_key):
     """ Recherche l'indice du dictionnaire dont la valeur pour la clé 'key' est égale à `search_key`. """
@@ -262,6 +266,8 @@ def scrape_ad(ad_url: str) -> dict:
 
     except Exception as e:
         print("Error extracting JSON data:", e)
+
+    data = pd.DataFrame([data])
 
     return data
 
