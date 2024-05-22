@@ -5,21 +5,30 @@ urllib3.disable_warnings()
 
 
 def handler(event, context):
-    res = retrieve_urls("https://www.pap.fr/annonce/location-appartement-maison")
-    print(res)
+    num_pages = 2
+    for i in range(1, num_pages):
+        urls = retrieve_urls(
+            f"https://www.leboncoin.fr/recherche?category=10&locations=Strasbourg_67000__48.58504_7.73642_5000_1000&real_estate_type=1,2&owner_type=private&page={i}"
+        )
+        urls = urls[:1]
+        for url in urls:
+            try:
+                scraped_data = scrape_ad(url)
+                print('Scraped ad:', scraped_data)
+
+                desc_data = process_description(scraped_data["description"])
+
+                merged_data = add_desc_content_to_df(desc_data, scraped_data)
+                merged_data.to_csv('C:/Users/hennecol/Documents/safeflat/scraping/leboncoin-oxylab/csv_ouptus/output_processed.csv')
+
+                #save_to_database(merged_data)
+            except Exception as e:
+                print(f"An error occrued while processing the ad: {url}", "\n", e)
+
+    return {"statusCode": 200, "body": json.dumps("Lambda executed successfully!")}
 
 
 if __name__ == "__main__":
     #handler(None, None)
-
-    #Download the hmtl of the web page:
-    # html_page = fetch_html_with_oxylab("https://www.leboncoin.fr/ad/locations/2689785455")
-    # with open("/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/leboncoin-oxylab/annonces/annonce2.html", "w", encoding="utf-8") as file:
-    #     file.write(html_page)
-
-    # Find urls:
-    # retrieve_urls("https://www.leboncoin.fr/recherche?category=10&owner_type=private")
-
-    # Parse a page:
-    data =scrape_ad('https://www.leboncoin.fr/ad/locations/2690897079')
-    print(data)
+    urls = retrieve_urls('https://www.leboncoin.fr/recherche?category=10&locations=Strasbourg_67000__48.58504_7.73642_5000_1000&real_estate_type=1,2&owner_type=private')
+    print(urls)
