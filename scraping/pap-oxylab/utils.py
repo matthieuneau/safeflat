@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 
 
 def fetch_html_with_oxylab(page_url: str) -> str:
-    username = "safeflat2"
+    username = "safeflat3"
     password = "saaj098KLN++"
 
     proxies = {
@@ -313,7 +313,7 @@ def add_desc_content_to_df(
 ) -> pd.DataFrame:
     """Merges all the information from the processed description and the processed ad with one simple rule:
     Consider that the data from the ad is more reliable than the data from the description. So if there is
-    a conflict between the two, keep the data from the description.
+    a conflict between the two, keep the data from the ad.
 
     Args:
         processed_desc (pd.DataFrame): processed description data
