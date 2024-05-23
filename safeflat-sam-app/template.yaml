@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  safeflat-sam-app
+
+  Sample SAM Template for safeflat-sam-app
+
+Resources:
+  papRetriveUrls:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: papRetrieveUrls
+      CodeUri: papRetrieveUrls/
+      Handler: main.handler
+      Runtime: python3.11
+      Architectures:
+        - arm64
+    Metadata:
+      SamResourceId: papRetrieveUrls
+  
+  papScrapeUrls:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: papScrapeUrls
+      CodeUri: papScrapeUrls/
+      Handler: main.handler
+      Runtime: python3.11
+      Architectures:
+        - arm64
+    Metadata:
+      SamResourceId: papScrapeUrls
+
+
