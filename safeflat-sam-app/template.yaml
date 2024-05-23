@@ -5,16 +5,23 @@ Description: >
 
   Sample SAM Template for safeflat-sam-app
 
+Globals:
+  Function:
+    Handler: main.handler
+    Runtime: python3.11
+    Architectures:
+      - arm64
+    Timeout: 900
+    Layers:
+      - arn:aws:lambda:us-east-1:533267017509:layer:layer12:1
+      - arn:aws:lambda:us-east-1:336392948345:layer:AWSSDKPandas-Python311-Arm64:12     #Try to get rid of this layer someday
+
 Resources:
-  papRetriveUrls:
+  papRetrieveUrls:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: papRetrieveUrls
       CodeUri: papRetrieveUrls/
-      Handler: main.handler
-      Runtime: python3.11
-      Architectures:
-        - arm64
     Metadata:
       SamResourceId: papRetrieveUrls
   
@@ -23,11 +30,5 @@ Resources:
     Properties:
       FunctionName: papScrapeUrls
       CodeUri: papScrapeUrls/
-      Handler: main.handler
-      Runtime: python3.11
-      Architectures:
-        - arm64
     Metadata:
       SamResourceId: papScrapeUrls
-
-
