@@ -17,18 +17,26 @@ Globals:
       - arn:aws:lambda:us-east-1:336392948345:layer:AWSSDKPandas-Python311-Arm64:12     #Try to get rid of this layer someday
 
 Resources:
-  papRetrieveUrls:
+  retrieveUrls:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: papRetrieveUrls
-      CodeUri: papRetrieveUrls/
+      FunctionName: retrieveUrls
+      CodeUri: retrieveUrls/
     Metadata:
-      SamResourceId: papRetrieveUrls
+      SamResourceId: retrieveUrls
   
-  papScrapeUrls:
+  scrapeUrls:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: papScrapeUrls
-      CodeUri: papScrapeUrls/
+      FunctionName: scrapeUrls
+      CodeUri: scrapeUrls/
     Metadata:
-      SamResourceId: papScrapeUrls
+      SamResourceId: scrapeUrls
+  
+  detection:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: detection
+      CodeUri: detection/
+    Metadata:
+      SamResourceId: detection
