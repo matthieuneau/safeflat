@@ -41,7 +41,7 @@ def filter_and_score(property_infos):
 
     # Read data from the database and apply first filter (query):
     # data_df = read_from_database(query)
-    data_df = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/leboncoin-oxylab/csv_ouptus/output_processed.csv')
+    data_df = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/leboncoin-scrape-urls/csv_ouptus/output_processed.csv')
 
     # Transform text into digital format:
     data_df['surface'] = pd.to_numeric(data_df['surface'], errors='coerce')
@@ -97,12 +97,30 @@ def filter_and_score(property_infos):
 
 #Example of a property to protect:
 property_infos_same = {
+    'type_de_bien' : 'Appartement',
+    'meuble' : 1,
+    'surface' : 55,
+    'nb_rooms' : 1,
+    'DPE' : 'e',
+    'GES' : 'b',
+    'ascenseur' : 'Non',
+    'etage' : '5',
+    'nb_etages' : '5',
+    'charges' : '85',
+    'caution' : '900',
     'ville' : 'Strasbourg',
     'zipcode' : 67000,
-    'nb_rooms' : 3,
-    'surface' : 95,
-    'latitude' : 48.58153,
-    'longitude' : 7.75566
+    'latitude' : 48.58312,
+    'longitude' : 7.73701,
+    'host_name' : 'davidk',
+    'piscine' : 'Non',
+    'nb_bedrooms' : None,
+    'parking' : 'oui',
+    'quartier' : None,
+    'cave' : None,
+    'terrasse' : 'oui', 
+
+
 
 }
 
@@ -112,4 +130,4 @@ if __name__ == "__main__":
 
     # data = read_from_database("SELECT * FROM pap")
     # print(data)
-    #filtered_data.to_csv('C:/Users/hennecol/Documents/safeflat/scraping/pap-oxylab/csv_outputs/output_score.csv')
+    #filtered_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/leboncoin-scrape-urls/csv_ouptus/output_score.csv')

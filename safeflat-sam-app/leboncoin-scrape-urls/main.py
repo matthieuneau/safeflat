@@ -5,8 +5,8 @@ urllib3.disable_warnings()
 
 
 def handler(event, context):
-    num_pages = 3
-    for i in range(1, num_pages):
+    num_pages = 5
+    for i in range(4, num_pages):
         urls = retrieve_urls(
             f"https://www.leboncoin.fr/recherche?category=10&locations=Strasbourg_67000__48.58504_7.73642_5000_1000&real_estate_type=1,2&owner_type=private&page={i}"
         )
@@ -20,10 +20,10 @@ def handler(event, context):
 
                 merged_data = add_desc_content_to_df(desc_data, scraped_data)
 
-                data_bdd = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/leboncoin-oxylab/csv_ouptus/output_processed.csv')
+                data_bdd = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/leboncoin-scrape-urls/csv_ouptus/output_processed.csv')
 
                 df_concatene = pd.concat([merged_data, data_bdd], ignore_index=True)
-                df_concatene.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/leboncoin-oxylab/csv_ouptus/output_processed.csv')
+                df_concatene.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/leboncoin-scrape-urls/csv_ouptus/output_processed.csv')
 
                 #save_to_database(merged_data)
             except Exception as e:
