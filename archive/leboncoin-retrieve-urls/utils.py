@@ -8,57 +8,10 @@ from bs4 import BeautifulSoup
 import json
 
 
-def fetch_html_with_oxylab(page_url: str) -> str:
-    username = "safeflat3"
-    password = "saaj098KLN++"
-
-    proxies = {
-        "http": f"http://{username}:{password}@unblock.oxylabs.io:60000",
-        "https": f"http://{username}:{password}@unblock.oxylabs.io:60000",
-    }
-
-    response = requests.request(
-        "GET",
-        page_url,
-        verify=False,  # Ignore the certificate
-        proxies=proxies,
-    )
-    return response.text
-
-
-def retrieve_urls(page_url: str) -> list:
-    """Retrieve the URLs of the ads from the page
-
-    Args:
-        page (str): url of the page listing the ads
-
-    Returns:
-        list: list of the URLs of the ads on the page
-    """
-
-    html = fetch_html_with_oxylab(page_url)
-
-    soup = BeautifulSoup(html, "html.parser")
-    all_a_tags = soup.find_all("a")
-    url_list = [
-        item["href"]
-        for item in all_a_tags
-        if item.get("href", "").startswith("/ad/locations/")
-    ]
-
-    # Remove duplicates
-    url_list = list(set(url_list))
-    # Add prefix and editing to have the correct URL
-    url_list = [f"https://www.leboncoin.fr{url}" for url in url_list]
-    print("urls retrieved: ", url_list)
-    return url_list
-
-
-
 def find_index(dictionaries, search_key):
-    """ Recherche l'indice du dictionnaire dont la valeur pour la clé 'key' est égale à `search_key`. """
+    """Recherche l'indice du dictionnaire dont la valeur pour la clé 'key' est égale à `search_key`."""
     for index, dictionary in enumerate(dictionaries):
-        if dictionary.get('key') == search_key:
+        if dictionary.get("key") == search_key:
             return index
     return None
 
@@ -86,16 +39,15 @@ def scrape_ad(ad_url: str) -> dict:
         json_data = {}  # Dictionary to store parsed JSON data
 
         # Find the specific script tag by ID
-        script_tag = soup.find('script', id="__NEXT_DATA__")
+        script_tag = soup.find("script", id="__NEXT_DATA__")
 
         if script_tag and script_tag.string:
             # Parse the JSON content directly from the script tag
             json_object = json.loads(script_tag.string.strip())
             json_data = json_object  # Store it in the dictionary
-        
-        if json_data:
-            ad = json_data['props']['pageProps']['ad']
 
+        if json_data:
+            ad = json_data["props"]["pageProps"]["ad"]
 
         # Retrieving url:
         try:
@@ -104,13 +56,13 @@ def scrape_ad(ad_url: str) -> dict:
             print("Error retrieving url:", e)
             data["url"] = "Not Available"
 
-        # Retrieving title: 
+        # Retrieving title:
         try:
             data["titre"] = ad["subject"]
         except Exception as e:
             print("Error retrieving titre:", e)
             data["titre"] = "Not Available"
-        
+
         # Retrieving first publication date:
         try:
             data["first_publication_date"] = ad["first_publication_date"]
@@ -134,77 +86,97 @@ def scrape_ad(ad_url: str) -> dict:
 
         # Retrieving property_type:
         try:
-            data["type_de_bien"] = ad["attributes"][find_index(ad["attributes"],"real_estate_type")]["value_label"]
+            data["type_de_bien"] = ad["attributes"][
+                find_index(ad["attributes"], "real_estate_type")
+            ]["value_label"]
         except Exception as e:
             print("Error retrieving type_de_bien:", e)
             data["type_de_bien"] = "Not Available"
-        
+
         # Retrieving furnished or not: 1 if yes 0 if no
         try:
-            data["meuble"] = ad["attributes"][find_index(ad["attributes"],"furnished")]["value"]
+            data["meuble"] = ad["attributes"][
+                find_index(ad["attributes"], "furnished")
+            ]["value"]
         except Exception as e:
             print("Error retrieving meuble:", e)
             data["meuble"] = "Not Available"
 
         # Retrieving surface:
         try:
-            data["surface"] = ad["attributes"][find_index(ad["attributes"],"square")]["value"]
+            data["surface"] = ad["attributes"][find_index(ad["attributes"], "square")][
+                "value"
+            ]
         except Exception as e:
             print("Error retrieving surface:", e)
             data["surface"] = "Not Available"
 
         # Retrieving nb of rooms:
         try:
-            data["nb_rooms"] = ad["attributes"][find_index(ad["attributes"],"rooms")]["value"]
+            data["nb_rooms"] = ad["attributes"][find_index(ad["attributes"], "rooms")][
+                "value"
+            ]
         except Exception as e:
             print("Error retrieving nb_rooms:", e)
             data["nb_rooms"] = "Not Available"
-        
+
         # Retrieving energy rate:
         try:
-            data["DPE"] = ad["attributes"][find_index(ad["attributes"],"energy_rate")]["value"]
+            data["DPE"] = ad["attributes"][find_index(ad["attributes"], "energy_rate")][
+                "value"
+            ]
         except Exception as e:
             print("Error retrieving DPE:", e)
             data["DPE"] = "Not Available"
 
         # Retrieving GES:
         try:
-            data["GES"] = ad["attributes"][find_index(ad["attributes"],"ges")]["value"]
+            data["GES"] = ad["attributes"][find_index(ad["attributes"], "ges")]["value"]
         except Exception as e:
             print("Error retrieving GES:", e)
             data["GES"] = "Not Available"
 
         # Retrieving elevator:
         try:
-            data["ascenseur"] = ad["attributes"][find_index(ad["attributes"],"elevator")]["value_label"]
+            data["ascenseur"] = ad["attributes"][
+                find_index(ad["attributes"], "elevator")
+            ]["value_label"]
         except Exception as e:
             print("Error retrieving ascenseur:", e)
             data["ascenseur"] = "Not Available"
 
         # Retrieving floor number:
         try:
-            data["etage"] = ad["attributes"][find_index(ad["attributes"],"floor_number")]["value"]
+            data["etage"] = ad["attributes"][
+                find_index(ad["attributes"], "floor_number")
+            ]["value"]
         except Exception as e:
             print("Error retrieving etage:", e)
             data["etage"] = "Not Available"
 
         # Retrieving nb of floors in the building:
         try:
-            data["nb_etages"] = ad["attributes"][find_index(ad["attributes"],"nb_floors_building")]["value"]
+            data["nb_etages"] = ad["attributes"][
+                find_index(ad["attributes"], "nb_floors_building")
+            ]["value"]
         except Exception as e:
             print("Error retrieving nb_etages:", e)
             data["nb_etages"] = "Not Available"
 
         # Retrieving monthly charges:
         try:
-            data["charges"] = ad["attributes"][find_index(ad["attributes"],"monthly_charges")]["value"]
+            data["charges"] = ad["attributes"][
+                find_index(ad["attributes"], "monthly_charges")
+            ]["value"]
         except Exception as e:
             print("Error retrieving charges:", e)
             data["charges"] = "Not Available"
 
         # Retrieving security deposit:
         try:
-            data["caution"] = ad["attributes"][find_index(ad["attributes"],"security_deposit")]["value"] 
+            data["caution"] = ad["attributes"][
+                find_index(ad["attributes"], "security_deposit")
+            ]["value"]
         except Exception as e:
             print("Error retrieving caution:", e)
             data["caution"] = "Not Available"
@@ -250,19 +222,17 @@ def scrape_ad(ad_url: str) -> dict:
         except Exception as e:
             print("Error retrieving longitude:", e)
             data["longitude"] = "Not Available"
-        
+
         # Retrieving host_name:
         try:
             data["host_name"] = ad["owner"]["name"]
         except Exception as e:
             print("Error retrieving host_name:", e)
             data["host_name"] = "Not Available"
-        
-        
+
         # For test purpose only: store locally the json file
         # with open("/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/leboncoin-oxylab/annonces/output.json", 'w') as json_file:
         #     json.dump(json_data, json_file, indent=4)
-
 
     except Exception as e:
         print("Error extracting JSON data:", e)
@@ -366,10 +336,9 @@ def add_desc_content_to_df(
     return processed_ad
 
 
-
 if __name__ == "__main__":
-    dict_data = scrape_ad(
-        "https://www.leboncoin.fr/ad/locations/2490728497"
-    )
+    dict_data = scrape_ad("https://www.leboncoin.fr/ad/locations/2490728497")
     df_data = pd.DataFrame([dict_data])
-    df_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/leboncoin-oxylab/csv_ouptus/output.csv')
+    df_data.to_csv(
+        "/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/leboncoin-oxylab/csv_ouptus/output.csv"
+    )

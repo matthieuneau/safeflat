@@ -7,82 +7,44 @@ import json
 import re
 from preprocessing import *
 
-def fetch_html_with_oxylab(page_url: str) -> str:
-    username = "safeflat"
-    password = "saaj098KLN++"
-
-    proxies = {
-        "http": f"http://{username}:{password}@unblock.oxylabs.io:60000",
-        "https": f"http://{username}:{password}@unblock.oxylabs.io:60000",
-    }
-
-    response = requests.request(
-        "GET",
-        page_url,
-        verify=False,  # Ignore the certificate
-        proxies=proxies,
-    )
-
-    return response.text
-
-
-def retrieve_urls(page_url: str) -> list:
-    """Retrieve the URLs of the ads from the page
-
-    Args:
-        page (str): url of the page listing the ads
-
-    Returns:
-        list: list of the URLs of the ads on the page
-    """
-
-    html = fetch_html_with_oxylab(page_url)
-
-    soup = BeautifulSoup(html, "html.parser")
-    all_a_tags = soup.find_all("a")
-
-    url_list = [
-        item["href"]
-        for item in all_a_tags
-        if item.get("href", "").startswith("/rooms/")
-    ]
-
-    # Remove duplicates
-    url_list = list(set(url_list))
-    print(len(url_list))
-    print(f"url_list: {url_list}")
 
 def find_html_descriptions(data, results=None):
     if results is None:
         results = []
 
     if isinstance(data, dict):
-        if 'htmlDescription' in data and data['htmlDescription'].get('__typename') == 'ReadMoreHtml':
-            results.append(data['htmlDescription'])
+        if (
+            "htmlDescription" in data
+            and data["htmlDescription"].get("__typename") == "ReadMoreHtml"
+        ):
+            results.append(data["htmlDescription"])
         for key, value in data.items():
             find_html_descriptions(value, results)
     elif isinstance(data, list):
         for item in data:
             find_html_descriptions(item, results)
-    
+
     return results
+
 
 def find_amenities_sections(data, results=None):
     if results is None:
         results = []
 
     if isinstance(data, dict):
-        if ('__typename' in data and
-            'previewAmenitiesGroups' in data and
-            'seeAllAmenitiesGroups' in data and
-            data['__typename'] == 'AmenitiesSection'):
+        if (
+            "__typename" in data
+            and "previewAmenitiesGroups" in data
+            and "seeAllAmenitiesGroups" in data
+            and data["__typename"] == "AmenitiesSection"
+        ):
             results.append(data)
         for key, value in data.items():
             find_amenities_sections(value, results)
     elif isinstance(data, list):
         for item in data:
             find_amenities_sections(item, results)
-    
+
     return results
 
 
@@ -95,10 +57,10 @@ def scrape_ad(ad_url: str) -> dict:
     Returns:
         dict: data scraped from the ad
     """
-    #for test purpose only, local html file:
+    # for test purpose only, local html file:
     file_path = "/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/airbnb-oxylab/annonces/annonce1.html"
-    with open(file_path, 'r', encoding='utf-8') as file:
-        soup = BeautifulSoup(file, 'lxml')
+    with open(file_path, "r", encoding="utf-8") as file:
+        soup = BeautifulSoup(file, "lxml")
 
     # html = fetch_html_with_oxylab(ad_url)
     # soup = BeautifulSoup(html, "html.parser")
@@ -109,13 +71,12 @@ def scrape_ad(ad_url: str) -> dict:
         json_data = {}  # Dictionary to store parsed JSON data
 
         # Find the specific script tag by ID
-        script_tag = soup.find('script', id="data-deferred-state-0")
+        script_tag = soup.find("script", id="data-deferred-state-0")
 
         if script_tag and script_tag.string:
             # Parse the JSON content directly from the script tag
             json_object = json.loads(script_tag.string.strip())
             json_data = json_object  # Store it in the dictionary
-
 
         # #For test purpose only: store locally the json file
         # with open("C:/Users/hennecol/Documents/safeflat/scraping/airbnb-oxylab/annonces/output2.json", 'w') as json_file:
@@ -128,68 +89,120 @@ def scrape_ad(ad_url: str) -> dict:
             print("Error retrieving url:", e)
             data["url"] = "Not Available"
 
-        # Retrieving title: 
+        # Retrieving title:
         try:
-            data["title"] = json_data["niobeMinimalClientData"][0][1]["data"]["presentation"]["stayProductDetailPage"]["sections"]["metadata"]["seoFeatures"]["title"]
+            data["title"] = json_data["niobeMinimalClientData"][0][1]["data"][
+                "presentation"
+            ]["stayProductDetailPage"]["sections"]["metadata"]["seoFeatures"]["title"]
         except Exception as e:
             print("Error retrieving title:", e)
             data["title"] = "Not Available"
 
-        # Retrieving type: 
+        # Retrieving type:
         try:
-            data["type"] = json_data["niobeMinimalClientData"][0][1]["data"]["presentation"]["stayProductDetailPage"]["sections"]["metadata"]["sharingConfig"]["propertyType"]
+            data["type"] = json_data["niobeMinimalClientData"][0][1]["data"][
+                "presentation"
+            ]["stayProductDetailPage"]["sections"]["metadata"]["sharingConfig"][
+                "propertyType"
+            ]
         except Exception as e:
             print("Error retrieving type:", e)
             data["type"] = "Not Available"
 
-        # Retrieving location: 
+        # Retrieving location:
         try:
-            data["location"] = json_data["niobeMinimalClientData"][0][1]["data"]["presentation"]["stayProductDetailPage"]["sections"]["metadata"]["sharingConfig"]["location"]
+            data["location"] = json_data["niobeMinimalClientData"][0][1]["data"][
+                "presentation"
+            ]["stayProductDetailPage"]["sections"]["metadata"]["sharingConfig"][
+                "location"
+            ]
         except Exception as e:
             print("Error retrieving location:", e)
             data["location"] = "Not Available"
-        
-        # Retrieving person_capacity: 
+
+        # Retrieving person_capacity:
         try:
-            data["person_capacity"] = json_data["niobeMinimalClientData"][0][1]["data"]["presentation"]["stayProductDetailPage"]["sections"]["metadata"]["sharingConfig"]["personCapacity"]
+            data["person_capacity"] = json_data["niobeMinimalClientData"][0][1]["data"][
+                "presentation"
+            ]["stayProductDetailPage"]["sections"]["metadata"]["sharingConfig"][
+                "personCapacity"
+            ]
         except Exception as e:
             print("Error retrieving person_capacity:", e)
             data["person_capacity"] = "Not Available"
-        
-        # Retrieving latitude: 
+
+        # Retrieving latitude:
         try:
-            data["latitude"] = json_data["niobeMinimalClientData"][0][1]["data"]["presentation"]["stayProductDetailPage"]["sections"]["metadata"]["loggingContext"]["eventDataLogging"]["listingLat"]
+            data["latitude"] = json_data["niobeMinimalClientData"][0][1]["data"][
+                "presentation"
+            ]["stayProductDetailPage"]["sections"]["metadata"]["loggingContext"][
+                "eventDataLogging"
+            ][
+                "listingLat"
+            ]
         except Exception as e:
             print("Error retrieving latitude:", e)
             data["latitude"] = "Not Available"
-        
-        # Retrieving longitude: 
+
+        # Retrieving longitude:
         try:
-            data["longitude"] = json_data["niobeMinimalClientData"][0][1]["data"]["presentation"]["stayProductDetailPage"]["sections"]["metadata"]["loggingContext"]["eventDataLogging"]["listingLng"]
+            data["longitude"] = json_data["niobeMinimalClientData"][0][1]["data"][
+                "presentation"
+            ]["stayProductDetailPage"]["sections"]["metadata"]["loggingContext"][
+                "eventDataLogging"
+            ][
+                "listingLng"
+            ]
         except Exception as e:
             print("Error retrieving longitude:", e)
             data["longitude"] = "Not Available"
-        
-        # Retrieving property infos list: 
+
+        # Retrieving property infos list:
         try:
-            property_infos_list = json_data["niobeMinimalClientData"][0][1]["data"]["presentation"]["stayProductDetailPage"]["sections"]["sbuiData"]["sectionConfiguration"]["root"]["sections"][0]["sectionData"]["overviewItems"]
-            data["property_infos_list"] = [element["title"] for element in property_infos_list]
+            property_infos_list = json_data["niobeMinimalClientData"][0][1]["data"][
+                "presentation"
+            ]["stayProductDetailPage"]["sections"]["sbuiData"]["sectionConfiguration"][
+                "root"
+            ][
+                "sections"
+            ][
+                0
+            ][
+                "sectionData"
+            ][
+                "overviewItems"
+            ]
+            data["property_infos_list"] = [
+                element["title"] for element in property_infos_list
+            ]
         except Exception as e:
             print("Error retrieving property_infos_list:", e)
             data["property_infos_list"] = "Not Available"
 
-        # Retrieving host name: 
+        # Retrieving host name:
         try:
-            data["host_name"] = json_data["niobeMinimalClientData"][0][1]["data"]["presentation"]["stayProductDetailPage"]["sections"]["sbuiData"]["sectionConfiguration"]["root"]["sections"][1]["sectionData"]["title"]
+            data["host_name"] = json_data["niobeMinimalClientData"][0][1]["data"][
+                "presentation"
+            ]["stayProductDetailPage"]["sections"]["sbuiData"]["sectionConfiguration"][
+                "root"
+            ][
+                "sections"
+            ][
+                1
+            ][
+                "sectionData"
+            ][
+                "title"
+            ]
         except Exception as e:
             print("Error retrieving host_name:", e)
             data["host_name"] = "Not Available"
 
-        # Retrieving description: 
+        # Retrieving description:
         try:
             data["description"] = "Not Available"
             desc_dict_list = find_html_descriptions(json_data)
-            if desc_dict_list :
+            if desc_dict_list:
                 desc_list = [element["htmlText"] for element in desc_dict_list]
             data["description"] = ", ".join(desc_list)
         except Exception as e:
@@ -199,7 +212,7 @@ def scrape_ad(ad_url: str) -> dict:
         try:
             data["amenities"] = "Not Available"
             amenities_dict = find_amenities_sections(json_data)[0]
-            amenities =[]
+            amenities = []
             allAmenities = amenities_dict["seeAllAmenitiesGroups"]
             for amenities_group in allAmenities:
                 for element in amenities_group["amenities"]:
@@ -208,11 +221,9 @@ def scrape_ad(ad_url: str) -> dict:
 
         except Exception as e:
             print("Error retrieving amenities:", e)
-    
 
     except Exception as e:
         print("Error extracting JSON data:", e)
-
 
     return data
 
@@ -280,11 +291,14 @@ def process_description(description: str) -> dict:
     return response
 
 
-
 if __name__ == "__main__":
     dict_data = scrape_ad(None)
     df_data = pd.DataFrame([dict_data])
-    df_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/airbnb-oxylab/outputs_csv/df_data.csv', header=True, encoding='utf-8')
+    df_data.to_csv(
+        "/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/airbnb-oxylab/outputs_csv/df_data.csv",
+        header=True,
+        encoding="utf-8",
+    )
     # processed_data = process_output(df_data)
     # processed_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/airbnb-oxylab/outputs_csv/processed_data.csv', header = True, encoding='utf-8')
     # print(processed_data)

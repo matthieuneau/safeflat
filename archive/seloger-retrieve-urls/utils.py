@@ -8,52 +8,6 @@ import re
 from preprocessing import *
 
 
-def fetch_html_with_oxylab(page_url: str) -> str:
-    username = "safeflat"
-    password = "saaj098KLN++"
-
-    proxies = {
-        "http": f"http://{username}:{password}@unblock.oxylabs.io:60000",
-        "https": f"http://{username}:{password}@unblock.oxylabs.io:60000",
-    }
-
-    response = requests.request(
-        "GET",
-        page_url,
-        verify=False,  # Ignore the certificate
-        proxies=proxies,
-    )
-
-    return response.text
-
-
-def retrieve_urls(page_url: str) -> list:
-    """Retrieve the URLs of the ads from the page
-
-    Args:
-        page (str): url of the page listing the ads
-
-    Returns:
-        list: list of the URLs of the ads on the page
-    """
-
-    html = fetch_html_with_oxylab(page_url)
-
-    soup = BeautifulSoup(html, "html.parser")
-    all_a_tags = soup.find_all("a")
-
-    url_list = [
-        item["href"]
-        for item in all_a_tags
-        if item.get("href", "").startswith("/annonces/")
-    ]
-
-    # Remove duplicates
-    url_list = list(set(url_list))
-    print(len(url_list))
-    print(f"url_list: {url_list}")
-
-
 def scrape_ad(ad_url: str) -> dict:
     """Scrape the data from the ad URL
 
@@ -63,39 +17,47 @@ def scrape_ad(ad_url: str) -> dict:
     Returns:
         dict: data scraped from the ad
     """
-    #for test purpose only, local html file:
+    # for test purpose only, local html file:
     file_path = "/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/seloger-oxylab/annonces/annonce2.html"
-    with open(file_path, 'r', encoding='utf-8') as file:
-        soup = BeautifulSoup(file, 'lxml')
+    with open(file_path, "r", encoding="utf-8") as file:
+        soup = BeautifulSoup(file, "lxml")
 
     # html = fetch_html_with_oxylab(ad_url)
     # soup = BeautifulSoup(html, "html.parser")
     data = {}
 
-    # Retrieving title 
+    # Retrieving title
     try:
-        data["title"] = soup.find('div', class_ = "Summarystyled__Title-sc-1u9xobv-4 dbveQQ").text.strip()
+        data["title"] = soup.find(
+            "div", class_="Summarystyled__Title-sc-1u9xobv-4 dbveQQ"
+        ).text.strip()
     except Exception as e:
         print("Error retrieving title:", e)
         data["title"] = "Not Available"
 
     # Retrieving price : Price isn't in the html file
     try:
-        data["price"] = soup.find('span', class_='global-styles__TextNoWrap-sc-1gbe8ip-6').text.strip()
+        data["price"] = soup.find(
+            "span", class_="global-styles__TextNoWrap-sc-1gbe8ip-6"
+        ).text.strip()
     except Exception as e:
         print("Error extracting price:", e)
         data["price"] = "Not Available"
 
     # # Retrieving City and Zip code
     try:
-        data["city and zip code"] = soup.find('span', class_='Localizationstyled__City-sc-gdkcr2-1 bgtLnh').text.strip()
+        data["city and zip code"] = soup.find(
+            "span", class_="Localizationstyled__City-sc-gdkcr2-1 bgtLnh"
+        ).text.strip()
     except Exception as e:
         print("Error extracting City and Zip Code:", e)
         data["city and zip code"] = "Not Available"
 
     # Retrieving the neighbourhood
     try:
-        data["neighbourhood"] = soup.find('span', {'data-test': 'neighbourhood'}).text.strip()
+        data["neighbourhood"] = soup.find(
+            "span", {"data-test": "neighbourhood"}
+        ).text.strip()
     except Exception as e:
         print("Error extracting Neighbourhood:", e)
         data["neighbourhood"] = "Not Available"
@@ -109,23 +71,29 @@ def scrape_ad(ad_url: str) -> dict:
         data["numero_etage"] = "Not Available"
 
         # Attempt to find the outer div wrapper
-        div_tags_wrapper = soup.find('div', class_='Summarystyled__TagsWrapper-sc-1u9xobv-14')
+        div_tags_wrapper = soup.find(
+            "div", class_="Summarystyled__TagsWrapper-sc-1u9xobv-14"
+        )
         if div_tags_wrapper is not None:
             caracteristiques = []
             # Iterate over each tag container found within the wrapper
-            for div_tag_container in div_tags_wrapper.find_all('div', class_='Tags__TagContainer-sc-edpl7u-0'):
-                caractere = div_tag_container.text.strip().lower()  # Convert text to lowercase
+            for div_tag_container in div_tags_wrapper.find_all(
+                "div", class_="Tags__TagContainer-sc-edpl7u-0"
+            ):
+                caractere = (
+                    div_tag_container.text.strip().lower()
+                )  # Convert text to lowercase
                 caracteristiques.append(caractere)
 
             # Assign values based on the content of each tag container
             for text in caracteristiques:
-                if 'pièce' in text:
+                if "pièce" in text:
                     data["nb_rooms"] = text
-                elif 'chambre' in text:
+                elif "chambre" in text:
                     data["nb_bedrooms"] = text
-                elif 'm²' in text:
+                elif "m²" in text:
                     data["surface"] = text
-                elif 'étage' in text:  # Ensuring the keyword is also in lowercase
+                elif "étage" in text:  # Ensuring the keyword is also in lowercase
                     data["numero_etage"] = text
         else:
             print("No div tags wrapper found for details.")
@@ -133,10 +101,11 @@ def scrape_ad(ad_url: str) -> dict:
     except Exception as e:
         print("Error extracting details:", e)
 
-
     # Extracting description
     try:
-        data["description"] = soup.find('div', class_='ShowMoreText__UITextContainer-sc-1swit84-0').text.strip()
+        data["description"] = soup.find(
+            "div", class_="ShowMoreText__UITextContainer-sc-1swit84-0"
+        ).text.strip()
     except Exception as e:
         print("Error extracting description:", e)
         data["description"] = "Not Available"
@@ -151,14 +120,19 @@ def scrape_ad(ad_url: str) -> dict:
         data["Hygiène"] = "Not Available"
         data["Pièces à vivre"] = "Not Available"
 
-        feature_elements = soup.find_all('div', class_='TitledDescription__TitledDescriptionContainer-sc-p0zomi-0 gtBcDa GeneralFeaturesstyled__GeneralListTitledDescription-sc-1ia09m5-5 jsTjoV')
-        
+        feature_elements = soup.find_all(
+            "div",
+            class_="TitledDescription__TitledDescriptionContainer-sc-p0zomi-0 gtBcDa GeneralFeaturesstyled__GeneralListTitledDescription-sc-1ia09m5-5 jsTjoV",
+        )
+
         for element in feature_elements:
             texte = []
-            titre_element = element.find('div', class_='feature-title')
+            titre_element = element.find("div", class_="feature-title")
             if titre_element:
                 titre = titre_element.text.strip()
-                texte_liste = element.find_all('div', class_='GeneralFeaturesstyled__TextWrapper-sc-1ia09m5-3')
+                texte_liste = element.find_all(
+                    "div", class_="GeneralFeaturesstyled__TextWrapper-sc-1ia09m5-3"
+                )
                 if texte_liste:
                     for texte_element in texte_liste:
                         texte.append(texte_element.text.strip())
@@ -169,23 +143,29 @@ def scrape_ad(ad_url: str) -> dict:
                         print(f"The column '{titre}' isn't in data")
             else:
                 print("Feature title element not found.")
-            
-    except Exception as e:
-        print("Error extracting features (exterieur, cadre et situation, surfaces annexes, service et accessibilite, cuisine, hygiene, piece a vivre):", e)
 
-    
+    except Exception as e:
+        print(
+            "Error extracting features (exterieur, cadre et situation, surfaces annexes, service et accessibilite, cuisine, hygiene, piece a vivre):",
+            e,
+        )
+
     # Retrieving DPE and GES:
     try:
-    # Initialize with default values assuming 'result' dictionary already exists
+        # Initialize with default values assuming 'result' dictionary already exists
         data["Diagnostic de performance énergétique (DPE)"] = "Not Available"
         data["Indice d'émission de gaz à effet de serre (GES)"] = "Not Available"
 
-        energy_elements = soup.find_all('div', {'data-test': 'diagnostics-content'})
+        energy_elements = soup.find_all("div", {"data-test": "diagnostics-content"})
         for element in energy_elements:
             try:
-                titre_element = element.find('div', {'data-test': 'diagnostics-preview-title'})
-                letter_element = element.find('div', class_='Previewstyled__Grade-sc-k3u73o-6 ehFYCZ')
-                
+                titre_element = element.find(
+                    "div", {"data-test": "diagnostics-preview-title"}
+                )
+                letter_element = element.find(
+                    "div", class_="Previewstyled__Grade-sc-k3u73o-6 ehFYCZ"
+                )
+
                 # Check if both elements are found to avoid NoneType errors
                 if titre_element and letter_element:
                     titre = titre_element.text.strip()
@@ -218,17 +198,19 @@ def scrape_ad(ad_url: str) -> dict:
         price_details = soup.select('div[data-test="price-detail-content"] > div')
 
         title_map = {
-        "Loyer de base (hors charge)": "loyer_base",
-        "Charges forfaitaires": "charges_forfaitaires",
-        "Complément de loyer": "complement_loyer",
-        "Dépôt de garantie": "depot_garantie",
-        "Loyer charges comprises": "loyer_charges_comprises"
+            "Loyer de base (hors charge)": "loyer_base",
+            "Charges forfaitaires": "charges_forfaitaires",
+            "Complément de loyer": "complement_loyer",
+            "Dépôt de garantie": "depot_garantie",
+            "Loyer charges comprises": "loyer_charges_comprises",
         }
 
         # Iterate through each div and extract the necessary information
         for detail in price_details:
-            spans = detail.find_all('span')
-            if len(spans) == 2:  # Ensure there are exactly two spans as expected for title and value
+            spans = detail.find_all("span")
+            if (
+                len(spans) == 2
+            ):  # Ensure there are exactly two spans as expected for title and value
                 title = spans[0].text.strip()
                 value = spans[1].text.strip()
                 if title in title_map:  # Check if the title matches any in the map
@@ -236,10 +218,11 @@ def scrape_ad(ad_url: str) -> dict:
     except Exception as e:
         print("Error extracting price details:", e)
 
-
     # Retrieving host name:
     try:
-        data["host_name"] = soup.select_one('.LightSummarystyled__IndividualName-sc-112ffju-12.iqzZxZ').text.strip()
+        data["host_name"] = soup.select_one(
+            ".LightSummarystyled__IndividualName-sc-112ffju-12.iqzZxZ"
+        ).text.strip()
     except Exception as e:
         print("Error extracting host name:", e)
         data["host_name"] = "Not Available"
@@ -313,7 +296,15 @@ def process_description(description: str) -> dict:
 if __name__ == "__main__":
     dict_data = scrape_ad(None)
     df_data = pd.DataFrame([dict_data])
-    df_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/seloger-oxylab/outputs_csv/df_data.csv', header=True, encoding='utf-8')
+    df_data.to_csv(
+        "/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/seloger-oxylab/outputs_csv/df_data.csv",
+        header=True,
+        encoding="utf-8",
+    )
     processed_data = process_output(df_data)
-    processed_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/seloger-oxylab/outputs_csv/processed_data.csv', header = True, encoding='utf-8')
+    processed_data.to_csv(
+        "/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/seloger-oxylab/outputs_csv/processed_data.csv",
+        header=True,
+        encoding="utf-8",
+    )
     print(processed_data)

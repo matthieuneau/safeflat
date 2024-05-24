@@ -7,24 +7,6 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def fetch_html_with_oxylab(page_url: str) -> str:
-    username = "safeflat2"
-    password = "saaj098KLN++"
-
-    proxies = {
-        "http": f"http://{username}:{password}@unblock.oxylabs.io:60000",
-        "https": f"http://{username}:{password}@unblock.oxylabs.io:60000",
-    }
-
-    response = requests.request(
-        "GET",
-        page_url,
-        verify=False,  # Ignore the certificate
-        proxies=proxies,
-    )
-    return response.text
-
-
 def retrieve_urls(page_url: str) -> list:
     """Retrieve the URLs of the ads from the page
 
@@ -380,11 +362,14 @@ def remove_already_scraped_urls(urls: list) -> list:
 
     return urls
 
+
 if __name__ == "__main__":
     # dict_data = scrape_ad(
     #     "https://www.pap.fr/annonces/appartement-bures-sur-yvette-91440-r432200988"
     # )
-    data_csv = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/pap-oxylab/csv_outputs/output.csv')
+    data_csv = pd.read_csv(
+        "/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/pap-oxylab/csv_outputs/output.csv"
+    )
     df_data = pd.DataFrame(data_csv)
     result = process_outputs(df_data)
     print(result)
