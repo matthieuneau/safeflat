@@ -19,4 +19,13 @@ manifest_hash = ""
 packagetype = "Zip"
 functions = ["scrapeUrls"]
 
+[function_build_definitions.5ea0ff97-bdc1-4b05-950f-02fce1a73e7a]
+codeuri = "/Users/mneau/Desktop/safeflat/safeflat-sam-app/detection"
+runtime = "python3.11"
+architecture = "arm64"
+handler = "main.handler"
+manifest_hash = ""
+packagetype = "Zip"
+functions = ["detection"]
+
 [layer_build_definitions]
