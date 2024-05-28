@@ -25,6 +25,8 @@ def retrieve_urls(page_url: str) -> list:
 
     # Remove duplicates
     url_list = list(set(url_list))
-    print(len(url_list))
-    print(f"url_list: {url_list}")
+
+    # Add prefix and editing to have the correct URL
+    url_list = [f"https://www.abritel.fr{url}" for url in url_list]
+    print("urls retrieved: ", url_list)
     return url_list

@@ -1,3 +1,7 @@
+from bs4 import BeautifulSoup
+from utils import *
+
+
 def scrape_ad(ad_url: str) -> dict:
     """Scrape the data from the ad URL
 
