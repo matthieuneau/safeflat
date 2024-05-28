@@ -54,3 +54,62 @@ Resources:
         - !Ref pythonDependenciesLayer
     Metadata:
       SamResourceId: detectSublets
+
+  MyStateMachine:
+    Type: AWS::StepFunctions::StateMachine
+    Properties:
+      DefinitionString:
+        !Sub |
+          {
+            "Comment": "A Step Function to process sublists in parallel",
+            "StartAt": "RetrieveUrls",
+            "States": {
+              "RetrieveUrls": {
+                "Type": "Task",
+                "Resource": "${retrieveUrlsLambda.Arn}",
+                "Next": "BatchUrls"
+              },
+              "BatchUrls": {
+                "Type": "Map",
+                "InputPath": "$.lists",
+                "ItemsPath": "$",
+                "MaxConcurrency": 0,
+                "Iterator": {
+                  "StartAt": "ScrapeUrls",
+                  "States": {
+                    "ScrapeUrls": {
+                      "Type": "Task",
+                      "Resource": "${scrapeUrlsLambda.Arn}",
+                      "End": true
+                    }
+                  }
+                },
+                "End": true
+              }
+            }
+          }
+      RoleArn: !GetAtt StepFunctionsExecutionRole.Arn
+
+  StepFunctionsExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - states.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: StepFunctionsExecutionPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - lambda:InvokeFunction
+                Resource: 
+                  - !GetAtt retrieveUrlsLambda.Arn
+                  - !GetAtt scrapeUrlsLambda.Arn
+                  - !GetAtt detectSubletsLambda.Arn
