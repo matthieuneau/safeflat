@@ -12,34 +12,8 @@ Globals:
     Architectures:
       - arm64
     Timeout: 900
-    Layers:
-      !Ref pythonDependenciesLayer
 
 Resources:
-  retrieveUrlsLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: retrieveUrls
-      CodeUri: retrieveUrls/
-    Metadata:
-      SamResourceId: retrieveUrls
-  
-  scrapeUrlsLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: scrapeUrls
-      CodeUri: scrapeUrls/
-    Metadata:
-      SamResourceId: scrapeUrls
-
-  detectSubletsLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: detectSublets
-      CodeUri: detectSublets/
-    Metadata:
-      SamResourceId: detectSublets
-  
   pythonDependenciesLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
@@ -50,3 +24,33 @@ Resources:
       CompatibleArchitectures:
         - arm64
       RetentionPolicy: Retain
+
+  retrieveUrlsLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: retrieveUrls
+      CodeUri: retrieveUrls/
+      Layers:
+        - !Ref pythonDependenciesLayer
+    Metadata:
+      SamResourceId: retrieveUrls
+  
+  scrapeUrlsLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: scrapeUrls
+      CodeUri: scrapeUrls/
+      Layers:
+        - !Ref pythonDependenciesLayer
+    Metadata:
+      SamResourceId: scrapeUrls
+
+  detectSubletsLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: detectSublets
+      CodeUri: detectSublets/
+      Layers:
+        - !Ref pythonDependenciesLayer
+    Metadata:
+      SamResourceId: detectSublets
