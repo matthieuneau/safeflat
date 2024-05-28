@@ -67,6 +67,9 @@ Resources:
               "RetrieveUrls": {
                 "Type": "Task",
                 "Resource": "${retrieveUrlsLambda.Arn}",
+                "Parameters": {
+                  "website.$": "$.website"
+                },
                 "Next": "BatchUrls"
               },
               "BatchUrls": {
@@ -74,12 +77,20 @@ Resources:
                 "InputPath": "$.lists",
                 "ItemsPath": "$",
                 "MaxConcurrency": 0,
+                "Parameters": {
+                  "website.$": "$.website",
+                  "sublist.$": "$$.Map.Item.Value"
+                },
                 "Iterator": {
                   "StartAt": "ScrapeUrls",
                   "States": {
                     "ScrapeUrls": {
                       "Type": "Task",
                       "Resource": "${scrapeUrlsLambda.Arn}",
+                      "Parameters": {
+                        "website.$": "$.website",
+                        "sublist.$": "$.sublist"
+                      },
                       "End": true
                     }
                   }
@@ -89,6 +100,7 @@ Resources:
             }
           }
       RoleArn: !GetAtt StepFunctionsExecutionRole.Arn
+
 
   StepFunctionsExecutionRole:
     Type: AWS::IAM::Role
