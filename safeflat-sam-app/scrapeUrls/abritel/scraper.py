@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 from utils import *
 from bs4 import BeautifulSoup
 
+=======
+>>>>>>> 10e48ddd3c7a91c7d8ae459ea604f8ff469fe98d
 def abritel_scraper(ad_url: str) -> dict:
     """Scrape the data from the ad URL
 
