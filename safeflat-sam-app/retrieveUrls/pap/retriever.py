@@ -2,7 +2,8 @@ from utils import *
 from bs4 import BeautifulSoup
 
 
-def retrieve_urls(page_url: str) -> list:
+### STILL NEED TO ADD THE PAGE NAVIGATION
+def retrieve_urls() -> list:
     """Retrieve the URLs of the ads from the page
 
     Args:
@@ -11,21 +12,26 @@ def retrieve_urls(page_url: str) -> list:
     Returns:
         list: list of the URLs of the ads on the page
     """
+    urls_to_scrape = []
 
-    html = fetch_html_with_oxylab(page_url)
+    for i in range(1, 3):
 
-    soup = BeautifulSoup(html, "html.parser")
-    all_a_tags = soup.find_all("a")
+        page_url = f"https://www.pap.fr/annonce/location-appartement-maison{i}"
 
-    url_list = [
-        item["href"]
-        for item in all_a_tags
-        if item.get("href", "").startswith("/annonces/")
-    ]
+        html = fetch_html_with_oxylab(page_url)
 
-    # Remove duplicates
-    url_list = list(set(url_list))
-    # Add prefix and editing to have the correct URL
-    url_list = [f"https://www.pap.fr{url}" for url in url_list]
-    print("urls retrieved: ", url_list)
-    return url_list
+        soup = BeautifulSoup(html, "html.parser")
+        all_a_tags = soup.find_all("a")
+
+        url_list = [
+            item["href"]
+            for item in all_a_tags
+            if item.get("href", "").startswith("/annonces/")
+        ]
+        # Remove duplicates
+        url_list = list(set(url_list))
+        # Add prefix and editing to have the correct URL
+        url_list = [f"https://www.pap.fr{url}" for url in url_list]
+        urls_to_scrape = urls_to_scrape + [url_list]
+
+    return urls_to_scrape
