@@ -17,15 +17,15 @@ def retrieve_urls(page_url: str) -> list:
         list: list of the URLs of the ads on the page
     """
 
-    # html = fetch_html_with_oxylab(page_url)
-    # soup = BeautifulSoup(html, "html.parser")
+    html = fetch_html_with_oxylab(page_url)
+    soup = BeautifulSoup(html, "html.parser")
 
     # #for test purpose only, local html file:
-    file_path = "/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/retrieveUrls/airbnb/listing_annonces.html"
-    with open(file_path, 'r', encoding='utf-8') as file:
-        soup = BeautifulSoup(file, 'lxml')
+    # file_path = "/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/retrieveUrls/airbnb/listing_annonces.html"
+    # with open(file_path, 'r', encoding='utf-8') as file:
+    #     soup = BeautifulSoup(file, 'lxml')
 
-
+    id_list = []
     # # Retrieving JSON data:
     try:
         json_data = {}  # Dictionary to store parsed JSON data
@@ -38,19 +38,20 @@ def retrieve_urls(page_url: str) -> list:
             json_object = json.loads(script_tag.string.strip())
             json_data = json_object  # Store it in the dictionary
 
-        # For test purpose only: store locally the json file
-        with open("/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/retrieveUrls/airbnb/output.json", 'w') as json_file:
-            json.dump(json_data, json_file, indent=4)
+        # # For test purpose only: store locally the json file
+        # with open("/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/retrieveUrls/airbnb/output.json", 'w') as json_file:
+        #     json.dump(json_data, json_file, indent=4)
+
+        id_dict = json_data['niobeMinimalClientData'][0][1]['data']['presentation']['staysSearch']['mapResults']['staysInViewport']
+        id_list = [element['listingId'] for element in id_dict]
 
     except Exception as e:
         print("Error extracting JSON data:", e)
 
-    # # Remove duplicates
-    # url_list = list(set(url_list))
+    # Remove duplicates
+    id_list = list(set(id_list))
 
-    # # Add prefix and editing to have the correct URL
-    # url_list = [f"https://www.airbnb.fr{url}" for url in url_list]
-    # print("urls retrieved: ", url_list)
-    # return url_list
-
-retrieve_urls(None)
+    # Add prefix and editing to have the correct URL
+    url_list = [f"https://www.airbnb.fr/rooms/{id}" for id in id_list]
+    print("urls retrieved: ", url_list)
+    return url_list
