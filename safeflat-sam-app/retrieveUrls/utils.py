@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 
 
 def fetch_html_with_oxylab(page_url: str) -> str:
-    username = "safeflat"
+    username = "safeflat4"
     password = "saaj098KLN++"
 
     proxies = {
