@@ -1,6 +1,11 @@
-from utils import *
 from bs4 import BeautifulSoup
+import json
+import sys
+import os
 
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(parent_dir)
+from utils import *
 
 def retrieve_urls(page_url: str) -> list:
     """Retrieve the URLs of the ads from the page
@@ -12,21 +17,40 @@ def retrieve_urls(page_url: str) -> list:
         list: list of the URLs of the ads on the page
     """
 
-    html = fetch_html_with_oxylab(page_url)
+    # html = fetch_html_with_oxylab(page_url)
+    # soup = BeautifulSoup(html, "html.parser")
 
-    soup = BeautifulSoup(html, "html.parser")
-    all_a_tags = soup.find_all("a")
+    # #for test purpose only, local html file:
+    file_path = "/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/retrieveUrls/airbnb/listing_annonces.html"
+    with open(file_path, 'r', encoding='utf-8') as file:
+        soup = BeautifulSoup(file, 'lxml')
 
-    url_list = [
-        item["href"]
-        for item in all_a_tags
-        if item.get("href", "").startswith("/rooms/")
-    ]
 
-    # Remove duplicates
-    url_list = list(set(url_list))
+    # # Retrieving JSON data:
+    try:
+        json_data = {}  # Dictionary to store parsed JSON data
 
-    # Add prefix and editing to have the correct URL
-    url_list = [f"https://www.airbnb.fr{url}" for url in url_list]
-    print("urls retrieved: ", url_list)
-    return url_list
+        # Find the specific script tag by ID
+        script_tag = soup.find("script", id="data-deferred-state-0")
+
+        if script_tag and script_tag.string:
+            # Parse the JSON content directly from the script tag
+            json_object = json.loads(script_tag.string.strip())
+            json_data = json_object  # Store it in the dictionary
+
+        # For test purpose only: store locally the json file
+        with open("/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/retrieveUrls/airbnb/output.json", 'w') as json_file:
+            json.dump(json_data, json_file, indent=4)
+
+    except Exception as e:
+        print("Error extracting JSON data:", e)
+
+    # # Remove duplicates
+    # url_list = list(set(url_list))
+
+    # # Add prefix and editing to have the correct URL
+    # url_list = [f"https://www.airbnb.fr{url}" for url in url_list]
+    # print("urls retrieved: ", url_list)
+    # return url_list
+
+retrieve_urls(None)
