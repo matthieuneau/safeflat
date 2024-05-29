@@ -1,15 +1,16 @@
 import requests
 import pandas as pd
 from sqlalchemy import create_engine
+import os
+import dotenv
+
+dotenv.load_dotenv()
 
 
 def fetch_html_with_oxylab(page_url: str) -> str:
-    username = "safeflat"
-    password = "saaj098KLN++"
-
     proxies = {
-        "http": f"http://{username}:{password}@unblock.oxylabs.io:60000",
-        "https": f"http://{username}:{password}@unblock.oxylabs.io:60000",
+        "http": f"http://{os.getenv('OXYLAB_USERNAME')}:{os.getenv('OXYLAB_PASSWORD')}@unblock.oxylabs.io:60000",
+        "https": f"http://{os.getenv('OXYLAB_USERNAME')}:{os.getenv('OXYLAB_PASSWORD')}@unblock.oxylabs.io:60000",
     }
 
     response = requests.request(
@@ -25,10 +26,10 @@ def fetch_html_with_oxylab(page_url: str) -> str:
 ### TO BE EDITED ###
 def read_from_database(query: str) -> pd.DataFrame:
     db_config = {
-        "host": "safeflat-scraping-data.cls8g8ie67qg.us-east-1.rds.amazonaws.com",
+        "host": os.getenv("DB_HOST"),
         "port": 3306,
         "user": "admin",
-        "password": "SBerWIyVxBu229rGer6Z",
+        "password": os.getenv("DB_PASSWORD"),
         "database": "scraping",
     }
 

@@ -3,15 +3,16 @@ import os
 import ast
 import pandas as pd
 from langchain_openai import OpenAI
+import dotenv
+from sqlalchemy import create_engine
+
+dotenv.load_dotenv()
 
 
 def fetch_html_with_oxylab(page_url: str) -> str:
-    username = "safeflat"
-    password = "saaj098KLN++"
-
     proxies = {
-        "http": f"http://{username}:{password}@unblock.oxylabs.io:60000",
-        "https": f"http://{username}:{password}@unblock.oxylabs.io:60000",
+        "http": f"http://{os.getenv('OXYLAB_USERNAME')}:{os.getenv('OXYLAB_PASSWORD')}@unblock.oxylabs.io:60000",
+        "https": f"http://{os.getenv('OXYLAB_USERNAME')}:{os.getenv('OXYLAB_PASSWORD')}@unblock.oxylabs.io:60000",
     }
 
     response = requests.request(
@@ -25,8 +26,7 @@ def fetch_html_with_oxylab(page_url: str) -> str:
 
 
 def process_description(description: str) -> pd.DataFrame:
-    os.environ["OPENAI_API_KEY"] = "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"
-    llm = OpenAI(model="gpt-3.5-turbo-instruct")
+    llm = OpenAI(model="gpt-3.5-turbo-instruct", api_key=os.getenv("OPENAI_API_KEY"))
 
     prompt = f"""Tu es un expert en location immobilière et tu maîtrises tout le vocabulaire associé. Tu dois m'aider à extraire des informations pertinentes parmi de longues descriptions de biens immobiliers que je vais te donner.
 
@@ -124,10 +124,10 @@ def save_to_database(data_collected: pd.DataFrame):
     data_collected = data_collected.map(str)
 
     db_config = {
-        "host": "safeflat-scraping-data.cls8g8ie67qg.us-east-1.rds.amazonaws.com",
+        "host": os.getenv("DB_HOST"),
         "port": 3306,
         "user": "admin",
-        "password": "SBerWIyVxBu229rGer6Z",
+        "password": os.getenv("DB_PASSWORD"),
         "database": "scraping",
     }
 
