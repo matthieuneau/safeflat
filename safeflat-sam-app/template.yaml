@@ -74,12 +74,12 @@ Resources:
               },
               "BatchUrls": {
                 "Type": "Map",
-                "InputPath": "$.lists",
-                "ItemsPath": "$",
+                "InputPath": "$",
+                "ItemsPath": "$.lists",
                 "MaxConcurrency": 0,
                 "Parameters": {
                   "website.$": "$.website",
-                  "sublist.$": "$$.Map.Item.Value"
+                  "lists.$": "$$.Map.Item.Value"
                 },
                 "Iterator": {
                   "StartAt": "ScrapeUrls",
@@ -89,7 +89,7 @@ Resources:
                       "Resource": "${scrapeUrlsLambda.Arn}",
                       "Parameters": {
                         "website.$": "$.website",
-                        "sublist.$": "$.sublist"
+                        "sublist.$": "$.lists"
                       },
                       "End": true
                     }
