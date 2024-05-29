@@ -1,6 +1,7 @@
 from abritel import retriever as abritel
 from airbnb import retriever as airbnb
 from leboncoin import retriever as leboncoin
+from gensdeconfiance import retriever as gensdeconfiance
 from pap import retriever as pap
 from seloger import retriever as seloger
 
