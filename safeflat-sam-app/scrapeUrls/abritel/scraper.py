@@ -2,7 +2,7 @@ from utils import *
 from bs4 import BeautifulSoup
 
 
-def abritel_scraper(ad_url: str) -> dict:
+def scrape_ad(ad_url: str) -> dict:
     """Scrape the data from the ad URL
 
     Args:

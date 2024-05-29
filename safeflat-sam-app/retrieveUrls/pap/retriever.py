@@ -1,4 +1,4 @@
-from ..utils import *
+from utils import *
 from bs4 import BeautifulSoup
 
 
@@ -28,6 +28,10 @@ def retrieve_urls() -> list:
             for item in all_a_tags
             if item.get("href", "").startswith("/annonces/")
         ]
+
+        #### FOR TESTING PURPOSE, SHORTEN THE LIST FOR NOW
+        url_list = url_list[:2]
+
         # Remove duplicates
         url_list = list(set(url_list))
         # Add prefix and editing to have the correct URL

@@ -4,6 +4,7 @@ from leboncoin import retriever as leboncoin
 from gensdeconfiance import retriever as gensdeconfiance
 from pap import retriever as pap
 from seloger import retriever as seloger
+import os
 
 
 def handler(event, context):

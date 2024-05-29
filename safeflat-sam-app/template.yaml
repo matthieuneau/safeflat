@@ -12,6 +12,14 @@ Globals:
     Architectures:
       - arm64
     Timeout: 900
+    Environment:
+      Variables:
+        OXYLAB_USERNAME: "{{resolve:ssm:/safeflat/OXYLAB_USERNAME}}"
+        OXYLAB_PASSWORD: "{{resolve:ssm:/safeflat/OXYLAB_PASSWORD}}"
+        OPENAI_API_KEY: "{{resolve:ssm:/safeflat/OPENAI_API_KEY}}"
+        DB_HOST: "{{resolve:ssm:/safeflat/DB_HOST}}"
+        DB_PASSWORD: "{{resolve:ssm:/safeflat/DB_PASSWORD}}"
+
 
 Resources:
   pythonDependenciesLayer:
@@ -32,6 +40,9 @@ Resources:
       CodeUri: retrieveUrls/
       Layers:
         - !Ref pythonDependenciesLayer
+      Environment:
+        Variables:
+          OPENAI_API_KEY: os.getenv('OPENAI_API_KEY')
     Metadata:
       SamResourceId: retrieveUrls
   

@@ -119,7 +119,7 @@ def add_desc_content_to_df(
 
 
 ### TO BE EDITED ###
-def save_to_database(data_collected: pd.DataFrame):
+def save_to_database(data_collected: pd.DataFrame, website: str):
     # Convert all columns to string to avoid errors when writing to database
     data_collected = data_collected.map(str)
 
@@ -131,11 +131,9 @@ def save_to_database(data_collected: pd.DataFrame):
         "database": "scraping",
     }
 
-    table_name = "pap"
-
     # Creating a connection string for SQLAlchemy
     connection_string = f'mysql+pymysql://{db_config["user"]}:{db_config["password"]}@{db_config["host"]}:{db_config["port"]}/{db_config["database"]}'
 
     engine = create_engine(connection_string)
 
-    data_collected.to_sql(name="pap", con=engine, if_exists="append", index=False)
+    data_collected.to_sql(name=website, con=engine, if_exists="append", index=False)
