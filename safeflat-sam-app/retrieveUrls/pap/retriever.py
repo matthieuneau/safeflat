@@ -1,3 +1,7 @@
+from utils import *
+from bs4 import BeautifulSoup
+
+
 def retrieve_urls(page_url: str) -> list:
     """Retrieve the URLs of the ads from the page
 
