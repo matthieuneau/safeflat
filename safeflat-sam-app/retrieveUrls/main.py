@@ -16,5 +16,6 @@ def handler(event, context):
 
     urls_retriever = eval(f"{website}.retrieve_urls")
     data = urls_retriever()
+    print("urls retrieved: ", data)
 
     return {"website": event["website"], "lists": data}
