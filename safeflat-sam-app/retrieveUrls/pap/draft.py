@@ -28,10 +28,18 @@ def retrieve_urls() -> list:
             for item in all_a_tags
             if item.get("href", "").startswith("/annonces/")
         ]
+        print(url_list)
         # Remove duplicates
         url_list = list(set(url_list))
+        print(url_list)
         # Add prefix and editing to have the correct URL
         url_list = [f"https://www.pap.fr{url}" for url in url_list]
+        print(url_list)
         urls_to_scrape = urls_to_scrape + [url_list]
+        print(urls_to_scrape)
 
     return urls_to_scrape
+
+
+if __name__ == "__main__":
+    retrieve_urls()
