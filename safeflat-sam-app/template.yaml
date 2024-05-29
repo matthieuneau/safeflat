@@ -129,8 +129,8 @@ Resources:
   MyStateMachineSchedule:
     Type: AWS::Events::Rule
     Properties:
-      Description: "Schedule to trigger the Step Function every 5 minutes from 12:45 to 12:59 UTC on May 28th"
-      ScheduleExpression: "cron(50/5 12 28 5 ? 2024)"
+      Description: "Schedule to trigger the Step Function every 5 minutes from... "
+      ScheduleExpression: "cron(50/5 12 13 6 ? 2024)"
       State: "ENABLED"
       Targets:
         - Arn: !GetAtt MyStateMachine.Arn
