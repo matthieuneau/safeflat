@@ -18,6 +18,7 @@ def fetch_html_with_oxylab(page_url: str) -> str:
         verify=False,  # Ignore the certificate
         proxies=proxies,
     )
+    
 
     return response.text
 

@@ -1,6 +1,11 @@
 from bs4 import BeautifulSoup
 import json
+import os
+import sys
 
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(parent_dir)
+from utils import *
 
 def scrape_ad(ad_url: str) -> dict:
     """Scrape the data from the ad URL
@@ -12,12 +17,12 @@ def scrape_ad(ad_url: str) -> dict:
         dict: data scraped from the ad
     """
     # for test purpose only, local html file:
-    file_path = "/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/airbnb-oxylab/annonces/annonce1.html"
-    with open(file_path, "r", encoding="utf-8") as file:
-        soup = BeautifulSoup(file, "lxml")
+    # file_path = "/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/airbnb-oxylab/annonces/annonce1.html"
+    # with open(file_path, "r", encoding="utf-8") as file:
+    #     soup = BeautifulSoup(file, "lxml")
 
-    # html = fetch_html_with_oxylab(ad_url)
-    # soup = BeautifulSoup(html, "html.parser")
+    html = fetch_html_with_oxylab(ad_url)
+    soup = BeautifulSoup(html, "html.parser")
     data = {}
 
     # # Retrieving JSON data:
@@ -111,46 +116,25 @@ def scrape_ad(ad_url: str) -> dict:
             print("Error retrieving longitude:", e)
             data["longitude"] = "Not Available"
 
-        # Retrieving property infos list:
+        # Retrieving property infos list: 
         try:
-            property_infos_list = json_data["niobeMinimalClientData"][0][1]["data"][
-                "presentation"
-            ]["stayProductDetailPage"]["sections"]["sbuiData"]["sectionConfiguration"][
-                "root"
-            ][
-                "sections"
-            ][
-                0
-            ][
-                "sectionData"
-            ][
-                "overviewItems"
-            ]
-            data["property_infos_list"] = [
-                element["title"] for element in property_infos_list
-            ]
+            data["property_infos_list"] = "Not Available"
+            section_data = find_property_list_infos(json_data)
+            infos_list_of_dicts = section_data[0]["overviewItems"]
+            infos_list = [element["title"] for element in infos_list_of_dicts]
+            data["property_infos_list"] = infos_list
         except Exception as e:
             print("Error retrieving property_infos_list:", e)
-            data["property_infos_list"] = "Not Available"
+            
 
         # Retrieving host name:
         try:
-            data["host_name"] = json_data["niobeMinimalClientData"][0][1]["data"][
-                "presentation"
-            ]["stayProductDetailPage"]["sections"]["sbuiData"]["sectionConfiguration"][
-                "root"
-            ][
-                "sections"
-            ][
-                1
-            ][
-                "sectionData"
-            ][
-                "title"
-            ]
+            data["host_name"] = "Not Available"
+            section_data = find_host_name(json_data)
+            data["host_name"] = section_data[0]["title"] 
         except Exception as e:
             print("Error retrieving host_name:", e)
-            data["host_name"] = "Not Available"
+            
 
         # Retrieving description:
         try:
@@ -218,5 +202,48 @@ def find_amenities_sections(data, results=None):
     elif isinstance(data, list):
         for item in data:
             find_amenities_sections(item, results)
+
+    return results
+
+
+def find_property_list_infos(data, results=None):
+    if results is None:
+        results = []
+
+    if isinstance(data, dict):
+        if (
+            "__typename" in data
+            and "title" in data
+            and "overviewItems" in data
+            and data["__typename"] == "PdpOverviewV2Section"
+        ):
+            results.append(data)
+        for key, value in data.items():
+            find_property_list_infos(value, results)
+    elif isinstance(data, list):
+        for item in data:
+            find_property_list_infos(item, results)
+
+    return results
+
+
+def find_host_name(data, results=None):
+    if results is None:
+        results = []
+
+    if isinstance(data, dict):
+        if (
+            "__typename" in data
+            and "title" in data
+            and "overviewItems" in data
+            and "hostAvatar" in data
+            and data["__typename"] == "PdpHostOverviewDefaultSection"
+        ):
+            results.append(data)
+        for key, value in data.items():
+            find_host_name(value, results)
+    elif isinstance(data, list):
+        for item in data:
+            find_host_name(item, results)
 
     return results

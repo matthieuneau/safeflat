@@ -47,8 +47,7 @@ def generate_airbnb_url(postal_code, page_number, checkin_date, checkout_date):
     if page_number > 1:
         base_url += "&pagination_search=true&cursor=" + cursor
     
-    return base_url.format(postal_code=postal_code)
+    return base_url
 
-# Example usage
-print(generate_airbnb_url("67000", 15, "03/10/2024", "04/10/2024"))
+
 

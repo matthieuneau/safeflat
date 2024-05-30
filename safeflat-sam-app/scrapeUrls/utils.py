@@ -6,7 +6,7 @@ from langchain_openai import OpenAI
 
 
 def fetch_html_with_oxylab(page_url: str) -> str:
-    username = "safeflat"
+    username = "safeflat4"
     password = "saaj098KLN++"
 
     proxies = {
@@ -25,7 +25,7 @@ def fetch_html_with_oxylab(page_url: str) -> str:
 
 
 def process_description(description: str) -> pd.DataFrame:
-    os.environ["OPENAI_API_KEY"] = "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"
+    os.environ["OPENAI_API_KEY"] = "sk-proj-bfpdZzXMvSmP43ZISMJET3BlbkFJ2WCtTHmYMcnWqOAPCpib"
     llm = OpenAI(model="gpt-3.5-turbo-instruct")
 
     prompt = f"""Tu es un expert en location immobilière et tu maîtrises tout le vocabulaire associé. Tu dois m'aider à extraire des informations pertinentes parmi de longues descriptions de biens immobiliers que je vais te donner.

@@ -2,10 +2,11 @@ from bs4 import BeautifulSoup
 import json
 import sys
 import os
+import importlib
 
-parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-sys.path.append(parent_dir)
-from utils import *
+retrieveUrls_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(retrieveUrls_path)
+utils = importlib.import_module('utils')
 
 def retrieve_urls(page_url: str) -> list:
     """Retrieve the URLs of the ads from the page
@@ -17,7 +18,7 @@ def retrieve_urls(page_url: str) -> list:
         list: list of the URLs of the ads on the page
     """
 
-    html = fetch_html_with_oxylab(page_url)
+    html = utils.fetch_html_with_oxylab(page_url)
     soup = BeautifulSoup(html, "html.parser")
 
     # #for test purpose only, local html file:
