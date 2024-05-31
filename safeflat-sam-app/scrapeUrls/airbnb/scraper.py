@@ -70,14 +70,14 @@ def scrape_ad(ad_url: str) -> dict:
 
         # Retrieving location:
         try:
-            data["location"] = json_data["niobeMinimalClientData"][0][1]["data"][
+            data["ville"] = json_data["niobeMinimalClientData"][0][1]["data"][
                 "presentation"
             ]["stayProductDetailPage"]["sections"]["metadata"]["sharingConfig"][
                 "location"
             ]
         except Exception as e:
-            print("Error retrieving location:", e)
-            data["location"] = "Not Available"
+            print("Error retrieving ville:", e)
+            data["ville"] = "Not Available"
 
         # Retrieving person_capacity:
         try:
@@ -156,9 +156,18 @@ def scrape_ad(ad_url: str) -> dict:
                 for element in amenities_group["amenities"]:
                     amenities.append(element["title"])
             data["amenities"] = amenities
-
         except Exception as e:
             print("Error retrieving amenities:", e)
+
+        
+        # Retrieving bed_types:
+        try:
+            data["beds_type"] = "Not Available"
+            beds_dict_list = find_room_arrangement_items(json_data)
+            beds_type = [element["subtitle"] for element in beds_dict_list]
+            data["beds_type"] = beds_type
+        except Exception as e:
+            print("Error retrieving bed_type:", e)
 
     except Exception as e:
         print("Error extracting JSON data:", e)
@@ -247,3 +256,26 @@ def find_host_name(data, results=None):
             find_host_name(item, results)
 
     return results
+
+def find_room_arrangement_items(data, results=None):
+    if results is None:
+        results = []
+
+    if isinstance(data, dict):
+        if (
+            "__typename" in data
+            and data["__typename"] == "RoomArrangementItem"
+            and "title" in data
+            and "subtitle" in data
+            and "icons" in data
+            and "images" in data
+        ):
+            results.append(data)
+        for key, value in data.items():
+            find_room_arrangement_items(value, results)
+    elif isinstance(data, list):
+        for item in data:
+            find_room_arrangement_items(item, results)
+
+    return results
+

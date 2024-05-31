@@ -38,7 +38,7 @@ if __name__ == "__main__":
     url_listing = generate_airbnb_url("67000", 15, "03/10/2024", "04/10/2024")
     urls = retrieve_urls(url_listing)
     #for url in urls:
-    url = urls[0]
+    url = urls[1]
     # try:
     #     scraped_data = scrape_ad(url)
     #     print('Scraped ad:', scraped_data)
@@ -68,5 +68,7 @@ if __name__ == "__main__":
     merged_data = scrape_utils.add_desc_content_to_df(desc_data, scraped_data)
     merged_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_before_preproc.csv')
     #processed_data = process_output(merged_data)
+
+    
 
     

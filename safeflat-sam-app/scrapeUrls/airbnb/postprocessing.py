@@ -2,29 +2,6 @@ from collections import Counter
 import re
 import pandas as pd
 
-# Fonction pour extraire les chiffres
-def extract_number(s):
-    """
-    Extracts a floating number from a string containing a formatted number, or returns the value if it is already a number.
-
-    Args:
-        s (str, int, float): The string containing the number or the number directly.
-
-    Returns:
-        float: The floating number extracted from the string, or the input value if already a number. Returns None if no number is found.  
-    """
-    # Vérifier si l'entrée est déjà un entier ou un flottant
-    if isinstance(s, (int, float)):
-        return float(s)
-    
-    # Utiliser une regex pour extraire les parties numériques
-    match = re.search(r'(\d{1,3}(?:\s?\d{3})*)(?:[.,]\d+)?', str(s))
-    if match:
-        # Nettoyer la chaîne correspondante
-        number_str = match.group(0).replace(' ', '').replace(',', '.')
-        return float(number_str)
-    
-    return None
 
 # Fonction pour compter les lits
 def count_beds(bed_str):
@@ -48,6 +25,25 @@ def count_beds(bed_str):
     
     return [bed_counts['lit double'], bed_counts['canapé convertible'], bed_counts['lit simple'], bed_counts['canapé'], bed_counts['lit superposé']]
 
+
+def extract_number_of_bedrooms(details_list):
+    for detail in details_list:
+        if "chambre" in detail:
+            return int(detail.split()[0])
+    return None  # Valeur par défaut si non trouvée
+
+def extract_number_of_beds(details_list):
+    for detail in details_list:
+        if "lit" in detail:
+            return int(detail.split()[0])
+    return None  # Valeur par défaut si non trouvée
+
+def extract_number_of_bathrooms(details_list):
+    for detail in details_list:
+        if "salle de bain" in detail:
+            return int(detail.split()[0].replace("\xa0", ""))
+    return None  # Valeur par défaut si non trouvée
+
 def process_output(data : pd.DataFrame) -> pd.DataFrame:
     """Taking care of all the processing of the scraped data, EXCEPT PROCESSING THE DESCRIPTION, which is done by calling ChatGPT
 
@@ -57,12 +53,62 @@ def process_output(data : pd.DataFrame) -> pd.DataFrame:
     Returns:
         pd.DataFrame: contains the processed data
     """
-    # Column pre-processing with number extraction
-    data['nb_voyageurs'] = data['nb_voyageurs'].apply(extract_number)
-    data['nb_sdb'] = data['nb_sdb'].apply(lambda x: extract_number(x.split(' ')[0]))
-    data['price'] = data['price'].apply(lambda x: extract_number(x.replace('€', '').replace('\xa0', '').replace(' ', '')))
-    data['nb_bedrooms'] = data['nb_bedrooms'].apply(lambda x: extract_number(x.split(' ')[0]))
-    data['nb_rooms'] = data['nb_rooms'].apply(extract_number)
+    #Extract type:
+    type = data['type'].lower()
+    if 'appartement' in type:
+        data['type'] = 'appartement'
+    elif 'maison' in type:
+        data['type'] = 'maison'
+    elif 'studio' in type:
+        data['type'] = 'studio'
+
+    # Extract data from property_infos_list:
+    data['nb_bedrooms'] = data['property_infos_list'].apply(extract_number_of_bedrooms)
+    data['nb_beds'] = data['property_infos_list'].apply(extract_number_of_beds)
+    data['nb_bathrooms'] = data['property_infos_list'].apply(extract_number_of_bathrooms)
+
+    #Extract host name:
+    if "Hôte" in data['host_name']:
+        data['host_name'] = data['host_name'].split(":")[1].strip()
+
+    #Extract data from amenities:
+    data['lave-linge'] = data['property_infos_list'].apply(
+    lambda x: 'oui' if any('lave-linge' in item.lower() for item in x) else 'non')
+
+    data['sèche-linge'] = data['property_infos_list'].apply(
+    lambda x: 'oui' if any('sèche-linge' in item.lower() for item in x) else 'non')
+
+    data['lave-vaisselle'] = data['property_infos_list'].apply(
+    lambda x: 'oui' if any('lave-vaisselle' in item.lower() for item in x) else 'non')
+
+    data['balcon'] = data['property_infos_list'].apply(
+    lambda x: 'oui' if any('balcon' in item.lower() for item in x) else 'non')
+
+    data['terrasse'] = data['property_infos_list'].apply(
+    lambda x: 'oui' if any('terrasse' in item.lower() for item in x) else data['terrasse'])
+
+    data['parking'] = data['property_infos_list'].apply(
+    lambda x: 'oui' if any('parking' in item.lower() for item in x) else data['parking'])
+
+    data['ascenseur'] = data['property_infos_list'].apply(
+    lambda x: 'oui' if any('ascenseur' in item.lower() for item in x) else data['ascenseur'])
+
+    data['climatisation'] = data['property_infos_list'].apply(
+    lambda x: 'oui' if any('climatisation' in item.lower() for item in x) else 'non')
+
+    data['piscine'] = data['property_infos_list'].apply(
+    lambda x: 'oui' if any('piscine' in item.lower() for item in x) else data['piscine'])
+
+
+
+
+
+
+
+
+
+
+
 
 
     # Counting bed types
@@ -77,7 +123,7 @@ def process_output(data : pd.DataFrame) -> pd.DataFrame:
         data[feature] = data['equipements'].apply(lambda x: 1 if feature.lower() in x.lower() else 0)
 
     # Sélectionner les colonnes nécessaires pour le fichier de sortie
-    columns_to_keep = ['url','title','nb_voyageurs', 'nb_sdb', 'host_name', 'equipements', 'description', 'nb_rooms', 'numero_etage', 'surface', 'price', 'nb_bedrooms'] + bed_columns + equipement_features
+    columns_to_keep = ['url','title', 'type', 'ville', 'person_capacity', 'latitude', 'longitude', ]
     processed_data = data[columns_to_keep]
 
     return processed_data
