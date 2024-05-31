@@ -23,8 +23,9 @@ def handler(event, context):
         print("data processed: ", data_processed)
         data_from_description = process_description(data["description"])
         print("data from description: ", data_from_description)
-        # merged_data = add_desc_content_to_df(data_from_description, data_processed)
-        # print("merged data: ", merged_data)
-        # save_to_database(merged_data, website)
+        merged_data = add_desc_content_to_df(data_from_description, data_processed)
+        print("merged data: ", merged_data)
+        save_to_database(merged_data, website)
+        # Load the protected goods from db
 
     return "no error so far"
