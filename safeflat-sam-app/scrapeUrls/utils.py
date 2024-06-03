@@ -113,7 +113,7 @@ def add_desc_content_to_df(
     """
     for col in processed_desc.columns:
         if col not in processed_ad.columns:
-            processed_ad[col] = processed_desc[col]
+            processed_ad = processed_ad.assign(**{col: processed_desc[col]})
 
     return processed_ad
 

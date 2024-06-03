@@ -149,12 +149,8 @@ def scrape_ad(ad_url: str) -> dict:
         # Retrieving amenities:
         try:
             data["amenities"] = "Not Available"
-            amenities_dict = find_amenities_sections(json_data)[0]
-            amenities = []
-            allAmenities = amenities_dict["seeAllAmenitiesGroups"]
-            for amenities_group in allAmenities:
-                for element in amenities_group["amenities"]:
-                    amenities.append(element["title"])
+            amenities_dict_list = find_amenities_sections(json_data)
+            amenities = [element['title'] for element in amenities_dict_list]
             data["amenities"] = amenities
         except Exception as e:
             print("Error retrieving amenities:", e)
@@ -199,16 +195,22 @@ def find_amenities_sections(data, results=None):
         results = []
 
     if isinstance(data, dict):
+        # Vérifier si la structure correspond et si "available" est true
         if (
-            "__typename" in data
-            and "previewAmenitiesGroups" in data
-            and "seeAllAmenitiesGroups" in data
-            and data["__typename"] == "AmenitiesSection"
+            "__typename" in data and
+            data["__typename"] == "Amenity" and
+            "id" in data and
+            "available" in data and data["available"] is True and
+            "title" in data and
+            "subtitle" in data and
+            "icon" in data
         ):
             results.append(data)
+        # Rechercher de manière récursive dans les sous-dictionnaires
         for key, value in data.items():
             find_amenities_sections(value, results)
     elif isinstance(data, list):
+        # Rechercher de manière récursive dans les sous-listes
         for item in data:
             find_amenities_sections(item, results)
 

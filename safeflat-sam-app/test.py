@@ -24,50 +24,85 @@ sys.path.append(retrieve_dir)
 scrape_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'scrapeUrls', site_name))
 sys.path.append(scrape_dir)
 
+# Ajouter le dossier `detectSublets/airbnb` au sys.path
+scrape_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'detectSublets', site_name))
+sys.path.append(scrape_dir)
+
+
+
 from generate_urls import generate_airbnb_url  # Remplacez par les noms des fonctions à importer
 from retriever import retrieve_urls # Remplacez par les noms des fonctions à importer
 from scraper import scrape_ad  # Remplacez par les noms des fonctions à importer
 from postprocessing import process_output  # Remplacez par les noms des fonctions à importer
+from algo import filter_and_score
 
 # Importation des modules utils avec des alias pour éviter les conflits de noms
 scrape_utils = importlib.import_module('utils', 'scrapeUrls')
 retrieve_utils = importlib.import_module('utils', 'retrieveUrls')
 
+property_infos_same = {
+    "ville": "Strasbourg",
+    "type": "appartement",
+    "latitude": 48.5825846,
+    "longitude": 7.7389715,
+    "nb_bedrooms" : 1,
+    "nb_bathrooms": 1,
+    "host_name" : 'Emma',
+    "lave-linge": 'oui',
+    "sèche-linge": 'oui',
+    "balcon": 'non',
+    "terrasse": 'non',
+    "parking": 'non',
+    "ascenseur": 'non',
+    "climatisation": 'non',
+    "piscine": 'non',
+    "baignoire": 'non',
+    "lits_doubles": 1,
+    "lits_simples": 0,
+    "canapes_convertibles": 1,
+    "lits_superposes": 0,
+    "surface": None,
+    "nb_rooms": None,
+    "quartier": None,
+    "meuble": None,
+    "nombre_d'etages": None,
+    "numero_d'etage": 1,
+    "cave": None,
+}
 
 if __name__ == "__main__":
-    url_listing = generate_airbnb_url("67000", 15, "03/10/2024", "04/10/2024")
+    url_listing = generate_airbnb_url("67000", 5, "03/10/2024", "04/10/2024")
     urls = retrieve_urls(url_listing)
-    #for url in urls:
-    url = urls[1]
-    # try:
-    #     scraped_data = scrape_ad(url)
-    #     print('Scraped ad:', scraped_data)
-    #     scraped_data = pd.DataFrame(scraped_data)
+    #urls = urls[:1]
+    for url in urls:
+        try:
+            scraped_data = scrape_ad(url)
+            print('Scraped ad:', scraped_data)
+            scraped_data = pd.DataFrame([scraped_data])
+            processed_data = process_output(scraped_data)
 
-    #     desc_data = scrape_utils.process_description(scraped_data["description"])
+            desc_data = scrape_utils.process_description(scraped_data["description"])
 
-    #     merged_data = scrape_utils.add_desc_content_to_df(desc_data, scraped_data)
-    #     processed_data = process_output(merged_data)
-    #     #merged_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output.csv')
+            merged_data = scrape_utils.add_desc_content_to_df(desc_data, processed_data)
+            #merged_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output.csv')
+            print("Merged data:", merged_data)
 
-    #     #data_bdd = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/leboncoin-oxylab/csv_ouptus/output_processed.csv')
+            data_bdd = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/outpu_processed.csv')
 
-    #     #df_concatene = pd.concat([merged_data, data_bdd], ignore_index=True)
-    #     #df_concatene.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/leboncoin-oxylab/csv_ouptus/output_processed.csv')
+            df_concatene = pd.concat([merged_data, data_bdd], ignore_index=True)
+            df_concatene.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/outpu_processed.csv')
 
-    #     #save_to_database(merged_data)
-    # except Exception as e:
-    #     print(f"An error occrued while processing the ad: {url}", "\n", e)
+            data_bdd2 = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/outpu_processed.csv')
+            filtered_and_scored_data = filter_and_score(property_infos_same)
+            filtered_and_scored_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_filtered_score.csv')
 
-    scraped_data = scrape_ad(url)
-    print('Scraped ad:', scraped_data)
-    scraped_data = pd.DataFrame([scraped_data])
+            #save_to_database(merged_data)
+        except Exception as e:
+            print(f"An error occrued while processing the ad: {url}", "\n", e)
 
-    desc_data = scrape_utils.process_description(scraped_data["description"])
+ 
 
-    merged_data = scrape_utils.add_desc_content_to_df(desc_data, scraped_data)
-    merged_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_before_preproc.csv')
-    #processed_data = process_output(merged_data)
+    
 
     
 

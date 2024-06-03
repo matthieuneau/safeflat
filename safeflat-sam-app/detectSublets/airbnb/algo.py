@@ -1,5 +1,6 @@
-from utils import *
+#from utils import *
 from geopy.distance import geodesic
+import pandas as pd
 
 
 def score_calculation(row, property_infos, poids):
@@ -34,30 +35,34 @@ def filter_and_score(property_infos):
     # if property_infos['ville'] is not None:
     #     query += f" WHERE ville = '{property_infos['ville']}'"  # Placeholder for location
 
-    # if property_infos['zipcode'] is not None:
-    #     query += f" AND WHERE zipcode = '{property_infos['zipcode']}'"  # Placeholder for location
-
     # Read data from the database and apply first filter (query):
     # data_df = read_from_database(query)
     data_df = pd.read_csv(
-        "/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/leboncoin-oxylab/csv_ouptus/output_processed.csv"
+        "/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/outpu_processed.csv"
     )
 
     # Transform text into digital format:
     data_df["surface"] = pd.to_numeric(data_df["surface"], errors="coerce")
-    data_df["nb_rooms"] = pd.to_numeric(data_df["nb_rooms"], errors="coerce")
     data_df["nb_bedrooms"] = pd.to_numeric(data_df["nb_bedrooms"], errors="coerce")
     data_df["latitude"] = pd.to_numeric(data_df["latitude"], errors="coerce")
     data_df["longitude"] = pd.to_numeric(data_df["longitude"], errors="coerce")
+    data_df["nb_bathrooms"] = pd.to_numeric(data_df["nb_bathrooms"], errors="coerce")
+    data_df["lits_doubles"] = pd.to_numeric(data_df["lits_doubles"], errors="coerce")
+    data_df["lits_simples"] = pd.to_numeric(data_df["lits_simples"], errors="coerce")
+    data_df["canapes_convertibles"] = pd.to_numeric(data_df["canapes_convertibles"], errors="coerce")
+    data_df["lits_superposes"] = pd.to_numeric(data_df["lits_superposes"], errors="coerce")
+    data_df["numero_d'etage"] = pd.to_numeric(data_df["numero_d'etage"], errors="coerce")
+    data_df["nombre_d'etages"] = pd.to_numeric(data_df["nombre_d'etages"], errors="coerce")
+
 
     # To be replaced with the SQL query:
-    filter_place = ["ville", "zipcode"]
+    filter_place = ["ville"]
     for filter in filter_place:
         if property_infos[filter] is not None:
             data_df = data_df[data_df[filter] == property_infos[filter]]
 
     # # First filter, only keeps matching data
-    filter_rooms = ["nb_rooms"]
+    filter_rooms = ["nb_bedrooms"]
     for filter in filter_rooms:
         value = property_infos[filter]
         if value is not None:
@@ -69,14 +74,14 @@ def filter_and_score(property_infos):
                 | pd.isna(data_df[filter])
             ]
 
-    filter_surface = ["surface"]
-    for filter in filter_surface:
-        value = property_infos[filter]
-        if value is not None:
-            data_df = data_df[
-                ((value * 0.75 <= data_df[filter]) & (data_df[filter] <= value * 1.25))
-                | pd.isna(data_df[filter])
-            ]
+    # filter_surface = ["surface"]
+    # for filter in filter_surface:
+    #     value = property_infos[filter]
+    #     if value is not None:
+    #         data_df = data_df[
+    #             ((value * 0.75 <= data_df[filter]) & (data_df[filter] <= value * 1.25))
+    #             | pd.isna(data_df[filter])
+    #         ]
 
     def is_within_distance(row, point_ref, max_distance_km):
         if pd.isna(row["latitude"]) or pd.isna(row["longitude"]):
@@ -93,26 +98,34 @@ def filter_and_score(property_infos):
             )
         ]
 
-    # Defines the weight of each scoring feature (from 1 to 10)
+    # Defines the weight of each scoring feature (from 1 to 20)
     poids = {
-        "type_de_bien": 8,
-        "meuble": 3,
-        "surface": 10,
-        "nb_rooms": 10,
-        "DPE": 10,
-        "GES": 10,
-        "ascenseur": 5,
-        "etage": 7,
-        "nb_etages": 7,
-        "charges": 10,
-        "caution": 5,
-        "host_name": 10,
-        "piscine": 5,
-        "nb_bedrooms": 5,
-        "parking": 3,
-        "quartier": 5,
-        "cave": 3,
-        "terrasse": 4,
+        "type": 5,
+        "nb_bedrooms" : 7,
+        "nb_bathrooms": 8,
+        "host_name" : 20,
+        "lave-linge": 7,
+        "sèche-linge": 7,
+        "balcon": 10,
+        "terrasse": 10,
+        "parking": 6,
+        "ascenseur": 8,
+        "climatisation": 5,
+        "piscine": 10,
+        "baignoire": 10,
+        "lits_doubles": 6,
+        "lits_simples": 6,
+        "canapes_convertibles": 6,
+        "lits_superposes": 6,
+        "surface": 8,
+        "nb_rooms": 7,
+        "quartier": 7,
+        "meuble": 5,
+        "nombre_d'etages": 6,
+        "numero_d'etage": 6,
+        "cave": 4,
+
+
     }
 
     # Cost calculation for each line
@@ -130,11 +143,32 @@ def filter_and_score(property_infos):
 # Example of a property to protect:
 property_infos_same = {
     "ville": "Strasbourg",
-    "zipcode": 67000,
-    "nb_rooms": 3,
-    "surface": 95,
-    "latitude": 48.58153,
-    "longitude": 7.75566,
+    "type": "appartement",
+    "latitude": 48.5825846,
+    "longitude": 7.7389715,
+    "nb_bedrooms" : 1,
+    "nb_bathrooms": 1,
+    "host_name" : 'Emma',
+    "lave-linge": 'oui',
+    "sèche-linge": 'oui',
+    "balcon": 'non',
+    "terrasse": 'non',
+    "parking": 'non',
+    "ascenseur": 'non',
+    "climatisation": 'non',
+    "piscine": 'non',
+    "baignoire": 'non',
+    "lits_doubles": 1,
+    "lits_simples": 0,
+    "canapes_convertibles": 1,
+    "lits_superposes": 0,
+    "surface": None,
+    "nb_rooms": None,
+    "quartier": None,
+    "meuble": None,
+    "nombre_d'etages": None,
+    "numero_d'etage": 1,
+    "cave": None,
 }
 
 if __name__ == "__main__":

@@ -3,27 +3,33 @@ import re
 import pandas as pd
 
 
-# Fonction pour compter les lits
-def count_beds(bed_str):
-    if pd.isna(bed_str):
-        return [0, 0, 0, 0, 0]
-    
-    # Normaliser les pluriels en singuliers pour comptage
-    normalized_str = bed_str.replace('lits doubles', 'lit double')\
-                             .replace('canapés convertibles', 'canapé convertible')\
-                             .replace('lits simples', 'lit simple')\
-                             .replace('canapés', 'canapé')\
-                             .replace('lits superposés', 'lit superposé')
-    
-    # Trouver tous les lits et leurs quantités
-    beds = re.findall(r'(\d+) (lit double|canapé convertible|lit simple|canapé|lit superposé)', normalized_str)
-    
-    # Compter les lits par type
-    bed_counts = Counter({key: 0 for key in ['lit double', 'canapé convertible', 'lit simple', 'canapé', 'lit superposé']})
-    for count, bed_type in beds:
-        bed_counts[bed_type] += int(count)
-    
-    return [bed_counts['lit double'], bed_counts['canapé convertible'], bed_counts['lit simple'], bed_counts['canapé'], bed_counts['lit superposé']]
+# Fonction pour extraire le nombre de lits doubles
+def extract_lits_doubles(liste_types_lits):
+    match = re.search(r'(\d+)\s*lits?\s*doubles?', liste_types_lits)
+    if match:
+        return int(match.group(1))
+    return 0
+
+# Fonction pour extraire le nombre de lits simples
+def extract_lits_simples(liste_types_lits):
+    match = re.search(r'(\d+)\s*lits?\s*simples?', liste_types_lits)
+    if match:
+        return int(match.group(1))
+    return 0
+
+# Fonction pour extraire le nombre de canapés convertibles
+def extract_canapes_convertibles(liste_types_lits):
+    match = re.search(r'(\d+)\s*canapés?\s*convertibles?', liste_types_lits)
+    if match:
+        return int(match.group(1))
+    return 0
+
+# Fonction pour extraire le nombre de lits superposés
+def extract_lits_superposes(liste_types_lits):
+    match = re.search(r'(\d+)\s*lits?\s*superposés?', liste_types_lits)
+    if match:
+        return int(match.group(1))
+    return 0
 
 
 def extract_number_of_bedrooms(details_list):
@@ -44,7 +50,7 @@ def extract_number_of_bathrooms(details_list):
             return int(detail.split()[0].replace("\xa0", ""))
     return None  # Valeur par défaut si non trouvée
 
-def process_output(data : pd.DataFrame) -> pd.DataFrame:
+def process_output(data : dict) -> pd.DataFrame:
     """Taking care of all the processing of the scraped data, EXCEPT PROCESSING THE DESCRIPTION, which is done by calling ChatGPT
 
     Args:
@@ -54,13 +60,9 @@ def process_output(data : pd.DataFrame) -> pd.DataFrame:
         pd.DataFrame: contains the processed data
     """
     #Extract type:
-    type = data['type'].lower()
-    if 'appartement' in type:
-        data['type'] = 'appartement'
-    elif 'maison' in type:
-        data['type'] = 'maison'
-    elif 'studio' in type:
-        data['type'] = 'studio'
+    data['type'] = data['type'].str.lower()
+    data['type'] = data['type'].apply(lambda x: 'appartement' if 'appartement' in x else ('maison' if 'maison' in x else ('studio' if 'studio' in x else x)))
+
 
     # Extract data from property_infos_list:
     data['nb_bedrooms'] = data['property_infos_list'].apply(extract_number_of_bedrooms)
@@ -68,62 +70,44 @@ def process_output(data : pd.DataFrame) -> pd.DataFrame:
     data['nb_bathrooms'] = data['property_infos_list'].apply(extract_number_of_bathrooms)
 
     #Extract host name:
-    if "Hôte" in data['host_name']:
-        data['host_name'] = data['host_name'].split(":")[1].strip()
+    data['host_name'] = data['host_name'].apply(lambda x: x.split(":")[1].strip() if isinstance(x, str) and "Hôte" in x else x)
 
-    #Extract data from amenities:
-    data['lave-linge'] = data['property_infos_list'].apply(
-    lambda x: 'oui' if any('lave-linge' in item.lower() for item in x) else 'non')
+    def convert_to_str_list(amenities_list):
+        if isinstance(amenities_list, list):
+            return [str(item).lower() for item in amenities_list if isinstance(item, str)]
+        return []
 
-    data['sèche-linge'] = data['property_infos_list'].apply(
-    lambda x: 'oui' if any('sèche-linge' in item.lower() for item in x) else 'non')
-
-    data['lave-vaisselle'] = data['property_infos_list'].apply(
-    lambda x: 'oui' if any('lave-vaisselle' in item.lower() for item in x) else 'non')
-
-    data['balcon'] = data['property_infos_list'].apply(
-    lambda x: 'oui' if any('balcon' in item.lower() for item in x) else 'non')
-
-    data['terrasse'] = data['property_infos_list'].apply(
-    lambda x: 'oui' if any('terrasse' in item.lower() for item in x) else data['terrasse'])
-
-    data['parking'] = data['property_infos_list'].apply(
-    lambda x: 'oui' if any('parking' in item.lower() for item in x) else data['parking'])
-
-    data['ascenseur'] = data['property_infos_list'].apply(
-    lambda x: 'oui' if any('ascenseur' in item.lower() for item in x) else data['ascenseur'])
-
-    data['climatisation'] = data['property_infos_list'].apply(
-    lambda x: 'oui' if any('climatisation' in item.lower() for item in x) else 'non')
-
-    data['piscine'] = data['property_infos_list'].apply(
-    lambda x: 'oui' if any('piscine' in item.lower() for item in x) else data['piscine'])
+    data['amenities'] = data['amenities'].apply(convert_to_str_list)
+    
+    # Function to check for an amenity in property_infos_list
+    def has_amenity(amenities_list, amenity):
+        return 'oui' if any(amenity in item for item in amenities_list) else 'non'
 
 
 
+    # Apply the function to each row in the DataFrame
+    data['lave-linge'] = data['amenities'].apply(lambda x: has_amenity(x, 'lave-linge'))
+    data['sèche-linge'] = data['amenities'].apply(lambda x: has_amenity(x, 'sèche-linge'))
+    data['lave-vaisselle'] = data['amenities'].apply(lambda x: has_amenity(x, 'lave-vaisselle'))
+    data['balcon'] = data['amenities'].apply(lambda x: has_amenity(x, 'balcon'))
+    data['terrasse'] = data['amenities'].apply(lambda x: has_amenity(x, 'terrasse'))
+    data['parking'] = data['amenities'].apply(lambda x: has_amenity(x, 'parking'))
+    data['ascenseur'] = data['amenities'].apply(lambda x: has_amenity(x, 'ascenseur'))
+    data['climatisation'] = data['amenities'].apply(lambda x: has_amenity(x, 'climatisation'))
+    data['piscine'] = data['amenities'].apply(lambda x: has_amenity(x, 'piscine'))
+    data['baignoire'] = data['amenities'].apply(lambda x: has_amenity(x, 'baignoire'))
 
+    # Convert lists in beds_type to strings
+    data['beds_type'] = data['beds_type'].apply(lambda x: ', '.join(x) if isinstance(x, list) else x)
 
-
-
-
-
-
-
-
-
-    # Counting bed types
-    bed_types = data['nb_beds'].apply(count_beds)
-    bed_columns = ['nb_lits_doubles', 'nb_canapes_convertibles', 'nb_lits_simples', 'nb_canapes', 'nb_lit_superposes']
-    for idx, col in enumerate(bed_columns):
-        data[col] = [beds[idx] for beds in bed_types]
-
-    # Check the presence of items in the equipment column and create new columns
-    equipement_features = ['piscine', 'parking', 'Lave-linge', 'climatisation', 'balcon', 'Sèche-linge', 'Baignoire']
-    for feature in equipement_features:
-        data[feature] = data['equipements'].apply(lambda x: 1 if feature.lower() in x.lower() else 0)
+    #Extract data from beds_type:
+    data['lits_doubles'] = data['beds_type'].apply(extract_lits_doubles)
+    data['lits_simples'] = data['beds_type'].apply(extract_lits_simples)
+    data['canapes_convertibles'] = data['beds_type'].apply(extract_canapes_convertibles)
+    data['lits_superposes'] = data['beds_type'].apply(extract_lits_superposes)
 
     # Sélectionner les colonnes nécessaires pour le fichier de sortie
-    columns_to_keep = ['url','title', 'type', 'ville', 'person_capacity', 'latitude', 'longitude', ]
+    columns_to_keep = ['url','title', 'type', 'ville', 'person_capacity', 'latitude', 'longitude', 'nb_bedrooms', 'nb_beds', 'nb_bathrooms', 'host_name', 'lave-linge', 'sèche-linge', 'lave-vaisselle', 'balcon', 'terrasse', 'parking', 'ascenseur', 'climatisation', 'piscine', 'baignoire', 'lits_doubles', 'lits_simples', 'canapes_convertibles', 'lits_superposes']
     processed_data = data[columns_to_keep]
 
     return processed_data
