@@ -1,0 +1,26 @@
+name: Development Workflow
+
+on:
+  push:
+    branches: [prod]
+  pull_request:
+    branches: [prod]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up environment
+      # Add steps to set up the development environment
+
+    - name: Build
+      # Add steps to build your application
+
+    - name: Test
+      # Add steps to run tests
+
+    - name: Deploy
+      # Add steps to deploy to the development environment
