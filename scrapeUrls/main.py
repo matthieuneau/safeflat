@@ -1,6 +1,6 @@
 from utils import *
-import pap.postprocessing
-import pap.scraper
+import scrapeUrls.pap.pap_postprocessing
+import scrapeUrls.pap.pap_scraper
 
 
 def handler(event, context):
