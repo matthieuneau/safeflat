@@ -124,8 +124,6 @@ def filter_and_score(property_infos):
         "nombre_d'etages": 6,
         "numero_d'etage": 6,
         "cave": 4,
-
-
     }
 
     # Cost calculation for each line

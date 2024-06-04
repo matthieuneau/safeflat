@@ -40,6 +40,8 @@ from algo import filter_and_score
 scrape_utils = importlib.import_module('utils', 'scrapeUrls')
 retrieve_utils = importlib.import_module('utils', 'retrieveUrls')
 
+
+#Airbnb:
 property_infos_same = {
     "ville": "Strasbourg",
     "type": "appartement",

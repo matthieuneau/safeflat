@@ -1,4 +1,10 @@
 from bs4 import BeautifulSoup
+import json
+import os
+import sys
+
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(parent_dir)
 from utils import *
 
 
@@ -11,13 +17,13 @@ def scrape_ad(ad_url: str) -> dict:
     Returns:
         dict: data scraped from the ad
     """
-    # for test purpose only, local html file:
-    file_path = "/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/seloger-oxylab/annonces/annonce2.html"
-    with open(file_path, "r", encoding="utf-8") as file:
-        soup = BeautifulSoup(file, "lxml")
+    # # for test purpose only, local html file:
+    # file_path = "/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/seloger-oxylab/annonces/annonce2.html"
+    # with open(file_path, "r", encoding="utf-8") as file:
+    #     soup = BeautifulSoup(file, "lxml")
 
-    # html = fetch_html_with_oxylab(ad_url)
-    # soup = BeautifulSoup(html, "html.parser")
+    html = fetch_html_with_oxylab(ad_url)
+    soup = BeautifulSoup(html, "html.parser")
     data = {}
 
     # Retrieving title
