@@ -14,5 +14,5 @@ sfscraping
 docs/_build
 .doctrees/
 
-safeflat-sam-app/build
+safeflat-sam-app/.aws-sam
 
