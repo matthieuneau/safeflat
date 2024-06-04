@@ -8,6 +8,18 @@ dotenv.load_dotenv()
 
 
 def fetch_html_with_oxylab(page_url: str) -> str:
+    """Uses oxylab as a wrapper to fetch the html of a page to avoid being blocked
+
+    Parameters
+    ----------
+    page_url : str
+        page for which the html is to be fetched
+
+    Returns
+    -------
+    str
+        the html of the page
+    """
     proxies = {
         "http": f"http://{os.getenv('OXYLAB_USERNAME')}:{os.getenv('OXYLAB_PASSWORD')}@unblock.oxylabs.io:60000",
         "https": f"http://{os.getenv('OXYLAB_USERNAME')}:{os.getenv('OXYLAB_PASSWORD')}@unblock.oxylabs.io:60000",
@@ -23,8 +35,19 @@ def fetch_html_with_oxylab(page_url: str) -> str:
     return response.text
 
 
-### TO BE EDITED ###
 def read_from_database(query: str) -> pd.DataFrame:
+    """retrieves the
+
+    Parameters
+    ----------
+    query : str
+        _description_
+
+    Returns
+    -------
+    pd.DataFrame
+        _description_
+    """
     db_config = {
         "host": os.getenv("DB_HOST"),
         "port": 3306,

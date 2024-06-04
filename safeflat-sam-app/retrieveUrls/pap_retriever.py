@@ -4,13 +4,18 @@ from bs4 import BeautifulSoup
 
 ### STILL NEED TO ADD THE PAGE NAVIGATION
 def retrieve_urls() -> list:
-    """Retrieve the URLs of the ads from the page
+    """
+    The retrieve_urls function retrieves all the urls of the ads from a given page of pap
 
-    Args:
-        page (str): url of the page listing the ads
+    Parameters
+    ----------
+        page_url: str
+            Specify the page that contains the ads
 
-    Returns:
-        list: list of the URLs of the ads on the page
+    Returns
+    -------
+
+        A list of urls
     """
     urls_to_scrape = []
 

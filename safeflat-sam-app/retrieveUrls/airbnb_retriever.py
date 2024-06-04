@@ -3,28 +3,34 @@ from bs4 import BeautifulSoup
 
 
 def retrieve_urls(page_url: str) -> list:
-    """Retrieve the URLs of the ads from the page
+    """Retrives all the urls of the ads from a given page of airbnb
 
-    Args:
-        page (str): url of the page listing the ads
+    Parameters
+    ----------
+    page_url : str
+        page that contains the ads
 
-    Returns:
-        list: list of the URLs of the ads on the page
+    Returns
+    -------
+    list
+        contains all the urls of the ads
     """
 
     html = fetch_html_with_oxylab(page_url)
 
     soup = BeautifulSoup(html, "html.parser")
     all_a_tags = soup.find_all("a")
+
     url_list = [
         item["href"]
         for item in all_a_tags
-        if item.get("href", "").startswith("/ad/locations/")
+        if item.get("href", "").startswith("/rooms/")
     ]
 
     # Remove duplicates
     url_list = list(set(url_list))
+
     # Add prefix and editing to have the correct URL
-    url_list = [f"https://www.leboncoin.fr{url}" for url in url_list]
+    url_list = [f"https://www.airbnb.fr{url}" for url in url_list]
     print("urls retrieved: ", url_list)
     return url_list

@@ -8,7 +8,7 @@ config.yaml
 
 sfscraping
 
-# Ignore virtual env files
-lambda-test/
-
 .env
+
+docs/_build
+

@@ -9,9 +9,6 @@ package-mode = false
 [tool.poetry.dependencies]
 python = "^3.11"
 pandas = "^2.2.2"
-undetected-chromedriver = "^3.5.5"
-tqdm = "^4.66.2"
-selenium = "^4.19.0"
 sqlalchemy = "^2.0.29"
 pymysql = "^1.1.0"
 langchain-openai = "^0.1.4"
@@ -20,6 +17,7 @@ python-dotenv = "^1.0.1"
 
 
 [tool.poetry.group.dev.dependencies]
+sphinx = "^5.2.1"
 black = "^24.4.2"
 pylint = "^3.1.0"
 awscli = "^1.32.95"
