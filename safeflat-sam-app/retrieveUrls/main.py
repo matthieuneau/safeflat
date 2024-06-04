@@ -1,6 +1,5 @@
 from .abritel_retriever import retrieve_urls as abritel
 from .airbnb_retriever import retrieve_urls as airbnb
-from .gensdeconfiance_retriever import retrieve_urls as gensdeconfiance
 from .leboncoin_retriever import retrieve_urls as leboncoin
 from .pap_retriever import retrieve_urls as pap
 from .seloger_retriever import retrieve_urls as seloger

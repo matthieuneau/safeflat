@@ -10,7 +10,7 @@ Welcome to safeflat's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   modules
+   retrieveUrls
 
 Indices and tables
 ==================
