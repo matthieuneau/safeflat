@@ -13,7 +13,6 @@ def handler(event, context):
 
     scraper = eval(f"{website}.scraper.scrape_ad")
     postprocesser = eval(f"{website}.postprocessing.process_outputs")
-    descriptionprocesser = 
 
     urls_to_scrape = event["sublist"]
     for url in urls_to_scrape:

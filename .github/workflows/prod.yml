@@ -1,26 +1,51 @@
-name: Development Workflow
+name: prod-env-pipeline
 
 on:
-  push:
-    branches: [prod]
   pull_request:
     branches: [prod]
+    types: [closed]
+
+env:
+  PYTHON_VERSION: '3.11'
 
 jobs:
+  setup:
+    uses: ./.github/workflows/common.yml#setup
+  
   build:
+    uses: ./.github/workflows/common.yml#build
+
+  test:
+    uses: ./.github/workflows/common.yml#test
+
+  deploy-test:
+    needs: [setup, build, test]
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
 
-    - name: Set up environment
-      # Add steps to set up the development environment
+    - name: Restore cache
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pypoetry
+        key: ${{ needs.setup.outputs.cache-key }}
+        restore-keys: |
+          ${{ runner.os }}-poetry-
+    
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_PROD }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_PROD }}
+        aws-region: ${{ env.AWS_REGION }}
 
-    - name: Build
-      # Add steps to build your application
-
-    - name: Test
-      # Add steps to run tests
-
-    - name: Deploy
-      # Add steps to deploy to the development environment
+    - name: Deploy to prod env
+      env:
+        AWS_REGION: 'us-east-1'
+      run: |
+        poetry run sam deploy \
+          --region $AWS_REGION \
+          --stack-name GenerationStack \
+          --s3-bucket stackBucketProd\
+          --capabilities CAPABILITY_IAM

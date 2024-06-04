@@ -1,46 +1,53 @@
+name: dev-env-pipeline
+
 on:
   push:
     branches: [dev]
+  pull_request:
+    branches: [dev]
+    types: [closed]
+
+env:
+  PYTHON_VERSION: '3.11'
 
 jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.11
-
-    - name: Install Poetry
-      run: pip install poetry
-
-    - name: Set up environment
-      run: |
-        poetry install
-        poetry shell
-
-    - name: Run unit tests
-      run: pytest
+  setup:
+    uses: ./.github/workflows/common.yml#setup
   
-    - name: Run linter
-      run: pylint
-    
-    - name: Validate sam template
-      run: sam validate
+  build:
+    uses: ./.github/workflows/common.yml#build
 
-    - name: Build
-      run: sam build
+  test:
+    uses: ./.github/workflows/common.yml#test
 
-
-  deploy:
-    needs: build-and-test
+  deploy-dev:
+    needs: [setup, build, test]
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
+
+    - name: Restore cache
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pypoetry
+        key: ${{ needs.setup.outputs.cache-key }}
+        restore-keys: |
+          ${{ runner.os }}-poetry-
+    
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_DEV }}
+        aws-region: ${{ env.AWS_REGION }}
 
     - name: Deploy to dev env
-      run: sam deploy
+      env:
+        AWS_REGION: 'us-east-1'
+      run: |
+        poetry run sam deploy \
+          --region $AWS_REGION \
+          --stack-name GenerationStack \
+          --s3-bucket stackBucketEnv \
+          --capabilities CAPABILITY_IAM
