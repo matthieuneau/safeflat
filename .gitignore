@@ -11,11 +11,11 @@ sfscraping
 .env
 
 ### Sphinx
-safeflat-sam-app/docs/_build
+docs/_build
 .doctrees/
 
 ### Sam
-safeflat-sam-app/.aws-sam
+.aws-sam
 
 ### Layer
-safeflat-sam-app/layer
+layer

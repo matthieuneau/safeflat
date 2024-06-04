@@ -1,0 +1,171 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  safeflat-sam-app
+
+  Sample SAM Template for safeflat-sam-app
+
+Globals:
+  Function:
+    Handler: main.handler
+    Runtime: python3.11
+    Architectures:
+      - arm64
+    Timeout: 900
+    Environment:
+      Variables:
+        OXYLAB_USERNAME: "{{resolve:ssm:/safeflat/OXYLAB_USERNAME}}"
+        OXYLAB_PASSWORD: "{{resolve:ssm:/safeflat/OXYLAB_PASSWORD}}"
+        OPENAI_API_KEY: "{{resolve:ssm:/safeflat/OPENAI_API_KEY}}"
+        DB_HOST: "{{resolve:ssm:/safeflat/DB_HOST}}"
+        DB_PASSWORD: "{{resolve:ssm:/safeflat/DB_PASSWORD}}"
+
+
+Resources:
+  pythonDependenciesLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: pythonDependencies
+      ContentUri: layer/
+      CompatibleRuntimes:
+        - python3.11
+      CompatibleArchitectures:
+        - arm64
+      RetentionPolicy: Retain
+
+  retrieveUrlsLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: retrieveUrls
+      CodeUri: retrieveUrls/
+      Layers:
+        - !Ref pythonDependenciesLayer
+      Environment:
+        Variables:
+          OPENAI_API_KEY: os.getenv('OPENAI_API_KEY')
+    Metadata:
+      SamResourceId: retrieveUrls
+  
+  scrapeUrlsLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: scrapeUrls
+      CodeUri: scrapeUrls/
+      Layers:
+        - !Ref pythonDependenciesLayer
+    Metadata:
+      SamResourceId: scrapeUrls
+
+  detectSubletsLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: detectSublets
+      CodeUri: detectSublets/
+      Layers:
+        - !Ref pythonDependenciesLayer
+    Metadata:
+      SamResourceId: detectSublets
+
+  MyStateMachine:
+    Type: AWS::StepFunctions::StateMachine
+    Properties:
+      DefinitionString:
+        !Sub |
+          {
+            "Comment": "A Step Function to process sublists in parallel",
+            "StartAt": "RetrieveUrls",
+            "States": {
+              "RetrieveUrls": {
+                "Type": "Task",
+                "Resource": "${retrieveUrlsLambda.Arn}",
+                "Parameters": {
+                  "website.$": "$.website"
+                },
+                "Next": "BatchUrls"
+              },
+              "BatchUrls": {
+                "Type": "Map",
+                "InputPath": "$",
+                "ItemsPath": "$.lists",
+                "MaxConcurrency": 0,
+                "Parameters": {
+                  "website.$": "$.website",
+                  "lists.$": "$$.Map.Item.Value"
+                },
+                "Iterator": {
+                  "StartAt": "ScrapeUrls",
+                  "States": {
+                    "ScrapeUrls": {
+                      "Type": "Task",
+                      "Resource": "${scrapeUrlsLambda.Arn}",
+                      "Parameters": {
+                        "website.$": "$.website",
+                        "sublist.$": "$.lists"
+                      },
+                      "End": true
+                    }
+                  }
+                },
+                "End": true
+              }
+            }
+          }
+      RoleArn: !GetAtt StepFunctionsExecutionRole.Arn
+
+
+  StepFunctionsExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - states.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: StepFunctionsExecutionPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - lambda:InvokeFunction
+                Resource: 
+                  - !GetAtt retrieveUrlsLambda.Arn
+                  - !GetAtt scrapeUrlsLambda.Arn
+                  - !GetAtt detectSubletsLambda.Arn
+
+  MyStateMachineSchedule:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: "Schedule to trigger the Step Function every 5 minutes from... "
+      ScheduleExpression: "cron(45/5 13 31 5 ? 2024)"
+      State: "ENABLED"
+      Targets:
+        - Arn: !GetAtt MyStateMachine.Arn
+          Id: "MyStateMachineTarget"
+          RoleArn: !GetAtt EventBridgeInvokeRole.Arn
+          Input: '{"website":"pap"}'
+
+  EventBridgeInvokeRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - events.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: AllowStepFunctionInvocation
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: 
+                  - states:StartExecution
+                Resource: !GetAtt MyStateMachine.Arn
