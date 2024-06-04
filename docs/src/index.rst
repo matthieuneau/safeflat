@@ -11,8 +11,6 @@ Welcome to safeflat's documentation!
    :caption: Contents:
 
    retrieveUrls
-   scrapeUrls
-   detectSublets
 
 Indices and tables
 ==================
