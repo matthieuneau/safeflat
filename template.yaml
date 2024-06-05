@@ -59,8 +59,8 @@ Resources:
   detectSubletsLambda:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: src/detectSublets
-      CodeUri: detectSublets/
+      FunctionName: detectSublets
+      CodeUri: src/detectSublets/
       Layers:
         - !Ref pythonDependenciesLayer
     Metadata:
