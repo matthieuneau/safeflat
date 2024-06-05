@@ -23,9 +23,13 @@ pylint = "^3.1.0"
 awscli = "^1.32.95"
 poetry-plugin-export = "^1.7.1"
 pytest = "^8.2.1"
+outlines = "^0.0.43"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.black]
+line-length = 88
 
 [build-system]
 requires = ["poetry-core"]
