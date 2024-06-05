@@ -40,8 +40,8 @@ retrieve_utils = importlib.import_module('utils', 'retrieveUrls')
 
 if __name__ == "__main__":
     
-    urls = retrieve_urls('https://www.seloger.com/list.htm?projects=1&types=2,1&places=[{%22inseeCodes%22:[750111]}]&sort=d_dt_crea&mandatorycommodities=0&privateseller=1&enterprise=0&qsVersion=1.0&m=search_refine-redirection-search_results')
-    #urls = [urls[20]]
+    urls = retrieve_urls('https://www.seloger.com/list.htm?projects=1&types=2,1&places=[{%22inseeCodes%22:[750112]}]&mandatorycommodities=0&privateseller=1&enterprise=0&qsVersion=1.0&m=search_refine-redirection-search_results')
+    urls = [urls[2]]
     for url in urls:
         try:
             scraped_data = scrape_ad(url)
@@ -52,6 +52,7 @@ if __name__ == "__main__":
             desc_data = scrape_utils.process_description(scraped_data["description"])
 
             merged_data = scrape_utils.add_desc_content_to_df(desc_data, processed_data)
+            
 
             data_bdd = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/seloger/output_processed.csv')
 
@@ -60,8 +61,8 @@ if __name__ == "__main__":
             df_concatene = pd.concat([merged_data, data_bdd], ignore_index=True)
             colonnes_a_supprimer = [col for col in df_concatene.columns if 'Unnamed:' in col]
             df_concatene.drop(columns=colonnes_a_supprimer, inplace=True)
-            print("Colonnes :", df_concatene.columns)
             df_concatene.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/seloger/output_processed.csv')
+            print("Data merged to database!")
 
             # data_bdd2 = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/outpu_processed.csv')
             # filtered_and_scored_data = filter_and_score(property_infos_same)
