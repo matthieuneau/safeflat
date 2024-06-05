@@ -62,13 +62,13 @@ def scrape_ad(ad_url: str) -> dict:
         print("Error extracting Neighbourhood:", e)
         data["neighbourhood"] = "Not Available"
 
-    # Retrieving details : nb_rooms, nb_bedrooms, surface, numero_etage
+    # Retrieving details : nb_rooms, nb_bedrooms, surface, etage
     try:
         # Initialize the result dictionary with default values
         data["nb_rooms"] = "Not Available"
         data["nb_bedrooms"] = "Not Available"
         data["surface"] = "Not Available"
-        data["numero_etage"] = "Not Available"
+        data["etage"] = "Not Available"
 
         # Attempt to find the outer div wrapper
         div_tags_wrapper = soup.find(
@@ -94,7 +94,7 @@ def scrape_ad(ad_url: str) -> dict:
                 elif "m²" in text:
                     data["surface"] = text
                 elif "étage" in text:  # Ensuring the keyword is also in lowercase
-                    data["numero_etage"] = text
+                    data["etage"] = text
         else:
             print("No div tags wrapper found for details.")
 

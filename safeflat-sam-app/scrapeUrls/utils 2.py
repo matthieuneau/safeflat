@@ -40,8 +40,8 @@ def process_description(description: str) -> pd.DataFrame:
     - parking: La présence ou non d'une place de parking privée. Renvoie oui si elle est présente, non sinon
     - quartier: Le nom du quartier où est situé le bien immobilier
     - meuble: Si le bien est meublé renvoie oui, sinon renvoie non
-    - nb_etages: Le nombre d'étages du bien
-    - numero_etage: À quel étage se situe le bien s'il s'agit d'un appartement
+    - nombre_d'etages: Le nombre d'étages du bien
+    - numero_d'etage: À quel étage se situe le bien s'il s'agit d'un appartement
     - ascenseur: La présence ou non d'un ascenseur qui permet d'accéder à l'appartement s'il s'agit d'un appartement en immeuble. Renvoie oui s'il y a un ascenseur, non sinon
     - cave: La présence ou non d'une cave. Renvoie oui s'il y a une cave, non sinon
     - terrasse: La présence ou non d'une terrasse. Renvoie oui s'il y en a une, non sinon
@@ -54,7 +54,7 @@ def process_description(description: str) -> pd.DataFrame:
     F3 Bien situé dans les hauts de Sainte-Suzanne deux rives proche de toutes commodités. Une cuisine ouverte et deux chambres plus 2 salles de bains et wc en bas et en haut.l'entrée donne directement sur une terrasse sécurisée à l'arrière une autre terrasse donnait directement sur une courette. Cette location meublée d'un montant 1150€mois tout charge inclus de plus il n'y a pas tout à l'égout. L'axé via un portail électrique donnant dans une cour privée idéal pour seniors cherchant la tranquillité
 
     Réponse 1:
-    {{"surface": "N/A", "nb_rooms": 3, "piscine": "Non", "type_de_bien": "N/A", "nb_bedrooms": "N/A", "parking": "N/A", "quartier": "N/A", "meuble": "N/A", "nb_etages": "N/A", "numero_etage": "N/A", "ascenseur": "N/A", "cave": "N/A", "terrasse": "oui"}}
+    {{"surface": "N/A", "nb_rooms": 3, "piscine": "Non", "type_de_bien": "N/A", "nb_bedrooms": "N/A", "parking": "N/A", "quartier": "N/A", "meuble": "N/A", "nombre_d'etages": "N/A", "numero_d'etage": "N/A", "ascenseur": "N/A", "cave": "N/A", "terrasse": "oui"}}
 
     Exemple 2:
     - Quartier calme et résidentiel.
@@ -72,7 +72,7 @@ def process_description(description: str) -> pd.DataFrame:
     - Seule charge : taxe d'ordure ménagère.
 
     Réponse 2:
-    {{"surface": "N/A", "nb_rooms": "N/A", "piscine": "Non", "type_de_bien": "appartement", "nb_bedrooms": "N/A", "parking": "oui", "quartier": "N/A", "meuble": "N/A", "nb_etages": "N/A", "numero_etage": 1, "ascenseur": "N/A", "cave": "N/A", "terrasse": "oui"}} 
+    {{"surface": "N/A", "nb_rooms": "N/A", "piscine": "Non", "type_de_bien": "appartement", "nb_bedrooms": "N/A", "parking": "oui", "quartier": "N/A", "meuble": "N/A", "nombre_d'etages": "N/A", "numero_d'etage": 1, "ascenseur": "N/A", "cave": "N/A", "terrasse": "oui"}} 
 
     Répond en renvoyant un dictionnaire sans aucun autres commentaires.
 
@@ -87,7 +87,7 @@ def process_description(description: str) -> pd.DataFrame:
     syntax and can be converted to a dictionary. Here is the string:
     {response}
     Also, make sure that the output has the same keys as this example and if there are any typos in the keys, correct them.
-    {{"surface": "N/A", "nb_rooms": "N/A", "piscine": "Non", "type_de_bien": "appartement", "nb_bedrooms": "N/A", "parking": "oui", "quartier": "N/A", "meuble": "N/A", "nb_etages": "N/A", "numero_etage": 1, "ascenseur": "N/A", "cave": "N/A", "terrasse": "oui"}} 
+    {{"surface": "N/A", "nb_rooms": "N/A", "piscine": "Non", "type_de_bien": "appartement", "nb_bedrooms": "N/A", "parking": "oui", "quartier": "N/A", "meuble": "N/A", "nombre_d'etages": "N/A", "numero_d'etage": 1, "ascenseur": "N/A", "cave": "N/A", "terrasse": "oui"}} 
     Answer only with the corrected output without adding any comments.
     """
     response = llm.invoke(refining_prompt)

@@ -35,6 +35,9 @@ def filter_and_score(property_infos):
     # if property_infos['ville'] is not None:
     #     query += f" WHERE ville = '{property_infos['ville']}'"  # Placeholder for location
 
+    # if property_infos['zipcode'] is not None:
+    #     query += f" WHERE ville = '{property_infos['zipcode']}'"  # Placeholder for location
+
     # Read data from the database and apply first filter (query):
     # data_df = read_from_database(query)
     data_df = pd.read_csv(
@@ -43,28 +46,20 @@ def filter_and_score(property_infos):
 
     # Transform text into digital format:
     data_df["nb_rooms"] = pd.to_numeric(data_df["nb_rooms"], errors="coerce")
-
-    data_df["surface"] = pd.to_numeric(data_df["surface"], errors="coerce")
     data_df["nb_bedrooms"] = pd.to_numeric(data_df["nb_bedrooms"], errors="coerce")
-    data_df["latitude"] = pd.to_numeric(data_df["latitude"], errors="coerce")
-    data_df["longitude"] = pd.to_numeric(data_df["longitude"], errors="coerce")
-    data_df["nb_bathrooms"] = pd.to_numeric(data_df["nb_bathrooms"], errors="coerce")
-    data_df["lits_doubles"] = pd.to_numeric(data_df["lits_doubles"], errors="coerce")
-    data_df["lits_simples"] = pd.to_numeric(data_df["lits_simples"], errors="coerce")
-    data_df["canapes_convertibles"] = pd.to_numeric(data_df["canapes_convertibles"], errors="coerce")
-    data_df["lits_superposes"] = pd.to_numeric(data_df["lits_superposes"], errors="coerce")
-    data_df["numero_d'etage"] = pd.to_numeric(data_df["numero_d'etage"], errors="coerce")
-    data_df["nombre_d'etages"] = pd.to_numeric(data_df["nombre_d'etages"], errors="coerce")
-
+    data_df["surface"] = pd.to_numeric(data_df["surface"], errors="coerce")
+    data_df["surface_balcon"] = pd.to_numeric(data_df["surface_balcon"], errors="coerce")
+    data_df["surface_terrasse"] = pd.to_numeric(data_df["surface_terrasse"], errors="coerce")
+    data_df["surface_jardin"] = pd.to_numeric(data_df["surface_jardin"], errors="coerce")
 
     # To be replaced with the SQL query:
-    filter_place = ["ville"]
+    filter_place = ["ville", "zipcode"] 
     for filter in filter_place:
         if property_infos[filter] is not None:
             data_df = data_df[data_df[filter] == property_infos[filter]]
 
     # # First filter, only keeps matching data
-    filter_rooms = ["nb_bedrooms"]
+    filter_rooms = ["nb_rooms", "nb_bedrooms"]
     for filter in filter_rooms:
         value = property_infos[filter]
         if value is not None:
@@ -76,56 +71,47 @@ def filter_and_score(property_infos):
                 | pd.isna(data_df[filter])
             ]
 
-    # filter_surface = ["surface"]
-    # for filter in filter_surface:
-    #     value = property_infos[filter]
-    #     if value is not None:
-    #         data_df = data_df[
-    #             ((value * 0.75 <= data_df[filter]) & (data_df[filter] <= value * 1.25))
-    #             | pd.isna(data_df[filter])
-    #         ]
-
-    def is_within_distance(row, point_ref, max_distance_km):
-        if pd.isna(row["latitude"]) or pd.isna(row["longitude"]):
-            return True
-        point = (row["latitude"], row["longitude"])
-        return geodesic(point, point_ref).kilometers <= max_distance_km
-
-    lat = property_infos["latitude"]
-    lng = property_infos["longitude"]
-    if lat is not None and lng is not None:
-        data_df = data_df[
-            data_df.apply(
-                is_within_distance, axis=1, point_ref=(lat, lng), max_distance_km=5
-            )
-        ]
+    filter_surface = ["surface"]
+    for filter in filter_surface:
+        value = property_infos[filter]
+        if value is not None:
+            data_df = data_df[
+                ((value * 0.75 <= data_df[filter]) & (data_df[filter] <= value * 1.25))
+                | pd.isna(data_df[filter])
+            ]
 
     # Defines the weight of each scoring feature (from 1 to 20)
     poids = {
-        "type": 5,
-        "nb_bedrooms" : 7,
-        "nb_bathrooms": 8,
-        "host_name" : 20,
-        "lave-linge": 7,
-        "sèche-linge": 7,
+        "type": 10,
+        "meuble": 15, # à changer en meuble
+        "host_name": 20,
+        "neighbourhood": 15,
+        "nb_rooms": 15,
+        "nb_bedrooms": 15,
+        "surface": 15,
         "balcon": 10,
         "terrasse": 10,
-        "parking": 6,
-        "ascenseur": 8,
-        "climatisation": 5,
-        "piscine": 10,
-        "baignoire": 10,
-        "lits_doubles": 6,
-        "lits_simples": 6,
-        "canapes_convertibles": 6,
-        "lits_superposes": 6,
-        "surface": 8,
-        "nb_rooms": 7,
-        "quartier": 7,
-        "meuble": 5,
-        "nombre_d'etages": 6,
-        "numero_d'etage": 6,
-        "cave": 4,
+        "jardin": 10,
+        "surface_balcon": 15,
+        "surface_terrasse": 15,
+        "surface_jardin": 15,
+        "exposition": 7,
+        "cave": 7,
+        "parking": 5,
+        "garage": 10,
+        "box": 10,
+        "ascenseur": 10,
+        "interphone": 5,
+        "gardien": 10,
+        "numero_etage": 12,
+        "nb_etages": 8,
+        "salle de bain (Baignoire)": 13,
+        "salle d'eau (douche)": 13,
+        "surface_salon": 15,
+        "surface_salle_a_manger": 15,
+        "Diagnostic de performance énergétique (DPE)": 5,
+        "Indice d'émission de gaz à effet de serre (GES)": 5
+        
     }
 
     # Cost calculation for each line
@@ -142,33 +128,37 @@ def filter_and_score(property_infos):
 
 # Example of a property to protect:
 property_infos_same = {
-    "ville": "Strasbourg",
-    "type": "appartement",
-    "latitude": 48.5825846,
-    "longitude": 7.7389715,
-    "nb_bedrooms" : 1,
-    "nb_bathrooms": 1,
-    "host_name" : 'Emma',
-    "lave-linge": 'oui',
-    "sèche-linge": 'oui',
-    "balcon": 'non',
-    "terrasse": 'non',
-    "parking": 'non',
-    "ascenseur": 'non',
-    "climatisation": 'non',
-    "piscine": 'non',
-    "baignoire": 'non',
-    "lits_doubles": 1,
-    "lits_simples": 0,
-    "canapes_convertibles": 1,
-    "lits_superposes": 0,
-    "surface": None,
-    "nb_rooms": None,
-    "quartier": None,
-    "meuble": None,
-    "nombre_d'etages": None,
-    "numero_d'etage": 1,
-    "cave": None,
+    "type": "Appartement",
+        "meuble": 1, 
+        "host_name": "Kevin",
+        "ville": "Paris", 
+        "zipcode": 75011,
+        "neighbourhood": "Quartier Léon-Blum Folie-Regnault",
+        "nb_rooms": 4,
+        "nb_bedrooms": 3.0,
+        "surface": 33.0,
+        "balcon": 0,
+        "terrasse": 0,
+        "jardin": 0,
+        "surface_balcon": None,
+        "surface_terrasse": None,
+        "surface_jardin": None,
+        "exposition": None,
+        "cave": 1,
+        "parking": 0,
+        "garage": 0,
+        "box": 1,
+        "ascenseur": 1.0,
+        "interphone": 0,
+        "gardien": 0,
+        "numero_etage": 4.0,
+        "nb_etages": 6.0,
+        "salle de bain (Baignoire)": 1,
+        "salle d'eau (douche)": 1,
+        "surface_salon": None,
+        "surface_salle_a_manger": None,
+        "Diagnostic de performance énergétique (DPE)": "D",
+        "Indice d'émission de gaz à effet de serre (GES)": "D"
 }
 
 if __name__ == "__main__":
