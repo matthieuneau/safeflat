@@ -6,6 +6,7 @@ on:
   pull_request:
     branches: [dev]
     types: [closed]
+  workflow_dispatch:
 
 env:
   PYTHON_VERSION: '3.11'
@@ -49,5 +50,5 @@ jobs:
         poetry run sam deploy \
           --region $AWS_REGION \
           --stack-name GenerationStack \
-          --s3-bucket stackBucketEnv \
+          --s3-bucket stackBucketDev \
           --capabilities CAPABILITY_IAM

@@ -19,3 +19,6 @@ docs/_build
 
 ### Layer
 layer
+
+### Pytest
+.pytest_cache/

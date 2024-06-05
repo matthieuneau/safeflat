@@ -66,9 +66,8 @@ def read_from_database(query: str) -> pd.DataFrame:
     return df
 
 
-### TO BE EDITED ###
-def remove_already_scraped_urls(urls: list) -> list:
-    query = "select url from pap"
+def remove_already_scraped_urls(urls: list, website: str) -> list:
+    query = f"select url from {website}"
     scraped_urls_df = read_from_database(query)["url"]
     print("scraped_urls_df: ", scraped_urls_df)
     scraped_urls_list = scraped_urls_df.to_list()

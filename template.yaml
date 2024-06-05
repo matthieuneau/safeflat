@@ -137,17 +137,72 @@ Resources:
                   - !GetAtt scrapeUrlsLambda.Arn
                   - !GetAtt detectSubletsLambda.Arn
 
-  MyStateMachineSchedule:
+  AbritelSchedule:
     Type: AWS::Events::Rule
     Properties:
       Description: "Schedule to trigger the Step Function every 5 minutes from... "
       ScheduleExpression: "cron(45/5 13 31 5 ? 2024)"
-      State: "ENABLED"
+      State: "DISABLED"
+      Targets:
+        - Arn: !GetAtt MyStateMachine.Arn
+          Id: "MyStateMachineTarget"
+          RoleArn: !GetAtt EventBridgeInvokeRole.Arn
+          Input: '{"website":"abritel"}'
+  AirbnbSchedule:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: "Schedule to trigger the Step Function every 5 minutes from... "
+      ScheduleExpression: "cron(45/5 13 31 5 ? 2024)"
+      State: "DISABLED"
+      Targets:
+        - Arn: !GetAtt MyStateMachine.Arn
+          Id: "MyStateMachineTarget"
+          RoleArn: !GetAtt EventBridgeInvokeRole.Arn
+          Input: '{"website":"airbnb"}'
+  GensDeConfianceSchedule:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: "Schedule to trigger the Step Function every 5 minutes from... "
+      ScheduleExpression: "cron(45/5 13 31 5 ? 2024)"
+      State: "DISABLED"
+      Targets:
+        - Arn: !GetAtt MyStateMachine.Arn
+          Id: "MyStateMachineTarget"
+          RoleArn: !GetAtt EventBridgeInvokeRole.Arn
+          Input: '{"website":"gensdeconfiance"}'
+  LeBonCoinSchedule:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: "Schedule to trigger the Step Function every 5 minutes from... "
+      ScheduleExpression: "cron(45/5 13 31 5 ? 2024)"
+      State: "DISABLED"
+      Targets:
+        - Arn: !GetAtt MyStateMachine.Arn
+          Id: "MyStateMachineTarget"
+          RoleArn: !GetAtt EventBridgeInvokeRole.Arn
+          Input: '{"website":"leboncoin"}'
+  PapSchedule:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: "Schedule to trigger the Step Function every 5 minutes from... "
+      ScheduleExpression: "cron(45/5 13 31 5 ? 2024)"
+      State: "DISABLED"
       Targets:
         - Arn: !GetAtt MyStateMachine.Arn
           Id: "MyStateMachineTarget"
           RoleArn: !GetAtt EventBridgeInvokeRole.Arn
           Input: '{"website":"pap"}'
+  SeLogerSchedule:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: "Schedule to trigger the Step Function every 5 minutes from... "
+      ScheduleExpression: "cron(45/5 13 31 5 ? 2024)"
+      State: "DISABLED"
+      Targets:
+        - Arn: !GetAtt MyStateMachine.Arn
+          Id: "MyStateMachineTarget"
+          RoleArn: !GetAtt EventBridgeInvokeRole.Arn
+          Input: '{"website":"seloger"}'
 
   EventBridgeInvokeRole:
     Type: AWS::IAM::Role
