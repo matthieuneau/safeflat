@@ -2,8 +2,16 @@ import os
 import ast
 import pandas as pd
 from openai import OpenAI
-from outlines import models
+from outlines import models, generate
 
+test_description = """En plein cœur de Charenton, proche de toutes les commodités et du bois de Vincennes.
+
+Dans une copropriété au calme, Un très bel appartement type loft/duplex, meublé, de 59m2 au sol.
+
+Il se compose de 3 pièces, avec au RDC un bel espace de vie, une cuisine séparée équipée, une salle d'eau avec WC.
+A l'étage : deux chambres, dont une avec un filet, un coin bureau.
+
+L'appartement dispose d'un espace extérieur."""
 
 answer_schema = {
     "$schema": "http://json-schema.org/draft-07/schema#",
@@ -102,8 +110,7 @@ answer_schema = {
 
 
 def process_description(description: str, answer_schema: object) -> pd.DataFrame:
-    model = models.openai("gpt-3.5-turbo")
-    llm = OpenAI(model="gpt-3.5-turbo-instruct", api_key=os.getenv("OPENAI_API_KEY"))
+    model = models.openai("gpt-3.5-turbo", api_key=os.getenv("OPENAI_API_KEY"))
 
     prompt = f"""Tu es un expert en location immobilière et tu maîtrises tout le vocabulaire associé. Tu dois m'aider à extraire des informations pertinentes parmi de longues descriptions de biens immobiliers que je vais te donner.
 
@@ -156,19 +163,14 @@ def process_description(description: str, answer_schema: object) -> pd.DataFrame
     Voici la description de l'annonce en question: 
 
     {{ {description} }}
-"""
-
-    response = llm.invoke(prompt)
-
-    refining_prompt = f"""This is a python string that is meant to be converted to a dictionary. Make sure that it has the right 
-    syntax and can be converted to a dictionary. Here is the string:
-    {response}
-    Also, make sure that the output has the same keys as this example and if there are any typos in the keys, correct them.
-    {{"surface": "N/A", "nb_rooms": "N/A", "piscine": "Non", "type_de_bien": "appartement", "nb_bedrooms": "N/A", "parking": "oui", "quartier": "N/A", "meuble": "N/A", "nombre_d'etages": "N/A", "numero_d'etage": 1, "ascenseur": "N/A", "cave": "N/A", "terrasse": "oui"}} 
-    Answer only with the corrected output without adding any comments.
     """
-    response = llm.invoke(refining_prompt)
-    response = ast.literal_eval(response)
-    response = pd.DataFrame([response])
+    generator = generate.json(model, answer_schema)
+
+    response = generator(prompt)
+    print("response: ", response)
 
     return response
+
+
+if __name__ == "__main__":
+    process_description(test_description, answer_schema)
