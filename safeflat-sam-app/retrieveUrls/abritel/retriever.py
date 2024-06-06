@@ -1,6 +1,10 @@
-from utils import *
 from bs4 import BeautifulSoup
+import os
+import sys
 
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(parent_dir)
+from utils import *
 
 def retrieve_urls(page_url: str) -> list:
     """Retrieve the URLs of the ads from the page

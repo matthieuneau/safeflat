@@ -1,3 +1,13 @@
+import os
+import sys
+from bs4 import BeautifulSoup
+import json
+import re
+
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(parent_dir)
+from utils import *
+
 def abritel_scraper(ad_url: str) -> dict:
     """Scrape the data from the ad URL
 
@@ -101,7 +111,7 @@ def abritel_scraper(ad_url: str) -> dict:
     try:
         div_tags = soup.find_all(
             "div",
-            class_="uitk-text uitk-type-300 uitk-type-regular uitk-text-standard-theme uitk-layout-flex-item",
+            class_="uitk-text uitk-type-300 uitk-type-regular uitk-text-standard-theme uitk-spacing uitk-spacing-padding-blockstart- uitk-layout-flex-item",
         )
         extracted_baignoire = []
         extracted_douche = []
@@ -131,7 +141,7 @@ def abritel_scraper(ad_url: str) -> dict:
     try:
         div_tags = soup.find_all(
             "div",
-            class_="uitk-text uitk-type-300 uitk-type-regular uitk-text-standard-theme uitk-layout-flex-item",
+            class_="uitk-text uitk-type-300 uitk-type-regular uitk-text-standard-theme uitk-spacing uitk-spacing-padding-blockstart- uitk-layout-flex-item",
         )
         extracted_texts = []
 
@@ -154,17 +164,17 @@ def abritel_scraper(ad_url: str) -> dict:
     try:
         extracted_spaces = []
         # Find the first 'h3' tag with text "Espaces"
-        h3_tag = soup.find("h3", string="Espaces")
+        h2_tag = soup.find("h2", string="Espaces")
 
-        if h3_tag:  # Ensure the 'h3' tag was found
+        if h2_tag:  # Ensure the 'h3' tag was found
             # Find the next 'div' with class "uitk-layout-grid" following the 'h3' tag
-            grid_div = h3_tag.find_next("div", class_="uitk-layout-grid")
+            grid_div = h2_tag.find_next("div", class_="uitk-layout-grid")
 
             if grid_div:  # Ensure the grid 'div' was found
                 # Find all 'div' tags with specific classes within the grid
                 items = grid_div.find_all(
                     "div",
-                    class_="uitk-text uitk-type-300 uitk-type-regular uitk-text-standard-theme uitk-layout-flex-item",
+                    class_="uitk-text uitk-type-300 uitk-type-regular uitk-text-standard-theme uitk-spacing uitk-spacing-padding-blockstart- uitk-layout-flex-item",
                 )
 
                 for item in items:
@@ -212,9 +222,8 @@ def abritel_scraper(ad_url: str) -> dict:
 
         # Extract host name
         try:
-            matching_host_name = find_matching_items_host_name(json_data)
-            extracted_host_name = extract_text_host_name(matching_host_name)[0]
-            data["host_name"] = extracted_host_name
+            matching_host_name = find_host_name(json_data)[0]
+            data["host_name"] = matching_host_name
         except Exception as e:
             print("Error extracting host_name:", e)
             data["host_name"] = "Not Available"
@@ -283,57 +292,35 @@ def extract_texts_desc(data):
     return texts
 
 
-def find_matching_items_host_name(
-    data, key="__typename", value="PropertyContentItemText", results=None
-):
+def find_host_name(data, results=None):
     if results is None:
         results = []
 
     if isinstance(data, dict):
-        if key in data and data[key] == value:
-            # Check further if the content structure matches
-            if "content" in data and isinstance(data["content"], dict):
-                content = data["content"]
-                if (
-                    content.get("__typename") == "PropertyContentText"
-                    and "primary" in content
-                    and isinstance(content["primary"], dict)
-                ):
-                    primary = content["primary"]
-                    if (
-                        primary.get("__typename") == "LodgingEnrichedMessage"
-                        and "value" in primary
-                        and primary.get("value") == "Tam"
-                    ):
-                        # Check all optional keys
-                        if all(
-                            k in primary and primary[k] is None
-                            for k in ["icon", "egdsMark", "state", "subtexts"]
-                        ):
-                            if (
-                                content.get("secondary") is None
-                                and data.get("expando") is None
-                            ):
-                                results.append(data)
-        # Recurse into the dictionary
-        for v in data.values():
-            find_matching_items_host_name(v, key, value, results)
+        # Vérifier si la structure correspond
+        if (
+            "collapseButton" in data and
+            "__typename" in data["collapseButton"] and
+            data["collapseButton"]["__typename"] == "LodgingButton" and
+            "text" in data["collapseButton"] and
+            "analytics" in data["collapseButton"] and
+            isinstance(data["collapseButton"]["analytics"], dict)
+        ):
+            text = data["collapseButton"]["text"]
+            if "Masquer les informations sur " in text:
+                # Extraire le nom de l'hôte
+                host_name = re.search(r"Masquer les informations sur (.+)", text)
+                if host_name:
+                    results.append(host_name.group(1).strip())
+        # Rechercher de manière récursive dans les sous-dictionnaires
+        for key, value in data.items():
+            find_host_name(value, results)
     elif isinstance(data, list):
-        # Recurse into the list
+        # Rechercher de manière récursive dans les sous-listes
         for item in data:
-            find_matching_items_host_name(item, key, value, results)
+            find_host_name(item, results)
 
     return results
-
-
-def extract_text_host_name(data, key="value"):
-    values = []
-    for item in data:
-        content = item.get("content", {})
-        primary = content.get("primary", {})
-        if key in primary:
-            values.append(primary[key])
-    return values
 
 
 def find_location_with_coordinates(data, results=None):

@@ -6,7 +6,7 @@ from langchain_openai import OpenAI
 
 
 def fetch_html_with_oxylab(page_url: str) -> str:
-    username = "safeflat4"
+    username = "safeflat123_Uq0oI"
     password = "saaj098KLN++"
 
     proxies = {
