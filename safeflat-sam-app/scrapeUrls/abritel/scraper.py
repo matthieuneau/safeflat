@@ -26,6 +26,9 @@ def abritel_scraper(ad_url: str) -> dict:
     soup = BeautifulSoup(html, "html.parser")
     data = {}
 
+    #Store url
+    data["url"] = ad_url
+
     # Retrieving title
     data["title"] = "Not Available"
     try:
@@ -210,6 +213,10 @@ def abritel_scraper(ad_url: str) -> dict:
 
                 # Use an index to avoid overwriting in the dictionary
                 json_data[f"script_{idx}"] = json_object
+        
+        # #For test purpose only: store locally the json file
+        # with open("C:/Users/hennecol/Documents/safeflat/safeflat-sam-app/retrieveUrls/abritel/annonces/annonce_equip.json", 'w') as json_file:
+        #     json.dump(json_data, json_file, indent=4)
 
         # Extract description
         try:
@@ -247,6 +254,14 @@ def abritel_scraper(ad_url: str) -> dict:
             print("Error extracting coordinates:", e)
             data["type"] = "Not Available"
             data["host_type"] = "Not Available"
+
+        # Extract amenities:
+        try:
+            amenities = find_amenities(json_data)
+            data["amenities"] = amenities
+        except Exception as e:
+            print("Error extracting amenities:", e)
+            data["amenities"] = "Not Available"
 
     except Exception as e:
         print("Error extracting JSON:", e)
@@ -375,5 +390,29 @@ def find_type_host_type(data, results=None):
         # Recursively process list elements
         for item in data:
             find_type_host_type(item, results)
+
+    return results
+
+def find_amenities(data, results=None):
+    if results is None:
+        results = []
+
+    if isinstance(data, dict):
+        if (
+            "__typename" in data and
+            data["__typename"] == "ShoppingProductContentGraphicsItem" and
+            "text" in data and
+            "state" in data and
+            "leadingIcon" in data and
+            isinstance(data["leadingIcon"], dict) and
+            "trailingIcon" in data and
+            "impressionAnalytics" in data
+        ):
+            results.append(data["text"])
+        for key, value in data.items():
+            find_amenities(value, results)
+    elif isinstance(data, list):
+        for item in data:
+            find_amenities(item, results)
 
     return results

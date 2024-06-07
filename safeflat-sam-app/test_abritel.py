@@ -32,15 +32,16 @@ sys.path.append(scrape_dir)
 from retriever import retrieve_urls # Remplacez par les noms des fonctions à importer
 from scraper import abritel_scraper  # Remplacez par les noms des fonctions à importer
 from generate_urls import generate_abritel_url
-#from postprocessing import process_output  # Remplacez par les noms des fonctions à importer
+from postprocessing import process_output  # Remplacez par les noms des fonctions à importer
 #from algo import filter_and_score
 
 # Importation des modules utils avec des alias pour éviter les conflits de noms
 scrape_utils = importlib.import_module('utils', 'scrapeUrls')
 retrieve_utils = importlib.import_module('utils', 'retrieveUrls')
 
-lat = 43.178517
-lon = 5.609222
+
+lat = 43.208037
+lon = 6.557318
 nb_chambres = 1
 nb_salles_de_bains = 1
 prix_min = 0
@@ -51,60 +52,31 @@ if __name__ == "__main__":
     url_coord = generate_abritel_url(lat, lon, nb_chambres, nb_salles_de_bains, prix_min, prix_max, sort_order)
     urls = retrieve_urls(url_coord)
     
-    #urls = [urls[2]]
+    #urls = [urls[0]]
     for url in urls:
-        try:
-            scraped_data = abritel_scraper(url)
-            print('Scraped ad:', scraped_data)
-            scraped_data = pd.DataFrame([scraped_data])
-
-    #         processed_data = process_output(scraped_data)
-
-    #         desc_data = scrape_utils.process_description(scraped_data["description"])
-
-    #         merged_data = scrape_utils.add_desc_content_to_df(desc_data, processed_data)
-            
-            #data_bdd = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/seloger/output_processed.csv')
-            data_bdd = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/abritel/output_before_process.csv')
-
-    #         merged_data.reset_index(drop=True, inplace=True)
-            data_bdd.reset_index(drop=True, inplace=True)
-            df_concatene = pd.concat([scraped_data, data_bdd], ignore_index=True)
-    #         df_concatene = pd.concat([merged_data, data_bdd], ignore_index=True)
-            colonnes_a_supprimer = [col for col in df_concatene.columns if 'Unnamed:' in col]
-            df_concatene.drop(columns=colonnes_a_supprimer, inplace=True)
-            df_concatene.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/abritel/output_before_process.csv')
-
-    #         df_concatene.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/seloger/output_processed.csv')
-    #         print("Data merged to database!")
-
-    #         # data_bdd2 = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/outpu_processed.csv')
-    #         # filtered_and_scored_data = filter_and_score(property_infos_same)
-    #         # filtered_and_scored_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_filtered_score.csv')
-
-    #         #save_to_database(merged_data)
-        except Exception as e:
-            print(f"An error occrued while processing the ad: {url}", "\n", e)
+        scraped_data = abritel_scraper(url)
+        print('Scraped ad:', scraped_data)
+        scraped_data = pd.DataFrame([scraped_data])
         
+        processed_data = process_output(scraped_data)
+        #processed_data.to_csv('C:/Users/hennecol/Documents/safeflat/safeflat-sam-app/csv_outputs/abritel/output_processed.csv')
 
-        # scraped_data = scrape_ad(url)
-        # print('Scraped ad:', scraped_data)
-        # scraped_data = pd.DataFrame([scraped_data])
-        # processed_data = process_output(scraped_data)
+        data_bdd = pd.read_csv('C:/Users/hennecol/Documents/safeflat/safeflat-sam-app/csv_outputs/abritel/output_processed.csv')
 
-        # desc_data = scrape_utils.process_description(scraped_data["description"])
+        data_bdd.reset_index(drop=True, inplace=True)
+        df_concatene = pd.concat([processed_data, data_bdd], ignore_index=True)
+        colonnes_a_supprimer = [col for col in df_concatene.columns if 'Unnamed:' in col]
+        df_concatene.drop(columns=colonnes_a_supprimer, inplace=True)
 
-        # merged_data = scrape_utils.add_desc_content_to_df(desc_data, processed_data)
+        df_concatene.to_csv('C:/Users/hennecol/Documents/safeflat/safeflat-sam-app/csv_outputs/abritel/output_processed.csv')
+        print("Data merged to database!")
 
-        # data_bdd = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/seloger/output_processed.csv')
+        #         # data_bdd2 = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/outpu_processed.csv')
+#         # filtered_and_scored_data = filter_and_score(property_infos_same)
+#         # filtered_and_scored_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_filtered_score.csv')
 
-        # merged_data.reset_index(drop=True, inplace=True)
-        # data_bdd.reset_index(drop=True, inplace=True)
-        # df_concatene = pd.concat([merged_data, data_bdd], ignore_index=True)
-        # colonnes_a_supprimer = [col for col in df_concatene.columns if 'Unnamed:' in col]
-        # df_concatene.drop(columns=colonnes_a_supprimer, inplace=True)
-        # print("Colonnes :", df_concatene.columns)
-        # df_concatene.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/seloger/output_processed.csv')
+
+
 
  
 

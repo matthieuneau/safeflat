@@ -37,13 +37,13 @@ def generate_abritel_url(lat, lon, nb_chambres, nb_salles_de_bains, prix_min, pr
     
     return url
 
-# Example usage:
-lat = 43.178517
-lon = 5.609222
-nb_chambres = 1
-nb_salles_de_bains = 1
-prix_min = 0
-prix_max = 2000
-sort_order = 'asc'  # 'asc' for ascending, 'desc' for descending
+# # Example usage:
+# lat = 43.208037
+# lon = 6.557318
+# nb_chambres = 1
+# nb_salles_de_bains = 1
+# prix_min = 0
+# prix_max = 2000
+# sort_order = 'asc'   # 'asc' for ascending, 'desc' for descending
 
-#print(generate_abritel_url(lat, lon, nb_chambres, nb_salles_de_bains, prix_min, prix_max, sort_order))
+# print(generate_abritel_url(lat, lon, nb_chambres, nb_salles_de_bains, prix_min, prix_max, sort_order))
