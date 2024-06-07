@@ -3,15 +3,29 @@ from geopy.distance import geodesic
 import pandas as pd
 
 
-def score_calculation(row, property_infos, poids):
+def score_calculation(row, property_infos, poids, poids_surface, poids_nom):
     total_poids = 0
     matching_poids = 0
 
     for key, value in property_infos.items():
-        if value is not None and key in poids:
-            total_poids += poids[key]
-            if row[key] == value:
-                matching_poids += poids[key]
+        if value is not None:
+            # Add surface weights
+            if key in poids_surface:
+                total_poids += poids_surface[key]
+                if row[key] is not None and value - 1 <= row[key] <= value + 1:
+                    matching_poids += poids_surface[key]
+            
+            # Add name weights
+            elif key in poids_nom:
+                total_poids += poids_nom[key]
+                if row[key] is not None and isinstance(row[key], str) and isinstance(value, str) and (row[key] in value or value in row[key]):
+                    matching_poids += poids_nom[key]
+            
+            # Add standard weights
+            elif key in poids:
+                total_poids += poids[key]
+                if row[key] is not None and row[key] == value:
+                    matching_poids += poids[key]
 
     if total_poids == 0:
         return 0
@@ -38,7 +52,7 @@ def filter_and_score(property_infos):
     # Read data from the database and apply first filter (query):
     # data_df = read_from_database(query)
     data_df = pd.read_csv(
-        "/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/outpu_processed.csv"
+        "/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_filtered_score.csv"
     )
 
     # Transform text into digital format:
@@ -103,7 +117,6 @@ def filter_and_score(property_infos):
         "type": 5,
         "nb_bedrooms" : 7,
         "nb_bathrooms": 8,
-        "host_name" : 20,
         "lave-linge": 7,
         "sèche-linge": 7,
         "balcon": 10,
@@ -117,7 +130,6 @@ def filter_and_score(property_infos):
         "lits_simples": 6,
         "canapes_convertibles": 6,
         "lits_superposes": 6,
-        "surface": 8,
         "nb_rooms": 7,
         "quartier": 7,
         "meuble": 5,
@@ -126,10 +138,13 @@ def filter_and_score(property_infos):
         "cave": 4,
     }
 
+    poids_surface = {"surface" : 20}
+    poids_nom = {"host_name" : 20}
+
     # Cost calculation for each line
     data_df["cost"] = (
         data_df.apply(
-            score_calculation, axis=1, property_infos=property_infos, poids=poids
+            score_calculation, axis=1, property_infos=property_infos, poids=poids, poids_surface = poids_surface, poids_nom = poids_nom
         )
         * 100
     )

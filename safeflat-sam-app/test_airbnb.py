@@ -102,6 +102,7 @@ if __name__ == "__main__":
         except Exception as e:
             print(f"An error occrued while processing the ad: {url}", "\n", e)
 
+
  
 
     
