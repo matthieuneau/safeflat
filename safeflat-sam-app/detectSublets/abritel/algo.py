@@ -3,19 +3,34 @@ from geopy.distance import geodesic
 import pandas as pd
 
 
-def score_calculation(row, property_infos, poids):
+def score_calculation(row, property_infos, poids, poids_surface, poids_nom):
     total_poids = 0
     matching_poids = 0
 
     for key, value in property_infos.items():
-        if value is not None and key in poids:
-            total_poids += poids[key]
-            if row[key] == value:
-                matching_poids += poids[key]
+        if value is not None:
+            # Add surface weights
+            if key in poids_surface:
+                total_poids += poids_surface[key]
+                if row[key] is not None and value - 1 <= row[key] <= value + 1:
+                    matching_poids += poids_surface[key]
+            
+            # Add name weights
+            elif key in poids_nom:
+                total_poids += poids_nom[key]
+                if row[key] is not None and isinstance(row[key], str) and isinstance(value, str) and (row[key] in value or value in row[key]):
+                    matching_poids += poids_nom[key]
+            
+            # Add standard weights
+            elif key in poids:
+                total_poids += poids[key]
+                if row[key] is not None and row[key] == value:
+                    matching_poids += poids[key]
 
     if total_poids == 0:
         return 0
     return matching_poids / total_poids
+
 
 
 def filter_and_score(property_infos):
@@ -38,7 +53,7 @@ def filter_and_score(property_infos):
     # Read data from the database and apply first filter (query):
     # data_df = read_from_database(query)
     data_df = pd.read_csv(
-        "C:/Users/hennecol/Documents/safeflat/safeflat-sam-app/csv_outputs/abritel/output_processed.csv"
+        "/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/abritel/output_processed.csv"
     )
 
     # Transform text into digital format:
@@ -75,7 +90,6 @@ def filter_and_score(property_infos):
 
     # Defines the weight of each scoring feature (from 1 to 20)
     poids = {
-        'surface' : 20,
         'nb_bedrooms' : 15,
         'nb_bathrooms': 15,
         'baignoire' : 10,
@@ -84,7 +98,6 @@ def filter_and_score(property_infos):
         'lits_simples': 8,
         'canapes_convertibles': 8, 
         'lits_superposes' : 8,
-        'host_name' : 20,
         'type': 5,
         "terrasse": 12,
         "balcon": 12,
@@ -100,13 +113,15 @@ def filter_and_score(property_infos):
         "lave-linge": 10,
         "sèche-linge": 10,
         "climatisation":10
-        
     }
+
+    poids_surface = {'surface' : 20}
+    poids_nom = {'host_name' : 20}
 
     # Cost calculation for each line
     data_df["cost"] = (
         data_df.apply(
-            score_calculation, axis=1, property_infos=property_infos, poids=poids
+            score_calculation, axis=1, property_infos=property_infos, poids=poids, poids_surface = poids_surface, poids_nom = poids_nom
         )
         * 100
     )
@@ -117,31 +132,32 @@ def filter_and_score(property_infos):
 
 # Example of a property to protect:
 property_infos_same = {
-        'surface' : 20,
-        'nb_bedrooms' : 15,
-        'nb_bathrooms': 15,
-        'baignoire' : 10,
-        'douche' :10,
-        'lits_doubles': 8,
-        'lits_simples': 8,
-        'canapes_convertibles': 8, 
-        'lits_superposes' : 8,
-        'host_name' : 20,
-        'type': 5,
-        "terrasse": 12,
-        "balcon": 12,
-        "jardin": 12,
-        "cave": 6,
-        "parking": 12,
-        "garage": 10,
-        "box": 5,
-        "piscine": 15,
-        "ascenseur": 6,
-        "interphone": 6,
-        "gardien": 10,
-        "lave-linge": 10,
-        "sèche-linge": 10,
-        "climatisation":10
+        'ville' : 'La Croix-Valmer',
+        'surface' : 40.0,
+        'nb_bedrooms' : 1,
+        'nb_bathrooms': 1.0,
+        'baignoire' : 'oui',
+        'douche' : None,
+        'lits_doubles': 1.0,
+        'lits_simples': None,
+        'canapes_convertibles': 1.0, 
+        'lits_superposes' : None,
+        'host_name' : 'Christine',
+        'type': 'Appartement',
+        "terrasse": 'oui',
+        "balcon": None,
+        "jardin": None,
+        "cave": None,
+        "parking": None,
+        "garage": None,
+        "box": None,
+        "piscine": 'oui',
+        "ascenseur": None,
+        "interphone": None,
+        "gardien": None,
+        "lave-linge": 'oui',
+        "sèche-linge": None,
+        "climatisation": 'oui'
 }
 
 if __name__ == "__main__":
