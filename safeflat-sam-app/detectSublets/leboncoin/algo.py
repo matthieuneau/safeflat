@@ -1,5 +1,6 @@
 from utils import *
 from geopy.distance import geodesic
+import pandas as pd
 
 
 def score_calculation(row, property_infos, poids):
