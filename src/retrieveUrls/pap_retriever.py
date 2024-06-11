@@ -1,8 +1,7 @@
-from utils import *
+from .utils import fetch_html_with_oxylab
 from bs4 import BeautifulSoup
 
 
-### STILL NEED TO ADD THE PAGE NAVIGATION
 def retrieve_urls() -> list:
     """
     The retrieve_urls function retrieves all the urls of the ads from a given page of pap

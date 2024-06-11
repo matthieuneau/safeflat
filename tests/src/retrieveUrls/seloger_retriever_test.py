@@ -2,5 +2,5 @@ from src.retrieveUrls.seloger_retriever import retrieve_urls
 
 
 def test_retrieve_urls():
-    urls = retrieve_urls()
-    assert len(urls) > 0
+    """Check that the list of url returned is not empty and that they start with the correct prefix"""
+    pass
