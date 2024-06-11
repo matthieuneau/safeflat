@@ -1,4 +1,4 @@
-from src.retrieveUrls.pap_retriever import retrieve_urls
+from src.retrieveUrls.seloger_retriever import retrieve_urls
 
 
 def test_retrieve_urls():
