@@ -3,15 +3,29 @@ from geopy.distance import geodesic
 import pandas as pd
 
 
-def score_calculation(row, property_infos, poids):
+def score_calculation(row, property_infos, poids, poids_surface, poids_nom):
     total_poids = 0
     matching_poids = 0
 
     for key, value in property_infos.items():
-        if value is not None and key in poids:
-            total_poids += poids[key]
-            if row[key] == value:
-                matching_poids += poids[key]
+        if value is not None:
+            # Add surface weights
+            if key in poids_surface:
+                total_poids += poids_surface[key]
+                if row[key] is not None and value - 1 <= row[key] <= value + 1:
+                    matching_poids += poids_surface[key]
+            
+            # Add name weights
+            elif key in poids_nom:
+                total_poids += poids_nom[key]
+                if row[key] is not None and isinstance(row[key], str) and isinstance(value, str) and (row[key] in value or value in row[key]):
+                    matching_poids += poids_nom[key]
+            
+            # Add standard weights
+            elif key in poids:
+                total_poids += poids[key]
+                if row[key] is not None and row[key] == value:
+                    matching_poids += poids[key]
 
     if total_poids == 0:
         return 0
@@ -84,17 +98,12 @@ def filter_and_score(property_infos):
     poids = {
         "type": 10,
         "meuble": 15, # à changer en meuble
-        "host_name": 20,
         "neighbourhood": 15,
         "nb_rooms": 15,
         "nb_bedrooms": 15,
-        "surface": 15,
         "balcon": 10,
         "terrasse": 10,
         "jardin": 10,
-        "surface_balcon": 15,
-        "surface_terrasse": 15,
-        "surface_jardin": 15,
         "exposition": 7,
         "cave": 7,
         "parking": 5,
@@ -107,17 +116,29 @@ def filter_and_score(property_infos):
         "nb_etages": 8,
         "salle de bain (Baignoire)": 13,
         "salle d'eau (douche)": 13,
-        "surface_salon": 15,
-        "surface_salle_a_manger": 15,
         "Diagnostic de performance énergétique (DPE)": 5,
         "Indice d'émission de gaz à effet de serre (GES)": 5
         
     }
 
+    poids_surface = {
+        "surface": 15,
+        "surface_balcon": 12,
+        "surface_terrasse": 12,
+        "surface_jardin": 10,
+        "surface_salon": 15,
+        "surface_salle_a_manger": 15
+    }
+
+    poids_nom = {
+        "host_name": 20,
+
+    }
+
     # Cost calculation for each line
     data_df["cost"] = (
         data_df.apply(
-            score_calculation, axis=1, property_infos=property_infos, poids=poids
+            score_calculation, axis=1, property_infos=property_infos, poids=poids, poids_surface = poids_surface, poids_nom = poids_nom
         )
         * 100
     )

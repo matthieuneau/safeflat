@@ -32,7 +32,7 @@ sys.path.append(scrape_dir)
 
 from retriever import retrieve_urls # Remplacez par les noms des fonctions à importer
 from scraper import scrape_ad  # Remplacez par les noms des fonctions à importer
-#from postprocessing import process_output  # Remplacez par les noms des fonctions à importer
+from postprocessing import process_output  # Remplacez par les noms des fonctions à importer
 from algo import filter_and_score
 
 # Importation des modules utils avec des alias pour éviter les conflits de noms
@@ -78,10 +78,11 @@ if __name__ == "__main__":
         scraped_data = scrape_ad(url)
         print('Scraped ad:', scraped_data)
         scraped_data = pd.DataFrame(scraped_data)
+        processed_data = process_output(scraped_data)
 
         desc_data = scrape_utils.process_description(scraped_data["description"])
 
-        merged_data = scrape_utils.add_desc_content_to_df(desc_data, scraped_data)
+        merged_data = scrape_utils.add_desc_content_to_df(desc_data, processed_data)
         #merged_data.to_csv('C:/Users/hennecol/Documents/safeflat/safeflat-sam-app/csv_outputs/leboncoin/output.csv')
         #print("Merged data:", merged_data)
 
@@ -92,11 +93,16 @@ if __name__ == "__main__":
         df_concatene.to_csv('C:/Users/hennecol/Documents/safeflat/safeflat-sam-app/csv_outputs/leboncoin/output.csv')
         print("Data merged with database!")
         
-        # data_bdd2 = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/outpu_processed.csv')
-        # filtered_and_scored_data = filter_and_score(property_infos_same)
-        # filtered_and_scored_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_filtered_score.csv')
+    #     # data_bdd2 = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/outpu_processed.csv')
+    #     # filtered_and_scored_data = filter_and_score(property_infos_same)
+    #     # filtered_and_scored_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_filtered_score.csv')
 
-        #save_to_database(merged_data)
+    #     #save_to_database(merged_data)
+
+    #Test postprocessing
+    # data_bdd = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/leboncoin/output.csv')
+    # data_processed = process_output(data_bdd)
+    # data_processed.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/leboncoin/output_processed.csv')
 
 
  

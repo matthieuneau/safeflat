@@ -98,27 +98,23 @@ def scrape_ad(ad_url: str) -> dict:
 
         # Retrieving property_type:
         try:
-            data["type_de_bien"] = ad["attributes"][
+            data["type"] = ad["attributes"][
                 find_index(ad["attributes"], "real_estate_type")
             ]["value_label"]
         except Exception as e:
-            print("Error retrieving type_de_bien:", e)
-            data["type_de_bien"] = "Not Available"
+            print("Error retrieving type:", e)
+            data["type"] = "Not Available"
 
-        # Retrieving furnished or not: 1 if yes 0 if no
+        # Retrieving furnished or not: 1 if yes 2 if no
         try:
-            data["meuble"] = ad["attributes"][
-                find_index(ad["attributes"], "furnished")
-            ]["value"]
+            data["meuble"] = ad["attributes"][find_index(ad["attributes"], "furnished")]["value"]
         except Exception as e:
             print("Error retrieving meuble:", e)
             data["meuble"] = "Not Available"
 
         # Retrieving surface:
         try:
-            data["surface"] = ad["attributes"][find_index(ad["attributes"], "square")][
-                "value"
-            ]
+            data["surface"] = ad["attributes"][find_index(ad["attributes"], "square")]["value"]
         except Exception as e:
             print("Error retrieving surface:", e)
             data["surface"] = "Not Available"

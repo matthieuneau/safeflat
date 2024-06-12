@@ -1,4 +1,4 @@
-from utils import *
+#from utils import *
 from geopy.distance import geodesic
 import pandas as pd
 
@@ -56,7 +56,7 @@ def filter_and_score(property_infos):
 
     # Read data from the database and apply first filter (query):
     # data_df = read_from_database(query)
-    data_df = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/scraping/leboncoin-oxylab/csv_ouptus/output_processed.csv')
+    data_df = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/leboncoin/output.csv')
 
     # Transform text into digital format:
     data_df['surface'] = pd.to_numeric(data_df['surface'], errors='coerce')
@@ -102,7 +102,7 @@ def filter_and_score(property_infos):
 
 
     # Defines the weight of each scoring feature (from 1 to 10)
-    poids = {'type_de_bien' : 8, 'meuble' :3, 'nb_rooms' : 10 ,'DPE' : 10, 'GES' : 10, 'ascenseur' : 5, 'etage' : 7, 'nb_etages' : 7, 'charges' : 10, 'caution' : 5, 'piscine' : 5, 'nb_bedrooms' : 5, 'parking' : 3, 'quartier' : 5, 'cave' : 3,'terrasse' : 4}
+    poids = {'type' : 8, 'meuble' :3, 'nb_rooms' : 10 ,'DPE' : 10, 'GES' : 10, 'ascenseur' : 5, 'numero_etage' : 7, 'nb_etages' : 7, 'charges' : 10, 'caution' : 5, 'piscine' : 5, 'nb_bedrooms' : 5, 'parking' : 3, 'quartier' : 5, 'cave' : 3,'terrasse' : 4}
     poids_surface = {'surface' : 10}
     poids_nom = {'host_name' : 10}
     
@@ -114,14 +114,30 @@ def filter_and_score(property_infos):
 
 #Example of a property to protect:
 property_infos_same = {
-    'ville' : 'Strasbourg',
-    'zipcode' : 67000,
+    'type' : "Appartement",
+    'meuble' :'2',
+    'surface': 58,
     'nb_rooms' : 3,
-    'surface' : 95,
-    'latitude' : 48.58153,
-    'longitude' : 7.75566
-
-}
+    'DPE' : 'a',
+    'GES' : None, 
+    'ascenseur' : 'Oui',
+    'numero_etage' : None,
+    'nb_etages' : None, 'charges' : None,
+    'caution' : '680',
+    'region': 'Alsace',
+    'piscine' : 5,
+    'departement' : 'Bas-Rhin', 
+    'ville' : 'Ostwald', 
+    'zipcode' : 67540,
+    'latitude' : 48.54393,
+    'longitude' : 7.71036,
+    'host_name' : 'LocService',
+    'piscine' : 'Non',
+    'nb_bedrooms' : None,
+    'parking' : 'oui',
+    'quartier' : 'Ostwald',
+    'cave' : 'Non',
+    'terrasse' : 'oui'}
 
 if __name__ == "__main__":
     filtered_data = filter_and_score(property_infos_same)
