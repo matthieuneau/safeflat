@@ -2,6 +2,8 @@ from utils import *
 from bs4 import BeautifulSoup
 import json
 import pandas as pd
+import re
+
 
 
 def find_index(dictionaries, search_key):
@@ -11,6 +13,13 @@ def find_index(dictionaries, search_key):
             return index
     return None
 
+def extract_id_from_url(url):
+    # Utilisation de regex pour extraire l'identifiant de l'URL
+    match = re.search(r'/(\d+)$', url)
+    if match:
+        return match.group(1)
+    else:
+        return None
 
 def scrape_ad(ad_url: str) -> dict:
     """Scrape the data from the ad URL
@@ -51,6 +60,13 @@ def scrape_ad(ad_url: str) -> dict:
         except Exception as e:
             print("Error retrieving url:", e)
             data["url"] = "Not Available"
+
+        #Retrieving id from url:
+        try:
+            data["id"] = extract_id_from_url(ad_url)
+        except Exception as e:
+            print("Error retrieving id:", e)
+            data["id"] = "Not Available"
 
         # Retrieving title:
         try:
@@ -143,12 +159,12 @@ def scrape_ad(ad_url: str) -> dict:
 
         # Retrieving floor number:
         try:
-            data["etage"] = ad["attributes"][
+            data["numero_etage"] = ad["attributes"][
                 find_index(ad["attributes"], "floor_number")
             ]["value"]
         except Exception as e:
-            print("Error retrieving etage:", e)
-            data["etage"] = "Not Available"
+            print("Error retrieving numero_etage:", e)
+            data["numero_etage"] = "Not Available"
 
         # Retrieving nb of floors in the building:
         try:
