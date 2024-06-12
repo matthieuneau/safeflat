@@ -1,17 +1,32 @@
 from utils import *
 from geopy.distance import geodesic
+import pandas as pd
 
 
-def score_calculation(row, property_infos, poids):
+def score_calculation(row, property_infos, poids, poids_surface, poids_nom):
     total_poids = 0
     matching_poids = 0
-    
+
     for key, value in property_infos.items():
-        if value is not None and key in poids:
-            total_poids += poids[key]
-            if row[key] == value:
-                matching_poids += poids[key]
-    
+        if value is not None:
+            # Add surface weights
+            if key in poids_surface:
+                total_poids += poids_surface[key]
+                if row[key] is not None and value - 1 <= row[key] <= value + 1:
+                    matching_poids += poids_surface[key]
+            
+            # Add name weights
+            elif key in poids_nom:
+                total_poids += poids_nom[key]
+                if row[key] is not None and isinstance(row[key], str) and isinstance(value, str) and (row[key] in value or value in row[key]):
+                    matching_poids += poids_nom[key]
+            
+            # Add standard weights
+            elif key in poids:
+                total_poids += poids[key]
+                if row[key] is not None and row[key] == value:
+                    matching_poids += poids[key]
+
     if total_poids == 0:
         return 0
     return matching_poids / total_poids
@@ -87,10 +102,12 @@ def filter_and_score(property_infos):
 
 
     # Defines the weight of each scoring feature (from 1 to 10)
-    poids = {'type_de_bien' : 8, 'meuble' :3, 'surface' : 10, 'nb_rooms' : 10 ,'DPE' : 10, 'GES' : 10, 'ascenseur' : 5, 'etage' : 7, 'nb_etages' : 7, 'charges' : 10, 'caution' : 5,'host_name' : 10, 'piscine' : 5, 'nb_bedrooms' : 5, 'parking' : 3, 'quartier' : 5, 'cave' : 3,'terrasse' : 4}
-
+    poids = {'type_de_bien' : 8, 'meuble' :3, 'nb_rooms' : 10 ,'DPE' : 10, 'GES' : 10, 'ascenseur' : 5, 'etage' : 7, 'nb_etages' : 7, 'charges' : 10, 'caution' : 5, 'piscine' : 5, 'nb_bedrooms' : 5, 'parking' : 3, 'quartier' : 5, 'cave' : 3,'terrasse' : 4}
+    poids_surface = {'surface' : 10}
+    poids_nom = {'host_name' : 10}
+    
     # Cost calculation for each line
-    data_df['cost'] = data_df.apply(score_calculation, axis=1, property_infos=property_infos, poids=poids)*100
+    data_df['cost'] = data_df.apply(score_calculation, axis=1, property_infos=property_infos, poids=poids, poids_surface = poids_surface, poids_nom = poids_nom)*100
 
     print(data_df.columns)
     return data_df
