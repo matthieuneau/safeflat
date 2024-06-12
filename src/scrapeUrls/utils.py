@@ -146,3 +146,14 @@ def process_description(description: str) -> DescriptionInfo:
     desc_info = desc_info.model_dump()
 
     print(desc_info)
+
+    return desc_info
+
+
+if __name__ == "__main__":
+    with open("tests/src/scrapeUrls/pap_ad_example_html.txt", "w") as file:
+        file.write(
+            fetch_html_with_oxylab(
+                "https://www.pap.fr/annonces/appartement-melun-77000-r443602389"
+            )
+        )

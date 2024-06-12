@@ -1,0 +1,703 @@
+<!DOCTYPE HTML>
+<html lang="fr-FR">
+<head>
+	<meta name="viewport" content="width=device-width">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" href="/favicon.png" />
+<link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon.png" />
+<script type="text/javascript" src="https://cache.consentframework.com/js/pa/28457/c/XWa1A/stub" referrerpolicy="unsafe-url" charset="utf-8"></script>
+<script type="text/javascript" src="https://choices.consentframework.com/js/pa/28457/c/XWa1A/cmp" referrerpolicy="unsafe-url" charset="utf-8" async></script>
+<!-- Global site tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-1070121634"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-1070121634', {'allow_enhanced_conversions': true});
+</script>
+	<title>Location meublée chambre 12 m² Melun (77000) - 12 m² - 530 € | Particulier à Particulier - PAP</title>
+	<meta name="description" content="Annonce immobilière : Location meublée chambre 12 m² Melun (77000) - 12 m² - 530 €. PAP.FR : le 1er site immobilier des particuliers." />
+	<meta name="robots" content="index,follow" />
+	<link rel="publisher" href="https://plus.google.com/+papfr" />
+	<meta property="fb:page_id" content="43027661381" />
+	<meta property="fb:admins" content="541798429" />
+	<meta property="fb:app_id" content="736785393837204" />
+	<meta property="og:title" content="Location meublée chambre 12 m² Melun (77000) - 530 € avec PAP.fr" />
+	<meta property="og:description" content="PAP.fr : le site immobilier de particulier à particulier. Consultez des milliers d'annonces de particuliers sur toute la France. 0 commission / 0 frais d'agence. www.pap.fr &gt;&gt;&gt;" />
+	<meta property="og:image" content="https://cdn.pap.fr/photos/pap/55/11/551186272ed3789f6ffee905237ad2ea/5-p1.jpg" />
+	<meta property="og:url" content="https://www.pap.fr/annonces/appartement-melun-77000-r443602389" />
+	<meta name="google-site-verification" content="we69Q807xPK9ioNigMAJ3j1s0XgcdcsWVOEGNQmw898" />
+	<meta name="facebook-domain-verification" content="ti2q9li2q0r9f6tl2hma9rvcksml90" />
+<!-- Piano -->
+<script async src="https://tag.aticdn.net/piano-analytics.js"></script>
+<script>
+window._piq_vars = {"click":{"click_chapter1":"annonces\/location","click_chapter2":"detail","click_chapter3":"77\/melun-77000"}} ; 
+window._pac = window._pac || {};
+_pac.privacyDefaultMode = 'exempt' ;
+_pac.site = 590496 ;
+_pac.collectDomain = "https://logs1187.xiti.com" ; 
+_pac.queueVarName = '_piq';
+_pac.campaignPrefix = ['utm_'];
+
+window._piq = window._piq || [];
+_piq.push(['privacy.include.event','self_promotion.impression']);
+_piq.push(['privacy.include.properties',['src_medium','src_source','src_campaign','onsitead_type','onsitead_campaign','onsitead_format','product_id']]);
+_piq.push(['sendEvent', 'page.display', {"page":"annonces\/location\/detail\/77\/melun-77000","page_chapter1":"annonces\/location","page_chapter2":"detail","page_chapter3":"77\/melun-77000"}]);
+</script>
+<!-- End Piano --><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://www.pap.fr/vendor/npm/@fontsource/lato@5.0.11/400.css" integrity="sha512-yhWzgHtby/y5EyswTqYj3wEGXtoUSwfTDjB7B8oOjKxda1nfUAhc+MMJyDNXXckSTE3O/3l6JloUiMduolK/hw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://www.pap.fr/vendor/npm/@fontsource/lato@5.0.11/700.css" integrity="sha512-TJv0ZlPkSAc8YMmQqYZ8XX3eY0lG2ntd/Wh3OlktTvtsQHvQwXXw4fOZv94PXO+ptqBsYdWPmuRIcDh5+Jajug==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://www.pap.fr/vendor/npm/@fontsource/saira-extra-condensed@5.0.11/900.css" integrity="sha512-3kYa6nb0nNIy6g1uQ4TvPPHWN73DP98hzyMqgvH00e+ziLxs88OozBkZ1PlCTsksG7LvraewDUlM3bBpgUpyww==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" integrity="sha512-Ojqt7YpXqYM6//AdMhErV3ot38rYgGF5QLJEwx7zhesjL9VqfhWiRz/dWK22hsn96RNz0CLl85+pg1P0BmfgVQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<!--[if lt IE 9]>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha512-UDJtJXfzfsiPPgnI5S1000FPLBHMhvzAMX15I+qG2E2OAzC9P1JzUwJOfnypXiOH7MRPaqzhPbBGDNNj7zBfoA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<![endif]-->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js" integrity="sha512-jGR1T3dQerLCSm/IGEGbndPwzszJBlKQ5Br9vuB0Pw2iyxOy+7AK+lJcCC8eaXyz/9du+bkCy4HXxByhxkHf+w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" integrity="sha512-BHDCWLtdp0XpAFccP2NifCbJfYoYhsRSZOUM3KnAxy2b/Ay3Bn91frud+3A95brA4wDWV3yEOZrJqgV8aZRXUQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-multiselect-widget/1.17/jquery.multiselect.css" integrity="sha512-+drjbITSBODU16k5TCdKExRa5+5wiwn24mJtW5onVLaUIQ5eTUsHvVJ/J2ZLzHi254KcXrnfmMt+3jZ3Hh446w==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-multiselect-widget/1.17/jquery.multiselect.min.js" integrity="sha512-/xqi3bAsJ81suzAIjtchL5a1PTaR80VZQHrQc2sey0bnvgraxsE/79N/drLL0CoDCZGwd2mZ+BHFpXyK5otl3A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.sumoselect/3.0.6/sumoselect.min.css" integrity="sha512-DwvcXBSYqgsNMre0DRTf/WWSBiKhG+Z+cGYwgOSpkvlf9jZoLVL6OvWGTDa0a/5qm3T1F+obp11aJJNksWURNA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sumoselect/3.0.6/jquery.sumoselect.min.js" integrity="sha512-M/2c4YTU7Bk43Tsc4svvWUfAyiC/5VnUSuIN1N6ff73hPJsCiVRdwDpSnBafij/sGkNxHP93LDFo/+iXWTj4aA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/css/tooltipster.min.css" integrity="sha512-awOgwBW6XldbPsuzBfoPhbi48OkYKn+TmMVwqD75MPrWnLvA6LN98sWdE4Jl17G4FHIyp8k/jFM9tfiGE8qFyw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/js/jquery.tooltipster.min.js" integrity="sha512-vgY1+uleaxFEkXfUFLiXB5udry+v5uCvFeuqUn4CUkWbAtUl5TqAyDu4XhdATzdJ7CbXxbonHS8UWsEc0D8TDw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/4.0.31/fancybox.min.css" integrity="sha512-u+sKK399eoGQLcJN/LNW9xSi01hDa/yNXcrjPGinWRp2CNxQqFjDgbcqEg3VL4aqAKBMb9x0+slTnLdrZ8geJA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/4.0.31/fancybox.umd.min.js" integrity="sha512-OP5UDNTrL0tjvwTB5LHB0I6gTZNNW3zxjq1eg3ezPRGGMmWycR0hI9LucqotK97avbFJ0TiPc2lnJoHXqYKvRQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery-placeholder/2.3.1/jquery.placeholder.min.js" integrity="sha512-iGsoQ13Qj6qYWj02Un9ZyHJwocDoBDRA8eAYrSlZ98C7kwBkAqW7AUFv0g99NFp3xW9Gr1qaTqjMWBzXswydOw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.4/js.cookie.min.js" integrity="sha512-79eWVr6jMgbfcRX3Ub7TOht7qDWsoREEKEuFbtqbdYZtpSNTxUZ8tILcRA9rgPJOflOC+Gy+rzd0NmGQEXgFgA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.15/iframeResizer.min.js" integrity="sha512-fQcNAAyXNMR13k+j9e8OZxdWi191KDYGTFSH6SK0BDt2NBDBWgeUYfpAIbjBoTjYr96UO0rZvVJ5SGfuTXqLNg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script defer src="https://www.pap.fr/vendor/npm/owl.carousel2.thumbs@0.1.8/dist/owl.carousel2.thumbs.min.js" integrity="sha512-JS21DpKLP9NbKssmtR3glkZ775Kp0ZnY00LYLDauy34D16Xbx/Vr0d+qCfpurRattktH5qCYwWPDEElm9J2X9Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js" integrity="sha512-0bEtK0USNd96MnO4XhH8jhv3nyRF0eK87pJke6pkYf3cM0uDIhNJy9ltuzqgypoIFXw3JSuiy04tVk4AjpZdZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script defer src="https://www.pap.fr/vendor/jquery-tokeninput-1.6.2.custom/src/jquery.tokeninput.1538468550.js"></script>
+<link rel="stylesheet" href="https://www.pap.fr/vendor/brownie/fonts/brownie-icomoon/style.1711544952.css">
+<link rel="stylesheet" href="https://www.pap.fr/vendor/brownie/css/styles.1714746752.css">
+<script defer src="https://www.pap.fr/vendor/brownie/js/script.1715790074.js"></script>
+<link rel="stylesheet" href="/css/styles.1716276026.css">
+<script defer src="/js/pap.1718029096.js"></script>
+<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://www.pap.fr/vendor/L.Mappy-7.7.3/dist/L.Mappy.499162500.css">
+<script defer src="https://www.pap.fr/vendor/L.Mappy-7.7.3/dist/L.Mappy.499162500.js"></script>
+<script src="https://ced.sascdn.com/tag/3452/smart.js" async></script>
+<script>
+var sas = sas || {};
+sas.cmd = sas.cmd || [];
+sas.cmd.push(function() { sas.setGdprConsentData("no_consent"); });
+sas.cmd.push(function() { sas.setup({"networkid":3452,"domain":"https:\/\/www14.smartadserver.com","async":true}); });
+sas.cmd.push(function() { sas.call("onecall", {"siteId":309411,"pageId":1119569,"formats":[{"id":81824}],"target":"typebien=appartement;departement=d77;ville=melun-77000;|nb_pieces=1;nb_chambres=1;prix=530;"}); });
+</script>
+</head>
+<body>
+	<header>
+
+	<div class="brand-box">
+		<a href="/" class="logo-pap" onclick="_piq.push([&#039;sendEvent&#039;, &#039;click.action&#039;, {&#039;click&#039;: &quot;nav\/header\/logo&quot;, ..._piq_vars.click}]);"><span class="hidden">PAP</span></a>
+		<button class="icon-hamburger"><span></span><span></span><span></span><span></span></button>
+	</div>
+	<nav class="topnav">
+		<div class="dropdown sm-hidden">
+			<a href="/publier-annonce" class="btn btn-corail" onclick="_piq.push([&#039;sendEvent&#039;, &#039;click.action&#039;, {&#039;click&#039;: &quot;nav\/menu-header\/deposer-annonce&quot;, ..._piq_vars.click}]);">Publier une annonce</a>
+			<div>
+				<a href="/publier-annonce/vente" onclick="_piq.push([&#039;sendEvent&#039;, &#039;click.action&#039;, {&#039;click&#039;: &quot;nav\/menu-header\/deposer-annonce-vente&quot;, ..._piq_vars.click}]);">Vente immobilière</a>
+				<a href="/publier-annonce/location" onclick="_piq.push([&#039;sendEvent&#039;, &#039;click.action&#039;, {&#039;click&#039;: &quot;nav\/menu-header\/deposer-annonce-location&quot;, ..._piq_vars.click}]);">Location immobilière</a>
+				<a href="https://www.papvacances.fr/annonceur/passer?utm_medium=link&utm_source=pap&utm_campaign=pap-header" onclick="_piq.push([&#039;sendEvent&#039;, &#039;click.action&#039;, {&#039;click&#039;: &quot;nav\/menu-header\/deposer-annonce-vacances&quot;, ..._piq_vars.click}]);">Location vacances</a>
+			</div>
+		</div>
+		<div class="dropdown lg-hidden">
+			<a href="/publier-annonce" onclick="_piq.push([&#039;sendEvent&#039;, &#039;click.action&#039;, {&#039;click&#039;: &quot;nav\/menu-header\/deposer-annonce&quot;, ..._piq_vars.click}]);">Déposer une annonce</a>
+		</div>
+		<a href="/acheteur" onclick="_piq.push([&#039;sendEvent&#039;, &#039;click.action&#039;, {&#039;click&#039;: &quot;nav\/menu-header\/acheter&quot;, ..._piq_vars.click}]);">Acheter</a>
+		<a href="/vendeur" onclick="_piq.push([&#039;sendEvent&#039;, &#039;click.action&#039;, {&#039;click&#039;: &quot;nav\/menu-header\/vendre&quot;, ..._piq_vars.click}]);">Vendre</a>
+		<div class="dropdown">
+			<button>Louer</button>
+			<div>
+				<a href="/locataire" onclick="_piq.push([&#039;sendEvent&#039;, &#039;click.action&#039;, {&#039;click&#039;: &quot;nav\/menu-header\/locataire&quot;, ..._piq_vars.click}]);">Je suis locataire</a>
+				<a href="/bailleur" onclick="_piq.push([&#039;sendEvent&#039;, &#039;click.action&#039;, {&#039;click&#039;: &quot;nav\/menu-header\/bailleur&quot;, ..._piq_vars.click}]);">Je suis propriétaire</a>
+			</div>
+		</div>
+		<div class="dropdown">
+			<button>Vacances</button>
+			<div>
+				<a href="https://www.papvacances.fr" onclick="_piq.push([&#039;sendEvent&#039;, &#039;click.action&#039;, {&#039;click&#039;: &quot;nav\/menu-header\/vacancier&quot;, ..._piq_vars.click}]);">Je suis vacancier</a>
+				<a href="https://www.papvacances.fr/annonceur/passer?utm_medium=link&utm_source=pap&utm_campaign=pap-header" onclick="_piq.push([&#039;sendEvent&#039;, &#039;click.action&#039;, {&#039;click&#039;: &quot;nav\/menu-header\/bailleur-vacances&quot;, ..._piq_vars.click}]);">Je suis propriétaire</a>
+			</div>
+		</div>		
+		<a href="/vendeur/prix-m2" onclick="_piq.push([&#039;sendEvent&#039;, &#039;click.action&#039;, {&#039;click&#039;: &quot;nav\/menu-header\/prix-m2&quot;, ..._piq_vars.click}]);">Prix immo</a>
+		<a href="/patrimoine"  onclick="_piq.push([&#039;sendEvent&#039;, &#039;click.action&#039;, {&#039;click&#039;: &quot;nav\/menu-header\/habiter&quot;, ..._piq_vars.click}]);" class="md-hidden">Habiter</a>
+					<a href="/utilisateur/login" onclick="_piq.push([&#039;sendEvent&#039;, &#039;click.action&#039;, {&#039;click&#039;: &quot;nav\/menu-header\/mon-espace\/login&quot;, ..._piq_vars.click}]);">Mon espace</a>
+				</nav>
+
+</header>
+	<link rel="canonical" href="https://www.pap.fr/annonces/appartement-melun-77000-r443602389">
+		<div class="bottomnav-mobile">
+		<div class="row row-no-gutters">
+							<div class="sm-col-1-2">
+					<a href="#panel_contact_tel" class="btn btn-indigo panel-mobile-handler" onclick="_piq.push([&#039;sendEvent&#039;, &#039;click.action&#039;, {&#039;click&#039;: &quot;annonce\/detail\/location\/bottom-contact-mixte\/appeler\/15h&quot;, ..._piq_vars.click}]);"><span class="icon icon-phone"></span>Appeler</a>
+				</div>
+				<div class="sm-col-1-2">
+					<a href="#panel_contact_message" class="btn panel-mobile-handler" onclick="_piq.push([&#039;sendEvent&#039;, &#039;click.action&#039;, {&#039;click&#039;: &quot;annonce\/detail\/location\/bottom-contact-mixte\/ecrire\/15h&quot;, ..._piq_vars.click}]);"><span class="icon icon-mail"></span>Ecrire</a>
+				</div>
+						</div>
+	</div>
+	
+
+<div class="sidebar-layout margin-top-header details-annonce-container">
+	<div class="wrapper">
+		<div class="main-content details-item padding-top-30 padding-bottom-60 margin-bottom-60 sm-padding-bottom-40 sm-margin-bottom-30">
+			<h1 class="item-title">
+				Location meublée chambre 12&nbsp;m² Melun (77000)				<span class="item-price">530&nbsp;&euro;</span>
+			</h1>
+			<div class="row">
+									<div class="col-1-1 align-right sm-align-left">
+						<p class="item-date">Réf. : E36/2389 /  12 juin 2024</p>
+					</div>
+								</div>
+
+			<div class="row margin-bottom-20 sm-hidden">
+				<div class="col-1-3">
+					<a href="#dialog-enregistrer-email" id="favorite-top" class="btn btn-outline btn-full-width btn-add-favorite" data-annonce="{&quot;id&quot;:&quot;443602389&quot;,&quot;active&quot;:false}">
+						Ajouter à mes favoris
+					</a>
+				</div>
+								<div class="col-1-3">
+					<a href="/recherche/detail/fiche-visite?id=443602389" target="_blank" class="btn btn-outline btn-full-width" >
+						Imprimer la fiche
+					</a>
+				</div>
+								<div class="col-1-3">
+					<a href="#dialog_envoi_ami" class="btn btn-outline btn-full-width dialog-box-handler" data-annonce="{&quot;id&quot;:&quot;443602389&quot;}">
+						Envoyer à un ami
+					</a>
+				</div>
+			</div>
+
+			<div class="owl-carousel" data-slider-id="owl_thumbs_1" data-owl-carousel="{&quot;items&quot;:1,&quot;nav&quot;:true,&quot;loop&quot;:false,&quot;dots&quot;:true,&quot;margin&quot;:0,&quot;thumbs&quot;:true,&quot;thumbsPrerendered&quot;:true,&quot;video&quot;:true}">
+				<a href="https://cdn.pap.fr/photos/pap/55/11/551186272ed3789f6ffee905237ad2ea/5-p1.jpg" data-fancybox="galerie">
+				<img src="https://cdn.pap.fr/photos/pap/55/11/551186272ed3789f6ffee905237ad2ea/5-p1.jpg" alt="Location Appartement Melun (77000) 12&amp;nbsp;m² 530&amp;nbsp;&amp;euro;">
+			</a>
+						<a href="https://cdn.pap.fr/photos/pap/88/f7/88f786bd9b84a7d446829b0c98e3d7bd/8-p1.jpg" data-fancybox="galerie">
+				<img src="https://cdn.pap.fr/photos/pap/88/f7/88f786bd9b84a7d446829b0c98e3d7bd/8-p1.jpg" alt="Location Appartement Melun (77000)">
+			</a>
+						<a href="https://cdn.pap.fr/photos/pap/ce/81/ce81ce47c4344025cc03e102717990c7/c-p1.jpg" data-fancybox="galerie">
+				<img src="https://cdn.pap.fr/photos/pap/ce/81/ce81ce47c4344025cc03e102717990c7/c-p1.jpg" alt="Location Appartement">
+			</a>
+						<a href="https://cdn.pap.fr/photos/pap/27/63/276356a634acd743930c56285cc60533/2-p1.jpg" data-fancybox="galerie">
+				<img src="https://cdn.pap.fr/photos/pap/27/63/276356a634acd743930c56285cc60533/2-p1.jpg" alt="Location immobilier 530&amp;nbsp;&amp;euro; Melun (77000)">
+			</a>
+						<a href="https://cdn.pap.fr/photos/pap/ce/ce/cece0c63216b64c459c5d7653c74bff4/c-p1.jpg" data-fancybox="galerie">
+				<img src="https://cdn.pap.fr/photos/pap/ce/ce/cece0c63216b64c459c5d7653c74bff4/c-p1.jpg" alt="Appartement Melun (77000) 530&amp;nbsp;&amp;euro;">
+			</a>
+						<a href="https://cdn.pap.fr/photos/pap/35/2c/352c1766516fe46daa0b323b94f1d9de/3-p1.jpg" data-fancybox="galerie">
+				<img src="https://cdn.pap.fr/photos/pap/35/2c/352c1766516fe46daa0b323b94f1d9de/3-p1.jpg" alt="Location Appartement 12&amp;nbsp;m²">
+			</a>
+						<a href="https://cdn.pap.fr/photos/pap/5b/ee/5bee7808b425be6176cbc5f5ccfeb447/5-p1.jpg" data-fancybox="galerie">
+				<img src="https://cdn.pap.fr/photos/pap/5b/ee/5bee7808b425be6176cbc5f5ccfeb447/5-p1.jpg" alt="Appartement 530&amp;nbsp;&amp;euro; 12&amp;nbsp;m² Melun (77000)">
+			</a>
+						<a href="https://cdn.pap.fr/photos/pap/32/f1/32f140867a1a425443e83d4324dd2e59/3-p1.jpg" data-fancybox="galerie">
+				<img src="https://cdn.pap.fr/photos/pap/32/f1/32f140867a1a425443e83d4324dd2e59/3-p1.jpg" alt="Location Melun (77000) 12&amp;nbsp;m²">
+			</a>
+						<a href="https://cdn.pap.fr/photos/pap/cb/b7/cbb72a30f44b9c9206aeabfb9d7f489d/c-p1.jpg" data-fancybox="galerie">
+				<img src="https://cdn.pap.fr/photos/pap/cb/b7/cbb72a30f44b9c9206aeabfb9d7f489d/c-p1.jpg" alt="Immobilier Melun (77000) 530&amp;nbsp;&amp;euro; 12&amp;nbsp;m²">
+			</a>
+						<a href="https://cdn.pap.fr/photos/pap/ea/cb/eacbc8f21ce8872a2c6ce027a60f3165/e-p1.jpg" data-fancybox="galerie">
+				<img src="https://cdn.pap.fr/photos/pap/ea/cb/eacbc8f21ce8872a2c6ce027a60f3165/e-p1.jpg" alt="Appartement 12&amp;nbsp;m²">
+			</a>
+			</div>
+<div class="owl-thumbs sm-hidden" data-slider-id="owl_thumbs_1">
+		<a class="owl-thumb-item">
+		<img src="https://cdn.pap.fr/photos/pap/55/11/551186272ed3789f6ffee905237ad2ea/5-p1.jpg" alt="Location Appartement Melun (77000) 12&amp;nbsp;m² 530&amp;nbsp;&amp;euro;">
+	</a>
+		<a class="owl-thumb-item">
+		<img src="https://cdn.pap.fr/photos/pap/88/f7/88f786bd9b84a7d446829b0c98e3d7bd/8-p1.jpg" alt="Location Appartement Melun (77000)">
+	</a>
+		<a class="owl-thumb-item">
+		<img src="https://cdn.pap.fr/photos/pap/ce/81/ce81ce47c4344025cc03e102717990c7/c-p1.jpg" alt="Location Appartement">
+	</a>
+		<a class="owl-thumb-item">
+		<img src="https://cdn.pap.fr/photos/pap/27/63/276356a634acd743930c56285cc60533/2-p1.jpg" alt="Location immobilier 530&amp;nbsp;&amp;euro; Melun (77000)">
+	</a>
+		<a class="owl-thumb-item">
+		<img src="https://cdn.pap.fr/photos/pap/ce/ce/cece0c63216b64c459c5d7653c74bff4/c-p1.jpg" alt="Appartement Melun (77000) 530&amp;nbsp;&amp;euro;">
+	</a>
+		<a class="owl-thumb-item">
+		<img src="https://cdn.pap.fr/photos/pap/35/2c/352c1766516fe46daa0b323b94f1d9de/3-p1.jpg" alt="Location Appartement 12&amp;nbsp;m²">
+	</a>
+		<a class="owl-thumb-item">
+		<img src="https://cdn.pap.fr/photos/pap/5b/ee/5bee7808b425be6176cbc5f5ccfeb447/5-p1.jpg" alt="Appartement 530&amp;nbsp;&amp;euro; 12&amp;nbsp;m² Melun (77000)">
+	</a>
+		<a class="owl-thumb-item">
+		<img src="https://cdn.pap.fr/photos/pap/32/f1/32f140867a1a425443e83d4324dd2e59/3-p1.jpg" alt="Location Melun (77000) 12&amp;nbsp;m²">
+	</a>
+		<a class="owl-thumb-item">
+		<img src="https://cdn.pap.fr/photos/pap/cb/b7/cbb72a30f44b9c9206aeabfb9d7f489d/c-p1.jpg" alt="Immobilier Melun (77000) 530&amp;nbsp;&amp;euro; 12&amp;nbsp;m²">
+	</a>
+		<a class="owl-thumb-item">
+		<img src="https://cdn.pap.fr/photos/pap/ea/cb/eacbc8f21ce8872a2c6ce027a60f3165/e-p1.jpg" alt="Appartement 12&amp;nbsp;m²">
+	</a>
+	</div>
+
+			
+			<div class="item-description margin-bottom-30">
+				<h2 class="margin-bottom-8">Melun (77000)</h2>
+				<ul class="item-tags margin-bottom-20">
+			<li>
+			<strong>1 pièce</strong>
+		</li>
+				<li>
+			<strong>1 chambre</strong>
+		</li>
+				<li>
+			<strong>12&nbsp;m²</strong>
+		</li>
+		</ul>
+					<a href="#dialog_carte"
+		class="btn btn-outline margin-bottom-20 dialog-box-handler-carte" >
+		<span class="icon icon-locate"></span> Voir l'adresse du bien sur une carte
+	</a>
+					
+				
+<div class="margin-bottom-30">
+	<p>Chambre de 12m2 dans un petit pavillon de 90 m2<br />
+Les 2 locataires  auront la superficie de la maison à leur disposition<br />
+Cuisine aménagée<br />
+Salle de bain aménagée<br />
+Barbecue et jardin.<br />
+<br />
+A 7 min à pied de L IFSI (école des infirmières )<br />
+A 7 min à pied du centre ville (bus à proximité )<br />
+530 euro / mois toutes charges comprises.<br />
+Libre .</p>
+	<p></p>
+</div>
+
+<ul class="item-transports"><li><span class="label">Melun</span> <span class="icon rer-0"></span> <span class="icon rer-d"></span> <span class="icon train-0"></span> <span class="icon train-r"></span></li></ul><ul class="item-transports"><li><span class="label">Le Mée</span> <span class="icon rer-0"></span> <span class="icon rer-d"></span></li></ul><ul class="item-transports"><li><span class="label">Livry-sur-Seine</span> <span class="icon train-0"></span> <span class="icon train-r"></span></li></ul>				
+				<hr>
+
+<p class="h4 font-weight-normal txt-grey-4 no-margin-top margin-bottom-14">Conditions financières</p>
+
+<div class="row">
+	<div class="col-1-3">
+		<b>Loyer charges comprises</b>
+		<br/>530&nbsp;&euro; / mois
+	</div>
+		<div class="col-1-3">
+		<b>Dont charges</b>
+		<br/>30&nbsp;&euro; / mois
+	</div>
+			<div class="col-1-3">
+		<b>Dépôt de garantie</b>
+		<br/>480&nbsp;&euro;	</div>
+	</div>
+											
+			</div>
+
+							<div class="btn-telephone sm-hidden margin-bottom-40">
+					<p class="h4 tel-wrapper">
+						Appeler le propriétaire : <span class="txt-indigo">06.24.94.60.07</span>
+					</p>
+				</div>
+								<div class="panel-mobile-content lg-hidden" id="panel_contact_tel" title="Appeler le propriétaire">
+										<p><i>NB : Le propriétaire refuse le démarchage commercial.</i></p>
+															<a href="tel:06.24.94.60.07" class="h3 txt-indigo margin-bottom-20 margin-top-20" >06.24.94.60.07</a>
+									</div>
+								<div class="panel-mobile-content" id="panel_contact_message" title="Vous êtes intéressé ? Contactez le propriétaire">
+					<div class="bg-grey-1 sm-bg-white padding-20 sm-no-padding margin-bottom-30 sm-margin-bottom-60">
+						<p class="h3 sm-hidden">Vous êtes intéressé ? Contactez le propriétaire</p>
+												<p><i>NB : Le propriétaire refuse le démarchage commercial.</i></p>
+												<form method="post"
+							action="/json/contact-annonceur-send"
+							class="form-contact-annonceur"
+							data-gaq="{&quot;category&quot;:&quot;DETAIL LOCATION&quot;,&quot;action&quot;:&quot;Envoyer E-mail IDF&quot;,&quot;label&quot;:&quot;Content&quot;}">
+														<div class="alert-box margin-bottom-16 hidden error-envoi-divers"> Une erreur est survenue. Veuillez essayer de nouveau.</div>
+														<div class="row margin-bottom-30">
+								<div class="col-2-5">
+									<div class="form-group">
+										<label for="content_prenom" class="hidden">Votre prénom</label>
+										<input type="text" id="content_prenom" name="prenom" value="" placeholder="Votre prénom">
+																				<p class="error-message hidden error-prenom-vide">Veuillez indiquer votre prénom.</p>
+																				<p class="error-message hidden error-prenom-trop-long">Ce prénom est trop long.</p>
+																			</div>
+									<div class="form-group">
+										<label for="content_nom" class="hidden">Votre nom</label>
+										<input type="text" id="content_nom" name="nom" value="" placeholder="Votre nom">
+																				<p class="error-message hidden error-nom-vide">Veuillez indiquer votre nom.</p>
+																				<p class="error-message hidden error-nom-trop-long">Ce nom est trop long.</p>
+																			</div>
+									<div class="form-group">
+										<label for="content_email" class="hidden">Votre e-mail</label>
+																				<input type="text" id="content_email" name="email" value="" placeholder="Votre e-mail" class="utilisateur_email">
+																														<p class="error-message hidden error-email-vide">Veuillez indiquer votre adresse e-mail.</p>
+																				<p class="error-message hidden error-email-incorrect">Cette adresse e-mail est incorrecte.</p>
+																				<p class="error-message hidden error-email-trop-long">Cette adresse e-mail est trop longue.</p>
+																			</div>
+									<div class="form-group">
+										<label for="content_telephone" class="hidden">Votre téléphone</label>
+										<input type="text" id="content_telephone" name="telephone" value="" placeholder="Votre téléphone">
+																				<p class="error-message hidden error-telephone-vide">Veuillez saisir votre numéro de téléphone.</p>
+																				<p class="error-message hidden error-telephone-incorrect">Ce numéro de téléphone est incorrect.</p>
+																			</div>
+								</div>
+								<div class="col-3-5">
+																	<div class="form-group">
+										<label for="content_message" class="hidden">Votre message (pensez à indiquer si vous êtes un étudiant, un couple en CDD / CDI, etc., vos revenus et si vous avez un garant.)</label>
+										<textarea id="content_message" name="message" placeholder="Votre message (pensez à indiquer si vous êtes un étudiant, un couple en CDD / CDI, etc., vos revenus et si vous avez un garant.)" style="height: 224px;" maxlength="1000"></textarea>
+										<p class="p-small txt-grey-4 margin-top-4 align-right"><span class="textarea-counter-curlength"></span> / <span class="textarea-counter-maxlength"></span> caractères</p>
+																				<p class="error-message hidden error-message-vide">Veuillez indiquer un message.</p>
+																				<p class="error-message hidden error-message-trop-long">Ce message est trop long.</p>
+																			</div>
+								</div>
+							</div>
+							<input type="hidden" name="action" value="submit">
+							<input type="hidden" name="id" value="443602389">
+							<input type="hidden" name="investisseur" value="">
+							<div class="submit-loader infos-box hidden">Envoi en cours...</div>
+							<div class="submit-success success-box hidden">Message envoyé avec succès !</div>
+							<div class="form-group align-center">
+								<input type="submit" class="btn btn-indigo contact-annonceur-envoyer" value="Envoyer votre message">
+								<div class="margin-top-20">
+									<small>
+										J'autorise pap.fr à collecter, traiter et transmettre ces données à l'annonceur.
+										<a href="https://www.pap.fr/groupe/donnees-personnelles" target="_blank">En savoir plus</a>
+									</small>
+								</div>
+							</div>
+								<div class="infos-box action-annonce hidden"></div>
+							</form>
+					</div>
+				</div>
+			<p class="p-small">
+			Les informations sur les risques auxquels ce bien est exposé sont disponibles sur le site Géorisques : www.georisques.gouv.fr
+			</p>
+				<div id="sas_81824" class="pub align-center margin-bottom-30"></div>
+<script type="application/javascript">
+sas.cmd.push(function() { sas.render(81824); });
+// @see https://developer.mozilla.org/fr/docs/Web/API/MutationObserver
+var observer = new MutationObserver(function(mutationsList) {
+    for (i in mutationsList) {
+		var mutation = mutationsList[i];
+        if (mutation.type == 'childList' && mutation.addedNodes[0].id == 'sas_81824_iframe' && $(mutation.addedNodes[0]).iFrameResize) {
+            $(mutation.addedNodes[0]).iFrameResize({"checkOrigin":false, "heightCalculationMethod":"lowestElement"});
+        }
+    }
+});
+observer.observe(document.getElementById('sas_81824'), {"attributes": false, "childList": true});
+</script>
+<hr>
+
+<div class="row">
+			<div class="lg-hidden col-1-4">
+			<a href="#panel_contact_tel" class="btn panel-mobile-handler btn-outline btn-full-width">Contacter le propriétaire</a>
+		</div>
+				<div class="col-1-4 sm-hidden">
+			<a href="/recherche/detail/fiche-visite?id=443602389" target="_blank" class="btn btn-outline btn-full-width" >
+				Imprimer<br class="sm-hidden"> la fiche de visite
+			</a>
+		</div>
+			<div class="col-1-4">
+		<a href="#dialog_envoi_ami" class="btn btn-outline btn-full-width dialog-box-handler" data-annonce="{&quot;id&quot;:&quot;443602389&quot;}" >
+			Envoyer l'annonce<br class="sm-hidden"> à un ami
+		</a>
+	</div>
+	<div class="col-1-4">
+		<a href="#dialog-enregistrer-email" id="favorite-bottom" class="btn btn-outline btn-full-width btn-add-favorite" data-annonce="{&quot;id&quot;:&quot;443602389&quot;,&quot;active&quot;:false}">
+			Ajouter<br class="sm-hidden"> à mes favoris
+		</a>
+	</div>
+	<div class="col-1-4">
+		<a href="#dialog-signaler-un-probleme" class="btn btn-outline btn-full-width dialog-box-handler" >
+			Signaler<br class="sm-hidden"> un abus
+		</a>
+	</div>
+</div>
+
+<hr class="sm-margin-bottom-10">
+			<div class="padding-top-10 padding-bottom-30 sm-no-padding-bottom">
+				<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https:\/\/www.pap.fr\/"},{"@type":"ListItem","position":2,"name":"Location","item":"https:\/\/www.pap.fr\/annonce\/locations"},{"@type":"ListItem","position":3,"name":"Appartement","item":"https:\/\/www.pap.fr\/annonce\/locations-appartement"},{"@type":"ListItem","position":4,"name":"\u00cele-de-France","item":"https:\/\/www.pap.fr\/annonce\/vente-immobiliere-ile-de-france-g471"},{"@type":"ListItem","position":5,"name":"Seine-et-Marne","item":"https:\/\/www.pap.fr\/annonce\/vente-immobiliere-seine-et-marne-77-g441"},{"@type":"ListItem","position":6,"name":"Melun","item":"https:\/\/www.pap.fr\/annonce\/vente-immobiliere-melun-77000-g38542"},{"@type":"ListItem","position":7,"name":"Location meubl\u00e9e chambre 12\u00a0m\u00b2 Melun (77000)"}]}</script>
+<ol class="breadcrumb">
+			<li><a href="/">Accueil</a></li>
+				<li><a href="/annonce/locations">Location</a></li>
+				<li><a href="/annonce/locations-appartement">Appartement</a></li>
+				<li><a href="/annonce/vente-immobiliere-ile-de-france-g471">Île-de-France</a></li>
+				<li><a href="/annonce/vente-immobiliere-seine-et-marne-77-g441">Seine-et-Marne</a></li>
+				<li><a href="/annonce/vente-immobiliere-melun-77000-g38542">Melun</a></li>
+				<li>Location meublée chambre 12 m² Melun (77000)</li>
+		</ol>
+			</div>
+		</div>
+		<div class="sidebar">
+			<div class="bg-grey-1 padding-20 margin-top-30 margin-bottom-60 contact-proprietaire-box">
+	<p class="h4">Contacter le propriétaire</p>
+		<p><i>NB : Le propriétaire refuse le démarchage commercial.</i></p>
+				<p class="h3 txt-indigo">
+			06.24.94.60.07		</p>
+				<form method="post"
+			action="/json/contact-annonceur-send"
+			class="form-contact-annonceur"
+			data-gaq="{&quot;category&quot;:&quot;DETAIL LOCATION&quot;,&quot;action&quot;:&quot;Envoyer E-mail IDF&quot;,&quot;label&quot;:&quot;Sidebar&quot;}">
+						<div class="alert-box margin-bottom-16 hidden error-envoi-divers"> Une erreur est survenue. Veuillez essayer de nouveau.</div>
+						<div class="form-group">
+				<label for="sidebar_prenom" class="hidden">Votre prénom</label>
+				<input type="text" id="sidebar_prenom" name="prenom" value="" placeholder="Votre prénom">
+								<p class="error-message hidden error-prenom-vide">Veuillez indiquer votre prénom.</p>
+								<p class="error-message hidden error-prenom-trop-long">Ce prénom est trop long.</p>
+							</div>
+			<div class="form-group">
+				<label for="sidebar_nom" class="hidden">Votre nom</label>
+				<input type="text" id="sidebar_nom" name="nom" value="" placeholder="Votre nom">
+								<p class="error-message hidden error-nom-vide">Veuillez indiquer votre nom.</p>
+								<p class="error-message hidden error-nom-trop-long">Ce nom est trop long.</p>
+							</div>
+			<div class="form-group">
+				<label for="sidebar_email" class="hidden">Votre e-mail</label>
+								<input type="text" id="sidebar_email" name="email" value="" placeholder="Votre e-mail" class="utilisateur_email">
+												<p class="error-message hidden error-email-vide">Veuillez indiquer votre adresse e-mail.</p>
+								<p class="error-message hidden error-email-incorrect">Cette adresse e-mail est incorrecte.</p>
+								<p class="error-message hidden error-email-trop-long">Cette adresse e-mail est trop longue.</p>
+							</div>
+			<div class="form-group">
+				<label for="sidebar_telephone" class="hidden">Votre téléphone</label>
+				<input type="text" id="sidebar_telephone" name="telephone" value="" placeholder="Votre téléphone">
+								<p class="error-message hidden error-telephone-vide">Veuillez saisir votre numéro de téléphone.</p>
+								<p class="error-message hidden error-telephone-incorrect">Ce numéro de téléphone est incorrect.</p>
+							</div>
+						
+			<div class="form-group">
+				<label for="sidebar_message" class="hidden">Votre message (pensez à indiquer si vous êtes un étudiant, un couple en CDD / CDI, etc., vos revenus et si vous avez un garant.)</label>
+				<textarea id="sidebar_message" name="message" placeholder="Votre message (pensez à indiquer si vous êtes un étudiant, un couple en CDD / CDI, etc., vos revenus et si vous avez un garant.)" maxlength="1000"></textarea>
+				<p class="p-small txt-grey-4 margin-top-4 align-right"><span class="textarea-counter-curlength"></span> / <span class="textarea-counter-maxlength"></span> caractères</p>
+								<p class="error-message hidden error-message-vide">Veuillez indiquer un message.</p>
+								<p class="error-message hidden error-message-trop-long">Ce message est trop long.</p>
+							</div>
+			<input type="hidden" name="action" value="submit">
+			<input type="hidden" name="id" value="443602389">
+			<input type="hidden" name="investisseur" value="">
+			<div class="submit-loader infos-box hidden">Envoi en cours...</div>
+			<div class="submit-success success-box hidden">Message envoyé avec succès !</div>
+			<div class="form-group">
+				<input type="submit" class="btn btn-full-width btn-indigo contact-annonceur-envoyer" value="Envoyer votre message">
+				<div class="margin-top-20">
+					<small>
+						J'autorise pap.fr à collecter, traiter et transmettre ces données à l'annonceur.
+						<a href="https://www.pap.fr/groupe/donnees-personnelles" target="_blank">En savoir plus</a>
+					</small>
+				</div>
+			</div>
+				<div class="infos-box action-annonce hidden"></div>
+			</form>
+		</div>
+		</div>
+	</div>
+</div>
+<div class="dialog-box-content" id="dialog_carte" title="Plan de situation du bien" data-dialog-box='{"width":650}' >
+	<div id="carte_mappy" class="map-annonce-adresse" style="height: 500px; width: auto;min-height: 0px;" data-mappy="{&quot;center&quot;:[&quot;48.545839&quot;,&quot;2.667249&quot;],&quot;zoom&quot;:15}">
+	</div>
+</div>
+
+<div class="dialog-box-content" id="dialog_signup" title="Confirmez votre e-mail" data-dialog-box='{"width":600}'>
+	<p>Pour échanger avec les propriétaires, vous devez confirmer votre adresse 
+	e-mail en cliquant sur le mail d'activation que nous venons de vous envoyer.</p>
+	<button class="btn btn-indigo close-dialog">J'ai compris</button>
+</div>
+
+
+<div class="dialog-box-content" id="dialog_creer-dossier" title="Automatisez votre recherche de location !" data-dialog-box='{"width":600}'>
+	<p>Inscrivez-vous à la Locathèque de PAP, et envoyez automatiquement votre dossier de location 
+	aux propriétaires qui proposent un logement correspondant à vos critères.</p>
+			<form action="/utilisateur/dossierfacile" method="get" target="_blank">
+			<input type="hidden" name="email" id="email_creer-dossier">
+			<input class="btn btn-corail margin-right-10 sm-no-margin-right" type="submit" value="Remplir mon dossier" onclick="_piq.push([&#039;sendEvent&#039;, &#039;click.action&#039;, {&#039;click&#039;: &quot;detail\/popin-dossier-facile\/creer-non-connecte&quot;, ..._piq_vars.click}]);">
+			<a href="/locatheque-pour-les-locataires" target="_blank" class="btn btn-outline" onclick="_piq.push([&#039;sendEvent&#039;, &#039;click.action&#039;, {&#039;click&#039;: &quot;detail\/popin-dossier-facile\/en-savoir-plus&quot;, ..._piq_vars.click}]);">En savoir plus</a>
+		</form>
+	</div>
+
+
+<div class="dialog-box-content" id="dialog_completer-dossier" title="Automatisez votre recherche de location !" data-dialog-box='{"width":600}'>
+	<p>Complétez votre dossier de location pour vous inscrire à la Locathèque de PAP !
+	Votre dossier sera transmis automatiquement aux propriétaires qui proposent un logement correspondant à vos critères.</p>
+			<form action="/utilisateur/dossierfacile" method="get" target="_blank">
+			<input type="hidden" name="email" id="email_completer-dossier">
+			<input class="btn btn-corail margin-right-10 sm-no-margin-right" type="submit" value="Compléter mon dossier" onclick="_piq.push([&#039;sendEvent&#039;, &#039;click.action&#039;, {&#039;click&#039;: &quot;detail\/popin-dossier-facile\/completer-non-connecte&quot;, ..._piq_vars.click}]);">
+			<a href="/locatheque-pour-les-locataires" target="_blank" class="btn btn-outline" onclick="_piq.push([&#039;sendEvent&#039;, &#039;click.action&#039;, {&#039;click&#039;: &quot;detail\/popin-dossier-facile\/en-savoir-plus&quot;, ..._piq_vars.click}]);">En savoir plus</a>
+		</form>
+	</div>
+
+<div class="dialog-box-content" id="dialog_envoi_ami" title="Envoyez à un ami l'annonce : Location meublée chambre 12&nbsp;m² Melun (77000) - 530&nbsp;&euro;" data-dialog-box='{"width":650}'>
+	<form class="bg-grey-1 padding-20" method="post" action="/json/envoyer-a-un-ami-send" id="form-envoyer-a-un-ami">
+		<input type="hidden" id="annonce_id" name="annonce_id" value="443602389">
+				<div class="alert-box margin-bottom-16 hidden error-submit-hcaptcha"> Une erreur est survenue. Veuillez réessayer dans quelques instants.</div>
+				<div class="alert-box margin-bottom-16 hidden error-submit-divers"> Une erreur est survenue. Veuillez réessayer dans quelques instants.</div>
+				<div class="row margin-bottom-20">
+			<div class="col-1-2">
+				<div class="form-group">
+					<label for="prenom" class="hidden">Prénom :</label>
+					<input type="text" id="prenom" name="prenom" value="" placeholder="Votre prénom">
+										<p class="error-message hidden error-prenom-vide">Veuillez indiquer votre prénom.</p>
+										<p class="error-message hidden error-prenom-trop-long">Votre prénom est trop long.</p>
+									</div>
+				<div class="form-group">
+					<label for="nom" class="hidden">Nom :</label>
+					<input type="text" id="nom" name="nom" value="" placeholder="Votre nom">
+										<p class="error-message hidden error-nom-vide">Veuillez indiquer votre nom.</p>
+										<p class="error-message hidden error-nom-trop-long">Votre nom est trop long.</p>
+									</div>
+				<div class="form-group">
+					<label for="email" class="hidden">Votre e-mail :</label>
+										<input type="text" id="email" name="email" value="" placeholder="Votre e-mail">
+															<p class="error-message hidden error-email-vide">Veuillez indiquer votre adresse e-mail.</p>
+										<p class="error-message hidden error-email-incorrect">Cette adresse e-mail est incorrecte, veuillez vérifier votre saisie.</p>
+										<p class="error-message hidden error-email-trop-long">Cette adresse e-mail est trop longue.</p>
+									</div>
+				<div class="form-group">
+					<label for="email_ami" class="hidden">E-mail de votre ami :</label>
+					<input type="text" id="email_ami" name="email_ami" value="" placeholder="E-mail de votre ami">
+										<p class="error-message hidden error-email_ami-vide">Veuillez indiquer l'adresse e-mail de votre ami.</p>
+										<p class="error-message hidden error-email_ami-incorrect">Cette adresse e-mail est incorrecte, veuillez vérifier votre saisie.</p>
+										<p class="error-message hidden error-email_ami-trop-long">Cette adresse e-mail est trop longue.</p>
+									</div>
+			</div>
+			<div class="col-1-2">
+				<div class="form-group">
+					<label for="message" class="hidden">Votre message :</label>
+					<textarea id="message" name="message" placeholder="Votre message..."></textarea>
+										<p class="error-message hidden error-message-vide">Veuillez indiquer un message.</p>
+										<p class="error-message hidden error-message-trop-long">Ce message est trop long.</p>
+									</div>
+			</div>
+		</div>
+		<div class="align-center">
+			<button class="h-captcha btn btn-indigo margin-bottom-20 btn-valider" id="form-envoyer-a-un-ami-submit" data-callback="submitHCaptcha" data-sitekey="3ae480dd-8be8-44d9-8734-9db8639413d1" data-size="invisible">Envoyer l'annonce à votre ami</button>
+		</div>
+		<div style="font-size: 80%;">
+			<p class="p-small align-justify">J'autorise pap.fr à collecter, traiter et transmettre ces données au destinataire, conformément à sa <a href="https://www.pap.fr/groupe/donnees-personnelles" target="_blank">Politique de Confidentialité</a>.
+			Ce formulaire est protégé par hCaptcha, et ses <a href="https://hcaptcha.com/privacy">Politique de Confidentialité</a> et <a href="https://hcaptcha.com/terms">CGU</a> s'appliquent.</p>
+		</div>
+		<div id="form-envoyer-a-un-ami-loading" class="infos-box loading-box margin-top-20 hidden">Envoi en cours</div>
+		<div id="form-envoyer-a-un-ami-success" class="success-box margin-top-20 hidden">Message envoyé avec succès !</div>
+	</form>
+</div>
+<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+<script>
+function submitHCaptcha(token) {
+	$('#form-envoyer-a-un-ami').trigger('submit');
+	hcaptcha.reset();
+}
+</script>
+<div class="dialog-box-content" id="dialog-enregistrer-email" title="Ajoutez des annonces en favoris" data-dialog-box='{"width":500}'>
+	<form action="/json/email-check" method='POST' id="enregistrer-email-favoris" class="bg-grey-1 padding-20">
+		<div class="form-group">
+			<label for="email">Indiquez votre adresse e-mail :</label>
+			<input name="email" type="text" placeholder="Votre e-mail" id="email">
+			<p class="error-message"></p>
+		</div>
+		<p>
+			Toutes les annonces que vous sélectionnerez vous seront envoyées par e-mail à la fin de votre visite.
+		</p>
+		<p class="align-center">
+			<input type="submit" class="btn favoris-enregistrer" value="Valider">
+		</p>
+	</form>
+</div>
+<div class="dialog-box-content" id="dialog-signaler-un-probleme" title="Signaler un problème sur cette annonce">
+
+	<form class="bg-grey-1 padding-20" method="post" id="form-signaler-un-probleme" action="/json/signaler-un-probleme?id=443602389">
+
+		<div class="row margin-bottom-20">
+			<div class="col-1-2">
+				<div class="form-group">
+					<label for="field-signaler-un-probleme-prenom" class="hidden">Prénom :</label>
+					<input type="text" id="field-signaler-un-probleme-prenom" name="prenom" placeholder="Prénom">
+					<p class="error-message" id="error-signaler-un-probleme-prenom"></p>
+				</div>
+			</div>
+			<div class="col-1-2">
+				<div class="form-group">
+					<label for="field-signaler-un-probleme-nom" class="hidden">Nom :</label>
+					<input type="text" id="field-signaler-un-probleme-nom" name="nom" placeholder="Nom">
+					<p class="error-message" id="error-signaler-un-probleme-nom"></p>
+				</div>
+			</div>
+		</div>
+		<div class="row margin-bottom-20">
+			<div class="col-1-2">
+				<div class="form-group">
+					<label for="field-signaler-un-probleme-email" class="hidden">E-mail :</label>
+					<input type="text" id="field-signaler-un-probleme-email" name="email" placeholder="Adresse e-mail">
+					<p class="error-message" id="error-signaler-un-probleme-email"></p>
+				</div>
+			</div>
+			<div class="col-1-2">
+				<div class="form-group">
+					<label for="field-signaler-un-probleme-telephone" class="hidden">Téléphone :</label>
+					<input type="text" id="field-signaler-un-probleme-telephone" name="telephone" placeholder="Téléphone">
+					<p class="error-message" id="error-signaler-un-probleme-telephone"></p>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="field-signaler-un-probleme-type_reclamation" class="hidden">Catégorie de réclamation :</label>
+			<select id="field-signaler-un-probleme-type_reclamation" name="type_reclamation" class="single-select-new">
+				<option>Choisissez une catégorie de réclamation *</option>
+							<option value="annonce-frauduleuse">Annonce frauduleuse</option>
+						<option value="bien-insalubre">Bien insalubre</option>
+						<option value="discrimination">Discrimination</option>
+						<option value="photo-description-non-conforme">Photo / description non conforme</option>
+						<option value="professionnel-immobilier">Professionnel de l'immobilier</option>
+						<option value="appreciation">Appréciation</option>
+						<option value="autre">Autre</option>
+						</select>
+			<p class="error-message" id="error-signaler-un-probleme-type_reclamation"></p>
+		</div>
+
+		<div class="form-group">
+			<label for="field-signaler-un-probleme-description" class="hidden">Description :</label>
+			<textarea id="field-signaler-un-probleme-description" name="description" placeholder="Décrivez-nous le problème rencontré sur cette annonce."></textarea>
+			<p class="error-message" id="error-signaler-un-probleme-description"></p>
+		</div>
+
+		<div class="align-center">
+			<input type="submit" id="submit-signaler-un-probleme" class="btn btn-indigo" value="Envoyer">
+		</div>
+
+		<div id="div-signaler-un-probleme-loading" class="infos-box loading-box margin-top-20 hidden">Envoi en cours...</div>
+		<div id="div-signaler-un-probleme-success" class="success-box margin-top-20 hidden">Votre message a été envoyé !</div>
+
+	</form>
+
+</div>
+<script type="text/javascript">
+_piq.push(['sendEvent', 'self_promotion.impression', {"onsitead_type":"Self promotion","onsitead_campaign":"pap","onsitead_format":"recherche\/detail","product_id":"443602389"}]);
+</script>
+ <footer>
+	<div class="wrapper">
+				<ul>
+			<li><a href="/plan-du-site">Plan du site</a></li>
+			<li><a href="/qui-sommes-nous/notre-philosophie">Qui sommes-nous ?</a></li>
+			<li><a href="/groupe/nous-contacter">Nous contacter</a></li>
+			<li><a href="/groupe/cgv">CGV</a></li>
+			<li><a href="/groupe/temoignages">Témoignages clients</a></li>	
+			<li><a href="/qui-sommes-nous/nous-rejoindre">Recrutement</a></li>
+			<li><a href="/groupe/kit-media">Espace Presse</a></li>
+		</ul>
+					<p itemscope itemtype="http://data-vocabulary.org/Review-aggregate">
+		<span itemprop="itemreviewed">PAP.fr</span> est not&eacute;
+		<img itemprop="photo" src="/images/logos/logo-pap.png" style="display:none;" />
+		<span itemprop="rating" itemscope itemtype="http://data-vocabulary.org/Rating">
+			<span itemprop="average">4.6</span>/<span itemprop="best">5</span>
+		</span>
+		selon <span itemprop="votes">8844</span> avis clients
+		<span itemprop="reviewer"><a href="https://fr.trustpilot.com/review/www.pap.fr" rel="nofollow" target="_blank">Trustpilot</a></span>
+	</p>
+					<p>
+			DE PARTICULIER À PARTICULIER - ÉDITIONS NERESSIS © 1996-2024			| <a href="https://www.pap.fr/groupe/mentions-legales" target="_blank">Mentions légales</a>
+			| <a href="https://www.pap.fr/groupe/donnees-personnelles" target="_blank">Confidentialité</a>
+			| <a href="/groupe/cookies" target="_blank">Cookies</a>
+			| <a href="javascript:window.Sddan.cmp.displayUI();">Choix des cookies</a>
+		</p>
+	</div>
+</footer>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'892a0c5acfc8b765',t:'MTcxODE5NzQ4Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

@@ -75,3 +75,7 @@ def remove_already_scraped_urls(urls: list, website: str) -> list:
     urls = [url for url in urls if url not in scraped_urls_list]
 
     return urls
+
+
+if __name__ == "__main__":
+    res = read_from_database("SELECT * FROM pap")

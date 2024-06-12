@@ -2,7 +2,7 @@ import json
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
-from utils import *
+from .utils import fetch_html_with_oxylab
 
 
 def scrape_ad(ad_url: str) -> dict:

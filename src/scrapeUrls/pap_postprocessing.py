@@ -78,3 +78,6 @@ def process_outputs(data: pd.DataFrame) -> pd.DataFrame:
     )
 
     return data
+
+if __name__ == "__main__":
+    
