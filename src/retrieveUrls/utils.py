@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 import os
 import dotenv
 
-dotenv.load_dotenv()
+dotenv.load_dotenv(override=True)
 
 
 def fetch_html_with_oxylab(page_url: str) -> str:
