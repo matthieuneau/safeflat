@@ -1,4 +1,5 @@
 import pandas as pd
+from pap_scraper import scrape_ad
 
 
 def extract_rooms(details):
@@ -79,5 +80,10 @@ def process_outputs(data: pd.DataFrame) -> pd.DataFrame:
 
     return data
 
-if __name__ == "__main__":
-    
+
+with open("tests/src/scrapeUrls/pap_ad_example_html.txt", "r") as file:
+    data = file.read()
+
+data = scrape_ad(data)
+processed_data = process_outputs(data)
+print(processed_data)

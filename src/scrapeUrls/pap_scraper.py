@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from .utils import fetch_html_with_oxylab
 
 
-def scrape_ad(ad_url: str) -> dict:
+def scrape_ad(ad_url: str) -> pd.DataFrame:
     """Scrape the data from the ad URL
 
     Args:
@@ -105,3 +105,8 @@ def scrape_ad(ad_url: str) -> dict:
         data["ref_date"] = "Not Available"
     data = pd.DataFrame([data])
     return data
+
+
+ad_url = "https://www.pap.fr/annonces/maison-rungis-ville-r437900803"
+data = scrape_ad(ad_url)
+print(data)
