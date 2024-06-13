@@ -1,8 +1,11 @@
-# .github/workflows/common.yml
 name: Common Workflow
 
 on:
   workflow_call:
+    inputs:
+      job:
+        required: true
+        type: string
 
 env:
   PYTHON_VERSION: '3.11'
