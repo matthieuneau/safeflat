@@ -1,183 +1,267 @@
-,type,meuble,host_name,price,ville,zipcode,neighbourhood,nb_rooms,nb_bedrooms,surface,description,balcon,terrasse,jardin,surface_balcon,surface_terrasse,surface_jardin,exposition,cave,parking,garage,box,ascenseur,interphone,gardien,numero_etage,nb_etages,salle de bain (Baignoire),salle d'eau (douche),surface_salon,surface_salle_a_manger,Diagnostic de performance énergétique (DPE),Indice d'émission de gaz à effet de serre (GES),loyer_charges_comprises,charges_forfaitaires,complement_loyer,depot_garantie,piscine,type_de_bien,quartier,meuble
-0,Studio,1,Crapoulet,605.0,Paris,75011,Quartier Belleville-Saint Maur,1,,15.0,"Situé au sixième étage avec ascenseur, l'entrée de ce studio meublé ouvre sur la pièce de vie. La pièce principale se compose de deux espaces : le séjour/espace nuit et la cuisine ouverte. Vous disposerez de rangements, d'une table/bureau, d'une table basse et d'un lit gigogne (possibilité de 2 couchages). La salle de bain se compose d'une cabine de douche, d'un espace de rangement, d'un sèche-serviettes chauffant et de WC sanibroyeurs. Très belles prestations pour ce T1 en location : meublé et équipé (télévision, réfrigérateur, four micro-onde, plaques chauffantes et lave linge), rangements, lumineux, calme, bien agencé, décoration façon loft new yorkais, véritable mur en briques rouges.Demander plus d'informations au propriétaire",0,0,0,,,,,0,0,0,0,1.0,0,0,6.0,6.0,1,1,,,G,C,605.0,40.0,,1100.0,Non,appartement,N/A,N/A
-1,Appartement,1,Roseline,1650.0,Paris,75011,Quartier Léon-Blum Folie-Regnault,2,1.0,30.0,"Appartement meublé 1 Chambre - 30m2 , notre logement est situé dans le 11ème arrondissement de Paris, rue Pache au premier étage d'un immeuble des années 80. L'appartement est joliment rénové et est entièrement équipée. Séjour avec cuisine équipée (four à micro-onde, lave-vaisselle, et un  lave-linge), salle de douche avec WC. Les chaines cablées, la télévision, un accès internet haut débit illimité avec le wifi..Demander plus d'informations au propriétaire",0,0,0,,,,,0,0,0,0,0.0,0,0,1.0,1.0,0,1,,,D,C,1650.0,150.0,,3000.0,Non,appartement,,oui
-2,Appartement,1,Kevin,2000.0,Paris,75011,Quartier Léon-Blum Folie-Regnault,4,3.0,33.0,"appartement meublé 3 pièces 33,68 m² dans un immeuble de charme. Agréable trois pièces meublé entièrement refait mansardé au 4eme étage avec ascenseur comprenant un séjour cuisine deux chambres, une salle d'eau avec wc Coup de cœur assuré.Demander plus d'informations au propriétaire",0,0,0,,,,,1,0,0,1,1.0,0,0,4.0,6.0,1,1,,,D,D,2000.0,100.0,,2000.0,Non,appartement,,
-3,Studio,0,Marion,815.0,Paris,75011,Quartier Bastille-Popincourt,1,,25.0,"A louer grand studio lumineux de 25m², non meublé, en bon état, à deux pas de la place voltaire dans le 11ème arrondissement. Au rez de chaussée sur cour dans une copropriété sécurisée et bien entretenue avec gardien. L’appartement se compose d’une entrée avec des grands placards, une pièce principale avec un coin cuisine (comprenant des meubles de rangement, plaques de cuisson et un réfrigérateur) et une salle d’eau (avec douche lavabo et wc). Parquet. Chauffage électrique. Immeuble fibré. Calme. Disponible le 1er juillet. Situé sur la ligne 9 entre le métro Voltaire et Charonne ainsi que de nombreux bus (46/56/61/69/76).Demander plus d'informations au propriétaire",0,0,0,,,,,0,0,0,0,0.0,0,1,0.0,4.0,0,1,,,F,C,815.0,45.0,,770.0,Non,appartement,,
-4,Studio,1,Carlier,2300.0,Paris,75011,Quartier Belleville-Saint Maur,1,,60.0,"À la suite d'une mutation professionnelle à l’étranger, nous proposons à la location notre appartement de 60m² situé au 2étage entièrement rénové et meublé, doté d'un ascenseur neuf. Cet espace de vie comprend deux chambres (parentale et une chambre enfants), une cuisine équipée, un WC séparé, ainsi qu'un salon lumineux agrémenté de poutres en bois apparentes et d'un parquet d'époque, offrant ainsi un charme authentique.
+,url,id,type,meuble,host_name,price,ville,zipcode,quartier,nb_rooms,nb_bedrooms,surface,description,balcon,terrasse,jardin,surface_balcon,surface_terrasse,surface_jardin,exposition,cave,parking,garage,box,ascenseur,interphone,gardien,numero_etage,nb_etages,baignoire,douche,surface_salon,surface_salle_a_manger,DPE,GES,loyer_charges_comprises,charges_forfaitaires,complement_loyer,depot_garantie
+0,https://www.seloger.com/annonces/locations/appartement/paris-11eme-75/belleville-saint-maur/222090393.htm,222090393,appartement,oui,nguyen2910,995.0,paris,75011,,2,1.0,21.0,"**disponibilité** : 01/07/2024
 
-Idéalement situé dans le très prisé 11ème arrondissement de Paris, cet immeuble auquel nous sommes attachés se trouve dans un quartier des plus agréables.
-Loyer mensuel: 2100e + 200e charge
-Disponible à partir du mois de mai, nous organiserons des visites sur rendez-vous et sur présentation préalable d'un dossier complet.
-La sous location est interdite.
-Nous vous remercions de votre compréhension et restons à votre disposition pour toute information supplémentaireDemander plus d'informations au propriétaire",0,0,0,,,,,0,0,0,0,1.0,0,0,2.0,5.0,0,1,,,D,Not Available,2300.0,200.0,,2100.0,Non,appartement,,
-5,Appartement,1,Sr,2900.0,Paris,75011,Quartier République-Saint Ambroise,3,2.0,65.0,"Cet appartement parisien est situé dans le vibrant 11e arrondissement, offrant une expérience de quartier animée et dynamique. L'appartement dispose de deux chambres, offrant amplement d'espace pour les résidents. L'un de ses principaux atouts est une terrasse spacieuse de 13m2, parfaite pour profiter des moments en extérieur au calme et admirer la vue sur l'église Saint-Ambroise. L'appartement est entièrement meublé, garantissant confort et commodité. Il est équipé de la climatisation, d'une machine à laver et d'un sèche-linge, et lave-vaisselle. 
+un joli appartement f2 meublé et refait à neuf de 21 m² au calme recherche un locataire sympathique souhaitant rester longtemps, qui va remplacer le locataire actuel quittant l’appartement le 30/06.
 
-Veuillez noter que pour être éligible à cet appartement, le demandeur devrait remplir certaines conditions, notamment un revenu équivalent à trois fois le loyer et soit un garant, soit une certification GarantMe.
+l'appartement se compose de deux pièces principales :
+- un séjour avec coin cuisine de 8 m²
+- une salle de bain de 2 m²
+- une chambre de 11 m²
 
-Disponible à partir du 9 juin 2024
+pas de machine à laver, mais possibilité d’en installer une petite à votre charge.
 
-Visites samedi 4 mai, mercredi 8 may et jeudi 9 mai
+l'appartement est situé à proximité des transports :
+- à 250 m de la gare goncourt (m11)
+- à 400 m de la gare parmentier (m2)
+- à 650 m de la gare république (m3, m5, m8, m9, m11) (source : google maps)
 
-Envoie sms Demander plus d'informations au propriétaire",0,1,0,,,,,0,0,0,0,0.0,0,0,,,1,0,,,Not Available,Not Available,2900.0,150.0,,2750.0,Non,appartement,Le Marais,
-6,Appartement,1,Emilie,2300.0,Paris,75011,Quartier République-Saint Ambroise,3,2.0,52.0,"Très beau 3 pièces - rue Amelot, en lisière du 3ème arrondissement et du Marais.
-Location en bail mobilité.
-Prix du loyer toutes charges comprises (charges de copropriété, électricité, eau et internet).
-Au 5ème étage sans ascenseur, appartement 3 pièces de 52m2 en parfait état. Il se compose d’un vaste séjour (27m2) avec cuisine américaine, 2 belles chambres en enfilade, une salle d’eau avec WC, plusieurs placards et un local vélo-poussette. Charme de l’ancien, aucune perte de place, baigné de lumière, au calme sur une jolie cour.Demander plus d'informations au propriétaire",0,0,0,,,,,0,0,0,0,0.0,0,0,5.0,6.0,0,1,,,E,B,2300.0,250.0,,2300.0,Non,appartement,,
-7,Appartement,1,Segau,997.0,Paris,75011,Quartier Léon-Blum Folie-Regnault,2,,31.0,"RARE : Quartier Nation/Bastille/Voltaire, proche métro Charonne dans rue calme et arborée, Jolie duplex de 31m² 2 pièces au 2ème étage entièrement rénové avec matériaux de qualité. Salon avec canapé, table , cuisine américaine équipée, une chambre avec placard . Salle de bain avec WC , meuble lavabo.  Éligible APL. Convient pour couple, étudiant (e), PAS DE COLOCATIONDemander plus d'informations au propriétaire",0,0,0,,,,,0,0,0,0,0.0,0,0,2.0,,1,0,,,C,B,997.0,77.0,,1840.0,Non,appartement,Nation/Bastille/Voltaire,
-8,Appartement,1,Matthieu,2877.0,Paris,75011,Quartier Nation-Alexandre Dumas,4,3.0,61.0,"À proximité immédiate de la place de la Nation à Paris, bel appartement tout confort entièrement meublé. Orienté sud-est et situé au 7e étage avec grand ascenseur, il convient parfaitement pour une colocation d'étudiants, une famille avec enfants ou un couple. Proche de toutes commodités, il saura vous accueillir confortablement, il ne vous reste plus qu'à poser vos valises. Ce logement est doté d'un grand séjour et d'un balcon filant d'environ 10 m2 avec une magnifique vue dégagée sur les toits et sur la place de la Nation. Moderne et bien équipé, ce bien va vous séduire par sa pièce à vivre spacieuse d'environ 27 m2, avec une cuisine américaine ouverte sur le séjour et entièrement équipée (lave-vaisselle Miele, réfrigérateur, congélateur, four, four micro-ondes et nombreux éléments de rangements). 
+**loyer** : 995 € charges comprises, sans électricité
+(dont : loyer de base : 730,8 € + complément de loyer : 208,2 € + charges copropriété : 56 €)
 
-Toutes charges incluses
-L'appartement meublé dispose d'une chambre parentale (lit queen size 160 x 200 cm avec double armoire de rangement aménagée), de deux autres chambres lit double avec leur armoire de rangement aménagée et bureau dans l'une des chambres). Canapé du séjour convertible. Grandes fenêtres avec double vitrage et volets électriques. Deux des chambres ainsi que le séjour sont chacun dotés d’une porte-fenêtre donnant sur le balcon filant. L’appartement dispose également d'un espace bureau à l'entrée qui permet de s’isoler pour travailler au calme. Cuisine toute équipée. Salle de bains avec grande douche. Machine à laver et sèche-linge Miele. WC suspendus séparés avec petit placard de rangement. Entrée avec placard de rangement et penderie. Connexion internet fibre optique incluse, réseau local Wi-Fi ou Ethernet avec prises RJ45. Frais de consommation de chauffage, d'électricité et d'eau inclus dans le loyer. Cave d’environ 6 m3 en sous-sol. 
+**informations requises** :
+merci de m'écrire un message le plus détaillé possible incluant :
+- votre background
+- vos revenus
+- votre garant
+- la durée de location souhaitée
 
-Nœud de transports
-Cadre de vie : RER A + nombreuses lignes de métro et de bus pour se rendre partout dans Paris facilement. Place de la Bastille et Gare de Lyon à 5 min en métro, La Défense à 20 min, Gares de L'Est/du Nord/Montparnasse à 30 min, aéroports d’Orly/Roissy CDG à moins d’une heure. Lignes de tram T3a et T3b à 800 m. 
+**message uniquement, pas d’appel svp**
 
-Pour 3 colocataires - 959 €/mois par colocataire toutes charges comprises
-Disponibilité 1er septembre 2024
-D’autres photos transmises sur demandeDemander plus d'informations au propriétaire",1,0,0,10.0,,,,1,0,0,0,1.0,0,0,7.0,7.0,0,1,,,E,D,2877.0,490.0,,3684.0,Non,appartement,Nation,
-9,Studio,1,Not Available,550.0,Paris,75019,Quartier Buttes Chaumont,1,,10.0,"POUR TOUTE DEMANDE DE VISITE OU DE RENSEIGNEMENT, MERCI DE NOUS ENVOYER UN MESSAGE VIA LE SITE (Aucune demande n'est traitée par téléphone), NOUS REVIENDRONS VERS VOUS RAPIDEMENT. BAIL MEUBLE - L'agence Orpi vous propose a la location un studio de 10,45m2, situé dans le 19ème arrondissement de Paris et bénéficie d'une localisation stratégique, avec un accès facile au transports en commun, proche des commodités et des commerces de bouche. Ce charmant studio en bon état offre un espace fonctionnel, bien aménagé comprenant une kitchenette et salle d'eau avec fenêtre. WC sur le palier.Demander plus d'informations à l'agence",0,0,0,,,,,0,0,0,0,,0,0,,,1,1,,,G,C,550.0,20.0,,1100.0,Non,appartement,,
-10,Appartement,1,Héloïse,1280.0,Paris,75011,Quartier Léon-Blum Folie-Regnault,2,1.0,40.0,"Agréable 2 pièces, meublé de 40m2, clair et calme . Près de Bastille et du RER Nation. Dans une rue calme, immeuble 1900 en pierre de taille, bien entretenu. Avec une entrée, une cuisine séparée et équipée, une grande fenêtre ; une chambre avec des grands placards ; un séjour avec un canapé club en cuir. Une salle de bain avec baignoire et une fenêtre. Appartement fonctionnel avec 7 placards de rangement. Chauffage et eau chaude par chaudière à gaz économique récente. Local à vélos. A proximité immédiate de tous commerces, supermarchés, restaurants, un parc. Près du métro, à 20 minutes du centre de Paris en bus, du quartier du Marais, du bois de Vincennes. Pas de colocation possible. Loyer et charges comprises 1280 euros. Merci de bien vouloir me laisser un message avec votre numéro de téléphone afin d'organiser une visite.Demander plus d'informations au propriétaire",0,0,0,,,,,0,0,0,0,0.0,0,0,3.0,3.0,1,0,,,Not Available,Not Available,1280.0,80.0,,2000.0,Non,appartement,,oui
-11,Studio,1,Parislkn,920.0,Paris,75011,Quartier Belleville-Saint Maur,1,,16.0,"Magnifique studio de 16m2 environ situé av. Parmentier, Paris 11, entre les stations de métro Saint-Ambroise et Parmentier. A deux pas des transports, commerces, commodités, écoles, bars et restaurants de la rue Oberkampf / Canal Saint-Martin, etc.
- 
-Résidence de standing avec digicode et interphone, gardien, ascenseur, parties communes en excellent état, espaces verts. 
- 
-Le studio, entièrement refait à neuf, se situe au 4ème étage avec ascenseur et donne sur une cour calme.
+merci et cordialement. demander plus d'informations au propriétaire",non,non,non,,,,,non,non,non,non,non,non,non,2.0,4.0,oui,oui,,,,,995.0,56.0,,939.0
+1,https://www.seloger.com/annonces/locations/appartement/paris-11eme-75/leon-blum-folie-regnault/221980241.htm,221980241,studio,oui,marinadou,955.0,paris,75011,,1,,26.0,"studio meublé de 26 mètres carrés comprenant une entrée, une cuisine et une chambre, une salle de bain. a louer à partir du 21 juin 2024. lumineux. au 5eme étage sans ascenseur. proche de l'atelier des lumières et du métro saint maur ou voltaire.
+demander plus d'informations au propriétaire",non,non,non,,,,,oui,non,non,non,non,non,non,5.0,5.0,oui,non,,,,,955.0,25.0,,1700.0
+2,https://www.seloger.com/annonces/locations/appartement/paris-11eme-75/leon-blum-folie-regnault/216726295.htm,216726295,appartement,non,p.aube,2600.0,paris,75011,,5,2.0,90.0,"11ème, père lachaise, non meublé, appartement  atypique 90m2 habitable ,mansardé, 4ème (sans ascenseur), terrasse 17m2 plein sud, 2 grandes pièces à vivre, cheminée, 2 petites chambres, cuisine séparée, cave.demander plus d'informations au propriétaire",non,oui,non,,,,,oui,non,non,non,non,non,non,4.0,4.0,oui,non,,,,,2600.0,100.0,,2000.0
+3,https://www.seloger.com/annonces/locations/appartement/paris-11eme-75/leon-blum-folie-regnault/218715371.htm,218715371,appartement,oui,roseline,1650.0,paris,75011,,2,1.0,30.0,"appartement meublé 1 chambre - 30m2 , notre logement est situé dans le 11ème arrondissement de paris, rue pache au premier étage d'un immeuble des années 80. l'appartement est joliment rénové et est entièrement équipée. séjour avec cuisine équipée (four à micro-onde, lave-vaisselle, et un  lave-linge), salle de douche avec wc. les chaines cablées, la télévision, un accès internet haut débit illimité avec le wifi..demander plus d'informations au propriétaire",non,non,non,,,,,non,non,non,non,non,non,non,1.0,1.0,non,oui,,,,,1650.0,150.0,,3000.0
+4,https://www.seloger.com/annonces/locations/appartement/paris-11eme-75/republique-saint-ambroise/209500627.htm,209500627,appartement,oui,valentin tonti bernard,2614.0,paris,75011,,3,1.0,75.0,"je loue pour une période de 4 mois (1er janvier 2024 au 1 mai 2024) mon appartement. celui-ci a été entièrement refait par un architecte est fait 75m². il se situe à moins de 2 minutes à pieds de l'arrêt oberkampf et à 5 minutes à pieds du métro république. il se trouve au 2ème étage dans une copropriété très calme. il est extrêmement lumineux (oui mes photos ne sont pas révélatrices) et vraiment très agréable à vivre.
 
-Tout confort et ensoleillé, il se compose comme suit : 
--  entrée avec kitchenette équipée (frigo avec compartiment congélation, plaque induction, four, hotte, meubles, table rabattable, étagère, assiettes, verres, couverts, ustensiles de cuisine)
--  salle d'eau avec douche, WC, lave-linge, rangements
--  pièce principale avec armoire dressing 150x236, canapé-lit avec couchage 160x200, meuble TV, TV, table rabattable, étagères, volet roulant électrique
--  balcon de 3m2 avec table et chaises
--  une grande cave bétonnée/saine de 4m2 env. est comprise également
- 
-Loyer hors charges : 840e/mois
-Charges : 80e/mois
-Loyer charges comprises : 920e/mois
-Les charges comprennent le chauffage collectif, l'eau chaude et eau froide, la taxe d'ordure ménagères, l'ascenseur, le gardien, les espaces communs, les espaces verts.
- 
-Garantie Visale, GarantMe etc. demandée.
- 
-Disponible de suite.
- 
-Direct propriétaire, pas d'honoraires ou de frais d'état des lieux.
- 
-Afin de programmer une visite, merci de vous présenter via la messagerie SeLoger en précisant :
--  Situation professionnelle et revenus
--  Durée de location envisagée
--  Type de garantie
--  Vos coordonnées
+n'hésitez pas à me contacter par téléphone au 0** si cela vous intéresse.
 
-Demander plus d'informations au propriétaire",1,0,1,3.0,,,,1,0,0,0,1.0,1,1,4.0,7.0,0,1,,,E,E,920.0,80.0,,1680.0,Non,appartement,,
-12,Appartement,1,Edouard,3197.0,Paris,75011,Quartier Bastille-Popincourt,3,2.0,54.0,"Appartement atypique au 5ème et dernier étage avec ascenseur. Une grande pièce principale de 30m2 avec une belle hauteur sous plafond, 2 chambres et 2 salles de bain. 
+belle journée à tous,
 
-L'appartement est plein Sud, avec un balcon filant de 25m2. Gros plus, nous avons un Sauna!!
+valentin
+demander plus d'informations au propriétaire",non,non,non,,,,,non,non,non,non,oui,non,non,2.0,,non,non,,,,,2614.0,114.0,,5000.0
+5,https://www.seloger.com/annonces/locations/appartement/paris-11eme-75/bastille-popincourt/222052603.htm,222052603,appartement,oui,vtania,1950.0,paris,75011,,3,2.0,65.0,"??location pour une courte durée du 1er juillet au 5 septembre 2024
 
-À quelques pas du marché de Bastille et de la Place des Vosges.
+bel appartement de 65 m2 de trois-pièces dont deux  grandes chambres .
+idéalement situé boulevard voltaire à quelques pas de la place, place léon blum et de la mairie du 11e arrondissement 
 
-L'appartement est disponible en bail de mobilité jusqu'a fin Mai.Demander plus d'informations au propriétaire",1,0,0,25.0,,,,0,0,0,0,1.0,0,0,5.0,,0,1,,,E,Not Available,3197.0,1500.0,,3000.0,Non,appartement,,
-13,Appartement,0,Not Available,1155.0,Paris,75020,Quartier Gambetta,2,1.0,41.0,"EXCLUSIVITÉ - QUARTIER GAMBETTA - VISITES ET INFORMATIONS 
-En location : à côté du métro (3), découvrez à PARIS 20 cet appartement de 2 pièces de 40.63 m².
-Cet appartement comprend une chambre, une cuisine aménagée, un balcon et une salle de bains. Le chauffage est collectif.
-Situé dans un immeuble de 15 étages avec ascenseur, cet appartement offre un confort moderne dans un environnement pratique.
-Le loyer mensuel de cet appartement est de 1 155 euros, charges comprises (115 euros de provision sur charges). Un dépôt de garantie de 1 040 euros est demandé.
+plusieurs métros sont à proximité à moins de 150 mètres , tout commerce à proximité demander plus d'informations au propriétaire",non,non,non,,,,,non,oui,non,non,non,non,non,5.0,6.0,oui,non,,,,,1950.0,150.0,,2000.0
+6,https://www.seloger.com/annonces/locations/appartement/paris-11eme-75/nation-alexandre-dumas/221507909.htm,221507909,appartement,oui,matthieu,2877.0,paris,75011,,4,3.0,61.0,"à proximité immédiate de la place de la nation à paris, bel appartement tout confort entièrement meublé. orienté sud-est et situé au 7e étage avec grand ascenseur, il convient parfaitement pour une colocation d'étudiants, une famille avec enfants ou un couple. proche de toutes commodités, il saura vous accueillir confortablement, il ne vous reste plus qu'à poser vos valises. ce logement est doté d'un grand séjour et d'un balcon filant d'environ 10 m2 avec une magnifique vue dégagée sur les toits et sur la place de la nation. moderne et bien équipé, ce bien va vous séduire par sa pièce à vivre spacieuse d'environ 27 m2, avec une cuisine américaine ouverte sur le séjour et entièrement équipée (lave-vaisselle miele, réfrigérateur, congélateur, four, four micro-ondes et nombreux éléments de rangements). 
 
-Les honoraires de charge locataire s'élèvent à 609 euros, dont 121 euros pour l'état des lieux.
-La durée du bail est de trois ans, offrant ainsi une stabilité pour les locataires en quête d'un chez-soi durable.
-Pour toute visite ou information complémentaire, contactez-nous 
-Ne manquez pas cette opportunité unique dans un quartier dynamique de Paris !
+toutes charges incluses
+l'appartement meublé dispose d'une chambre parentale (lit queen size 160 x 200 cm avec double armoire de rangement aménagée), de deux autres chambres lit double avec leur armoire de rangement aménagée et bureau dans l'une des chambres). canapé du séjour convertible. grandes fenêtres avec double vitrage et volets électriques. deux des chambres ainsi que le séjour sont chacun dotés d’une porte-fenêtre donnant sur le balcon filant. l’appartement dispose également d'un espace bureau à l'entrée qui permet de s’isoler pour travailler au calme. cuisine toute équipée. salle de bains avec grande douche. machine à laver et sèche-linge miele. wc suspendus séparés avec petit placard de rangement. entrée avec placard de rangement et penderie. connexion internet fibre optique incluse, réseau local wi-fi ou ethernet avec prises rj45. frais de consommation de chauffage, d'électricité et d'eau inclus dans le loyer. cave d’environ 6 m3 en sous-sol. 
 
-CordialementDemander plus d'informations à l'agence",1,0,0,,,,,0,0,0,0,1.0,0,0,6.0,15.0,1,0,,,F,F,1155.0,115.0,,1040.0,Non,appartement,Gambetta,
-14,Studio,1,Saladelles,731.0,Paris,75011,Quartier Belleville-Saint Maur,1,,15.0,"Un superbe studio situé entre les stations de métro Goncourt et Belleville, dans le 11ème arrondissement, au 1er étage d'un immeuble de 5 étages. Les extérieurs (entrée, cour) et la cage d'escalier sont également en train d'être refaits à neuf.
+nœud de transports
+cadre de vie : rer a + nombreuses lignes de métro et de bus pour se rendre partout dans paris facilement. place de la bastille et gare de lyon à 5 min en métro, la défense à 20 min, gares de l'est/du nord/montparnasse à 30 min, aéroports d’orly/roissy cdg à moins d’une heure. lignes de tram t3a et t3b à 800 m. 
 
-Dans la pièce principale, vous aurez un canapé-lit deux places (avec couette, oreillers et draps), une table basse, un tabouret, une étagère, une télévision écran plat,  des éléments de décoration, une penderie avec étagères et cintres, une table à repasser avec fer et un aspirateur. La grande fenêtre donne sur la cour de l'immeuble.
+pour 3 colocataires - 959 €/mois par colocataire toutes charges comprises
+disponibilité 1er septembre 2024
+d’autres photos transmises sur demandedemander plus d'informations au propriétaire",oui,non,non,10.0,,,,oui,non,non,non,oui,non,non,7.0,7.0,non,oui,,,,,2877.0,490.0,,3684.0
+7,https://www.seloger.com/annonces/locations/appartement/paris-11eme-75/leon-blum-folie-regnault/222371367.htm,222371367,studio,oui,jose@,1100.0,paris,75011,,1,,22.0,"notre logement est situé dans un quartier paisible et central. un studio de 22 m² au 4ème étage d'un petit immeuble situé dans une petite rue très calme et agréable du 11ème arrondissement.
+le studio est composé d'une pièce principale (avec coin-cuisine) et d'une salle d'eau.
+3 fenêtres permettent de bénéficier d'une excellente luminosité dans tout le studio.
+le studio a été refait à neuf en 2018 et est intégralement équipé :
+- canapé-lit 2 places dans le salon
+- table modulable (2 ou 4 places)
+- coin-cuisine intégralement équipé : vaisselle, plaques chauffantes, four micro-ondes, frigo, hotte..
+- salle d'eau avec cabine de douche, toilettes et lavabo
+- accès internet (wifi partagé)
+- chaine hi-fi
+- petit écran plat
+- nombreux appareils électroménagers : machine à café, bouilloire, grille-pain, sèche-cheveux..
+1 jeu de draps et de serviettes fourni
+buanderie collective (avec lave-linge et sèche-linge) gratuitement à disposition au rez-de-chaussée de l'immeuble.
+accès à l'immeuble : vigik (1ère porte) et digicode (2ème porte).
+les commerces (boulangeries, supermarchés, restaurants, pharmacies, banques..) et les transports en commun (station de métro charonne) se trouvent à moins de 150 mètres de l'immeuble.demander plus d'informations au propriétaire",oui,non,non,10.0,,,,non,non,non,non,non,non,non,4.0,4.0,oui,oui,,,,,1100.0,50.0,,1050.0
+8,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/nation-picpus/219171077.htm,219171077,appartement,oui,jl,1900.0,paris,75012,,2,1.0,31.0,"dans une jolie résidence arborée et sécurisée, cet appartement est situé dans le 12ème arrondissement de paris (entre gare de lyon et nation)  proche des commerces et de nombreux moyens de transport (métros et rer).
+situé au 12ème étage avec une vue sur tout paris, ce 2 pièces dispose d'une terrasse de 30 m2, ce qui en fait un bien rare. 
+totalement refait, l'appartement est entièrement meublé. un parking sous l'immeuble directement accessible par ascenseur vient compléter ce bien.demander plus d'informations au propriétaire",non,oui,non,,,,,non,oui,non,non,oui,non,non,12.0,12.0,oui,non,,,,,1900.0,200.0,,3400.0
+9,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/bel-air-nord/206356541.htm,206356541,studio,oui,nolan bedier,1030.0,paris,75012,,1,,31.0,"appartement desservi par ascenseurs dans un immeuble sécurisé. ce studio de 31m2 fonctionnel et meublé comprend une pièce principale avec cuisine équipée, salle de bains et toilette séparé, ce logement vous sera agréable et lumineux.demander plus d'informations au propriétaire",oui,non,non,,,,,non,non,non,non,non,non,non,,,oui,non,,,,,1030.0,280.0,,2020.0
+10,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/jardin-de-reuilly/215828633.htm,215828633,studio,oui,a_nbs,855.0,paris,75012,,1,,18.0,"joli studio meublé de 18m2 cosy et chaleureux entre les métros reuilly diderot et faidherbe chaligny, ligne 1 et 8, quartier très commerçant à proximité de l’hôpital saint antoine et marche d’aligre.
+situé au rdc sur une jolie cour pavée au calme dans un bel immeuble bourgeois et standing. 
+décoration refaite à neuve et composée d’une pièce principale avec kitchenette toute équipée (micro-onde) réfrigérateur, vaisselle, etc) avec armoire, canapé lit, bureau, salle de douche avec xv et machine à laver.
+loyer mensuel 795+60€ de forfait charges 
+a louer dès à présentdemander plus d'informations au propriétaire",non,non,non,,,,,non,non,non,non,non,non,non,,,non,non,,,,,855.0,60.0,,855.0
+11,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/bel-air-nord/222420737.htm,222420737,studio,oui,roman,900.0,paris,75012,,1,,12.0,"chambre pour salarié, disponible immédiatement dans un coin très sympa, rue commerçante, ambiance petit village.
+appartement clair au 3 étage, ascenseur, immeuble bourgeois.
+très très bien desservi, à proximité du métro lignes 1, 2, 6, 9, rer a, bus, tram..
+accueil cordial, ambiance cool et gay friendly. demander plus d'informations au propriétaire",non,non,non,,,,,oui,non,non,non,oui,non,non,3.0,5.0,non,oui,,,,,900.0,50.0,,1700.0
+12,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/aligre-gare-de-lyon/221391519.htm,221391519,studio,oui,,1420.0,paris,75012,,1,,37.0,"rental of a 37m² apartment comprising a separate bedroom, a large living room, a kitchen and an independent bathroom (with bathtub).
 
-La cuisine ouverte est équipée d’un réfrigérateur, une plaque de cuisson, un micro-onde et des placards de rangement avec un nécessaire de vaisselle.
+the apartment is centrally located in the 12th arrondissement of paris, 5 minutes' walk from bastille (lines 1, 5 and 8), 2 minutes from quai de la râpée and 10 minutes' walk from the aligre market.
 
-La salle de bain dispose d’une vasque avec tiroirs de rangement et miroir, WC suspendus, une cabine de douche, un sèche-serviette et un lave-linge.
+contact me for more information!demander plus d'informations au propriétaire",non,non,non,,,,,non,non,non,non,non,non,non,2.0,2.0,oui,non,,,,,1420.0,70.0,,2000.0
+13,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/jardin-de-reuilly/221132021.htm,221132021,appartement,oui,tanguy toussaint,875.0,paris,75012,,2,1.0,25.0,l'appartement est situé au 6eme étage d'un immeuble securise avec gardien. il a une vue dégagé. il dispose d'un ascenseur. il est situé à 3 minutes à pied du métro reuilly diderot pour les lignes 1 et 8 et a proximité de gare de lyon dans un quartier avec de nombreux commerces de bouches. c'est un chauffage central commun à l'ensemble de l'immeuble. il dispose d'une pièce supplémentaire avec une véranda interieure.demander plus d'informations au propriétaire,non,non,non,,,,,non,non,non,non,oui,non,non,6.0,12.0,oui,non,,,,,875.0,75.0,,1500.0
+14,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/aligre-gare-de-lyon/217502565.htm,217502565,appartement,oui,gianluca,2950.0,paris,75012,,2,,60.0,"location de bureau au cœur de paris 75012.
+surface 60m2. 2,9m de hauteur sous plafond expose est-ouest. 
+lumineux style loft dans une ancienne usine.
+possibilité d'accueillir de 6 à 7 postes.
+loyer 2800 €/mois hors chargesdemander plus d'informations au propriétaire",non,non,non,,,,,non,non,non,non,non,non,non,2.0,3.0,non,non,,,,,2950.0,150.0,,1.0
+15,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/aligre-gare-de-lyon/211752589.htm,211752589,appartement,non,stewen,2700.0,paris,75012,,3,2.0,63.0,"loue appartement f3 paris 12e limite 11e quartier aligre :
+- rue crozatier (face à saint-antoine et à 100m du marché d'aligre)
+- 1er étage
+- 63 m2 + place de parking
+- 3 pièces meublé avec goût et nombreux rangements sur-mesure :
+  . grand séjour - salle à manger baigné de lumière avec 4 fenêtres (triple exposition), un bureau et une bibliothèque
+  . 1 première chambre avec grande armoire et 2 fenêtres
+  . 1 seconde chambre avec dressings sur mesure et une fenêtre
+  . 1 cuisine séparée avec fenêtre, entièrement équipée avec plaque à induction, four, micro-ondes, réfrigérateur-congélateur, lave-vaisselle et lave-linge
+  . 1 sdb avec wc et douche avec fenêtre
+  . 1 entrée avec rangement
+- 1 place de parking sécurisée dans un immeuble en face
 
-Proche de toutes commodités et transports dans un quartier animé en plein cœur de Paris.Demander plus d'informations au propriétaire",0,0,0,,,,,0,0,0,0,0.0,0,0,1.0,5.0,1,1,,,F,C,731.0,70.0,,972.0,Non,Appartement,,
-15,Appartement,1,Fabrice,1808.0,Paris,75011,Quartier Bastille-Popincourt,2,,38.0,"Paris 11e (75011)
-2 pièces
-1 chambre
-38 m²
+- possibilité de 2ème place de parking sécurisée dans la rue d'en face pour 120€/mois
 
-Quartier Bastille / Marais.
-Très bel appartement meublé, équipé.
-Récemment refait à neuf, avec triple vitrage, silencieux et économe en énergie.
-Très lumineux, dernier étage (avec ascenseur) sans vis-à-vis, puits de lumière, plein ouest.
-Vue Colonne de Juillet, Panthéon, Tour Montparnasse.
-Proche tous commerces, à quelques pas de la place de la Bastille, au-dessus du marché Richard-Lenoir.
-200 mètres de la Place des Vosges.
-Ascenseur, cagibi séparé, grande cave.
-Coup de cœur assuré !
-1 808 € charges comprises.
-Disponible à partir du 1er mars 2024.
+documents à fournir:
 
---
+-carte d'identité recto/verso
+-fiche de paye
+-rib
+-avis d'imposition 
 
-Paris 11th arr. (75011)
-1-bedroom apartment
-38 m²
+tout dossier incomplet ne sera pas pris en compte.demander plus d'informations au propriétaire",oui,non,non,,,,,non,non,non,non,oui,non,non,1.0,,non,non,,,,,2700.0,200.0,,2700.0
+16,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/vallee-de-fecamp/207937017.htm,207937017,appartement,oui,mickael,1400.0,paris,75012,,2,1.0,41.0,"situé dans le 12ème arrondissement de paris, ce t2 meublé se trouve rue des meuniers.
+proche des arrêts de métro michel bizot (l8) et porte de charenton (l8, avec également le t3).
+le logement est proche du bois de vincennes.
+il dispose d’un dressing et de nombreux rangements ainsi que d’une cave.
+c'est un quartier commerçant.
+l’appartement est composé d’un salon où vous trouverez une table haute avec chaises. un canapé, un bahut, une table basse 
+et un meuble tv.
+la cuisine est équipée de plaques de cuisson, d’une hotte, d’un réfrigérateur avec espace de congélation, d’un four, d'un micro ondes, d’une bouilloire.
+la chambre dispose d’un lit double et de 2 colonnes de rangement.
+la salle de bain, quant à elle, dispose d’une baignoire, d'un lave linge et de wc.
+il y a également un espace avec une commode.
+chauffages électriques dans 4 pièces.
+l’eau chaude est collective.demander plus d'informations au propriétaire",non,non,non,,,,,oui,non,non,non,non,non,non,,,oui,non,,,,,1400.0,200.0,,2800.0
+17,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/vallee-de-fecamp/222271693.htm,222271693,studio,oui,jennifer,930.0,paris,75012,,1,,23.0,"23 m2 studio meublé rue de charenton paris 12
 
-Bastille / Marais area.
-Most charming apartment, furnished & w/ appliances.
-Recently renovated, triple-pane windows, silent and energy-efficient.
-Full of light – top floor (with elevator), open outlook, skylight windows, facing west.
-View Bastille column, Pantheon, Tour Montparnasse.
-Close to all shops & amenities, a few steps from Place de la Bastille, above the Richard-Lenoir open-air market.
-Walking distance (200 m) from Place des Vosges.
-Elevator, store cupboard, large cellar.
-A unique opportunity!
-EUR 1,808 charges included
-Available from 1 March 2024.Demander plus d'informations au propriétaire",0,0,0,,,,,1,0,0,0,1.0,0,0,,,0,0,,,Not Available,Not Available,1808.0,90.0,,3000.0,Non,appartement,,
-16,Studio,1,Pinabel,1300.0,Paris,75011,Quartier Belleville-Saint Maur,1,,26.0,"Composé d'une entrée, d'un séjour, d'une chambre avec placards, d'une salle d'eau, avec WC et une cuisine aménagée et équipée (, plaques de cuisson, lave-vaisselle, micro-ondes, réfrigérateur/congélateur, possibilités d'installer un petit lave linge dans la salle d'eau).
- Demander plus d'informations au propriétaire",0,0,0,,,,,0,0,0,0,0.0,0,0,0.0,0.0,1,1,,,D,C,1300.0,90.0,,1210.0,Non,appartement,,
-17,Appartement,1,Alexd,2330.0,Paris,75011,Quartier Bastille-Popincourt,2,1.0,58.0,"En plein coeur du quartier Sainte-Marguerite, dans un passage au calme et à proximité de la vibrante rue de Charonne, ce charmant 2 pièces de 57m2 est votre nouveau cocon urbain !
-Au 3e étage d'un immeuble récent et sécurisé, ce 2 pièces ouvre sur une large entrée avec rangements. Le salon est aménagé avec un grand canapé et un bibliothèque intégrale sur mesure. La cuisine entièrement équipée avec des équipements haut de gamme donne sur le salon. Enfin, l'appartement dispose d'une chambre lumineuse de 11m2 donnant sur un jardin au calme. Un  toilette séparé et une salle de bain complète le bien.
-L'appartement est loué avec une place de parking directement accessible depuis l'ascenseur de l'immeuble.
-Les travaux d'aménagement du bien ont été faits en 2024 par architecte. Bien rare dans le quartier.
-Les dossiers disposant d'une caution (cautioneo, garantme) seront priorisés.
-Possibilité bail code civil.Demander plus d'informations au propriétaire",0,0,0,,,,,1,1,0,0,1.0,0,0,3.0,4.0,1,0,,,Not Available,Not Available,2330.0,300.0,,3500.0,Non,appartement,Sainte-Marguerite,
-18,Appartement,0,P.Aube,2600.0,Paris,75011,Quartier Léon-Blum Folie-Regnault,5,2.0,90.0,"11ème, Père Lachaise, non meublé, Appartement  atypique 90m2 habitable ,mansardé, 4ème (sans ascenseur), terrasse 17m2 plein sud, 2 grandes pièces à vivre, cheminée, 2 petites chambres, cuisine séparée, cave.Demander plus d'informations au propriétaire",0,1,0,,,,,1,0,0,0,0.0,0,0,4.0,4.0,1,0,,,Not Available,Not Available,2600.0,100.0,,2000.0,Non,appartement,11ème,Non
-19,Studio,1,Gael,620.0,Paris,75011,Quartier Léon-Blum Folie-Regnault,1,,24.0,"T1. LOCATION. Rue Richard Lenoir, au pied du métro Charonne et à 5 minutes à pied de la Place Léon Blum (Voltaire), au coeur du quartier familial du 11ème arrondissement : nous vous proposons ce joli studio de 24 m² carrez, au plan parfaitement distribué, au 3ème étage sur cour d'un immeuble ancien de 1900 bien entretenu.
-Il se compose d'une entrée, une cuisine dînatoire séparée, un séjour et une salle d'eau avec wc. Chaque pièce a sa fenêtre, ce qui confère à l'appartement une belle luminosité traversante.
-Appartement en bon état.
-Parfaitement desservi par les transports en commun parisiens et à deux pas de tout commerce et service.
-Loyer 620€/mois
-Performance énergétique C (176) dont émission de gaz à effet de serre 5 (A).
-e sans ascenseur. composé de Sejour Cuisine Séparée Salle d'eau - parquetDemander plus d'informations au propriétaire",0,0,0,,,,,1,0,0,0,1.0,0,0,3.0,,0,1,,,Not Available,Not Available,620.0,70.0,,620.0,Non,appartement,Rue Richard Lenoir,
-20,Appartement,1,Fxg,1300.0,Paris,75011,Quartier Nation-Alexandre Dumas,2,1.0,27.0,"2 pièces de 27m2, traversant et hyper lumineux (4 fenêtres) et sans vis à vis.
-parfait pour 2 personnes. disposition en étoile, aucune perte d'espace.
-cuisine ouverte, table à dîner extensible,
-chauffage électrique (inertie), ballon plat éco, situé en bas de la rue de Charonne (Paris 11) à 3 mn du métro, quartier commerçant et sympa. Idéal pour un couple.
-5è sans ascenseur.
-Bail meublé. Sans frais d'agence.
-Complètement équipé avec télévision, machine à laver, lave vaisselle, four combiné, frigo congélateur, aspirateur, tables, chaises, lit, canapé, fauteuil, dressing intégré, ustensiles de cuisine, couverts, draps, serviettes, ..
-Il est disponible au 20 juin 2024. Visite possible rapidement.
-Les travaux ont permis de refaire: électricité, peinture, nouvelle cuisine, transformation de la cuisine en cuisine ouverte, nouvelle SDB
-Pour info sur le dossier requis : garants / garantie visaleDemander plus d'informations au propriétaire",0,0,0,,,,,0,0,0,0,0.0,0,0,5.0,5.0,0,1,,,D,D,1300.0,60.0,,1800.0,Non,appartement,,
-21,Appartement,1,Sd,1450.0,Paris,75011,Quartier Léon-Blum Folie-Regnault,2,1.0,39.0,"PARIS XI - Rue Maillard - A louer dans le cadre d'un BAIL MEUBLE- 2 pièces de 39 m² situé au 1er étage d'un immeuble bien entretenu. Il est composé d'une entrée, d'une salle de séjour ouverte sur une cuisine équipée et aménagée, rangement, d'un coin nuit et d'une une salle de bains avec un WC. Commerces à proximité.
-Loyer 1390 euros + 60 euros de charges = 1450 euros charges comprises.
-Dépôt de garantie : 2780 euros
- Demander plus d'informations au propriétaire",0,0,0,,,,,1,0,0,0,1.0,0,0,1.0,6.0,1,0,,,D,Not Available,1450.0,60.0,,2780.0,Non,appartement,PARIS XI,
-22,Studio,1,Harcourt,2800.0,Paris,75011,Quartier Belleville-Saint Maur,1,,27.0,"Studio contemporain et lumineux, entièrement rénové, MEUBLE propose : une entrée, une pièce de vie avec lit de grande qualité, une cuisine aménagée et équipée, une salle d'eau avec wc. Nombreux rangements.Demander plus d'informations au propriétaire",0,0,0,,,,,0,0,0,0,0.0,0,0,1.0,3.0,1,1,,,C,C,2800.0,200.0,,3000.0,Non,appartement,,
-23,Appartement,1,Tiboperso,9500.0,Paris,75011,Quartier Bastille-Popincourt,3,2.0,75.0,"We rent our apartment during the Olympics  for no least than 5 days, ideally 1 or 2 weeks, at 790€/night (sorry it’s the Olympics!). It’s a 75m2 / 810sq ft 2-bedrooms sleeping 5, with a terrasse full of plants over the view of Hausmannian Paris, in Faidherbe neighborhood in the heart of Paris 11th, near Bastille / Voltaire, in the heart of where the bobo Parisians live, minutes from some of the best rated restaurants in Paris. 
+métro dugommier, rue de charenton, vous propose un studio meublé en bon état, au 2ème étage, en double exposition sur rue et cour. il comprend: une pièce principale, une belle cuisine équipée, une salle d'eau avec w.c et machine à laver, double vitrage.
 
-Main bedroom with a king size bed of 180x200, 2nd bedroom with a 160x200 sofa bed, a bathroom with bathtub, separate toilet, a full equipped kitchen (including washing machine and dishwasher) and a large living room with a sofa that transforms into single sofa bed, and a leather lounge chair to relax in the middle of the plants overlooking the outside view. The plus is obviously the 5m2 balcony with lots of greenery, a very Parisian view where we have a table and 2/3 chairs to take the morning sun or eat and drink in the warm evening!  
+450 mètres (5 mins) jusqu'à métro dugommier. 10 mins jusqu'à la forêt de vincennes. situé à la lisière du quartier des commercial et de la forêt. la vie est pratique, les restaurants, supermarchés, bureaux de poste et banques sont tous accessibles à pied, et il est également proche de la forêt, ce qui est pratique pour faire de exercice et proche de la nature.
 
-We are at the start of rue faidherbe, just above the Faidherbe-Chaligny metro on line 8 (but less than 10min from line 1 / Reuilly Diderot and of line 9 / Charonne).  Rue Faidherbe and Rue Paul Bert - and the 11th in general - are where the cool Parisians live, full of great restaurants and bars and food shops, (best restaurant in France and #22 in worlds best restaurants Septime is a few minutes on rue de Charonne, next to Clamato. We are also literally in front of rue Paul Bert) and we are 10 minutes from the Aligre market for fresh and cheap groceries. Many organic groceries within 2 minutes radius, including vegan creamery, but for butter lovers you have amazing boulangeries (such as Terroirs d’Avenir) or the famous Cyril Lignac patisserie or chocolats Julien Dechenaud. 
+le loyer mensuel est de 880 euros et les provison des charges est de 50 euros. canapé-lit, cuisine et salle d‘eau complètes, machine à laver, four, micro-onde, regrigerateur et autres meubles necessaire. 
 
-Just one ask: no smoking and please water the plants at least once a week or allow me in to do it! 
+disponible à partir du 16 julliet 2024. demander plus d'informations au propriétaire",non,non,non,,,,,non,non,non,non,non,non,non,2.0,3.0,non,oui,,,,,930.0,50.0,,1760.0
+18,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/vallee-de-fecamp/222105729.htm,222105729,appartement,oui,solène m,2200.0,paris,75012,,2,,67.0,"appartement traversant de 67m2, avec exposition nord-ouest et sud-est, au 2ème étage avec ascenseur 
 
- (Currently renovating the guest room so no pictures available as of now! Coming soon) 
+situé dans un immeuble calme avec gardien, donnant sur une voie privée d'un côté et sur une cour intérieure de l'autre 
 
-Possibility to rent our 2 electric bikes in addition, and also to call on our help for cleaning and ironing at 15€/h. 
+comprend une chambre, un double salon (une partie peut être transformée en chambre d'amis ponctuelle), une cuisine équipée avec four, une salle de bains avec machine à laver et des toilettes séparées, ainsi qu'une terrasse 
 
-Market prices during the Olympics make me rent it at 790€/night, 4900€/week, 9500/2weeks. Demander plus d'informations au propriétaire",1,1,0,5.0,,,,0,0,0,0,1.0,0,0,4.0,8.0,1,0,,,Not Available,Not Available,9500.0,,,1500.0,Non,appartement,,oui
-24,Appartement,1,Sega,997.0,Paris,75011,Quartier Léon-Blum Folie-Regnault,2,,31.0,"RARE : Quartier Nation/Bastille/Voltaire, proche métro Charonne dans rue calme et arborée, Jolie duplex de 31m² 2 pièces au 2ème étage entièrement rénové avec matériaux de qualité. Salon avec canapé, table , cuisine américaine équipée, une chambre avec placard . Salle de bain avec WC , meuble lavabo.  Éligible APL. Convient pour couple, étudiant (e), PAS DE COLOCATIONDemander plus d'informations au propriétaire",0,0,0,,,,,0,0,0,0,0.0,0,0,2.0,,1,0,,,C,B,997.0,77.0,,1840.0,Non,appartement,Nation/Bastille/Voltaire,
-25,Appartement,1,Héloïse,1280.0,Paris,75011,Quartier Léon-Blum Folie-Regnault,2,1.0,40.0,"Agréable 2 pièces, meublé de 40m2, clair et calme . Près de Bastille et du RER Nation. Dans une rue calme, immeuble 1900 en pierre de taille, bien entretenu. Sur cours et traversant. Avec une entrée, une cuisine séparée et équipée, une grande fenêtre ; une chambre avec des grands placards ; un séjour avec un canapé club en cuir et placard. Une salle de bain avec baignoire et une fenêtre. Appartement fonctionnel avec 7 placards de rangement. Chauffage et eau chaude par chaudière à gaz économique récente. Local à vélos. A proximité immédiate de tous commerces, supermarchés, restaurants, un parc. Près du métro, à 20 minutes du centre de Paris en bus, du quartier du Marais, du bois de Vincennes. Pas de colocation possible. Loyer et charges comprises 1280 euros. Merci de bien vouloir me laisser un message avec votre numéro de téléphone afin d'organiser une visite. Pas de colocation.Demander plus d'informations au propriétaire",0,0,0,,,,,0,0,0,0,0.0,0,0,3.0,3.0,1,0,,,Not Available,Not Available,1280.0,80.0,,2000.0,Non,appartement,,oui
-26,Studio,1,Laurence.Crozes,600.0,Paris,75011,Quartier Léon-Blum Folie-Regnault,1,,15.0,"Loue studio meublé de 15 m² et qui se situe au  Passage Courtois, dans le 11 € arrondissement de Paris. 
-Il est situé à proximité des lignes de métro 9 et 2 accessibles en moins de 5 minutes à pied (Stations Charonne et Voltaire pour la ligne 9 et Philippe Auguste pour la ligne 2), vous pourrez accéder facilement à l'ensemble de la ville
-Ce studio se compose d'une cuisine très bien équipée (plaques de cuisson, hotte, rangements, tables à manger, chaises hautes, etc.) et s'ouvre sur un charmant espace de vie transposable en espace de nuit grâce à son canapé convertible de qualité. Cet espace de vie/nuit dispose de placards de rangements, d'une table basse et d'un meuble TV muni de sa TVDemander plus d'informations au propriétaire",0,0,0,,,,,0,0,0,0,0.0,0,0,,,0,0,,,Not Available,Not Available,600.0,50.0,,1100.0,Non,appartement,,oui
-27,Studio,0,Marion,815.0,Paris,75011,Quartier Bastille-Popincourt,1,,25.0,"A louer grand studio lumineux de 25m², non meublé, en bon état, à deux pas de la place voltaire dans le 11ème arrondissement. Au rez de chaussée sur cour dans une copropriété sécurisée et bien entretenue avec gardien. L’appartement se compose d’une entrée avec des grands placards, une pièce principale avec un coin cuisine (comprenant des meubles de rangement, plaques de cuisson et un réfrigérateur) et une salle d’eau (avec douche lavabo et wc). Parquet. Chauffage électrique. Immeuble fibré. Calme. Disponible le 1er juillet. Situé sur la ligne 9 entre le métro Voltaire et Charonne ainsi que de nombreux bus (46/56/61/69/76).Demander plus d'informations au propriétaire",0,0,0,,,,,0,0,0,0,0.0,0,1,0.0,4.0,0,1,,,F,C,815.0,45.0,,770.0,Non,studio,,Non
-28,Studio,0,Marion,815.0,Paris,75011,Quartier Bastille-Popincourt,1,,25.0,"A louer grand studio lumineux de 25m², non meublé, en bon état, à deux pas de la place voltaire dans le 11ème arrondissement. Au rez de chaussée sur cour dans une copropriété sécurisée et bien entretenue avec gardien. L’appartement se compose d’une entrée avec des grands placards, une pièce principale avec un coin cuisine (comprenant des meubles de rangement, plaques de cuisson et un réfrigérateur) et une salle d’eau (avec douche lavabo et wc). Parquet. Chauffage électrique. Immeuble fibré. Calme. Disponible le 1er juillet. Situé sur la ligne 9 entre le métro Voltaire et Charonne ainsi que de nombreux bus (46/56/61/69/76).Demander plus d'informations au propriétaire",0,0,0,,,,,0,0,0,0,0.0,0,1,0.0,4.0,0,1,,,F,C,815.0,45.0,,770.0,Non,studio,,Non
+transports en commun : michel bizot (métro 8), daumesnil (métro 6) et porte dorée (tram 3)
+
+accès à un local vélo, ainsi qu'à une place de parking sécurisée dans l'immeuble
+demander plus d'informations au propriétaire",non,oui,non,,,,,non,oui,non,non,oui,non,oui,2.0,6.0,oui,non,,,,,2200.0,250.0,,1950.0
+19,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/vallee-de-fecamp/212130131.htm,212130131,appartement,oui,kami,2750.0,paris,75012,,3,2.0,65.0,"location en courte ou longue durée d’un 3 pièces meublé de 65 m², avec 3 m² de balcon à paris dans le 12e arrondissement, dans un immeuble neuf livré en octobre 2022.
+très lumineux, avec des grandes fenêtres et une vue dégagée.
+très bien agencé avec des nombreux rangements, la cuisine équipée et une grande salle de bain.
+l’appartement est équipé d’un chauffage collectif et de la climatisation.
+a 5 min de métro porte de charenton et tramway t3ademander plus d'informations au propriétaire",oui,non,non,,,,,non,non,non,non,oui,non,non,,,oui,non,,,,,2750.0,220.0,,5060.0
+20,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/nation-picpus/221788381.htm,221788381,appartement,oui,,1935.0,paris,75012,,3,2.0,58.0,"candidature via le formulaire de conact sur site uniquement merci.
+
+au sein d'une copropriété de bon standing avec gardien, au 7ème étage avec ascenseur, votre agence laforêt vous propose un appartement loue meuble de 3 pièces composé : d'une entrée, un salon, deux chambres ouvrant sur balcons, une cuisine séparée (aménagée et équipée), une salle de bains, des wc indépendants. chauffage et eau chaude collectifs. appartement fibré. une cave est mise à disposition. place de parking en sus à 93 € charges incluses. 
+libre au 1er juillet.demander plus d'informations à l'agence",non,non,non,,,,,oui,non,non,non,oui,oui,oui,7.0,15.0,oui,non,16.0,,,,1935.0,180.0,,3510.0
+21,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/vallee-de-fecamp/210939081.htm,210939081,appartement,oui,pererza sophie,1700.0,paris,75012,,2,1.0,37.0,"refait à neuf, ce petit cocon parisien vous séduira par son agencement et décoration, dans une résidence cossue, en impasse, sa situation et son calme environnant, donnant sur cours arborée, au 2e étage, avec chambre indépendante, salle de bain, et grande penderie.
+
+a 5mn du parc de vincennes.
+toutes commodités aux alentours, tramway, metro michel bizot/daumesnil, bus.
+quarter calme mais vivant - restaurants et bars. commerces de proximité.
+
+appartement tout équipé, vous n'avez plus qu'a poser vos valises, la location inclus :
+- machine à laver séchante
+- lave-vaisselle
+- machine à café nespresso + nécessaire de cuisine
+- table et fer à repasser
+- internet fibre optique / wifi
+- electricité, eau et charges courantes
+- linge de bain et literiedemander plus d'informations au propriétaire",non,non,non,,,,,non,non,non,non,non,non,non,2.0,,oui,non,,,,,1700.0,200.0,,1150.0
+22,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/vallee-de-fecamp/219546563.htm,219546563,appartement,non,mr louis lemonier,1200.0,paris,75012,,2,1.0,43.0,"charmant appartement situé au boulevard de reuilly dans le 12ème arrondissement de paris, au sein d'un immeuble ancien de bon standing au 4ème étage 
+accessible par un ascenseur à partir du 1er étage, cet appartement offre un cadre de vie agréable et pratique. 
+la disposition comprend une entrée accueillante, un lumineux séjour, une cuisine indépendante entièrement aménagée, une confortable chambre, un bureau idéal pour le télétravail, une salle d'eau équipée avec wc, ainsi qu'un dressing pour un rangement optimal.
+équipé d'un système de chauffage et d'eau chaude individuel électrique, vous avez le contrôle total sur votre confort thermique. de plus, la sécurité est assurée grâce au digicode. une cave est également mise à disposition.
+le loyer inclut les charges, offrant ainsi une gestion simplifiée de votre budget. demander plus d'informations au propriétaire",non,non,non,,,,,oui,non,non,non,oui,non,non,4.0,6.0,oui,oui,,,,,1200.0,50.0,,1150.0
+23,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/vallee-de-fecamp/222102601.htm,222102601,studio,oui,sarah,750.0,paris,75012,,1,,15.0,"location d’un studio meublé de 15 m2 refait à neuf dans le 12ème arrondissement de paris.
+
+situé au 6e et dernier étage sans ascenseur dans une résidence calme et sécurisée par un digicode; il est situé à 50 m de la station de métro michel bizot (ligne 8) et à 400 m du tramway t3; dans un quartier doté de toutes commodités et à deux pas du bois de vincennes.
+
+le studio est équipé d'une cave de 4m², d’une kitchenette (évier, 2 plaques, four micro-onde , vaisselles et ustensiles de cuisine) et d'une pièce à vivre avec canapé lit, douche, bureau, télé et rangements.
+
+wc sur le palier fermé à clef juste en face du studio et à partager avec la locataire d'à côté.
+
+chauffage électrique et ballon d’eau chaude.
+
+un vélo est à votre disposition dans le local à vélo au rdc.
+
+idéal pour un(e) étudiant(e) - une laverie automatique est située en bas de l'immeuble.
+
+loué 750 €/mois charges comprises (électricité à la charge du locataire)demander plus d'informations au propriétaire",non,non,non,,,,,oui,non,non,non,non,non,non,6.0,6.0,non,non,,,,,750.0,90.0,,1220.0
+24,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/vallee-de-fecamp/207937151.htm,207937151,appartement,oui,mickael,1400.0,paris,75012,,2,1.0,41.0,"situé dans le 12ème arrondissement de paris, ce t2 meublé se trouve 
+proche des arrêts de métro michel bizot (l8) et porte de charenton (l8, avec également le t3).
+le logement est proche du bois de vincennes.
+il se situe en rez de jardin très calme avec accès sécurisés.
+il dispose d’un dressing et de nombreux rangements ainsi que d’une cave.
+c'est un quartier commerçant.
+l’appartement est composé d’un salon où vous trouverez une table haute avec chaises. un canapé, un bahut, une table basse 
+et un meuble tv.
+la cuisine est équipée de plaques de cuisson, d’une hotte, d’un réfrigérateur avec espace de congélation, d’un four, d'un micro ondes, d’une bouilloire.
+la chambre dispose d’un lit double et de 2 colonnes de rangement.
+la salle de bain, quant à elle, dispose d’une baignoire, d'un lave linge et de wc.
+il y a également un espace avec une commode.
+chauffages électriques dans 4 pièces.
+l’eau chaude est collective.demander plus d'informations au propriétaire",non,non,oui,,,,,oui,non,non,non,oui,non,non,0.0,,oui,non,,,,,1400.0,200.0,,2800.0
+25,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/bel-air-sud/212880417.htm,212880417,appartement,oui,doublecheck gestion,4600.0,paris,75012,,4,3.0,109.0,"bienvenue dans notre somptueux appartement de luxe au cœur de paris !
+découvrez le charme et l'élégance de notre spacieux appartement de 109m2, situé dans le 12ème arrondissement de paris pouvant accueillir jusqu'à 8 voyageurs.
+avec une grande pièce de vie baignée de lumière naturelle, une cuisine ouverte tout équipée, et trois chambres luxueuses, cet appartement est le choix idéal pour ceux qui recherchent une expérience de séjour inoubliable à paris.
+
+cet appartement, conçu pour vous offrir confort et fonctionnalité, se compose de :?- une cuisine entièrement équipée et fonctionnelle, comprenant un réfrigérateur, congélateur, plaques de cuisson, hotte, machine à café nespresso, grille-pain, bouilloire, four…?- une agréable pièce à vivre lumineuse, où vous pourrez vous détendre ou recevoir des amis, avec une table à manger, un canapé et une smart tv.?- trois chambres élégamment aménagées, avec des lits doubles et des espaces de rangement
+- un canapé convertible dans le salon.
+- deux salles d'eau modernes et spacieuses, dotées pour chacune d'une douche et d'un lavabo pour votre confort et votre commodité.
+- 2 wc
+- un lave-linge?- draps et serviettes de toilette de qualité hôtelière fournis
+
+profitez également d'une place de parking fermée et sécurisée au sous-sol de l'immeuble 
+
+cet appartement est situé au 9eme étage de l'immeuble, accessible par ascenseur.
+
+ce logement est disponible pour un bail mobilité uniquement. le bail mobilité est un type de bail de location meublée de courte durée. il vise à faciliter la mobilité des locataires, et notamment ceux amenés à déménager pour des raisons professionnelles (mutation ou mission), les étudiants, les jeunes en formation, en alternance ou en stage.
+demander plus d'informations au propriétaire",non,non,non,,,,,non,non,non,non,oui,non,non,9.0,,non,oui,,,,,4600.0,,,4600.0
+26,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/aligre-gare-de-lyon/222115227.htm,222115227,appartement,oui,charlotte et nico paris,1250.0,paris,75012,,2,1.0,28.0,"gare de lyon / cité de la mode – paris 12ème
+appartement, 28 m² meublé, 2 pièces
+1250 € charges comprises
+dans une jolie copropriété située quai de la râpée, 2 pièces de 28 m² en très bon état et entièrement
+équipé. lumineux et calme, sans perte d'espace, l'appartement donne sur cour et se compose :
+- d'un salon avec un canapé-lit, une table, deux chaises, un fauteuil et un meuble de rangement tv
+- d'une chambre comprenant un lit 140 et un dressing
+- d'une cuisine aménagée entièrement équipée : réfrigérateur, four, plaques vitrocéramique,
+machine à laver le linge, vaisselle
+- d'une salle d’eau avec douche, lavabo, meuble de rangement et wc.
+a proximité des commerces et des transports - m : gare de lyon (2 min), quai de la râpée (1 min).
+présence d’un gardien
+1er étage
+cave disponible.
+location meublée (bail d'un an renouvelable) à compter du 24 juin 2024.
+location : 1250 € par mois charges comprises, sauf électricité.
+deux mois de caution. garant demandé pour étudiants et contrats précaires.
+localisation : 78, quai de la râpée – 75012 paris
+visites prévues le samedi 15 juin, de 10h à 13h (confirmer la visite par téléphone)demander plus d'informations au propriétaire",non,non,non,,,,,oui,non,non,non,non,non,oui,1.0,7.0,non,oui,,,,,1250.0,120.0,,2100.0
+27,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/aligre-gare-de-lyon/217500723.htm,217500723,studio,oui,gianluca,2950.0,paris,75012,,1,,60.0,"location de bureau au cœur de paris 75012.
+surface 60m2. 2,9m de hauteur sous plafond expose est-ouest. tumineux style loft dans une ancienne usine.
+possibilité d'accueillir de 6 à 7 postes.
+loyer 2800 e/mois hors chargesdemander plus d'informations au propriétaire",non,non,non,,,,,non,non,non,non,non,non,non,2.0,3.0,oui,non,,,,,2950.0,150.0,,1.0
+28,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/jardin-de-reuilly/206448123.htm,206448123,appartement,oui,fretard,1278.0,paris,75012,,2,1.0,40.0,"situé dans le 12ème arrondissement de paris, ce t2 meublé se trouve rue de charenton. non loin de l’arrêt de métro reuilly diderot, le logement est proche de la place de la nation et dispose d’un dressing, d’un balcon ainsi que d’une cave. l’eau chaude et le chauffage sont collectifs. 
+c'est un quartier très commerçant a deux pas de la coulée verte et a proximité de plusieurs lignes de métro : ligne 1 - reuilly diderot / ligne 8 - station montgallet / ligne 6 - station dugommier.
+l’appartement est composé d’un salon où vous trouverez un canapé, une table basse, une tv, une commode, une table haute avec chaises. la cuisine est ouverte et équipée de plaques de cuisson, d’une hotte, d’un four, d’un réfrigérateur avec espace de congélation, d’un lave-vaisselle, d’une machine à café et d’un lave-linge.
+la chambre dispose d’un lit double et d’une armoire. la salle de bain, quant à elle, d’une douche.
+les wc sont séparés.
+ce joli t2 n’attend que vous !demander plus d'informations au propriétaire",oui,non,non,,,,,oui,non,non,non,oui,non,non,,,oui,non,,,,,1278.0,150.0,,1278.0
+29,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/bel-air-nord/216751479.htm,216751479,studio,oui,hanène k,1500.0,paris,75012,,1,,35.0,"appartement 35m2, 1 pièce rénové et meublé, orienté plein sud avec balcon. dans une belle résidence arborée, sécurisée et bien entretenue avec ascenseur, gardiens et jardin intérieur. au 9ème étage très calme, baigné de soleil. vue dégagée sur un jardin, sans vis-à-vis, double vitrage récent et volets électriques. peinture et parquets refaits à neuf. il se compose : 1 entrée et couloir avec placards, 1 grand séjour avec balcon loggia (4m2), coin nuit séparé avec rideaux japonais, avec lit 140cm matelas neuf (25cm), canapé lit convertible en vrai lit 140cm avec matelas 15cm. plusieurs rangements. 1 cuisine aménagée équipée (four encastré, four micro-ondes, plaque céramique, frigo), 1 salle de bain avec lave-linge séchant et wc séparés. télé, 2 tables pliables (rangés derrière le canapé) et chaises. grille-pain, cafetière nespresso. crèches, écoles, collège commerces à proximité. marché en bas de l'immeuble. proche toutes commodités. à 5, 7 min des stations nation, picpus, portes de vincennes. dpe classe d. accès à la fibre. 
+loyer : 1.500€ charges comprises (loyer 1.350€ + charges 150€ compris eau froide et chaude, chauffage collectifs). dépôt de garantie 1500€. agences s'abstenir.demander plus d'informations au propriétaire",oui,non,non,4.0,,,,non,non,non,non,oui,non,oui,9.0,,oui,oui,,,,,1500.0,150.0,,1500.0
+30,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/nation-picpus/221860413.htm,221860413,studio,oui,lou,1200.0,paris,75012,,1,,30.0,"quartier fabre d'églantine /place de la nation  
+
+dans une copropriété moderne de bon standing, sécurisée et verdoyante avec ascenseur et gardien. 
+a louer un appartement type t1 de 30m2. il est composé comme suit : une pièce principale de 20m2 avec literie et mobilier, une entrée avec rangement, une salle de bain avec baignoire, une cuisine aménagée et équipée de four, plaque de cuisson, réfrigérateur, hotte et ustensile de cuisine, cafetière .. ( assiettes, verres, poêles, casseroles, couverts …..) 
+
+ à deux pas de l'université sorbonne nouvelle  chauffage et eau chaude : collectif et inclus dans les charges. 
+disponible de suitedemander plus d'informations au propriétaire",non,non,non,,,,,non,non,non,non,oui,non,oui,2.0,8.0,oui,non,,,,,1200.0,180.0,,2000.0
+31,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/vallee-de-fecamp/220402551.htm,220402551,appartement,oui,olivier,1214.0,paris,75012,,2,1.0,35.0,"t2 meublé de 35,5 m2, refait à neuf récemment, dans un immeuble de 1890 en pierre de taille. 2ème étage avec ascenseur. immeuble sécurisé par digicode + vigik. a proximité du métro lignes 6 et 8 (michel bizot - daumesnil) + tram t3a (porte de charenton). bus 87 (wattignies-gravelle) et station velib au pied de l’immeuble. commerces et bois de vincennes/porte dorée à proximité.demander plus d'informations au propriétaire",non,non,non,,,,,non,non,non,non,oui,non,non,2.0,,non,oui,,,,,1214.0,114.0,,2200.0
+32,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/jardin-de-reuilly/221132021.htm,221132021,appartement,oui,tanguy toussaint,875.0,paris,75012,,2,1.0,25.0,l'appartement est situé au 6eme étage d'un immeuble securise avec gardien. il a une vue dégagé. il dispose d'un ascenseur. il est situé à 3 minutes à pied du métro reuilly diderot pour les lignes 1 et 8 et a proximité de gare de lyon dans un quartier avec de nombreux commerces de bouches. c'est un chauffage central commun à l'ensemble de l'immeuble. il dispose d'une pièce supplémentaire avec une véranda interieure.demander plus d'informations au propriétaire,non,non,non,,,,,non,non,non,non,oui,non,non,6.0,12.0,oui,non,,,,,875.0,75.0,,1500.0

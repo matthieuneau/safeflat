@@ -27,6 +27,14 @@ def extract_number(s):
     
     return None
 
+def extract_id(url):
+    # Utiliser une expression régulière pour extraire l'ID
+    pattern = r'/(\d+)\.htm'
+    match = re.search(pattern, url)
+    if match:
+        return match.group(1)
+    else:
+        return None
 
 # Exctracting floor level
 def extract_after_etage(s):
@@ -96,11 +104,11 @@ def check_ascenseur(value):
     if pd.isnull(value):
         return None
     if 'Pas d\'ascenseur' in value:
-        return 0
+        return 'non'
     if 'Ascenseur : non communiqué' in value or 'Ascenseur' not in value:
         return None
     if 'Ascenseur' in value:
-        return 1
+        return 'oui'
     
 def extract_quartier(text):
     prefix = "Quartier "
@@ -119,8 +127,10 @@ def process_output(df : pd.DataFrame) -> pd.DataFrame:
     Returns:
         pd.DataFrame: contains the processed data
     """
+
+    df['id'] = df['url'].apply(lambda x: extract_id(x))
     df['type'] = df['title'].apply(lambda x: x.split()[0])
-    df['meuble'] = df['title'].apply(lambda x: 1 if "meublé" in x else 0)
+    df['meuble'] = df['title'].apply(lambda x: 'oui' if "meublé" in x else 'non')
     df['price'] = df['price'].apply(lambda x : extract_number(x))
     df['price'] = pd.to_numeric(df['price'], errors='coerce')
     df[['ville', 'zipcode']] = df['city and zip code'].str.split('(', expand=True)
@@ -132,23 +142,22 @@ def process_output(df : pd.DataFrame) -> pd.DataFrame:
     df['nb_bedrooms'] = df['nb_bedrooms'].astype('Int64')
     df['surface'] = df['surface'].apply(lambda x : extract_number(x))
     df['etage'] = df['etage'].apply(extract_after_etage)
-    df['balcon'] = df['Extérieur'].apply(lambda x: 1 if pd.notnull(x) and 'Balcon' in x else 0)
-    df['terrasse'] = df['Extérieur'].apply(lambda x: 1 if pd.notnull(x) and 'Terrasse' in x else 0)
-    df['jardin'] = df['Extérieur'].apply(lambda x: 1 if pd.notnull(x) and 'Jardin' in x else 0)
+    df['balcon'] = df['Extérieur'].apply(lambda x: 'oui' if pd.notnull(x) and 'Balcon' in x else 'non')
+    df['terrasse'] = df['Extérieur'].apply(lambda x: 'oui' if pd.notnull(x) and 'Terrasse' in x else 'non')
+    df['jardin'] = df['Extérieur'].apply(lambda x: 'oui' if pd.notnull(x) and 'Jardin' in x else 'non')
     df['surface_balcon'] = df['Extérieur'].apply(lambda x: extract_surface(x, "Balcon"))
     df['surface_terrasse'] = df['Extérieur'].apply(lambda x: extract_surface(x, "Terrasse"))
     df['surface_jardin'] = df['Extérieur'].apply(lambda x: extract_surface(x, "Jardin"))
     df['exposition'] = df['Cadre et situation'].apply(lambda x: extract_exposition(x))
-    df['cave'] = df['Surfaces annexes'].apply(lambda x: 1 if pd.notnull(x) and 'Cave' in x else 0)
-    df['parking'] = df['Surfaces annexes'].apply(lambda x: 1 if pd.notnull(x) and 'Parking' in x else 0)
-    df['garage'] = df['Surfaces annexes'].apply(lambda x: 1 if pd.notnull(x) and 'Garage' in x else 0)
-    df['box'] = df['Surfaces annexes'].apply(lambda x: 1 if pd.notnull(x) and 'Box' in x else 0)
+    df['cave'] = df['Surfaces annexes'].apply(lambda x: 'oui' if pd.notnull(x) and 'Cave' in x else 'non')
+    df['parking'] = df['Surfaces annexes'].apply(lambda x: 'oui' if pd.notnull(x) and 'Parking' in x else 'non')
+    df['garage'] = df['Surfaces annexes'].apply(lambda x: 'oui' if pd.notnull(x) and 'Garage' in x else 'non')
+    df['box'] = df['Surfaces annexes'].apply(lambda x: 'oui' if pd.notnull(x) and 'Box' in x else 'non')
     df['ascenseur'] = df['Services et accessibilité'].apply(check_ascenseur)
-    df['ascenseur'] = df['ascenseur'].astype('Int64')
-    df['interphone'] = df['Services et accessibilité'].apply(lambda x: 1 if pd.notnull(x) and 'Interphone' in x else 0)
-    df['gardien'] = df['Services et accessibilité'].apply(lambda x: 1 if pd.notnull(x) and 'Gardien' in x else 0)
-    df['salle de bain (Baignoire)'] = df['Hygiène'].apply(lambda x: 1 if pd.notnull(x) and 'baignoire' in x else 0)
-    df['salle d\'eau (douche)'] = df['Hygiène'].apply(lambda x: 1 if pd.notnull(x) and 'douche' in x else 0)
+    df['interphone'] = df['Services et accessibilité'].apply(lambda x: 'oui' if pd.notnull(x) and 'Interphone' in x else 'non')
+    df['gardien'] = df['Services et accessibilité'].apply(lambda x: 'oui' if pd.notnull(x) and 'Gardien' in x else 'non')
+    df['baignoire'] = df['Hygiène'].apply(lambda x: 'oui' if pd.notnull(x) and 'baignoire' in x else 'non')
+    df['douche'] = df['Hygiène'].apply(lambda x: 'oui' if pd.notnull(x) and 'douche' in x else 'non')
     df['surface_salon'] = df['Pièces à vivre'].apply(lambda x: extract_surface(x, "Séjour / salon"))
     df['surface_salle_a_manger'] = df['Pièces à vivre'].apply(lambda x: extract_surface(x, "Salle à manger"))
     df['loyer_charges_comprises'] = df['loyer_charges_comprises'].apply(lambda x : extract_number(x))
@@ -156,14 +165,17 @@ def process_output(df : pd.DataFrame) -> pd.DataFrame:
     df['complement_loyer'] = df['complement_loyer'].apply(lambda x : extract_number(x))
     df['depot_garantie'] = df['depot_garantie'].apply(lambda x : extract_number(x))
     df['loyer_base'] = df['loyer_base'].apply(lambda x : extract_number(x))
-    df['neighbourhood'] = df['neighbourhood'].apply(extract_quartier)
+    df['quartier'] = df['quartier'].apply(extract_quartier)
 
     df = split_etage_column(df)
+    df.replace('Not Available', None, inplace=True)
+    # Convert all string objects in the DataFrame to lowercase
+    df = df.map(lambda s: s.lower() if type(s) == str else s)
 
 
 
 
-    columns_to_keep = ['type','meuble', 'host_name', 'price', 'ville', 'zipcode', 'neighbourhood','nb_rooms', 'nb_bedrooms', 'surface', 'description', 'balcon', 'terrasse', 'jardin', 'surface_balcon', 'surface_terrasse', 'surface_jardin', 'exposition', 'cave', 'parking', 'garage', 'box', 'ascenseur', 'interphone', 'gardien', 'numero_etage', 'nb_etages', 'salle de bain (Baignoire)', 'salle d\'eau (douche)', 'surface_salon', 'surface_salle_a_manger','Diagnostic de performance énergétique (DPE)', 'Indice d\'émission de gaz à effet de serre (GES)','loyer_charges_comprises', 'charges_forfaitaires', 'complement_loyer', 'depot_garantie' ]
+    columns_to_keep = ['url', 'id', 'type','meuble', 'host_name', 'price', 'ville', 'zipcode', 'quartier','nb_rooms', 'nb_bedrooms', 'surface', 'description', 'balcon', 'terrasse', 'jardin', 'surface_balcon', 'surface_terrasse', 'surface_jardin', 'exposition', 'cave', 'parking', 'garage', 'box', 'ascenseur', 'interphone', 'gardien', 'numero_etage', 'nb_etages', 'baignoire', 'douche', 'surface_salon', 'surface_salle_a_manger','DPE', 'GES','loyer_charges_comprises', 'charges_forfaitaires', 'complement_loyer', 'depot_garantie' ]
 
     processed_data = df[columns_to_keep]
 

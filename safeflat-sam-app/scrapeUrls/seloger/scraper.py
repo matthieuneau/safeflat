@@ -26,6 +26,12 @@ def scrape_ad(ad_url: str) -> dict:
     soup = BeautifulSoup(html, "html.parser")
     data = {}
 
+    try:
+        data["url"] = ad_url
+    except Exception as e:
+        print("Error retrieving url:", e)
+        data["url"] = "Not Available"
+
     # Retrieving title
     try:
         data["title"] = soup.find(
@@ -53,14 +59,14 @@ def scrape_ad(ad_url: str) -> dict:
         print("Error extracting City and Zip Code:", e)
         data["city and zip code"] = "Not Available"
 
-    # Retrieving the neighbourhood
+    # Retrieving the neighbourhood:
     try:
-        data["neighbourhood"] = soup.find(
-            "span", {"data-test": "neighbourhood"}
+        data["quartier"] = soup.find(
+            "span", {"data-test": "quartier"}
         ).text.strip()
     except Exception as e:
-        print("Error extracting Neighbourhood:", e)
-        data["neighbourhood"] = "Not Available"
+        print("Error extracting quartier:", e)
+        data["quartier"] = "Not Available"
 
     # Retrieving details : nb_rooms, nb_bedrooms, surface, etage
     try:
@@ -153,8 +159,8 @@ def scrape_ad(ad_url: str) -> dict:
     # Retrieving DPE and GES:
     try:
         # Initialize with default values assuming 'result' dictionary already exists
-        data["Diagnostic de performance énergétique (DPE)"] = "Not Available"
-        data["Indice d'émission de gaz à effet de serre (GES)"] = "Not Available"
+        data["DPE"] = "Not Available"
+        data["GES"] = "Not Available"
 
         energy_elements = soup.find_all("div", {"data-test": "diagnostics-content"})
         for element in energy_elements:
@@ -170,10 +176,10 @@ def scrape_ad(ad_url: str) -> dict:
                 if titre_element and letter_element:
                     titre = titre_element.text.strip()
                     letter = letter_element.text.strip()
-                    if titre == "Diagnostic de performance énergétique (DPE)":
-                        data["Diagnostic de performance énergétique (DPE)"] = letter
-                    elif titre == "Indice d'émission de gaz à effet de serre (GES)":
-                        data["Indice d'émission de gaz à effet de serre (GES)"] = letter
+                    if titre == "DPE":
+                        data["DPE"] = letter
+                    elif titre == "GES":
+                        data["GES"] = letter
                 else:
                     if not titre_element:
                         print("Diagnostic title element not found.")

@@ -23,6 +23,7 @@ def score_calculation(row, property_infos, poids, poids_surface, poids_nom):
             
             # Add standard weights
             elif key in poids:
+                
                 total_poids += poids[key]
                 if row[key] is not None and row[key] == value:
                     matching_poids += poids[key]
@@ -98,7 +99,7 @@ def filter_and_score(property_infos):
     poids = {
         "type": 10,
         "meuble": 15, # à changer en meuble
-        "neighbourhood": 15,
+        "quartier": 15,
         "nb_rooms": 15,
         "nb_bedrooms": 15,
         "balcon": 10,
@@ -114,10 +115,10 @@ def filter_and_score(property_infos):
         "gardien": 10,
         "numero_etage": 12,
         "nb_etages": 8,
-        "salle de bain (Baignoire)": 13,
-        "salle d'eau (douche)": 13,
-        "Diagnostic de performance énergétique (DPE)": 5,
-        "Indice d'émission de gaz à effet de serre (GES)": 5
+        "baignoire": 13,
+        "douche": 13,
+        "DPE": 5,
+        "GES": 5
         
     }
 
@@ -154,7 +155,7 @@ property_infos_same = {
         "host_name": "Kevin",
         "ville": "Paris", 
         "zipcode": 75011,
-        "neighbourhood": "Quartier Léon-Blum Folie-Regnault",
+        "quartier": "Quartier Léon-Blum Folie-Regnault",
         "nb_rooms": 4,
         "nb_bedrooms": 3.0,
         "surface": 33.0,
@@ -174,12 +175,12 @@ property_infos_same = {
         "gardien": 0,
         "numero_etage": 4.0,
         "nb_etages": 6.0,
-        "salle de bain (Baignoire)": 1,
-        "salle d'eau (douche)": 1,
+        "baignoire": 1,
+        "douche": 1,
         "surface_salon": None,
         "surface_salle_a_manger": None,
-        "Diagnostic de performance énergétique (DPE)": "D",
-        "Indice d'émission de gaz à effet de serre (GES)": "D"
+        "DPE": "D",
+        "GES": "D"
 }
 
 if __name__ == "__main__":

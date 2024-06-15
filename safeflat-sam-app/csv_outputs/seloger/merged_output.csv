@@ -1,6 +1,17 @@
-,type,meublé,host_name,price,city,zipcode,neighbourhood,nb_rooms,nb_bedrooms,surface,numero_etage,description,balcon,terrasse,jardin,surface_balcon,surface_terrasse,surface_jardin,exposition,cave,parking,garage,box,ascenseur,interphone,gardien,salle de bain (Baignoire),salle d'eau (douche),surface_salon,surface_salle_a_manger,Diagnostic de performance énergétique (DPE),Indice d'émission de gaz à effet de serre (GES),loyer_charges_comprises,charges_forfaitaires,complement_loyer,depot_garantie,piscine,type_de_bien,quartier,meuble,nombre_etages
-0,Appartement,1,Not Available,1440.0,Paris,75017,Quartier La Fourche-Guy Môquet,2,1,40.0,1/6,"Situé boulevard Bessières au 1er étage avec ascenseur, vous trouverez un T2 meublé en parfait état de 40.03 m² dans une belle copropriété, comprenant : une entrée, une pièce de vie avec cuisine ouverte et aménagée (plaques, hotte, four, réfrigérateur et lave vaisselle + machine à laver), un espace cellier, une chambre au calme donnant sur cour, une salle d'eau avec WC séparé.
+,url,id,type,meuble,host_name,price,ville,zipcode,quartier,nb_rooms,nb_bedrooms,surface,description,balcon,terrasse,jardin,surface_balcon,surface_terrasse,surface_jardin,exposition,cave,parking,garage,box,ascenseur,interphone,gardien,numero_etage,nb_etages,baignoire,douche,surface_salon,surface_salle_a_manger,DPE,GES,loyer_charges_comprises,charges_forfaitaires,complement_loyer,depot_garantie
+0,https://www.seloger.com/annonces/locations/appartement/paris-12eme-75/bel-air-sud/212880417.htm,212880417,appartement,oui,doublecheck gestion,4600.0,paris,75012,,4,3,109.0,"bienvenue dans notre somptueux appartement de luxe au cœur de paris !
+découvrez le charme et l'élégance de notre spacieux appartement de 109m2, situé dans le 12ème arrondissement de paris pouvant accueillir jusqu'à 8 voyageurs.
+avec une grande pièce de vie baignée de lumière naturelle, une cuisine ouverte tout équipée, et trois chambres luxueuses, cet appartement est le choix idéal pour ceux qui recherchent une expérience de séjour inoubliable à paris.
 
-Exposition Est, le tout en très bon état (peinture et mobilier neuf). 
+cet appartement, conçu pour vous offrir confort et fonctionnalité, se compose de :?- une cuisine entièrement équipée et fonctionnelle, comprenant un réfrigérateur, congélateur, plaques de cuisson, hotte, machine à café nespresso, grille-pain, bouilloire, four…?- une agréable pièce à vivre lumineuse, où vous pourrez vous détendre ou recevoir des amis, avec une table à manger, un canapé et une smart tv.?- trois chambres élégamment aménagées, avec des lits doubles et des espaces de rangement
+- un canapé convertible dans le salon.
+- deux salles d'eau modernes et spacieuses, dotées pour chacune d'une douche et d'un lavabo pour votre confort et votre commodité.
+- 2 wc
+- un lave-linge?- draps et serviettes de toilette de qualité hôtelière fournis
 
-A VISITER RAPIDEMENT !Demander plus d'informations à l'agence",0,0,0,,,,Est,0,0,0,0,1,1,0,0,1,,,F,C,1440.0,100.0,,2698.0,Non,appartement,N/A,N/A,N/A
+profitez également d'une place de parking fermée et sécurisée au sous-sol de l'immeuble 
+
+cet appartement est situé au 9eme étage de l'immeuble, accessible par ascenseur.
+
+ce logement est disponible pour un bail mobilité uniquement. le bail mobilité est un type de bail de location meublée de courte durée. il vise à faciliter la mobilité des locataires, et notamment ceux amenés à déménager pour des raisons professionnelles (mutation ou mission), les étudiants, les jeunes en formation, en alternance ou en stage.
+demander plus d'informations au propriétaire",non,non,non,,,,,non,non,non,non,oui,non,non,9,,non,oui,,,,,4600.0,,,4600.0

@@ -32,70 +32,71 @@ sys.path.append(scrape_dir)
 from retriever import retrieve_urls # Remplacez par les noms des fonctions à importer
 from scraper import scrape_ad  # Remplacez par les noms des fonctions à importer
 from postprocessing import process_output  # Remplacez par les noms des fonctions à importer
-#from algo import filter_and_score
+from algo import filter_and_score
+from generate_urls import generate_url
 
 # Importation des modules utils avec des alias pour éviter les conflits de noms
 scrape_utils = importlib.import_module('utils', 'scrapeUrls')
 retrieve_utils = importlib.import_module('utils', 'retrieveUrls')
 
+property_infos_same = {
+    "type": "Appartement",
+        "meuble": 'oui', 
+        "host_name": "jl",
+        "ville": "paris", 
+        "zipcode": 75012,
+        "quartier": None,
+        "nb_rooms": 2,
+        "nb_bedrooms": 1.0,
+        "surface": 31.0,
+        "balcon": 'non',
+        "terrasse": 'oui',
+        "jardin": 'non',
+        "surface_balcon": None,
+        "surface_terrasse": None,
+        "surface_jardin": None,
+        "exposition": None,
+        "cave": "non",
+        "parking": "oui",
+        "garage": "non",
+        "box": "non",
+        "ascenseur": "oui",
+        "interphone": "non",
+        "gardien": "non",
+        "numero_etage": 12.0,
+        "nb_etages": 12.0,
+        "baignoire": "oui",
+        "douche": "non",
+        "surface_salon": None,
+        "surface_salle_a_manger": None,
+        "DPE": None,
+        "GES": None
+}
+
 if __name__ == "__main__":
-    
-    urls = retrieve_urls('https://www.seloger.com/list.htm?projects=1&types=2,1&places=[{%22inseeCodes%22:[750112]}]&mandatorycommodities=0&privateseller=1&enterprise=0&qsVersion=1.0&m=search_refine-redirection-search_results')
-    urls = [urls[2]]
+    url_cp = generate_url(75011)
+    urls = retrieve_urls(url_cp)
+    #urls = urls[1:]
     for url in urls:
-        try:
-            scraped_data = scrape_ad(url)
-            print('Scraped ad:', scraped_data)
-            scraped_data = pd.DataFrame([scraped_data])
-            processed_data = process_output(scraped_data)
-
-            desc_data = scrape_utils.process_description(scraped_data["description"])
-
-            merged_data = scrape_utils.add_desc_content_to_df(desc_data, processed_data)
-            
-
-            data_bdd = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/seloger/output_processed.csv')
-
-            merged_data.reset_index(drop=True, inplace=True)
-            data_bdd.reset_index(drop=True, inplace=True)
-            df_concatene = pd.concat([merged_data, data_bdd], ignore_index=True)
-            colonnes_a_supprimer = [col for col in df_concatene.columns if 'Unnamed:' in col]
-            df_concatene.drop(columns=colonnes_a_supprimer, inplace=True)
-            df_concatene.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/seloger/output_processed.csv')
-            print("Data merged to database!")
-
-            # data_bdd2 = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/outpu_processed.csv')
-            # filtered_and_scored_data = filter_and_score(property_infos_same)
-            # filtered_and_scored_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_filtered_score.csv')
-
-            #save_to_database(merged_data)
-        except Exception as e:
-            print(f"An error occrued while processing the ad: {url}", "\n", e)
+        scraped_data = scrape_ad(url)
+        print('Scraped ad:', scraped_data)
+        scraped_data = pd.DataFrame([scraped_data])
+        processed_data = process_output(scraped_data)
+        #processed_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/seloger/output_processed.csv')
         
 
-        # scraped_data = scrape_ad(url)
-        # print('Scraped ad:', scraped_data)
-        # scraped_data = pd.DataFrame([scraped_data])
-        # processed_data = process_output(scraped_data)
+        data_bdd = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/seloger/output_processed.csv')
 
-        # desc_data = scrape_utils.process_description(scraped_data["description"])
-
-        # merged_data = scrape_utils.add_desc_content_to_df(desc_data, processed_data)
-
-        # data_bdd = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/seloger/output_processed.csv')
-
-        # merged_data.reset_index(drop=True, inplace=True)
         # data_bdd.reset_index(drop=True, inplace=True)
-        # df_concatene = pd.concat([merged_data, data_bdd], ignore_index=True)
-        # colonnes_a_supprimer = [col for col in df_concatene.columns if 'Unnamed:' in col]
-        # df_concatene.drop(columns=colonnes_a_supprimer, inplace=True)
-        # print("Colonnes :", df_concatene.columns)
-        # df_concatene.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/seloger/output_processed.csv')
+        df_concatene = pd.concat([processed_data, data_bdd], ignore_index=True)
+        colonnes_a_supprimer = [col for col in df_concatene.columns if 'Unnamed:' in col]
+        df_concatene.drop(columns=colonnes_a_supprimer, inplace=True)
+        df_concatene.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/seloger/output_processed.csv')
+        print("Data merged to database!")
 
- 
-
+        #save_to_database(merged_data)
     
-
-    
-
+    # data_bdd2 = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/seloger/output_processed.csv')
+    # filtered_and_scored_data = filter_and_score(property_infos_same)
+    # filtered_and_scored_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/seloger/output_filter_score.csv')
     
