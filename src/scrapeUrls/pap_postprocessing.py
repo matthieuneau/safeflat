@@ -79,11 +79,3 @@ def process_outputs(data: pd.DataFrame) -> pd.DataFrame:
     )
 
     return data
-
-
-with open("tests/src/scrapeUrls/pap_ad_example_html.txt", "r") as file:
-    data = file.read()
-
-data = scrape_ad(data)
-processed_data = process_outputs(data)
-print(processed_data)

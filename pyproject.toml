@@ -33,6 +33,7 @@ pytest = "^8.2.1"
 mypy = "^1.10.0"
 flake8 = "^7.0.0"
 pytest-mock = "^3.14.0"
+aws-sam-cli = "^1.119.0"
 
 
 

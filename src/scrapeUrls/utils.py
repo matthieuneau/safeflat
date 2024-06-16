@@ -132,7 +132,7 @@ class DescriptionInfo(BaseModel):
     )
 
 
-def process_description(description: str) -> DescriptionInfo:
+def process_description(description: str) -> pd.DataFrame:
 
     client = instructor.from_openai(OpenAI())
 
@@ -143,6 +143,7 @@ def process_description(description: str) -> DescriptionInfo:
         messages=[{"role": "user", "content": description}],
     )
 
-    desc_info = desc_info.model_dump()
+    desc_info_dict = desc_info.model_dump()
+    desc_info_df = pd.DataFrame(desc_info_dict, index=[0])
 
-    return desc_info
+    return desc_info_df

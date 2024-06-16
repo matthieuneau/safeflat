@@ -1,4 +1,4 @@
-from .utils import fetch_html_with_oxylab
+from utils import fetch_html_with_oxylab
 from bs4 import BeautifulSoup
 
 

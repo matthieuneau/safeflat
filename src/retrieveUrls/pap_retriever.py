@@ -1,4 +1,4 @@
-from .utils import fetch_html_with_oxylab
+from utils import fetch_html_with_oxylab
 from bs4 import BeautifulSoup
 
 
@@ -43,3 +43,6 @@ def retrieve_urls() -> list:
         urls_to_scrape = urls_to_scrape + [url_list]
 
     return urls_to_scrape
+
+
+# print(retrieve_urls())

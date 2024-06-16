@@ -14,26 +14,26 @@ jobs:
     outputs:
       cache-key: ${{ steps.cache-key.outputs.key }}
     steps:
-    - uses: actions/checkout@v4.1.7
+      - uses: actions/checkout@v4.1.7
 
-    - name: Set up Python
-      id: setup-python
-      uses: actions/setup-python@v5.1.0
-      with:
-        python-version: ${{ env.PYTHON_VERSION }}
+      - name: Set up Python
+        id: setup-python
+        uses: actions/setup-python@v5.1.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
 
-    - name: Cache dependencies
-      id: cache-key
-      uses: actions/cache@v3.3.3
-      with:
-        path: ~/.cache/pypoetry
-        key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
-    
-    - name: Install Poetry
-      run: cd ~/.cache/pypoetry && pip install poetry 
-    
-    - name: Install dependencies
-      run: pwd && cd ~/.cache/pypoetry && poetry install
+      - name: Cache dependencies
+        id: cache-key
+        uses: actions/cache@v3.3.3
+        with:
+          path: ~/.cache/pypoetry
+          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+      
+      - name: Install Poetry
+        run: pip install poetry
+      
+      - name: Install dependencies
+        run: poetry install
     
   build:
     needs: setup
@@ -55,4 +55,3 @@ jobs:
 
       - name: Build sam template
         run: poetry run sam build
-

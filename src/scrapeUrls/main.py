@@ -45,7 +45,7 @@ def handler(event, _context):
         print("data scraped: ", data)
         data_processed = postprocesser(data)
         print("data processed: ", data_processed)
-        data_from_description = process_description(data["description"])
+        data_from_description = process_description(data.loc[0, "description"])
         print("data from description: ", data_from_description)
         merged_data = add_desc_content_to_df(data_from_description, data_processed)
         print("merged data: ", merged_data)

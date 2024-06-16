@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-from .utils import fetch_html_with_oxylab
+from utils import fetch_html_with_oxylab
 
 
 def retrieve_urls(page_url: str) -> list:

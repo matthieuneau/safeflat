@@ -2,7 +2,7 @@ import json
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
-from .utils import fetch_html_with_oxylab
+from utils import fetch_html_with_oxylab
 
 
 def scrape_ad(ad_url: str) -> pd.DataFrame:
@@ -109,4 +109,5 @@ def scrape_ad(ad_url: str) -> pd.DataFrame:
 
 ad_url = "https://www.pap.fr/annonces/maison-rungis-ville-r437900803"
 data = scrape_ad(ad_url)
-print(data)
+# for column in data.columns:
+#     print(data[column])
