@@ -65,8 +65,8 @@ def filter_and_score(property_infos):
     data_df["lits_simples"] = pd.to_numeric(data_df["lits_simples"], errors="coerce")
     data_df["canapes_convertibles"] = pd.to_numeric(data_df["canapes_convertibles"], errors="coerce")
     data_df["lits_superposes"] = pd.to_numeric(data_df["lits_superposes"], errors="coerce")
-    data_df["numero_d'etage"] = pd.to_numeric(data_df["numero_d'etage"], errors="coerce")
-    data_df["nombre_d'etages"] = pd.to_numeric(data_df["nombre_d'etages"], errors="coerce")
+    data_df["numero_etage"] = pd.to_numeric(data_df["numero_etage"], errors="coerce")
+    data_df["nb_etages"] = pd.to_numeric(data_df["nb_etages"], errors="coerce")
 
 
     # To be replaced with the SQL query:
@@ -133,8 +133,8 @@ def filter_and_score(property_infos):
         "nb_rooms": 7,
         "quartier": 7,
         "meuble": 5,
-        "nombre_d'etages": 6,
-        "numero_d'etage": 6,
+        "nb_etages": 6,
+        "numero_etage": 6,
         "cave": 4,
     }
 
@@ -179,8 +179,8 @@ property_infos_same = {
     "nb_rooms": None,
     "quartier": None,
     "meuble": None,
-    "nombre_d'etages": None,
-    "numero_d'etage": 1,
+    "nb_etages": None,
+    "numero_etage": 1,
     "cave": None,
 }
 

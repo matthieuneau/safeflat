@@ -73,7 +73,7 @@ property_infos_same = {
 }
 
 if __name__ == "__main__":
-    url_listing = generate_airbnb_url("67000", 5, "03/10/2024", "04/10/2024")
+    url_listing = generate_airbnb_url("67000", 4, "03/10/2024", "04/10/2024")
     urls = retrieve_urls(url_listing)
     #urls = urls[:1]
     for url in urls:
@@ -86,17 +86,22 @@ if __name__ == "__main__":
             desc_data = scrape_utils.process_description(scraped_data["description"])
 
             merged_data = scrape_utils.add_desc_content_to_df(desc_data, processed_data)
-            #merged_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output.csv')
-            print("Merged data:", merged_data)
+            #merged_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_processed.csv')
+            #print("Merged data:", merged_data)
 
-            data_bdd = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/outpu_processed.csv')
+            data_bdd = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_processed.csv')
 
             df_concatene = pd.concat([merged_data, data_bdd], ignore_index=True)
-            df_concatene.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/outpu_processed.csv')
+            colonnes_a_supprimer = [col for col in df_concatene.columns if 'Unnamed:' in col]
+            df_concatene.drop(columns=colonnes_a_supprimer, inplace=True)
+            df_concatene.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_processed.csv')
 
-            data_bdd2 = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/outpu_processed.csv')
-            filtered_and_scored_data = filter_and_score(property_infos_same)
-            filtered_and_scored_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_filtered_score.csv')
+            
+
+    
+            # data_bdd2 = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/outpu_processed.csv')
+            # filtered_and_scored_data = filter_and_score(property_infos_same)
+            # filtered_and_scored_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_filtered_score.csv')
 
             #save_to_database(merged_data)
         except Exception as e:
