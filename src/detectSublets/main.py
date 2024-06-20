@@ -1,10 +1,16 @@
 from utils import *
+import pandas as pd
 from pap_algo import filter_and_score as pap_filter_and_score
 
 
 def handler(event, _context):
     print("detecting sublets for ads coming from: ", event["website"])
     print("scraped_data", event["scraped_data"])
+
+    # Convert the serialized data back to a DataFrame
+    scraped_properties = pd.DataFrame(event["scraped_data"])
+    print("scraped_properties as df: ", scraped_properties.shape)
+
     website = event["website"]
     allowed_websites = {
         "leboncoin",

@@ -1,3 +1,4 @@
+import pandas as pd
 from utils import *
 from abritel_scraper import scrape_ad as abritel_scrape_ad
 from abritel_postprocessing import process_outputs as abritel_process_outputs
@@ -38,6 +39,8 @@ def handler(event, _context):
     scraper = SCRAPER_MAP[website]
     postprocesser = POSTPROCESSER_MAP[website]
 
+    scraped_data = pd.DataFrame()
+
     urls_to_scrape = event["sublist"]
     for url in urls_to_scrape:
         print("scraping url: ", url)
@@ -51,5 +54,9 @@ def handler(event, _context):
         print("merged data: ", merged_data)
         save_to_database(merged_data, website)
         # Load the protected goods from db
+        scraped_data = pd.concat([scraped_data, merged_data])
 
-    return "no error so far"
+    # Serialize the DataFrame to be able to return it
+    scraped_data = scraped_data.to_dict(orient="records")
+
+    return {"website": event["website"], "scraped_data": scraped_data}
