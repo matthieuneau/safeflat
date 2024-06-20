@@ -10,10 +10,9 @@ def get_client_data():
         "Content-Type": "application/json",
     }
 
-    response = requests.get("http://16.171.35.18/app/api/biens", headers=headers)
-    df = pd.DataFrame(response.json())
-
-    print(df)
+    response = requests.get("http://13.60.104.49/app/api/biens", headers=headers)
+    # df = pd.DataFrame(response.json()
+    return response
 
 
 def send_detection_event(
@@ -40,7 +39,7 @@ def send_detection_event(
     }
 
     response = requests.post(
-        "http://16.171.35.18/app/api/biens", headers=headers, data=sublet_detected
+        "http://13.60.104.49/app/api/biens", headers=headers, data=sublet_detected
     )
     df = pd.DataFrame(response.json())
     print(df)
@@ -117,7 +116,7 @@ def add_client_data(data):
     session.headers.update(headers)
 
     response = session.post(
-        "http://16.171.35.18/app/api/biens", headers=headers, cookies=cookies, json=data
+        "http://13.60.104.49/app/api/biens", headers=headers, cookies=cookies, json=data
     )
 
     if response.status_code == 200:

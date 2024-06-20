@@ -69,7 +69,7 @@ Resources:
       DefinitionString:
         !Sub |
           {
-            "Comment": "A Step Function to process sublists in parallel",
+            "Comment": "A Step Function to process sublists in parallel and detect sublets",
             "StartAt": "RetrieveUrls",
             "States": {
               "RetrieveUrls": {
@@ -98,6 +98,15 @@ Resources:
                       "Parameters": {
                         "website.$": "$.website",
                         "sublist.$": "$.lists"
+                      },
+                      "Next": "DetectSublets"
+                    },
+                    "DetectSublets": {
+                      "Type": "Task",
+                      "Resource": "${detectSubletsLambda.Arn}",
+                      "Parameters": {
+                        "website.$": "$.website",
+                        "scraped_data.$": "$.scraped_data"
                       },
                       "End": true
                     }

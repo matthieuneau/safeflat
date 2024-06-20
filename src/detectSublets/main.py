@@ -1,10 +1,16 @@
 from utils import *
+import pandas as pd
 from pap_algo import filter_and_score as pap_filter_and_score
 
 
 def handler(event, _context):
     print("detecting sublets for ads coming from: ", event["website"])
     print("scraped_data", event["scraped_data"])
+
+    # Convert the serialized data back to a DataFrame
+    scraped_properties = pd.DataFrame(event["scraped_data"])
+    print("scraped_properties as df: ", scraped_properties.shape)
+
     website = event["website"]
     allowed_websites = {
         "leboncoin",
@@ -23,20 +29,20 @@ def handler(event, _context):
     detection_algo = ALGO_MAP[website]
 
     # NEED TO FETCH THE ACTUAL DATA FROM THE CLIENT
-    properties_to_protect = get_client_data()
-    print("properties to protect fetched from DB: ", properties_to_protect)
+    scraped_properties = get_client_data()
+    print("properties to protect fetched from DB: ", scraped_properties)
 
-    for property in properties_to_protect:
-        data_with_scores = detection_algo(property, event["website"])
+    for scraped_property in scraped_properties:
+        data_with_scores = detection_algo(scraped_property, event["website"])
         print(data_with_scores)
         send_detection_event(
             website=event["website"],
             threshold_score=0.2,
             data_with_scores=data_with_scores,
-            property_to_protect_id=property["id"],
+            property_to_protect_id=scraped_property["id"],
         )
 
-    properties_to_protect = [
+    scraped_properties = [
         {
             "location": "Paris 11e (75011)",
             "energy": "F",
@@ -80,6 +86,6 @@ def handler(event, _context):
     ]
 
     # NEED TO ADD FILTERING ON LOCATION
-    for property_to_protect in properties_to_protect:
+    for property_to_protect in scraped_properties:
         data_with_scores = scoring_algorithm(property_to_protect, event["scraped_data"])
         print(data_with_scores)
