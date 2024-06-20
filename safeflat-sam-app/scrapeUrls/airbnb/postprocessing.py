@@ -50,6 +50,14 @@ def extract_number_of_bathrooms(details_list):
             return int(detail.split()[0].replace("\xa0", ""))
     return None  # Valeur par défaut si non trouvée
 
+def extract_id_from_url(url):
+    # Utilisation d'une expression régulière pour extraire l'ID
+    match = re.search(r'/rooms/(\d+)', url)
+    if match:
+        return match.group(1)
+    else:
+        return None
+
 def process_output(data : dict) -> pd.DataFrame:
     """Taking care of all the processing of the scraped data, EXCEPT PROCESSING THE DESCRIPTION, which is done by calling ChatGPT
 
@@ -59,6 +67,9 @@ def process_output(data : dict) -> pd.DataFrame:
     Returns:
         pd.DataFrame: contains the processed data
     """
+    #Extract id:
+    data['id'] = data['url'].apply(extract_id_from_url)
+
     #Extract type:
     data['type'] = data['type'].str.lower()
     data['type'] = data['type'].apply(lambda x: 'appartement' if 'appartement' in x else ('maison' if 'maison' in x else ('studio' if 'studio' in x else x)))
@@ -107,7 +118,7 @@ def process_output(data : dict) -> pd.DataFrame:
     data['lits_superposes'] = data['beds_type'].apply(extract_lits_superposes)
 
     # Sélectionner les colonnes nécessaires pour le fichier de sortie
-    columns_to_keep = ['url','title', 'type', 'ville', 'person_capacity', 'latitude', 'longitude', 'nb_bedrooms', 'nb_beds', 'nb_bathrooms', 'host_name', 'lave-linge', 'sèche-linge', 'lave-vaisselle', 'balcon', 'terrasse', 'parking', 'ascenseur', 'climatisation', 'piscine', 'baignoire', 'lits_doubles', 'lits_simples', 'canapes_convertibles', 'lits_superposes']
+    columns_to_keep = ['url','id','title', 'type', 'ville', 'person_capacity', 'latitude', 'longitude', 'nb_bedrooms', 'nb_beds', 'nb_bathrooms', 'host_name', 'lave-linge', 'sèche-linge', 'lave-vaisselle', 'balcon', 'terrasse', 'parking', 'ascenseur', 'climatisation', 'piscine', 'baignoire', 'lits_doubles', 'lits_simples', 'canapes_convertibles', 'lits_superposes']
     processed_data = data[columns_to_keep]
 
     return processed_data

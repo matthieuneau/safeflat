@@ -17,6 +17,14 @@ def count_beds(bed_description, bed_type):
     matches = re.findall(bed_type, bed_description)
     return len(matches) if matches else None
 
+def extract_id_from_url(url):
+    # Utilisation d'une expression régulière pour extraire l'ID
+    match = re.search(r'/p(\d+)', url)
+    if match:
+        return match.group(1)
+    else:
+        return None
+
 
 def process_output(data : dict) -> pd.DataFrame:
     """Taking care of all the processing of the scraped data, EXCEPT PROCESSING THE DESCRIPTION, which is done by calling ChatGPT
@@ -27,7 +35,7 @@ def process_output(data : dict) -> pd.DataFrame:
     Returns:
         pd.DataFrame: contains the processed data
     """
-
+    data['id'] = data['url'].apply(extract_id_from_url)
     data['ville'] = data['location'].apply(lambda x: x.split(',')[0])
     data['surface'] = data['surface'].apply(extract_surface)
     data['nb_bedrooms'] = data['nb_bedrooms'].apply(extract_bedrooms)
@@ -50,7 +58,7 @@ def process_output(data : dict) -> pd.DataFrame:
         data[amenity] = data['amenities'].apply(lambda x: 'oui' if any(amenity in item.lower() for item in x) else None)
 
     # Sélectionner les colonnes nécessaires pour le fichier de sortie
-    columns_to_keep = ['url','ville','surface', 'nb_bedrooms', 'nb_bathrooms', 'baignoire', 'douche', 'lits_doubles', 'lits_simples', 'canapes_convertibles', 'lits_superposes', 'host_name', 'latitude', 'longitude', 'type', 'host_type',"terrasse", "balcon", "jardin", "cave", "parking", "garage", "box", "piscine", "ascenseur", "interphone", "gardien", "lave-linge", "sèche-linge", "climatisation"]
+    columns_to_keep = ['url','id','ville','surface', 'nb_bedrooms', 'nb_bathrooms', 'baignoire', 'douche', 'lits_doubles', 'lits_simples', 'canapes_convertibles', 'lits_superposes', 'host_name', 'latitude', 'longitude', 'type', 'host_type',"terrasse", "balcon", "jardin", "cave", "parking", "garage", "box", "piscine", "ascenseur", "interphone", "gardien", "lave-linge", "sèche-linge", "climatisation"]
     processed_data = data[columns_to_keep]
 
     processed_data.replace('Not Available', None, inplace=True)

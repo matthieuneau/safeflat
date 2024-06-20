@@ -52,23 +52,23 @@ if __name__ == "__main__":
     url_coord = generate_abritel_url(lat, lon, nb_chambres, nb_salles_de_bains, prix_min, prix_max, sort_order)
     urls = retrieve_urls(url_coord)
     
-    #urls = [urls[0]]
+    urls = urls[1:]
     for url in urls:
         scraped_data = abritel_scraper(url)
         print('Scraped ad:', scraped_data)
         scraped_data = pd.DataFrame([scraped_data])
         
         processed_data = process_output(scraped_data)
-        #processed_data.to_csv('C:/Users/hennecol/Documents/safeflat/safeflat-sam-app/csv_outputs/abritel/output_processed.csv')
+        #processed_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/abritel/output_processed.csv')
 
-        data_bdd = pd.read_csv('C:/Users/hennecol/Documents/safeflat/safeflat-sam-app/csv_outputs/abritel/output_processed.csv')
+        data_bdd = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/abritel/output_processed.csv')
 
         data_bdd.reset_index(drop=True, inplace=True)
         df_concatene = pd.concat([processed_data, data_bdd], ignore_index=True)
         colonnes_a_supprimer = [col for col in df_concatene.columns if 'Unnamed:' in col]
         df_concatene.drop(columns=colonnes_a_supprimer, inplace=True)
 
-        df_concatene.to_csv('C:/Users/hennecol/Documents/safeflat/safeflat-sam-app/csv_outputs/abritel/output_processed.csv')
+        df_concatene.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/abritel/output_processed.csv')
         print("Data merged to database!")
 
         #         # data_bdd2 = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/outpu_processed.csv')

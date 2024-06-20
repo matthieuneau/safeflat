@@ -75,7 +75,7 @@ property_infos_same = {
 if __name__ == "__main__":
     url_listing = generate_airbnb_url("67000", 4, "03/10/2024", "04/10/2024")
     urls = retrieve_urls(url_listing)
-    #urls = urls[:1]
+    urls = urls[1:]
     for url in urls:
         try:
             scraped_data = scrape_ad(url)
