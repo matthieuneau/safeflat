@@ -29,11 +29,10 @@ def handler(event, _context):
     detection_algo = ALGO_MAP[website]
 
     # NEED TO FETCH THE ACTUAL DATA FROM THE CLIENT
-    scraped_properties = get_client_data()
     print("properties to protect fetched from DB: ", scraped_properties)
 
     for scraped_property in scraped_properties:
-        data_with_scores = detection_algo(scraped_property, event["website"])
+        data_with_scores = detection_algo(scraped_property)
         print(data_with_scores)
         send_detection_event(
             website=event["website"],

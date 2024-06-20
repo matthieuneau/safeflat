@@ -4,6 +4,7 @@ from leboncoin_retriever import retrieve_urls as leboncoin_retrieve_urls
 from gensdeconfiance_retriever import retrieve_urls as gensdeconfiance_retrieve_urls
 from pap_retriever import retrieve_urls as pap_retrieve_urls
 from seloger_retriever import retrieve_urls as seloger_retrieve_urls
+from utils import remove_already_scraped_urls
 
 
 def handler(event, _context):
@@ -43,6 +44,8 @@ def handler(event, _context):
 
     url_retriever = FUNCTIONS_MAP[website]
     data = url_retriever()
+    # filter out urls already in database to avoid useless scraping
+    data = remove_already_scraped_urls(data, website)
     print("urls retrieved: ", data)
 
     return {"website": event["website"], "lists": data}
