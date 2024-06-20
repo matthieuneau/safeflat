@@ -57,11 +57,14 @@ def process_output(data : dict) -> pd.DataFrame:
     for amenity in amenities_list:
         data[amenity] = data['amenities'].apply(lambda x: 'oui' if any(amenity in item.lower() for item in x) else None)
 
+    data.replace('Not Available', None, inplace=True)
+    data = data.map(lambda s: s.lower() if type(s) == str else s)
+    
     # Sélectionner les colonnes nécessaires pour le fichier de sortie
     columns_to_keep = ['url','id','ville','surface', 'nb_bedrooms', 'nb_bathrooms', 'baignoire', 'douche', 'lits_doubles', 'lits_simples', 'canapes_convertibles', 'lits_superposes', 'host_name', 'latitude', 'longitude', 'type', 'host_type',"terrasse", "balcon", "jardin", "cave", "parking", "garage", "box", "piscine", "ascenseur", "interphone", "gardien", "lave-linge", "sèche-linge", "climatisation"]
     processed_data = data[columns_to_keep]
 
-    processed_data.replace('Not Available', None, inplace=True)
+
 
     return processed_data
 

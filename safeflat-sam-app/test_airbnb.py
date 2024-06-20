@@ -43,69 +43,65 @@ retrieve_utils = importlib.import_module('utils', 'retrieveUrls')
 
 #Airbnb:
 property_infos_same = {
-    "ville": "Strasbourg",
+    "ville": "Bischheim",
     "type": "appartement",
-    "latitude": 48.5825846,
-    "longitude": 7.7389715,
-    "nb_bedrooms" : 1,
+    "latitude": 48.61146993830823,
+    "longitude": 7.752754837274551,
+    "nb_bedrooms" : 1.0,
     "nb_bathrooms": 1,
-    "host_name" : 'Emma',
+    "host_name" : 'Stephane',
     "lave-linge": 'oui',
-    "sèche-linge": 'oui',
-    "balcon": 'non',
+    "sèche-linge": 'non',
+    "balcon": 'oui',
     "terrasse": 'non',
-    "parking": 'non',
+    "parking": 'oui',
     "ascenseur": 'non',
     "climatisation": 'non',
     "piscine": 'non',
-    "baignoire": 'non',
-    "lits_doubles": 1,
+    "baignoire": 'oui',
+    "lits_doubles": 0,
     "lits_simples": 0,
-    "canapes_convertibles": 1,
+    "canapes_convertibles": 0,
     "lits_superposes": 0,
     "surface": None,
     "nb_rooms": None,
     "quartier": None,
     "meuble": None,
     "nombre_d'etages": None,
-    "numero_d'etage": 1,
+    "numero_d'etage": 2.0,
     "cave": None,
 }
 
 if __name__ == "__main__":
-    url_listing = generate_airbnb_url("67000", 4, "03/10/2024", "04/10/2024")
-    urls = retrieve_urls(url_listing)
-    urls = urls[1:]
-    for url in urls:
-        try:
-            scraped_data = scrape_ad(url)
-            print('Scraped ad:', scraped_data)
-            scraped_data = pd.DataFrame([scraped_data])
-            processed_data = process_output(scraped_data)
+    # url_listing = generate_airbnb_url("67000", 4, "03/10/2024", "04/10/2024")
+    # urls = retrieve_urls(url_listing)
+    # urls = urls[1:]
+    # for url in urls:
+    #     try:
+    # scraped_data = scrape_ad('https://www.airbnb.fr/rooms/663077119487452258?adults=1&children=0&enable_m3_private_room=true&infants=0&pets=0&search_mode=regular_search&check_in=2024-06-28&check_out=2024-06-30&source_impression_id=p3_1718883617_P3ZVvR7M0hfVK8by&previous_page_section_name=1000&federated_search_id=cd754a4c-ff89-44ab-a000-71665a14d5ba')
+    # print('Scraped ad:', scraped_data)
+    # scraped_data = pd.DataFrame([scraped_data])
+    # processed_data = process_output(scraped_data)
 
-            desc_data = scrape_utils.process_description(scraped_data["description"])
+    # desc_data = scrape_utils.process_description(scraped_data["description"])
 
-            merged_data = scrape_utils.add_desc_content_to_df(desc_data, processed_data)
-            #merged_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_processed.csv')
-            #print("Merged data:", merged_data)
+    # merged_data = scrape_utils.add_desc_content_to_df(desc_data, processed_data)
+    # #merged_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_processed.csv') to initialize the csv file
 
-            data_bdd = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_processed.csv')
-
-            df_concatene = pd.concat([merged_data, data_bdd], ignore_index=True)
-            colonnes_a_supprimer = [col for col in df_concatene.columns if 'Unnamed:' in col]
-            df_concatene.drop(columns=colonnes_a_supprimer, inplace=True)
-            df_concatene.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_processed.csv')
+    # data_bdd = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_processed.csv')
+    # df_concatene = pd.concat([merged_data, data_bdd], ignore_index=True)
+    # colonnes_a_supprimer = [col for col in df_concatene.columns if 'Unnamed:' in col]
+    # df_concatene.drop(columns=colonnes_a_supprimer, inplace=True)
+    # df_concatene.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_processed.csv')
 
             
 
-    
-            # data_bdd2 = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/outpu_processed.csv')
-            # filtered_and_scored_data = filter_and_score(property_infos_same)
-            # filtered_and_scored_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_filtered_score.csv')
-
-            #save_to_database(merged_data)
-        except Exception as e:
-            print(f"An error occrued while processing the ad: {url}", "\n", e)
+    #         #save_to_database(merged_data)
+    #     except Exception as e:
+    #         print(f"An error occrued while processing the ad: {url}", "\n", e)
+    data_bdd2 = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_processed.csv')
+    filtered_and_scored_data = filter_and_score(property_infos_same)
+    filtered_and_scored_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_processed_filtered_scored.csv')
 
 
  

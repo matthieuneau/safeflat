@@ -19,7 +19,7 @@ def process_output(data : dict) -> pd.DataFrame:
     data.replace("not available", None, inplace=True)
     data.replace("N/A", None, inplace=True)
 
-    columns_to_keep = ['url', 'id', 'titre', 'first_publication_date', 'prix', 'type', 'meuble', 'surface', 'nb_rooms', 'DPE', 'GES', 'ascenseur', 'numero_etage', 'nb_etages', 'charges', 'caution', 'region', 'departement', 'ville', 'zipcode', 'latitude', 'longitude', 'host_name', 'piscine', 'nb_bedrooms', 'parking', 'quartier', 'cave', 'terrasse']
+    columns_to_keep = ['url', 'id', 'titre', 'first_publication_date', 'prix', 'type', 'meuble', 'surface', 'nb_rooms', 'DPE', 'GES', 'ascenseur', 'numero_etage', 'nb_etages', 'charges', 'caution', 'region', 'departement', 'ville', 'zipcode', 'latitude', 'longitude', 'host_name']
     processed_data = data[columns_to_keep]
 
     return processed_data

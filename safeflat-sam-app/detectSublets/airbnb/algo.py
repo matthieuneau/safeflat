@@ -52,7 +52,7 @@ def filter_and_score(property_infos):
     # Read data from the database and apply first filter (query):
     # data_df = read_from_database(query)
     data_df = pd.read_csv(
-        "/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_filtered_score.csv"
+        "/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_processed.csv"
     )
 
     # Transform text into digital format:
