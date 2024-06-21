@@ -32,6 +32,7 @@ def score_calculation(row, property_infos, poids, poids_surface, poids_nom):
     return matching_poids / total_poids
 
 
+
 def filter_and_score(property_infos):
     """
     Filters goods according to specified criteria and calculates a match score for the remaining goods.
@@ -107,42 +108,14 @@ def filter_and_score(property_infos):
     poids_nom = {'host_name' : 10}
     
     # Cost calculation for each line
-    data_df['cost'] = data_df.apply(score_calculation, axis=1, property_infos=property_infos, poids=poids, poids_surface = poids_surface, poids_nom = poids_nom)*100
+    data_df["cost"] = (
+        data_df.apply(
+            score_calculation, axis=1, property_infos=property_infos, poids=poids, poids_surface = poids_surface, poids_nom = poids_nom
+        )
+        * 100
+    )
 
     print(data_df.columns)
     return data_df
 
-#Example of a property to protect:
-property_infos_same = {
-    'type' : "Appartement",
-    'meuble' :'2',
-    'surface': 58,
-    'nb_rooms' : 3,
-    'DPE' : 'a',
-    'GES' : None, 
-    'ascenseur' : 'Oui',
-    'numero_etage' : None,
-    'nb_etages' : None, 'charges' : None,
-    'caution' : '680',
-    'region': 'Alsace',
-    'piscine' : 5,
-    'departement' : 'Bas-Rhin', 
-    'ville' : 'Ostwald', 
-    'zipcode' : 67540,
-    'latitude' : 48.54393,
-    'longitude' : 7.71036,
-    'host_name' : 'LocService',
-    'piscine' : 'Non',
-    'nb_bedrooms' : None,
-    'parking' : 'oui',
-    'quartier' : 'Ostwald',
-    'cave' : 'Non',
-    'terrasse' : 'oui'}
 
-if __name__ == "__main__":
-    filtered_data = filter_and_score(property_infos_same)
-    print(filtered_data)
-
-    # data = read_from_database("SELECT * FROM pap")
-    # print(data)
-    #filtered_data.to_csv('C:/Users/hennecol/Documents/safeflat/scraping/pap-oxylab/csv_outputs/output_score.csv')

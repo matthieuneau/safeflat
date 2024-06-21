@@ -40,40 +40,37 @@ scrape_utils = importlib.import_module('utils', 'scrapeUrls')
 retrieve_utils = importlib.import_module('utils', 'retrieveUrls')
 
 
-#Airbnb:
+#Leboncoin:
+#Example of a property to protect:
 property_infos_same = {
-    "ville": "Strasbourg",
-    "type": "appartement",
-    "latitude": 48.5825846,
-    "longitude": 7.7389715,
-    "nb_bedrooms" : 1,
-    "nb_bathrooms": 1,
-    "host_name" : 'Emma',
-    "lave-linge": 'oui',
-    "sèche-linge": 'oui',
-    "balcon": 'non',
-    "terrasse": 'non',
-    "parking": 'non',
-    "ascenseur": 'non',
-    "climatisation": 'non',
-    "piscine": 'non',
-    "baignoire": 'non',
-    "lits_doubles": 1,
-    "lits_simples": 0,
-    "canapes_convertibles": 1,
-    "lits_superposes": 0,
-    "surface": None,
-    "nb_rooms": None,
-    "quartier": None,
-    "meuble": None,
-    "nombre_d'etages": None,
-    "numero_d'etage": 1,
-    "cave": None,
-}
+    'type' : "appartement",
+    'meuble' :'non',
+    'surface': 58,
+    'nb_rooms' : 2,
+    'DPE' : 'e',
+    'GES' : 'b', 
+    'ascenseur' : None,
+    'numero_etage' : '1',
+    'nb_etages' : None,
+    'charges' : None,
+    'caution' : '700',
+    'region': 'alsace',
+    'departement' : 'bas-rhin', 
+    'ville' : 'strasbourg', 
+    'zipcode' : 67000,
+    'latitude' : 48.58504,
+    'longitude' : 7.73642,
+    'host_name' : 'immoval',
+    'piscine' : 'non',
+    'nb_bedrooms' : 1.0,
+    'parking' : 'non',
+    'quartier' : 'centre ville',
+    'cave' : 'non',
+    'terrasse' : 'non'}
 
 if __name__ == "__main__":
-    urls = retrieve_urls('https://www.leboncoin.fr/recherche?category=10&locations=Strasbourg_67000__48.58504_7.73642_5000_1000&real_estate_type=2')
-    urls = urls[1:]
+    # urls = retrieve_urls('https://www.leboncoin.fr/recherche?category=10&locations=Strasbourg_67000__48.58504_7.73642_5000_1000&real_estate_type=2')
+    # urls = urls[1:]
     # for url in urls:
     #     scraped_data = scrape_ad(url)
     #     print('Scraped ad:', scraped_data)
@@ -83,7 +80,7 @@ if __name__ == "__main__":
     #     desc_data = scrape_utils.process_description(scraped_data["description"])
 
     #     merged_data = scrape_utils.add_desc_content_to_df(desc_data, processed_data)
-    #     #merged_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/leboncoin/output.csv')
+    #     #merged_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/leboncoin/output.csv') #To initialize csv file
 
     #     data_bdd = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/leboncoin/output.csv')
     #     df_concatene = pd.concat([merged_data, data_bdd], ignore_index=True)
@@ -98,10 +95,7 @@ if __name__ == "__main__":
 
     #     #save_to_database(merged_data)
 
-    #Test postprocessing
-    # data_bdd = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/leboncoin/output.csv')
-    # data_processed = process_output(data_bdd)
-    # data_processed.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/leboncoin/output_processed.csv')
+
 
 
  
