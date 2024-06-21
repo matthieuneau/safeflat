@@ -88,15 +88,6 @@ def filter_and_score(property_infos):
                 | pd.isna(data_df[filter])
             ]
 
-    # filter_surface = ["surface"]
-    # for filter in filter_surface:
-    #     value = property_infos[filter]
-    #     if value is not None:
-    #         data_df = data_df[
-    #             ((value * 0.75 <= data_df[filter]) & (data_df[filter] <= value * 1.25))
-    #             | pd.isna(data_df[filter])
-    #         ]
-
     def is_within_distance(row, point_ref, max_distance_km):
         if pd.isna(row["latitude"]) or pd.isna(row["longitude"]):
             return True
@@ -114,31 +105,31 @@ def filter_and_score(property_infos):
 
     # Defines the weight of each scoring feature (from 1 to 20)
     poids = {
-        "type": 5,
-        "nb_bedrooms" : 7,
-        "nb_bathrooms": 8,
+        "type": 10,
+        "nb_bedrooms" : 17,
+        "nb_bathrooms": 16,
         "lave-linge": 7,
         "sèche-linge": 7,
-        "balcon": 10,
-        "terrasse": 10,
-        "parking": 6,
-        "ascenseur": 8,
-        "climatisation": 5,
-        "piscine": 10,
-        "baignoire": 10,
-        "lits_doubles": 6,
-        "lits_simples": 6,
-        "canapes_convertibles": 6,
-        "lits_superposes": 6,
-        "nb_rooms": 7,
+        "balcon": 16,
+        "terrasse": 16,
+        "parking": 10,
+        "ascenseur": 10,
+        "climatisation": 8,
+        "piscine": 15,
+        "baignoire": 12,
+        "lits_doubles": 13,
+        "lits_simples": 13,
+        "canapes_convertibles": 13,
+        "lits_superposes": 13,
+        "nb_rooms": 10,
         "quartier": 7,
-        "meuble": 5,
+        "meuble": 8,
         "nb_etages": 6,
         "numero_etage": 6,
         "cave": 4,
     }
 
-    poids_surface = {"surface" : 20}
+    poids_surface = {"surface" : 8}
     poids_nom = {"host_name" : 20}
 
     # Cost calculation for each line
@@ -149,6 +140,5 @@ def filter_and_score(property_infos):
         * 100
     )
 
-    print(data_df.columns)
     return data_df
 

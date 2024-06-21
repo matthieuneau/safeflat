@@ -73,27 +73,28 @@ property_infos_same = {
 }
 
 if __name__ == "__main__":
-    # url_listing = generate_airbnb_url("67000", 4, "03/10/2024", "04/10/2024")
-    # urls = retrieve_urls(url_listing)
-    # urls = urls[1:]
-    # for url in urls:
-    #     try:
-    # scraped_data = scrape_ad('https://www.airbnb.fr/rooms/663077119487452258?adults=1&children=0&enable_m3_private_room=true&infants=0&pets=0&search_mode=regular_search&check_in=2024-06-28&check_out=2024-06-30&source_impression_id=p3_1718883617_P3ZVvR7M0hfVK8by&previous_page_section_name=1000&federated_search_id=cd754a4c-ff89-44ab-a000-71665a14d5ba')
-    # print('Scraped ad:', scraped_data)
-    # scraped_data = pd.DataFrame([scraped_data])
-    # processed_data = process_output(scraped_data)
+    url_listing = generate_airbnb_url("67000", 4, "03/10/2024", "04/10/2024")
+    urls = retrieve_urls(url_listing)
+    urls = urls[:1]
+    for url in urls:
+        scraped_data = scrape_ad(url)
+        print('Scraped ad:', scraped_data)
+        scraped_data = pd.DataFrame([scraped_data])
+        processed_data = process_output(scraped_data)
 
-    # desc_data = scrape_utils.process_description(scraped_data["description"])
+        desc_data = scrape_utils.process_description(scraped_data["description"])
 
-    # merged_data = scrape_utils.add_desc_content_to_df(desc_data, processed_data)
-    # #merged_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_processed.csv') to initialize the csv file
+        merged_data = scrape_utils.add_desc_content_to_df(desc_data, processed_data)
 
-    # data_bdd = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_processed.csv')
-    # df_concatene = pd.concat([merged_data, data_bdd], ignore_index=True)
-    # colonnes_a_supprimer = [col for col in df_concatene.columns if 'Unnamed:' in col]
-    # df_concatene.drop(columns=colonnes_a_supprimer, inplace=True)
-    # df_concatene.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_processed.csv')
+        #To initialize csv file:
+        #merged_data.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_processed.csv') to initialize the csv file
 
+        data_bdd = pd.read_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_processed.csv')
+        df_concatene = pd.concat([merged_data, data_bdd], ignore_index=True)
+        colonnes_a_supprimer = [col for col in df_concatene.columns if 'Unnamed:' in col]
+        df_concatene.drop(columns=colonnes_a_supprimer, inplace=True)
+        df_concatene.to_csv('/Users/lucashennecon/Documents/Mission JE/safeflat/safeflat-sam-app/csv_outputs/airbnb/output_processed.csv')
+        print("Data merged to database!")
             
 
     #         #save_to_database(merged_data)

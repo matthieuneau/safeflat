@@ -126,7 +126,6 @@ def filter_and_score(property_infos):
         * 100
     )
 
-    print(data_df.columns)
     return data_df
 
 

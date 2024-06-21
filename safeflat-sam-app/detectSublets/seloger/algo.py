@@ -144,49 +144,4 @@ def filter_and_score(property_infos):
         * 100
     )
 
-    print(data_df.columns)
     return data_df
-
-
-# Example of a property to protect:
-property_infos_same = {
-    "type": "Appartement",
-        "meuble": 1, 
-        "host_name": "Kevin",
-        "ville": "Paris", 
-        "zipcode": 75011,
-        "quartier": "Quartier Léon-Blum Folie-Regnault",
-        "nb_rooms": 4,
-        "nb_bedrooms": 3.0,
-        "surface": 33.0,
-        "balcon": 0,
-        "terrasse": 0,
-        "jardin": 0,
-        "surface_balcon": None,
-        "surface_terrasse": None,
-        "surface_jardin": None,
-        "exposition": None,
-        "cave": 1,
-        "parking": 0,
-        "garage": 0,
-        "box": 1,
-        "ascenseur": 1.0,
-        "interphone": 0,
-        "gardien": 0,
-        "numero_etage": 4.0,
-        "nb_etages": 6.0,
-        "baignoire": 1,
-        "douche": 1,
-        "surface_salon": None,
-        "surface_salle_a_manger": None,
-        "DPE": "D",
-        "GES": "D"
-}
-
-if __name__ == "__main__":
-    filtered_data = filter_and_score(property_infos_same)
-    print(filtered_data)
-
-    # data = read_from_database("SELECT * FROM pap")
-    # print(data)
-    # filtered_data.to_csv('C:/Users/hennecol/Documents/safeflat/scraping/pap-oxylab/csv_outputs/output_score.csv')
